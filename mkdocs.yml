@@ -1,0 +1,66 @@
+site_name: 'USP Aero WAAP documentation'
+docs_dir: './docs'                        # Where to find the English markdown files
+site_dir: './generated'                      # Where to put the English HTML files
+site_url: 'https://docs.united-security-providers.ch/usp-aero-waap/'
+
+theme:
+  name: material
+  custom_dir: './overrides/'                  # This is where the customization of the theme lives
+  logo: assets/images/USP-Logo-2023-ohne-claim-lang-white1.webp                 # The logo is shared by all languages
+  favicon: assets/images/favicon.png              # The favicon is shared by all languages
+  language: en                                    # The build's language
+extra_css:
+  - assets/stylesheets/extra.css
+
+extra:
+  version:
+    provider: mike
+    default: latest
+
+plugins:
+  - search:
+      lang: en                                      # Set language for search
+  - swagger-ui-tag:
+      supportedSubmitMethods: []
+      validatorUrl: none
+  - mike:
+      canonical_version: latest
+      version_selector: true
+
+markdown_extensions:
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - attr_list
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+nav:
+  - Welcome: 'index.md'
+  - Release Notes: 'aero-waap-releasenotes.md'
+  - Configuration:
+    - API Reference: 'crd-doc.md'
+    - Coraza:
+      - What is Coraza?: "what-is-coraza.md"
+      - CRS: "coraza-crs.md"
+      - GraphQL: "coraza-graphql.md"
+    - Header Filtering: 'header-filtering.md'
+    - Error Mapping: 'error-mapping.md'
+    - Native Config Post-Processing: 'native-config-post-processing.md'
+    - ICAP Antivirus Scanning: 'icap-antivirus-scanning.md'
+    - OpenAPI Validation: 'openapi-validation.md'
+    - Virtual Patch: 'crs-virtual-patch.md'
+    - Lua Filters: 'lua-filters.md'
+  - Operation:
+    - Operator Helm Chart:
+        - Usage: 'helm.md'
+        - Values: 'helm-values.md'
+    - Aero WAAP Upgrade: 'upgrade.md'
+    - Logs and Metrics: 'logs-metrics.md'
+    - Auto-Learning: 'autolearning.md'
+    - Large Payloads: 'large-payloads.md'
+    - OAuth2 / OIDC: 'oidc-operation.md'
+    - Debugging: 'debugging.md'
+  - Downloads: 'downloads.md'
