@@ -1,11 +1,11 @@
 site_name: 'USP Aero Platform documentation'
 docs_dir: './docs'                        # Where to find the English markdown files
 site_dir: './generated'                      # Where to put the English HTML files
-site_url: 'https://docs.united-security-providers.ch/usp-aero-waap/'
+site_url: 'https://docs.united-security-providers.ch/usp-aero/aero-platform'
 
 theme:
   name: material
-  custom_dir: './overrides/'                  # This is where the customization of the theme lives
+  custom_dir: '../overrides/'                  # This is where the customization of the theme lives
   logo: assets/images/USP-Logo-2023-ohne-claim-lang-white1.webp                 # The logo is shared by all languages
   favicon: assets/images/favicon.png              # The favicon is shared by all languages
   language: en                                    # The build's language
@@ -24,6 +24,7 @@ plugins:
       supportedSubmitMethods: []
       validatorUrl: none
   - mike:
+      deploy_prefix: aero-platform
       canonical_version: latest
       version_selector: true
 
