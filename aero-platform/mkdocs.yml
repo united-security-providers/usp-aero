@@ -39,5 +39,5 @@ markdown_extensions:
   - pymdownx.details
   - pymdownx.superfences
 nav:
-  - Welcome: '../index.md'
+  - Welcome: 'http://docs.united-security-providers.ch/usp-aero/'
   - Overview: 'index.md'
