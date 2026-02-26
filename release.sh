@@ -13,7 +13,7 @@ checkbin() {
     echo "$cmd command could not be found"
     echo "HINT: If you are using a python virtual environment then you need to active it before running this script"
     echo "possibly with this command or a similar one (depending on how you created your venv):"
-    echo "$ source .venv/bin/activate"
+    echo "$ source ~/.venv/bin/activate"
     exit
   fi
 }
@@ -22,14 +22,13 @@ if [ "$#" -lt 1 ]
 then
   echo "Not enough arguments supplied. Usage:"
   echo ""
-  echo "./release.sh <helm-chart-version, e.g. 1.0.0> [deploy] [--latest] "
+  echo "./release.sh [deploy]"
   echo ""
   echo "If the optional 'deploy' argument is set, the website will be deployed to Github and made public!"
-  echo "If the optional 'latest' flag is set, then the specified version will become the latest version"
   echo ""
   echo "Example for creating the website without deployment:"
   echo ""
-  echo "./release.sh 1.0.0"
+  echo "./release.sh"
   exit 1
 fi
 
@@ -54,11 +53,9 @@ cp -R src/docs docs
 echo "Successfully generated site (Markdown) in docs folder."
 
 [ "$1" == "deploy" ] && DEPLOY=true && shift
-[ "$1" == "--latest" ] && RELEASE_ALIAS=latest && shift
 
 if [ $DEPLOY ]; then
     echo "Deploying to GitHub pages..."
-    version=$(echo "$CHARTS_VERSION" | sed -E 's/^v?([0-9]+)\.([0-9]+)\.[0-9]+$/\1.\2.x/')
     mkdocs gh-deploy --force --ignore-version
     echo "Successfully deployed to to GitHub pages"
 else
