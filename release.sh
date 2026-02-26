@@ -61,7 +61,7 @@ if [ $DEPLOY ]; then
     #mike set-default --push --allow-empty "latest"
     mkdocs gh-deploy --force --ignore-version
     git checkout gh-pages
-    git merge gh-pages-top
+    git merge --allow-unrelated-histories gh-pages-top
     git push -f
     git checkout main
     echo "Successfully deployed to to GitHub pages"
