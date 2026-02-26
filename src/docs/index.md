@@ -1,4 +1,4 @@
-# USP Aero 
+# USP Aero Suite
 
 TEST
 
