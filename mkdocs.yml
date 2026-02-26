@@ -1,7 +1,7 @@
-site_name: 'USP Aero WAAP documentation'
+site_name: 'USP Aero documentation'
 docs_dir: './docs'                        # Where to find the English markdown files
 site_dir: './generated'                      # Where to put the English HTML files
-site_url: 'https://docs.united-security-providers.ch/usp-aero-waap/'
+site_url: 'https://docs.united-security-providers.ch/usp-aero'
 
 theme:
   name: material

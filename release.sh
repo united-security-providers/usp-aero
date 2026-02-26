@@ -59,18 +59,12 @@ echo "Successfully generated site (Markdown) in docs folder."
 if [ $DEPLOY ]; then
     echo "Deploying to GitHub pages..."
     version=$(echo "$CHARTS_VERSION" | sed -E 's/^v?([0-9]+)\.([0-9]+)\.[0-9]+$/\1.\2.x/')
-    mkdocs gh-deploy --force
+    mkdocs gh-deploy --force --ignore-version
     echo "Successfully deployed to to GitHub pages"
 else
     echo "Building website locally in 'generated' subfolder..."
     mkdocs build
     echo "Website generated."
-fi
-
-if [[ $DEPLOY && "${RELEASE_ALIAS}" == "latest" ]]; then
-    echo "Setting default latest..."
-    mike set-default --push --allow-empty "${RELEASE_ALIAS}"
-    echo "Set default latest."
 fi
 
 trap - ERR
