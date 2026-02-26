@@ -56,7 +56,8 @@ echo "Successfully generated site (Markdown) in docs folder."
 
 if [ $DEPLOY ]; then
     echo "Deploying to GitHub pages..."
-    mkdocs gh-deploy --force --ignore-version
+    mike deploy --push 1.0.0
+#    mkdocs gh-deploy --force --ignore-version
     echo "Successfully deployed to to GitHub pages"
 else
     echo "Building website locally in 'generated' subfolder..."

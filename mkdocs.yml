@@ -23,6 +23,9 @@ plugins:
   - swagger-ui-tag:
       supportedSubmitMethods: []
       validatorUrl: none
+  - mike:
+      deploy_prefix: ''
+      version_selector: false
 
 markdown_extensions:
   - pymdownx.superfences:
