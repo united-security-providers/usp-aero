@@ -1,6 +1,4 @@
-# USP Aero
-
-TEST
+# USP Aero Suite
 
 The USP Aero product suite provides the security services and functionality 
 needed to protect your applications and data:
