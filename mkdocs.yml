@@ -24,8 +24,7 @@ plugins:
       supportedSubmitMethods: []
       validatorUrl: none
   - mike:
-      deploy_prefix: ''
-      canonical_version: latest
+      canonical_version: 1.0.0
       version_selector: false
 
 markdown_extensions:
