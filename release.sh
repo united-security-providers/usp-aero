@@ -56,9 +56,6 @@ echo "Successfully generated site (Markdown) in docs folder."
 
 if [ $DEPLOY ]; then
     echo "Deploying to GitHub pages..."
-    #mike deploy --update-aliases --push "1.0.0" latest
-    #sleep 60
-    #mike set-default --push --allow-empty "latest"
     mkdocs gh-deploy --force --ignore-version
     git checkout gh-pages
     git merge -m 'merging top into gh-pages' --allow-unrelated-histories gh-pages-top
