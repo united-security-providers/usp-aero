@@ -25,6 +25,7 @@ plugins:
       validatorUrl: none
   - mike:
       deploy_prefix: ''
+      canonical_version: latest
       version_selector: false
 
 markdown_extensions:
