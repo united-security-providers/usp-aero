@@ -2,7 +2,7 @@ site_name: 'USP Aero Suite documentation'
 docs_dir: './docs'                        # Where to find the English markdown files
 site_dir: './generated'                      # Where to put the English HTML files
 site_url: 'https://docs.united-security-providers.ch/usp-aero'
-branch: gh-pages-top
+remote_branch: gh-pages-top
 
 theme:
   name: material
