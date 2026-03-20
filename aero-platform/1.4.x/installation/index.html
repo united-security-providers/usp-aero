@@ -309,15 +309,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#setup-process" class="md-nav__link">
-    <span class="md-ellipsis">
-      Setup process
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -370,15 +361,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#setup-process" class="md-nav__link">
-    <span class="md-ellipsis">
-      Setup process
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -396,9 +378,49 @@
 
 
 <h1 id="installation">Installation</h1>
+<p>The USP Aero platform installation is a multi-stage process following these basic steps:</p>
+<ol>
+<li>Base OS installation</li>
+</ol>
+<p>This first phase installs a Fedora CoreOS system with the infrastructure to run containers 
+and provides basic network communication for downloading container images etc.</p>
+<ol>
+<li>USP Base image activation</li>
+</ol>
+<p>After initial base OS installation the USP base image will be downloaded and activated, providing
+the actual Aero platform base (including the management UI).</p>
+<ol>
+<li>First-time Setup Wizard</li>
+</ol>
+<p>After the initial installation of the Aero base image has been completed, a setup wizard 
+web application will be started for the first-time configuration of the system. It will allow
+to perform initial networking configuration, configuring root access credentials etc.</p>
 <h2 id="download-iso-image">Download ISO image</h2>
+<p>The first requisite for installing the USP Aero platform is to download the ISO installer image
+from the USP service portal.</p>
+<p><em>MORE DETAILS TBD</em></p>
 <h2 id="hardware-requirements">Hardware requirements</h2>
-<h2 id="setup-process">Setup process</h2>
+<p>The recommended minimum hardware requirements for running the USP Aero platform are as follows:</p>
+<ul>
+<li>8 GB RAM</li>
+<li>40 GB disk space</li>
+<li>8 CPU cores</li>
+</ul>
+<h1 id="setup-procedure">Setup Procedure</h1>
+<h2 id="with-dhcp-dns">With DHCP / DNS</h2>
+<p>If the Aero system is set up in an environment with access to DHCP and DNS services, the setup will be very
+straightforward:</p>
+<ul>
+<li>Insert the custom USP FCOS ISO image into the DVD drive and boot the system with it</li>
+<li>After the initial Fedora CoreOS installation, the system will automatically download the USP base platform 
+  from the USP registry (on "uspregistry.azurecr.io") and install it.</li>
+<li>After a reboot, the first-time setup wizard UI will become available on all network interfaces. </li>
+</ul>
+<h2 id="without-dhcp-dns">Without DHCP / DNS</h2>
+<p>If DNS and DHCP are not available in the installation environment, the system will not be able to automatically
+download the USP base platform image after the initial FCOS installation. In this case, it is necessary to
+manualle configure the network settings through the console menu, and manually trigger the bootstrapping
+of the USP base platform:</p>
 
 
 
