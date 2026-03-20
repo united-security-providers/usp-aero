@@ -41,4 +41,4 @@ markdown_extensions:
 nav:
   - Welcome: 'http://docs.united-security-providers.ch/usp-aero/'
   - Overview: 'index.md'
-  - Installation: 'installation.md'
+  - Installation: 'install/installation.md'
