@@ -19,8 +19,6 @@ extra:
     default: latest
 
 plugins:
-  - search:
-      lang: en                                      # Set language for search
   - swagger-ui-tag:
       supportedSubmitMethods: []
       validatorUrl: none

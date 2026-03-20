@@ -18,21 +18,6 @@ checkbin() {
   fi
 }
 
-if [ "$#" -lt 1 ]
-then
-  echo "Not enough arguments supplied. Usage:"
-  echo ""
-  echo "./release.sh [deploy]"
-  echo ""
-  echo "If the optional 'deploy' argument is set, the website will be deployed to Github and made public!"
-  echo ""
-  echo "Example for creating the website without deployment:"
-  echo ""
-  echo "./release.sh"
-  exit 1
-fi
-
-
 DIR=`pwd`
 rm -rf build
 rm -rf docs
