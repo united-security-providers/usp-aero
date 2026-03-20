@@ -68,7 +68,21 @@ of the USP base platform:
 * DNS servers: <nameserver> incl. search-domains
 * IPv6 CONFIGURATION <Disabled>
 * OK
-* Trigger the bootstrapping of the USP Aero base platform by pressing "B"
-* After a successful bootstrapping, the first-time setup wizard UI will become available on all configured interfaces.
 
-Once done, open a web browser to access the first-time setup wizard
+### Container registry configuration
+
+TODO: IS THIS NECESSARY?
+
+Validate if the container registry is accessible:
+
+* Type "T"
+* It should show a list of container tags, including the tag you have selected. Otherwise, the connection to the 
+  registry is not properly set up. Recheck the network and registry settings.
+
+Bootstrap container image (this will extend Fedora CoreOS with custom tools and settings):
+
+* Type "B"
+
+The system will reboot automatically again. Afterwards, the first-time setup wizard UI will become available 
+on all configured interfaces.
+
