@@ -8,23 +8,25 @@
       
       
       
-        <link rel="canonical" href="https://docs.united-security-providers.ch/usp-aero/aero-waap/latest/">
+        <link rel="canonical" href="https://docs.united-security-providers.ch/usp-aero/aero-waap/latest/error-mapping/">
       
       
+        <link rel="prev" href="../header-filtering/">
       
-        <link rel="next" href="core-waap-releasenotes/">
+      
+        <link rel="next" href="../native-config-post-processing/">
       
       
-      <link rel="icon" href="assets/images/favicon.png">
+      <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
     
     
       
-        <title>USP Aero WAAP documentation</title>
+        <title>Error Mapping - USP Aero WAAP documentation</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.e53b48f4.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.e53b48f4.min.css">
       
       
 
@@ -43,9 +45,9 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/extra.css">
+      <link rel="stylesheet" href="../assets/stylesheets/extra.css">
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -64,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#usp-core-waap" class="md-skip">
+        <a href="#error-mapping" class="md-skip">
           Skip to content
         </a>
       
@@ -84,9 +86,9 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="." title="USP Aero WAAP documentation" class="md-header__button md-logo" aria-label="USP Aero WAAP documentation" data-md-component="logo">
+    <a href=".." title="USP Aero WAAP documentation" class="md-header__button md-logo" aria-label="USP Aero WAAP documentation" data-md-component="logo">
       
-  <img src="assets/images/USP-Logo-2023-ohne-claim-lang-white1.webp" alt="logo">
+  <img src="../assets/images/USP-Logo-2023-ohne-claim-lang-white1.webp" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -103,7 +105,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Welcome
+              Error Mapping
             
           </span>
         </div>
@@ -181,9 +183,9 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="USP Aero WAAP documentation" class="md-nav__button md-logo" aria-label="USP Aero WAAP documentation" data-md-component="logo">
+    <a href=".." title="USP Aero WAAP documentation" class="md-nav__button md-logo" aria-label="USP Aero WAAP documentation" data-md-component="logo">
       
-  <img src="assets/images/USP-Logo-2023-ohne-claim-lang-white1.webp" alt="logo">
+  <img src="../assets/images/USP-Logo-2023-ohne-claim-lang-white1.webp" alt="logo">
 
     </a>
     USP Aero WAAP documentation
@@ -195,32 +197,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Welcome
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="." class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
         
   
   
@@ -231,53 +211,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
-    <span class="md-ellipsis">
-      Overview
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#configuring-core-waap" class="md-nav__link">
-    <span class="md-ellipsis">
-      Configuring Core WAAP
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#getting-started" class="md-nav__link">
-    <span class="md-ellipsis">
-      Getting Started
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -289,7 +222,7 @@
   
   
     <li class="md-nav__item">
-      <a href="core-waap-releasenotes/" class="md-nav__link">
+      <a href="../core-waap-releasenotes/" class="md-nav__link">
         
   
   
@@ -308,18 +241,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
@@ -335,7 +270,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             Configuration
@@ -349,7 +284,7 @@
   
   
     <li class="md-nav__item">
-      <a href="crd-doc/" class="md-nav__link">
+      <a href="../crd-doc/" class="md-nav__link">
         
   
   
@@ -410,7 +345,7 @@
   
   
     <li class="md-nav__item">
-      <a href="coraza/" class="md-nav__link">
+      <a href="../coraza/" class="md-nav__link">
         
   
   
@@ -433,7 +368,7 @@
   
   
     <li class="md-nav__item">
-      <a href="coraza-crs/" class="md-nav__link">
+      <a href="../coraza-crs/" class="md-nav__link">
         
   
   
@@ -456,7 +391,7 @@
   
   
     <li class="md-nav__item">
-      <a href="coraza-graphql/" class="md-nav__link">
+      <a href="../coraza-graphql/" class="md-nav__link">
         
   
   
@@ -487,7 +422,7 @@
   
   
     <li class="md-nav__item">
-      <a href="header-filtering/" class="md-nav__link">
+      <a href="../header-filtering/" class="md-nav__link">
         
   
   
@@ -507,10 +442,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="error-mapping/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Error Mapping
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -521,6 +478,53 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#html-error-page-for-all-4xx-errors-with-style-and-logo" class="md-nav__link">
+    <span class="md-ellipsis">
+      HTML error page for all 4xx errors with style and logo
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#json-error-document-for-504-error-mapped-to-500" class="md-nav__link">
+    <span class="md-ellipsis">
+      JSON error document for 504 error mapped to 500
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#behavior-on-configuration-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Behavior on configuration changes
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -533,7 +537,7 @@
   
   
     <li class="md-nav__item">
-      <a href="native-config-post-processing/" class="md-nav__link">
+      <a href="../native-config-post-processing/" class="md-nav__link">
         
   
   
@@ -556,7 +560,7 @@
   
   
     <li class="md-nav__item">
-      <a href="icap-antivirus-scanning/" class="md-nav__link">
+      <a href="../icap-antivirus-scanning/" class="md-nav__link">
         
   
   
@@ -579,7 +583,7 @@
   
   
     <li class="md-nav__item">
-      <a href="openapi-validation/" class="md-nav__link">
+      <a href="../openapi-validation/" class="md-nav__link">
         
   
   
@@ -602,7 +606,7 @@
   
   
     <li class="md-nav__item">
-      <a href="crs-virtual-patch/" class="md-nav__link">
+      <a href="../crs-virtual-patch/" class="md-nav__link">
         
   
   
@@ -625,7 +629,7 @@
   
   
     <li class="md-nav__item">
-      <a href="lua-filters/" class="md-nav__link">
+      <a href="../lua-filters/" class="md-nav__link">
         
   
   
@@ -648,7 +652,7 @@
   
   
     <li class="md-nav__item">
-      <a href="rate-limiting/" class="md-nav__link">
+      <a href="../rate-limiting/" class="md-nav__link">
         
   
   
@@ -754,7 +758,7 @@
   
   
     <li class="md-nav__item">
-      <a href="helm/" class="md-nav__link">
+      <a href="../helm/" class="md-nav__link">
         
   
   
@@ -777,7 +781,7 @@
   
   
     <li class="md-nav__item">
-      <a href="helm-values/" class="md-nav__link">
+      <a href="../helm-values/" class="md-nav__link">
         
   
   
@@ -808,7 +812,7 @@
   
   
     <li class="md-nav__item">
-      <a href="upgrade/" class="md-nav__link">
+      <a href="../upgrade/" class="md-nav__link">
         
   
   
@@ -831,7 +835,7 @@
   
   
     <li class="md-nav__item">
-      <a href="logs-metrics/" class="md-nav__link">
+      <a href="../logs-metrics/" class="md-nav__link">
         
   
   
@@ -854,7 +858,7 @@
   
   
     <li class="md-nav__item">
-      <a href="autolearning/" class="md-nav__link">
+      <a href="../autolearning/" class="md-nav__link">
         
   
   
@@ -877,7 +881,7 @@
   
   
     <li class="md-nav__item">
-      <a href="large-payloads/" class="md-nav__link">
+      <a href="../large-payloads/" class="md-nav__link">
         
   
   
@@ -900,7 +904,7 @@
   
   
     <li class="md-nav__item">
-      <a href="oidc-operation/" class="md-nav__link">
+      <a href="../oidc-operation/" class="md-nav__link">
         
   
   
@@ -923,7 +927,7 @@
   
   
     <li class="md-nav__item">
-      <a href="debugging/" class="md-nav__link">
+      <a href="../debugging/" class="md-nav__link">
         
   
   
@@ -953,7 +957,7 @@
   
   
     <li class="md-nav__item">
-      <a href="downloads/" class="md-nav__link">
+      <a href="../downloads/" class="md-nav__link">
         
   
   
@@ -995,27 +999,27 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
+  <a href="#html-error-page-for-all-4xx-errors-with-style-and-logo" class="md-nav__link">
     <span class="md-ellipsis">
-      Overview
+      HTML error page for all 4xx errors with style and logo
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#configuring-core-waap" class="md-nav__link">
+  <a href="#json-error-document-for-504-error-mapped-to-500" class="md-nav__link">
     <span class="md-ellipsis">
-      Configuring Core WAAP
+      JSON error document for 504 error mapped to 500
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#getting-started" class="md-nav__link">
+  <a href="#behavior-on-configuration-changes" class="md-nav__link">
     <span class="md-ellipsis">
-      Getting Started
+      Behavior on configuration changes
     </span>
   </a>
   
@@ -1037,25 +1041,68 @@
 
 
 
-<h1 id="usp-core-waap">USP Core WAAP</h1>
-<p>USP Core WAAP (Web Application and API Protection) provides secure access to web-based applications and resources,
-while simplifying the process of configuration and deployment.</p>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>The current <strong><a href="helm/">Helm chart</a></strong> version for the <strong><a href="helm/#install-operator">USP Core WAAP operator</a></strong> is : <strong>1.3.0</strong></p>
-</div>
-<h2 id="overview">Overview</h2>
-<p>For Kubernetes we provide the Core WAAP Operator which deploys Core WAAP based on a Custom 
-Resource with the respective services and pods. With Core WAAP, the security configuration can be fully integrated in applications continuous integration and delivery process 
-while enabling developers move from DevOps to SecDevOps.</p>
-<p><img alt="Core WAAP Overview" src="assets/images/core-waap-illustration1.png" /></p>
-<h2 id="configuring-core-waap">Configuring Core WAAP</h2>
-<p>A basic Core WAAP configuration looks as follows.</p>
-<p><img alt="Core WAAP configuration example" src="assets/images/core-waap-editor-demo.gif" /></p>
-<h2 id="getting-started">Getting Started</h2>
-<p>To pull the Operator helm chart and corresponding container images you need a key. Get in contact with us, we are looking forward to support you.
-<a href="https://www.united-security-providers.ch/technology/application-security/web-application-api-protection-waap/#more">Web Application &#038; API Protection (WAAP) &#8211; United Security Providers AG</a></p>
-<p>If you want to try the Core WAAP yourself head over to the <a href="https://killercoda.com/united-security-providers">Killercoda Core WAAP scenarios</a>.</p>
+<h1 id="error-mapping">Error Mapping</h1>
+<p>The main purpose of error mapping is to hide internals of the web application backend from potential attackers who could otherwise gather information about vulnerabilities. HTML error status codes (e.g. 403, 500) can be mapped to generic error pages. The error pages can be enriched with meta information like request-id, timestamp etc. to ease analysis for support staff. Furthermore the companies corporate design can easily be applied on such error pages across different backends.</p>
+<p>Example of an error page:</p>
+<p><img alt="Sample 404 Error Page" src="../assets/images/error-page-usp-404.jpg" /></p>
+<h2 id="html-error-page-for-all-4xx-errors-with-style-and-logo">HTML error page for all 4xx errors with style and logo</h2>
+<p>A simple HTML error page with some info about the request is configured as follows.</p>
+<p>In the CoreWaapService custom resource specify something like this:</p>
+<p><div class="highlight"><pre><span></span><code><span class="nt">webResources</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">configMap</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;web-resources-config-map&quot;</span>
+<span class="w">  </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/resources/&quot;</span>
+<span class="w">  </span><span class="nt">errorPages</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;error4xx.html&quot;</span>
+<span class="w">    </span><span class="nt">statusCode</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;4xx&quot;</span>
+</code></pre></div>
+Note: This will map all backend errors in the range 400-499 to the HTML page <code>error4xx.html</code></p>
+<p>The HTML Page can now be specified in a config map like this:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ConfigMap</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;web-resources-config-map&quot;</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;your-namespace&quot;</span>
+<span class="nt">data</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">error4xx.html</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">    </span><span class="no">&lt;html&gt;</span>
+<span class="w">      </span><span class="no">&lt;head&gt;</span>
+<span class="w">        </span><span class="no">&lt;title&gt;Error Page 4xx&lt;/title&gt;</span>
+<span class="w">      </span><span class="no">&lt;/head&gt;</span>
+<span class="w">      </span><span class="no">&lt;body&gt;</span>
+<span class="w">        </span><span class="no">&lt;h1&gt;Error Page 4xx&lt;/h1&gt;</span>
+<span class="w">        </span><span class="no">&lt;p&gt;Backend status code: %RESPONSE_CODE%&lt;/p&gt;</span>
+<span class="w">        </span><span class="no">&lt;p&gt;Request ID: %REQ(X-REQUEST-ID)%&lt;/p&gt;</span>
+<span class="w">      </span><span class="no">&lt;/body&gt;</span>
+<span class="w">    </span><span class="no">&lt;/html&gt;</span>
+</code></pre></div>
+<p>Note that you could use any of the <a href="https://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage">Envoy "%...%" variables</a> in the error page.</p>
+<p>As described in the <a href="../crd-doc/#corewaapservicespecwebresources">API Reference</a> it is actually possible to directly serve other static files directly from Core WAAP. Anyhow, since Core WAAP is not a web server, there are strict size limitations. Therefore it is recommended to serve static files like JavaScript, CSS or images from a different web server and only reference them in HTML in Core WAAP. In order to avoid dependency to existing backend server for serving such static resources, one possible approach is to set up a dedicated pod to serve only such content. This is beyond the scope of this documentation. If the required static resources (e.g a CSS like w3.css) are publicly available over a CDN, they can also directly be fetched on browser side.</p>
+<h2 id="json-error-document-for-504-error-mapped-to-500">JSON error document for 504 error mapped to 500</h2>
+<p>In the CoreWaapService custom resource specify something like this:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">webResources</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">configMap</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;web-resources-config-map&quot;</span>
+<span class="w">  </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/resources/&quot;</span>
+<span class="w">  </span><span class="nt">errorPages</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;error504.json&quot;</span>
+<span class="w">    </span><span class="nt">statusCode</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;504&quot;</span>
+<span class="w">    </span><span class="nt">mappedStatusCode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">500</span>
+</code></pre></div>
+<p>And specify the resources in a config map like this:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ConfigMap</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;web-resources-config-map&quot;</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;your-namespace&quot;</span>
+<span class="nt">data</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">error504.json</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">    </span><span class="no">{</span>
+<span class="w">      </span><span class="no">&quot;request_id&quot;:&quot;%REQ(X-REQUEST-ID)%&quot;,</span>
+<span class="w">      </span><span class="no">&quot;message&quot;:&quot;Gateway Timeout&quot;</span>
+<span class="w">    </span><span class="no">}</span>
+</code></pre></div>
+<h2 id="behavior-on-configuration-changes">Behavior on configuration changes</h2>
+<p>Note that changes to a config map are not directly applied by a running Core WAAP. Therefore the Core WAAP Deployment has to be restarted. e.g.:
+<code>kubectl -n juiceshop rollout restart deployment usp-core-waap</code></p>
 
 
 
@@ -1104,10 +1151,10 @@ while enabling developers move from DevOps to SecDevOps.</p>
     
     
       
-      <script id="__config" type="application/json">{"base": ".", "features": [], "search": "assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
     
     
-      <script src="assets/javascripts/bundle.f55a23d4.min.js"></script>
+      <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
       
     
   </body>

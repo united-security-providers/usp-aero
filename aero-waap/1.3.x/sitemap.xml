@@ -2,30 +2,106 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://docs.united-security-providers.ch/usp-aero/aero-waap/latest/</loc>
-         <lastmod>2026-02-26</lastmod>
+         <lastmod>2026-03-21</lastmod>
     </url>
     <url>
          <loc>https://docs.united-security-providers.ch/usp-aero/aero-waap/latest/autolearning/</loc>
-         <lastmod>2026-02-26</lastmod>
+         <lastmod>2026-03-21</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.united-security-providers.ch/usp-aero/aero-waap/latest/coraza-crs/</loc>
+         <lastmod>2026-03-21</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.united-security-providers.ch/usp-aero/aero-waap/latest/coraza-graphql/</loc>
+         <lastmod>2026-03-21</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.united-security-providers.ch/usp-aero/aero-waap/latest/coraza/</loc>
+         <lastmod>2026-03-21</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.united-security-providers.ch/usp-aero/aero-waap/latest/core-waap-releasenotes/</loc>
+         <lastmod>2026-03-21</lastmod>
     </url>
     <url>
          <loc>https://docs.united-security-providers.ch/usp-aero/aero-waap/latest/crd-doc/</loc>
-         <lastmod>2026-02-26</lastmod>
+         <lastmod>2026-03-21</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.united-security-providers.ch/usp-aero/aero-waap/latest/crs-virtual-patch/</loc>
+         <lastmod>2026-03-21</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.united-security-providers.ch/usp-aero/aero-waap/latest/debugging/</loc>
+         <lastmod>2026-03-21</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.united-security-providers.ch/usp-aero/aero-waap/latest/downloads/</loc>
+         <lastmod>2026-03-21</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.united-security-providers.ch/usp-aero/aero-waap/latest/error-mapping/</loc>
+         <lastmod>2026-03-21</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.united-security-providers.ch/usp-aero/aero-waap/latest/header-filtering/</loc>
+         <lastmod>2026-03-21</lastmod>
     </url>
     <url>
          <loc>https://docs.united-security-providers.ch/usp-aero/aero-waap/latest/helm-CHANGELOG/</loc>
-         <lastmod>2026-02-26</lastmod>
+         <lastmod>2026-03-21</lastmod>
     </url>
     <url>
          <loc>https://docs.united-security-providers.ch/usp-aero/aero-waap/latest/helm-values/</loc>
-         <lastmod>2026-02-26</lastmod>
+         <lastmod>2026-03-21</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.united-security-providers.ch/usp-aero/aero-waap/latest/helm/</loc>
+         <lastmod>2026-03-21</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.united-security-providers.ch/usp-aero/aero-waap/latest/icap-antivirus-scanning/</loc>
+         <lastmod>2026-03-21</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.united-security-providers.ch/usp-aero/aero-waap/latest/large-payloads/</loc>
+         <lastmod>2026-03-21</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.united-security-providers.ch/usp-aero/aero-waap/latest/logs-metrics/</loc>
+         <lastmod>2026-03-21</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.united-security-providers.ch/usp-aero/aero-waap/latest/lua-filters/</loc>
+         <lastmod>2026-03-21</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.united-security-providers.ch/usp-aero/aero-waap/latest/native-config-post-processing/</loc>
+         <lastmod>2026-03-21</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.united-security-providers.ch/usp-aero/aero-waap/latest/oidc-operation/</loc>
+         <lastmod>2026-03-21</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.united-security-providers.ch/usp-aero/aero-waap/latest/openapi-validation/</loc>
+         <lastmod>2026-03-21</lastmod>
     </url>
     <url>
          <loc>https://docs.united-security-providers.ch/usp-aero/aero-waap/latest/operator-CHANGELOG/</loc>
-         <lastmod>2026-02-26</lastmod>
+         <lastmod>2026-03-21</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.united-security-providers.ch/usp-aero/aero-waap/latest/rate-limiting/</loc>
+         <lastmod>2026-03-21</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.united-security-providers.ch/usp-aero/aero-waap/latest/upgrade/</loc>
+         <lastmod>2026-03-21</lastmod>
     </url>
     <url>
          <loc>https://docs.united-security-providers.ch/usp-aero/aero-waap/latest/waap-proxy-CHANGELOG/</loc>
-         <lastmod>2026-02-26</lastmod>
+         <lastmod>2026-03-21</lastmod>
     </url>
 </urlset>

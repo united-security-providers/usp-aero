@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://docs.united-security-providers.ch/usp-aero/aero-waap/latest/helm-values/">
+        <link rel="canonical" href="https://docs.united-security-providers.ch/usp-aero/aero-waap/latest/native-config-post-processing/">
       
       
-        <link rel="prev" href="../helm/">
+        <link rel="prev" href="../error-mapping/">
       
       
-        <link rel="next" href="../upgrade/">
+        <link rel="next" href="../icap-antivirus-scanning/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -22,7 +22,7 @@
     
     
       
-        <title>Values - USP Aero WAAP documentation</title>
+        <title>Native Config Post-Processing - USP Aero WAAP documentation</title>
       
     
     
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#usp-core-waap-operator" class="md-skip">
+        <a href="#native-config-post-processing-ncpp" class="md-skip">
           Skip to content
         </a>
       
@@ -105,7 +105,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Values
+              Native Config Post-Processing
             
           </span>
         </div>
@@ -241,18 +241,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
@@ -268,7 +270,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             Configuration
@@ -463,10 +465,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../native-config-post-processing/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Native Config Post-Processing
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -477,6 +501,125 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Examples
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-file-upload-in-large-chunks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: File upload in large chunks
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#general-comments" class="md-nav__link">
+    <span class="md-ellipsis">
+      General Comments
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="General Comments">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#use-cases-and-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use cases and best practices
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Use cases and best practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#quick-workarounds-for-issues-in-production" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick workarounds for issues in production
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quick-and-flexible-integrations-of-something-new" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick and flexible integrations of something new
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tuning-debugging-existing-installations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tuning / debugging existing installations
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#future-improvements" class="md-nav__link">
+    <span class="md-ellipsis">
+      Future Improvements
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -608,20 +751,18 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
         
           
           <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
@@ -637,7 +778,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             Operation
@@ -648,20 +789,18 @@
                 
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
         
           
           <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
@@ -677,7 +816,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4_1">
             <span class="md-nav__icon md-icon"></span>
             Operator Helm Chart
@@ -711,32 +850,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Values
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../helm-values/" class="md-nav__link">
         
   
   
@@ -747,35 +864,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#values" class="md-nav__link">
-    <span class="md-ellipsis">
-      Values
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -983,11 +1071,101 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#values" class="md-nav__link">
+  <a href="#introduction" class="md-nav__link">
     <span class="md-ellipsis">
-      Values
+      Introduction
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Examples
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-file-upload-in-large-chunks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: File upload in large chunks
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#general-comments" class="md-nav__link">
+    <span class="md-ellipsis">
+      General Comments
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="General Comments">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#use-cases-and-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use cases and best practices
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Use cases and best practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#quick-workarounds-for-issues-in-production" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick workarounds for issues in production
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quick-and-flexible-integrations-of-something-new" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quick and flexible integrations of something new
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tuning-debugging-existing-installations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tuning / debugging existing installations
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#future-improvements" class="md-nav__link">
+    <span class="md-ellipsis">
+      Future Improvements
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1007,108 +1185,81 @@
 
 
 
-<h1 id="usp-core-waap-operator">usp-core-waap-operator</h1>
-<p><img alt="Version: 1.3.0" src="https://img.shields.io/badge/Version-1.3.0-informational?style=flat-square" /> <img alt="Type: application" src="https://img.shields.io/badge/Type-application-informational?style=flat-square" /> <img alt="AppVersion: 1.2.0" src="https://img.shields.io/badge/AppVersion-1.2.0-informational?style=flat-square" /></p>
-<p>Helm chart for the USP Core WAAP operator.</p>
-<h2 id="values">Values</h2>
-<table>
-<thead>
-<tr>
-<th>Key</th>
-<th>Type</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>operator.config</td>
-<td>object</td>
-<td><code>{"waapSpecDefaults":{"image":"uspregistry.azurecr.io/usp/core/waap/usp-core-waap","metrics":{"image":"uspregistry.azurecr.io/usp/core/waap/usp-core-waap-metrics","version":"0.0.1"},"version":"1.3.0"},"waapSpecTrafficProcessingDefaults":{"icap":{"image":"uspregistry.azurecr.io/usp/core/waap/usp-core-waap-ext-proc-icap","version":"1.0.0"},"openapi":{"image":"uspregistry.azurecr.io/usp/core/waap/usp-core-waap-ext-proc-openapi","version":"0.0.6"}},"watchedNamespaces":[]}</code></td>
-<td>Settings for operator config</td>
-</tr>
-<tr>
-<td>operator.config.waapSpecDefaults</td>
-<td>object</td>
-<td><code>{"image":"uspregistry.azurecr.io/usp/core/waap/usp-core-waap","metrics":{"image":"uspregistry.azurecr.io/usp/core/waap/usp-core-waap-metrics","version":"0.0.1"},"version":"1.3.0"}</code></td>
-<td><em>Optional</em>: operation defaults, see field 'operation' in the Core WAAP CRD for possible settings and merge behavior</td>
-</tr>
-<tr>
-<td>operator.config.waapSpecTrafficProcessingDefaults</td>
-<td>object</td>
-<td><code>{"icap":{"image":"uspregistry.azurecr.io/usp/core/waap/usp-core-waap-ext-proc-icap","version":"1.0.0"},"openapi":{"image":"uspregistry.azurecr.io/usp/core/waap/usp-core-waap-ext-proc-openapi","version":"0.0.6"}}</code></td>
-<td><em>Optional</em>: operation defaults for traffic processors per type, see field 'operation' in the Core WAAP CRD    under 'trafficProcessing' for possible settings and merge behavior</td>
-</tr>
-<tr>
-<td>operator.config.watchedNamespaces</td>
-<td>list</td>
-<td><code>[]</code></td>
-<td><em>Optional</em>: list of namespaces for which to process custom resources or ingress manifests (defaults to all).</td>
-</tr>
-<tr>
-<td>operator.image</td>
-<td>string</td>
-<td><code>"uspregistry.azurecr.io/usp/core/waap/usp-core-waap-operator"</code></td>
-<td>Operator container image</td>
-</tr>
-<tr>
-<td>operator.imagePullSecretName</td>
-<td>string</td>
-<td><code>""</code></td>
-<td><em>Optional</em>: Name of the image pull secret to be used by the service account</td>
-</tr>
-<tr>
-<td>operator.replicas</td>
-<td>int</td>
-<td><code>1</code></td>
-<td>Number of replicas (0 or 1)</td>
-</tr>
-<tr>
-<td>operator.resources</td>
-<td>object</td>
-<td><code>{"limits":{"cpu":"","memory":""},"requests":{"cpu":"","memory":""}}</code></td>
-<td>Resource settings for WAAP operator NOTE: If the fields are left empty, the operator deployment will not contain the corresponding settings,       and as a consequence, the clusters own defaults will apply.</td>
-</tr>
-<tr>
-<td>operator.resources.limits.cpu</td>
-<td>string</td>
-<td><code>""</code></td>
-<td>CPU resource limit per request</td>
-</tr>
-<tr>
-<td>operator.resources.limits.memory</td>
-<td>string</td>
-<td><code>""</code></td>
-<td>Memory resource limit per request</td>
-</tr>
-<tr>
-<td>operator.resources.requests.cpu</td>
-<td>string</td>
-<td><code>""</code></td>
-<td>CPU resources required per request</td>
-</tr>
-<tr>
-<td>operator.resources.requests.memory</td>
-<td>string</td>
-<td><code>""</code></td>
-<td>Memory resources required per request</td>
-</tr>
-<tr>
-<td>operator.serviceAccount</td>
-<td>string</td>
-<td><code>"usp-core-waap-operator"</code></td>
-<td>Name of service account</td>
-</tr>
-<tr>
-<td>operator.version</td>
-<td>string</td>
-<td><code>"1.2.0"</code></td>
-<td>Version of operator to deploy</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<p>Autogenerated from chart metadata using <a href="https://github.com/norwoodj/helm-docs/releases/v1.14.2">helm-docs v1.14.2</a></p>
+<h1 id="native-config-post-processing-ncpp">Native Config Post-Processing (NCPP)</h1>
+<p>This feature allows the use of all the underlying Envoy capabilities even if they are not (yet) configurable via the Core WAAP custom resource.</p>
+<h2 id="introduction">Introduction</h2>
+<p>The Core WAAP Operator translates the Core WAAP custom resource (CR) to native configuration of the Envoy proxy.
+The resulting native configuration is also in the form of YAML files.</p>
+<p>The "native configuration post-processing" feature allows to adapt the generated Envoy configuration before it is deployed, using JavaScript.
+This allows to freely modify the effective configuration by adding, changing or removing arbitrary settings.</p>
+<p>A very basic example to make the concept clear:
+Below the beginning of the Envoy config file <code>envoy.yaml</code> as it is currently generated by default:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">node</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;core.waap.id&quot;</span>
+<span class="w">  </span><span class="nt">cluster</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;core.waap.cluster&quot;</span>
+<span class="c1"># ... more generated settings ...</span>
+</code></pre></div>
+<p>Suppose that for some reason you wanted to change the <code>id</code> to <code>core.waap.id.modified-by-post-processing</code> (not a practically useful example, just to explain the concept, more realistic examples further below).
+Then you could configure the following in the <code>nativeConfigPostProcessing</code> section of the CR:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># ... other settings (routes, authentications, etc.) ...</span>
+
+<span class="nt">nativeConfigPostProcessing</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;envoy.node.id</span><span class="nv"> </span><span class="s">=</span><span class="nv"> </span><span class="s">&#39;core.waap.id.modified-by-post-processing&#39;&quot;</span>
+</code></pre></div>
+<p>The configured JavaScript gets a variable <code>envoy</code> at runtime that contains the parsed YAML content of <code>envoy.yaml</code>.
+Hence <code>envoy.node.id</code> selects the node ID in the YAML tree structure and setting it to a different value overwrites the previous value.
+The operator takes care of translating the JavaScript variables back to YAML files, i.e. in the end also generates an <code>envoy.yaml</code> that is then deployed:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">node</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;core.waap.id.modified-by-post-processing&quot;</span>
+<span class="w">  </span><span class="nt">cluster</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;core.waap.cluster&quot;</span>
+<span class="c1"># ... more generated settings ...</span>
+</code></pre></div>
+<p>Currently, three native Enovy YAML files and corresponding JavaScript variables are generated:</p>
+<ul>
+<li><code>envoy.yaml</code> (<code>envoy</code>): Root Envoy configuration with some basic settings, also references the two files below.</li>
+<li><code>lds.yaml</code> (<code>lds</code>): Envoy listener configuration ("frontend"), incl. filter chains.</li>
+<li><code>cds.yaml</code> (<code>cds</code>): Envoy cluster configuration ("backends").</li>
+</ul>
+<p>In the following a couple of real examples that were needed and worked at the time.
+Note that they may not be needed or not work any more by the time you are reading this,
+but they should be specific enough to show the possibilities.</p>
+<p>After that, some general comments about use cases, best practices and potential future improvements.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="example-file-upload-in-large-chunks">Example: File upload in large chunks</h3>
+<p>By default, Envoy has a limit on uploads to chunks of maximally 1 MB when in combination with the Coraza filter (CRS enabled). This default behavior can be changed by explicitly setting <code>perConnectionBufferLimitBytes</code> on the listener, in the example below set to 10 MB in <code>lds.yaml</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">resources</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;@type&#39;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;type.googleapis.com/envoy.config.listener.v3.Listener&quot;</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;core.waap.listener&quot;</span>
+<span class="w">  </span><span class="nt">address</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">socketAddress</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">address</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0.0.0.0&quot;</span>
+<span class="w">      </span><span class="nt">portValue</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8080</span>
+<span class="w">  </span><span class="nt">filterChains</span><span class="p">:</span>
+<span class="w">  </span><span class="c1"># ... more config omitted ...</span>
+<span class="w">  </span><span class="nt">perConnectionBufferLimitBytes</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10485760</span>
+</code></pre></div>
+<p>As of writing this, there is only a single listener resource in the <code>lds.yaml</code>, hence the native config post-processing can be written like this:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">nativeConfigPostProcessing</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;lds.resources[0].perConnectionBufferLimitBytes</span><span class="nv"> </span><span class="s">=</span><span class="nv"> </span><span class="s">10485760&quot;</span>
+</code></pre></div>
+<h2 id="general-comments">General Comments</h2>
+<h3 id="use-cases-and-best-practices">Use cases and best practices</h3>
+<h4 id="quick-workarounds-for-issues-in-production">Quick workarounds for issues in production</h4>
+<p>This allows to fix at least some imminent problems without the need to create a bugfix release immediately.</p>
+<p>This can be especially useful in cases where a fix cannot be easily tested outside production, reducing turnaround times and thus a quicker fix in production.</p>
+<p>Obviously, in most cases the idea is to afterward include a corresponding fix into the next regular Core WAAP release.</p>
+<h4 id="quick-and-flexible-integrations-of-something-new">Quick and flexible integrations of something new</h4>
+<p>A PoC is maybe the most general example for this use case, where integration issues can be solved ad-hoc whenever they occur without immediate need for a release, again also reducing turnaround times in cases where the feature cannot be easily/immediately tested outside the environment of the customer.</p>
+<p>Depending on the nature of the integration, it may later make sense to include new features into the Core WAAP that cover the new integrations, namely if the integrations are of a kind that is generally useful, or are the better choice for other reasons.</p>
+<p>Side remark: Note that this use case is often also interesting internally at USP because it allows to explore new settings sometimes more quickly than operating directly with native Envoy config.</p>
+<h4 id="tuning-debugging-existing-installations">Tuning / debugging existing installations</h4>
+<p>Use features that are present in the underlying Envoy but not (yet) configurable via the Core WAAP custom resource.</p>
+<h3 id="future-improvements">Future Improvements</h3>
+<p>We are evaluating various ways to make using this feature generally more easy and also more robust regarding new Core WAAP releases.</p>
+<p><em>Note that the generated native Envoy config is subject to change:</em></p>
+<p>Its structure may change, due to changes in the Core WAAP Operator or also due to changes in the underlying Envoy itself, hence it is not an API that is in any way guaranteed to remain stable, while in practice many things will still be quite stable most of the time.</p>
+<p>As an example of potential future enhancements, JavaScript functions may be offered to get/set the Core Rule Set (CRS) settings of the Coraza filter more easily.
+And/or similar JavaScript functions that make it both more simple and potentially also more robust to get/set some specific or general items in the native Envoy config.</p>
 
 
 
