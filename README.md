@@ -9,12 +9,12 @@ This repository contains the scripts required to build the USP Core WAAP website
 
 ## Requirements
 
-- `mkdocs` to generate the website and deploy it to GitHub pages.
-- `helm` command used for pulling the Helm charts to process the "values.yaml" file.
+- `mkdocs` to generate the website and deploy it to GitHub pages
+- `helm` command used for pulling the Helm charts to process the "values.yaml" file
 - `helm-docs` to generate markdown from a values YAML file: https://github.com/norwoodj/helm-docs
 - `crdoc` to generate the CRD documentation: https://github.com/fybrik/crdoc
 - `yq` to query values from yaml files: https://mikefarah.gitbook.io/yq
-
+- `pagefind` to generate a global search over the entire website with all the separate sub-sites.
 
 ### mkdocs notes
 
@@ -52,7 +52,13 @@ To deactivate the virtual environment again, simply run:
 deactivate
 ```
 
-### helm-docs notes
+### Install pagefind
+
+```
+python3 -m pip install 'pagefind[extended]'
+```
+
+### Install helm-docs notes
 
 * Download the latest release binary from here: https://github.com/norwoodj/helm-docs/releases
 * Make sure to download the "Linux x86/64" tar.gz archive
@@ -62,7 +68,7 @@ deactivate
 sudo mv helm-docs /usr/local/bin
 ```
 
-### crdoc notes
+### Install crdoc notes
 
 * Download the latest release binary from here: https://github.com/fybrik/crdoc/releases
 * Make sure to download the "linux_amd64" tar.gz archive
@@ -72,7 +78,7 @@ sudo mv helm-docs /usr/local/bin
 sudo mv crdoc /usr/local/bin
 ```
 
-### yq notes
+### Install yq notes
 
 * Download the latest release binary from here: https://github.com/mikefarah/yq/releases/latest
 * Make sure to download the "Linux amd64" tar.gz archive
