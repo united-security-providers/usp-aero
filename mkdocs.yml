@@ -38,5 +38,6 @@ markdown_extensions:
   - pymdownx.superfences
 nav:
   - Welcome: 'index.md'
+  - Search: 'search.md'
   - Aero Platform: 'aero-platform/'
   - Aero WAAP: 'aero-waap/'
