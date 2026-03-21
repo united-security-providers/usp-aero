@@ -44,6 +44,12 @@ if [ $DEPLOY ]; then
     mkdocs gh-deploy --force --ignore-version
     git checkout gh-pages
     git merge -m 'merging top into gh-pages' --allow-unrelated-histories gh-pages-top
+
+    rm -rf pagefind/
+    python3 -m pagefind --site .
+    git add pagefind/
+    git commit -m 'Adding pagefind data' .
+
     git push -f
     git checkout main
     echo "Successfully deployed to to GitHub pages"
