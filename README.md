@@ -36,7 +36,7 @@ pip install --upgrade pip
 # This will create a local directory called ".venv"
 python3 -m venv .venv
 source .venv/bin/activate
-pip install mkdocs pymdown-extensions mkdocs-material mkdocs-redirects mkdocs-swagger-ui-tag mike
+pip install pagefind[extended] mkdocs pymdown-extensions mkdocs-material mkdocs-redirects mkdocs-swagger-ui-tag mike
 ```
 
 Now you should be able to run the `mkdocs` command and see something similiar to:

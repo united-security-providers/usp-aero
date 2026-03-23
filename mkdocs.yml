@@ -3,6 +3,11 @@ docs_dir: './docs'                        # Where to find the English markdown f
 site_dir: './generated'                      # Where to put the English HTML files
 site_url: 'https://docs.united-security-providers.ch/usp-aero'
 copyright: '&copy; 2026 United Security Providers AG. All Rights Reserved.'
+
+# Top page MUST be in a separate branch; otherwise, whenever it's generated and
+# deployed, it will delete the content of the sub-pages from that branch. That
+# is why we push the top-page into a custom branch, and then merge the GIT
+# branches in the "release.sh" script.
 remote_branch: gh-pages-top
 
 theme:
@@ -17,9 +22,6 @@ extra_css:
   - assets/stylesheets/extra.css
 
 extra:
-  version:
-    provider: mike
-    default: latest
   social:
     - icon: fontawesome/brands/linkedin
       link: https://www.linkedin.com/company/united-security-providers/
@@ -27,15 +29,13 @@ extra:
     - icon: fontawesome/brands/youtube
       link: https://www.youtube.com/@United-security-providersCh
       name: United Security Providers on Youtube
+
 plugins:
   - search:
       enabled: false
   - swagger-ui-tag:
       supportedSubmitMethods: []
       validatorUrl: none
-  - mike:
-      canonical_version: latest
-      version_selector: false
   - privacy
 
 markdown_extensions:
