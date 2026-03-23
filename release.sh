@@ -42,16 +42,21 @@ echo "Successfully generated site (Markdown) in docs folder."
 if [ $DEPLOY ]; then
     echo "Deploying to GitHub pages..."
     mkdocs gh-deploy --force --ignore-version
+
+    # Now merge branches together
+    rm -rf build
+    mkdir -p build
+    cd build
+    git clone git@github.com:united-security-providers/usp-aero.git -b gh-pages-top
+    cd usp-aero
     git checkout gh-pages
     git merge -m 'merging top into gh-pages' --allow-unrelated-histories gh-pages-top
-
     rm -rf pagefind/
     python3 -m pagefind --site .
     git add pagefind/
-    git commit -m 'Adding pagefind data' .
-
+    git commit --allow-empty -m 'Adding pagefind data' .
     git push -f
-    git checkout main
+    cd -
     echo "Successfully deployed to to GitHub pages"
 else
     echo "Building website locally in 'generated' subfolder..."

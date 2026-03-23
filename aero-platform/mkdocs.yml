@@ -26,6 +26,7 @@ extra:
   version:
     provider: mike
     default: latest
+  homepage: https://docs.united-security-providers.ch/usp-aero
 
 plugins:
   - search:
