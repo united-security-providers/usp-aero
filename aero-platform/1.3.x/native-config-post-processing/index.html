@@ -8,9 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://docs.united-security-providers.ch/usp-aero/latest/waap-proxy-CHANGELOG/">
+        <link rel="canonical" href="https://docs.united-security-providers.ch/usp-aero/latest/native-config-post-processing/">
       
       
+        <link rel="prev" href="../error-mapping/">
+      
+      
+        <link rel="next" href="../icap-antivirus-scanning/">
       
       
         
@@ -21,7 +25,7 @@
     
     
       
-        <title>Changelog - USP Aero WAAP documentation</title>
+        <title>Native Config Post-Processing - USP Aero WAAP documentation</title>
       
     
     
@@ -64,7 +68,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#changelog" class="md-skip">
+        <a href="#native-config-post-processing-ncpp" class="md-skip">
           Skip to content
         </a>
       
@@ -103,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Changelog
+              Native Config Post-Processing
             
           </span>
         </div>
@@ -218,18 +222,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
@@ -250,7 +256,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -488,10 +494,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../native-config-post-processing/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Native Config Post-Processing
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -507,6 +540,143 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Examples
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-file-upload-in-large-chunks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example: File upload in large chunks
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#general-comments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        General Comments
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="General Comments">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#use-cases-and-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use cases and best practices
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Use cases and best practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#quick-workarounds-for-issues-in-production" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick workarounds for issues in production
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quick-and-flexible-integrations-of-something-new" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick and flexible integrations of something new
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tuning-debugging-existing-installations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tuning / debugging existing installations
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#future-improvements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Future Improvements
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1046,66 +1216,33 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#130-2025-07-10" class="md-nav__link">
+  <a href="#introduction" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1.3.0 - 2025-07-10
+        Introduction
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="1.3.0 - 2025-07-10">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Examples
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Examples">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#contents" class="md-nav__link">
+  <a href="#example-file-upload-in-large-chunks" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Contents
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#added" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Added
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#changed" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Changed
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#fixed" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Fixed
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#known-issues" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Known Issues
+        Example: File upload in large chunks
       
     </span>
   </a>
@@ -1118,22 +1255,56 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#120-2025-01-16" class="md-nav__link">
+  <a href="#general-comments" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1.2.0 - 2025-01-16
+        General Comments
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="1.2.0 - 2025-01-16">
+    <nav class="md-nav" aria-label="General Comments">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#changed_1" class="md-nav__link">
+  <a href="#use-cases-and-best-practices" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Changed
+        Use cases and best practices
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Use cases and best practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#quick-workarounds-for-issues-in-production" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick workarounds for issues in production
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quick-and-flexible-integrations-of-something-new" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick and flexible integrations of something new
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tuning-debugging-existing-installations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tuning / debugging existing installations
       
     </span>
   </a>
@@ -1144,24 +1315,12 @@
     </nav>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#119-2024-10-14" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1.1.9 - 2024-10-14
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="1.1.9 - 2024-10-14">
-      <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#changed_2" class="md-nav__link">
+  <a href="#future-improvements" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Changed
+        Future Improvements
       
     </span>
   </a>
@@ -1170,453 +1329,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#118-2024-09-05" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1.1.8 - 2024-09-05
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="1.1.8 - 2024-09-05">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#added_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Added
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#117-2024-08-29" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1.1.7 - 2024-08-29
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="1.1.7 - 2024-08-29">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#changed_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Changed
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#116-2024-08-06" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1.1.6 - 2024-08-06
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="1.1.6 - 2024-08-06">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#changed_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Changed
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#added_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Added
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#115-2024-04-26" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1.1.5 - 2024-04-26
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="1.1.5 - 2024-04-26">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#changed_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Changed
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#114-2024-04-17" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1.1.4 - 2024-04-17
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="1.1.4 - 2024-04-17">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#fixed_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Fixed
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#113-2024-04-17" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1.1.3 - 2024-04-17
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="1.1.3 - 2024-04-17">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#changed_6" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Changed
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#111-2024-02-29" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1.1.1 - 2024-02-29
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="1.1.1 - 2024-02-29">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#changed_7" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Changed
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#added_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Added
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#110-2024-02-01" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1.1.0 - 2024-02-01
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="1.1.0 - 2024-02-01">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#added_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Added
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#106-2024-01-18" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1.0.6 - 2024-01-18
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="1.0.6 - 2024-01-18">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#changed_8" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Changed
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#105-2023-12-18" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1.0.5 - 2023-12-18
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="1.0.5 - 2023-12-18">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#changed_9" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Changed
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#added_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Added
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#104-2023-12-05" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1.0.4 - 2023-12-05
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="1.0.4 - 2023-12-05">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#changed_10" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Changed
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#added_6" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Added
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#103-2024-11-17" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1.0.3 - 2024-11-17
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="1.0.3 - 2024-11-17">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#fixed_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Fixed
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#102-2023-11-07" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1.0.2 - 2023-11-07
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="1.0.2 - 2023-11-07">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#changed_11" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Changed
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#101-2023-11-15" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1.0.1 - 2023-11-15
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="1.0.1 - 2023-11-15">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#changed_12" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Changed
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#100-2023-11-02" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1.0.0 - 2023-11-02
-      
-    </span>
-  </a>
   
 </li>
       
@@ -1637,145 +1349,81 @@
 
 
 
-<h1 id="changelog">Changelog</h1>
-<p>Breaking changes/additions may require to adapt existing configurations when updating, see <a href="../upgrade/">Migration Guide</a>.</p>
-<h2 id="130-2025-07-10">1.3.0 - 2025-07-10</h2>
-<h3 id="contents">Contents</h3>
+<h1 id="native-config-post-processing-ncpp">Native Config Post-Processing (NCPP)</h1>
+<p>This feature allows the use of all the underlying Envoy capabilities even if they are not (yet) configurable via the Core WAAP custom resource.</p>
+<h2 id="introduction">Introduction</h2>
+<p>The Core WAAP Operator translates the Core WAAP custom resource (CR) to native configuration of the Envoy proxy.
+The resulting native configuration is also in the form of YAML files.</p>
+<p>The "native configuration post-processing" feature allows to adapt the generated Envoy configuration before it is deployed, using JavaScript.
+This allows to freely modify the effective configuration by adding, changing or removing arbitrary settings.</p>
+<p>A very basic example to make the concept clear:
+Below the beginning of the Envoy config file <code>envoy.yaml</code> as it is currently generated by default:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">node</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;core.waap.id&quot;</span>
+<span class="w">  </span><span class="nt">cluster</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;core.waap.cluster&quot;</span>
+<span class="c1"># ... more generated settings ...</span>
+</code></pre></div>
+<p>Suppose that for some reason you wanted to change the <code>id</code> to <code>core.waap.id.modified-by-post-processing</code> (not a practically useful example, just to explain the concept, more realistic examples further below).
+Then you could configure the following in the <code>nativeConfigPostProcessing</code> section of the CR:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># ... other settings (routes, authentications, etc.) ...</span>
+
+<span class="nt">nativeConfigPostProcessing</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;envoy.node.id</span><span class="nv"> </span><span class="s">=</span><span class="nv"> </span><span class="s">&#39;core.waap.id.modified-by-post-processing&#39;&quot;</span>
+</code></pre></div>
+<p>The configured JavaScript gets a variable <code>envoy</code> at runtime that contains the parsed YAML content of <code>envoy.yaml</code>.
+Hence <code>envoy.node.id</code> selects the node ID in the YAML tree structure and setting it to a different value overwrites the previous value.
+The operator takes care of translating the JavaScript variables back to YAML files, i.e. in the end also generates an <code>envoy.yaml</code> that is then deployed:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">node</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;core.waap.id.modified-by-post-processing&quot;</span>
+<span class="w">  </span><span class="nt">cluster</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;core.waap.cluster&quot;</span>
+<span class="c1"># ... more generated settings ...</span>
+</code></pre></div>
+<p>Currently, three native Enovy YAML files and corresponding JavaScript variables are generated:</p>
 <ul>
-<li>base image: alpine-3.21</li>
-<li>envoy version: 1.34.1</li>
-<li>coraza version: 3.3.3</li>
-<li>coreruleset version: 4.14</li>
-<li>coraza-envoy-go-filter version: 0.0.2</li>
-<li>core-waap header filter version: 1.0.2</li>
+<li><code>envoy.yaml</code> (<code>envoy</code>): Root Envoy configuration with some basic settings, also references the two files below.</li>
+<li><code>lds.yaml</code> (<code>lds</code>): Envoy listener configuration ("frontend"), incl. filter chains.</li>
+<li><code>cds.yaml</code> (<code>cds</code>): Envoy cluster configuration ("backends").</li>
 </ul>
-<h3 id="added">Added</h3>
-<ul>
-<li>Provide golang filter support</li>
-<li>Integrate coraza-waf golang filter plugin</li>
-<li>Allow to set additional command line arguments for envoy via environment variable</li>
-</ul>
-<h3 id="changed">Changed</h3>
-<ul>
-<li>Update CRS to version 4.14.0</li>
-<li>Update envoy to version 1.34.1</li>
-<li>Update base image to alpine-3.21</li>
-<li>Update coraza to version 3.3.3</li>
-</ul>
-<h3 id="fixed">Fixed</h3>
-<ul>
-<li>Fix issue in external processing when receiving too large payloads in buffered mode</li>
-</ul>
-<h3 id="known-issues">Known Issues</h3>
-<ul>
-<li>A bug in Coraza results in a wrong HTTP status code returned, if <code>SecResponseBodyLimit</code> is reached and <code>SecResponseBodyLimitAction</code> is set to <code>Reject</code>. Coraza incorrectly returns HTTP 413 instead of HTTP 500. (<a href="https://github.com/corazawaf/coraza/issues/1377">corazawaf/coraza#1377</a>)</li>
-</ul>
-<h2 id="120-2025-01-16">1.2.0 - 2025-01-16</h2>
-<h3 id="changed_1">Changed</h3>
-<ul>
-<li>Update Envoy to version v1.32.3</li>
-<li>Allow to set concurrency level and log levels of Envoy using container environment variables.</li>
-</ul>
-<h2 id="119-2024-10-14">1.1.9 - 2024-10-14</h2>
-<h3 id="changed_2">Changed</h3>
-<ul>
-<li>Update Envoy to version v1.31.2</li>
-</ul>
-<h2 id="118-2024-09-05">1.1.8 - 2024-09-05</h2>
-<h3 id="added_1">Added</h3>
-<ul>
-<li>Enable the Unified Header Validator (UHV) in envoy.</li>
-</ul>
-<h2 id="117-2024-08-29">1.1.7 - 2024-08-29</h2>
-<h3 id="changed_3">Changed</h3>
-<ul>
-<li>Lua header filter: Add common WebSocket headers to the STANDARD allow class as well as to the default response headers.</li>
-</ul>
-<h2 id="116-2024-08-06">1.1.6 - 2024-08-06</h2>
-<h3 id="changed_4">Changed</h3>
-<ul>
-<li>Update CRS to version v4.3.0</li>
-<li>Update OS image to alpine-3.20</li>
-<li>Update Envoy to version v1.31.0</li>
-</ul>
-<h3 id="added_2">Added</h3>
-<ul>
-<li>Allow to set the general/component log level using environmet variables</li>
-<li>Add Lua header filter</li>
-</ul>
-<h2 id="115-2024-04-26">1.1.5 - 2024-04-26</h2>
-<h3 id="changed_5">Changed</h3>
-<ul>
-<li>Update Envoy to version v1.30.1</li>
-</ul>
-<h2 id="114-2024-04-17">1.1.4 - 2024-04-17</h2>
-<h3 id="fixed_1">Fixed</h3>
-<ul>
-<li>Fix format of version information file /etc/usp-core-waap-release</li>
-</ul>
-<h2 id="113-2024-04-17">1.1.3 - 2024-04-17</h2>
-<h3 id="changed_6">Changed</h3>
-<ul>
-<li>Update OS image to alpine-3.19</li>
-<li>Update Envoy to version v1.30.0</li>
-</ul>
-<h2 id="111-2024-02-29">1.1.1 - 2024-02-29</h2>
-<h3 id="changed_7">Changed</h3>
-<ul>
-<li>Update Envoy to version v1.29.1</li>
-</ul>
-<h3 id="added_3">Added</h3>
-<ul>
-<li>Add version information file /etc/usp-core-waap-release</li>
-</ul>
-<h2 id="110-2024-02-01">1.1.0 - 2024-02-01</h2>
-<h3 id="added_4">Added</h3>
-<ul>
-<li>Implement common changelog format (<a href="https://redmine.u-s-p.local/issues/266949">#266949</a>)</li>
-<li>Implement Core WAAP naming convention (<a href="https://redmine.u-s-p.local/issues/258353">#258353</a>)</li>
-</ul>
-<h2 id="106-2024-01-18">1.0.6 - 2024-01-18</h2>
-<h3 id="changed_8">Changed</h3>
-<ul>
-<li>Update Envoy to version v1.29.0</li>
-<li>Update Coraza Proxy WASM to version 0.0.5</li>
-</ul>
-<h2 id="105-2023-12-18">1.0.5 - 2023-12-18</h2>
-<h3 id="changed_9">Changed</h3>
-<ul>
-<li>Align JSON field names of Envoy access log and Coraza error log</li>
-</ul>
-<h3 id="added_5">Added</h3>
-<ul>
-<li>Support x-request-id in USP specific log format in Coraza</li>
-</ul>
-<h2 id="104-2023-12-05">1.0.4 - 2023-12-05</h2>
-<h3 id="changed_10">Changed</h3>
-<ul>
-<li>Switch to OWASP core rule set</li>
-<li>Update OS image to alpine-3.18</li>
-</ul>
-<h3 id="added_6">Added</h3>
-<ul>
-<li>Add patch for Coraza WAF to allow USP specific SecAuditLogFormat</li>
-</ul>
-<h2 id="103-2024-11-17">1.0.3 - 2024-11-17</h2>
-<h3 id="fixed_2">Fixed</h3>
-<ul>
-<li>Fix broken image with CRS 4.0.0-rc2_p1</li>
-</ul>
-<h2 id="102-2023-11-07">1.0.2 - 2023-11-07</h2>
-<h3 id="changed_11">Changed</h3>
-<ul>
-<li>Use CRS 4.0.0-rc2</li>
-</ul>
-<h2 id="101-2023-11-15">1.0.1 - 2023-11-15</h2>
-<h3 id="changed_12">Changed</h3>
-<ul>
-<li>Update envoy to 1-29-dev</li>
-</ul>
-<h2 id="100-2023-11-02">1.0.0 - 2023-11-02</h2>
-<p><em>First release.</em></p>
+<p>In the following a couple of real examples that were needed and worked at the time.
+Note that they may not be needed or not work any more by the time you are reading this,
+but they should be specific enough to show the possibilities.</p>
+<p>After that, some general comments about use cases, best practices and potential future improvements.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="example-file-upload-in-large-chunks">Example: File upload in large chunks</h3>
+<p>By default, Envoy has a limit on uploads to chunks of maximally 1 MB when in combination with the Coraza filter (CRS enabled). This default behavior can be changed by explicitly setting <code>perConnectionBufferLimitBytes</code> on the listener, in the example below set to 10 MB in <code>lds.yaml</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">resources</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;@type&#39;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;type.googleapis.com/envoy.config.listener.v3.Listener&quot;</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;core.waap.listener&quot;</span>
+<span class="w">  </span><span class="nt">address</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">socketAddress</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">address</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0.0.0.0&quot;</span>
+<span class="w">      </span><span class="nt">portValue</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8080</span>
+<span class="w">  </span><span class="nt">filterChains</span><span class="p">:</span>
+<span class="w">  </span><span class="c1"># ... more config omitted ...</span>
+<span class="w">  </span><span class="nt">perConnectionBufferLimitBytes</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10485760</span>
+</code></pre></div>
+<p>As of writing this, there is only a single listener resource in the <code>lds.yaml</code>, hence the native config post-processing can be written like this:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">nativeConfigPostProcessing</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;lds.resources[0].perConnectionBufferLimitBytes</span><span class="nv"> </span><span class="s">=</span><span class="nv"> </span><span class="s">10485760&quot;</span>
+</code></pre></div>
+<h2 id="general-comments">General Comments</h2>
+<h3 id="use-cases-and-best-practices">Use cases and best practices</h3>
+<h4 id="quick-workarounds-for-issues-in-production">Quick workarounds for issues in production</h4>
+<p>This allows to fix at least some imminent problems without the need to create a bugfix release immediately.</p>
+<p>This can be especially useful in cases where a fix cannot be easily tested outside production, reducing turnaround times and thus a quicker fix in production.</p>
+<p>Obviously, in most cases the idea is to afterward include a corresponding fix into the next regular Core WAAP release.</p>
+<h4 id="quick-and-flexible-integrations-of-something-new">Quick and flexible integrations of something new</h4>
+<p>A PoC is maybe the most general example for this use case, where integration issues can be solved ad-hoc whenever they occur without immediate need for a release, again also reducing turnaround times in cases where the feature cannot be easily/immediately tested outside the environment of the customer.</p>
+<p>Depending on the nature of the integration, it may later make sense to include new features into the Core WAAP that cover the new integrations, namely if the integrations are of a kind that is generally useful, or are the better choice for other reasons.</p>
+<p>Side remark: Note that this use case is often also interesting internally at USP because it allows to explore new settings sometimes more quickly than operating directly with native Envoy config.</p>
+<h4 id="tuning-debugging-existing-installations">Tuning / debugging existing installations</h4>
+<p>Use features that are present in the underlying Envoy but not (yet) configurable via the Core WAAP custom resource.</p>
+<h3 id="future-improvements">Future Improvements</h3>
+<p>We are evaluating various ways to make using this feature generally more easy and also more robust regarding new Core WAAP releases.</p>
+<p><em>Note that the generated native Envoy config is subject to change:</em></p>
+<p>Its structure may change, due to changes in the Core WAAP Operator or also due to changes in the underlying Envoy itself, hence it is not an API that is in any way guaranteed to remain stable, while in practice many things will still be quite stable most of the time.</p>
+<p>As an example of potential future enhancements, JavaScript functions may be offered to get/set the Core Rule Set (CRS) settings of the Coraza filter more easily.
+And/or similar JavaScript functions that make it both more simple and potentially also more robust to get/set some specific or general items in the native Envoy config.</p>
 
 
 
