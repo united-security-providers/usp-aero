@@ -2,9 +2,6 @@
     color: white;
     background-color: black;
 }
-.md-header__button.md-logo img {
-    height: 89px;
-}
 
 :root {
     --md-text-font: "montserrat-2";
