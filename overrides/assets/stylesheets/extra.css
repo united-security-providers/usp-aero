@@ -6,10 +6,6 @@
     height: 89px;
 }
 
-.md-nav--primary .md-nav__title[for=__drawer] {
-    background-color: black;
-}
-
 :root {
     --md-text-font: "montserrat-2";
 }
