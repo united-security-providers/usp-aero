@@ -49,7 +49,7 @@ if [ $DEPLOY ]; then
     cd build
     git clone git@github.com:united-security-providers/usp-aero.git -b gh-pages-top
     cd usp-aero
-    git checkout gh-pages
+    git checkout gh-pages --
     git merge -m 'merging top into gh-pages' --allow-unrelated-histories gh-pages-top
     rm -rf pagefind/
     python3 -m pagefind --site .
