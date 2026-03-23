@@ -47,16 +47,17 @@ if [ $DEPLOY ]; then
     rm -rf build
     mkdir -p build
     cd build
-    git clone git@github.com:united-security-providers/usp-aero.git -b gh-pages-top
-    cd usp-aero
-    git checkout gh-pages --
-    git merge -m 'merging top into gh-pages' --allow-unrelated-histories gh-pages-top
+    git clone git@github.com:united-security-providers/usp-aero.git -b gh-pages-top gh-pages-top
+    git clone git@github.com:united-security-providers/usp-aero.git -b gh-pages gh-pages
+    cd gh-pages
+    cp -R ../gh-pages-top/* .
     rm -rf pagefind/
     python3 -m pagefind --site .
     git add pagefind/
+    git add .
     git commit --allow-empty -m 'Adding pagefind data' .
     git push -f
-    cd -
+    cd ../..
     echo "Successfully deployed to to GitHub pages"
 else
     echo "Building website locally in 'generated' subfolder..."
