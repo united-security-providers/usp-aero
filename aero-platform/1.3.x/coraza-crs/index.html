@@ -8,26 +8,28 @@
       
       
       
-        <link rel="canonical" href="https://docs.united-security-providers.ch/usp-aero/latest/">
+        <link rel="canonical" href="https://docs.united-security-providers.ch/usp-aero/latest/coraza-crs/">
       
       
+        <link rel="prev" href="../coraza/">
       
-        <link rel="next" href="core-waap-releasenotes/">
+      
+        <link rel="next" href="../coraza-graphql/">
       
       
         
       
       
-      <link rel="icon" href="favicon.ico">
+      <link rel="icon" href="../favicon.ico">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
-        <title>USP Aero WAAP documentation</title>
+        <title>CRS - USP Aero WAAP documentation</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
       
       
 
@@ -46,9 +48,9 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/extra.css">
+      <link rel="stylesheet" href="../assets/stylesheets/extra.css">
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -66,7 +68,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#usp-core-waap" class="md-skip">
+        <a href="#crs-basic-usage" class="md-skip">
           Skip to content
         </a>
       
@@ -88,7 +90,7 @@
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="https://docs.united-security-providers.ch/usp-aero" title="USP Aero WAAP documentation" class="md-header__button md-logo" aria-label="USP Aero WAAP documentation" data-md-component="logo">
       
-  <img src="assets/images/USP-Logo-zentriert-ohne-Claim-white.png" alt="logo">
+  <img src="../assets/images/USP-Logo-zentriert-ohne-Claim-white.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -105,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Welcome
+              CRS
             
           </span>
         </div>
@@ -154,7 +156,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href="https://docs.united-security-providers.ch/usp-aero" title="USP Aero WAAP documentation" class="md-nav__button md-logo" aria-label="USP Aero WAAP documentation" data-md-component="logo">
       
-  <img src="assets/images/USP-Logo-zentriert-ohne-Claim-white.png" alt="logo">
+  <img src="../assets/images/USP-Logo-zentriert-ohne-Claim-white.png" alt="logo">
 
     </a>
     USP Aero WAAP documentation
@@ -164,6 +166,214 @@
     
       
       
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Welcome
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../core-waap-releasenotes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Release Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Configuration
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../crd-doc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Coraza
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Coraza
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../coraza/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Coraza
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
   
   
     
@@ -185,7 +395,7 @@
   <span class="md-ellipsis">
     
   
-    Welcome
+    CRS
   
 
     
@@ -196,14 +406,14 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <a href="." class="md-nav__link md-nav__link--active">
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
   <span class="md-ellipsis">
     
   
-    Welcome
+    CRS
   
 
     
@@ -229,32 +439,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
+  <a href="#basic-example" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Overview
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#configuring-core-waap" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Configuring Core WAAP
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#getting-started" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Getting Started
+        Basic Example
       
     </span>
   </a>
@@ -268,182 +456,6 @@
     </li>
   
 
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="core-waap-releasenotes/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Release Notes
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
-        
-          
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Configuration
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Configuration
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="crd-doc/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    API Reference
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
-        
-          
-          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Coraza
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_2">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Coraza
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="coraza/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Coraza
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
               
             
               
@@ -453,35 +465,7 @@
   
   
     <li class="md-nav__item">
-      <a href="coraza-crs/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    CRS
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="coraza-graphql/" class="md-nav__link">
+      <a href="../coraza-graphql/" class="md-nav__link">
         
   
   
@@ -517,7 +501,7 @@
   
   
     <li class="md-nav__item">
-      <a href="header-filtering/" class="md-nav__link">
+      <a href="../header-filtering/" class="md-nav__link">
         
   
   
@@ -545,7 +529,7 @@
   
   
     <li class="md-nav__item">
-      <a href="error-mapping/" class="md-nav__link">
+      <a href="../error-mapping/" class="md-nav__link">
         
   
   
@@ -573,7 +557,7 @@
   
   
     <li class="md-nav__item">
-      <a href="native-config-post-processing/" class="md-nav__link">
+      <a href="../native-config-post-processing/" class="md-nav__link">
         
   
   
@@ -601,7 +585,7 @@
   
   
     <li class="md-nav__item">
-      <a href="icap-antivirus-scanning/" class="md-nav__link">
+      <a href="../icap-antivirus-scanning/" class="md-nav__link">
         
   
   
@@ -629,7 +613,7 @@
   
   
     <li class="md-nav__item">
-      <a href="openapi-validation/" class="md-nav__link">
+      <a href="../openapi-validation/" class="md-nav__link">
         
   
   
@@ -657,7 +641,7 @@
   
   
     <li class="md-nav__item">
-      <a href="crs-virtual-patch/" class="md-nav__link">
+      <a href="../crs-virtual-patch/" class="md-nav__link">
         
   
   
@@ -685,7 +669,7 @@
   
   
     <li class="md-nav__item">
-      <a href="lua-filters/" class="md-nav__link">
+      <a href="../lua-filters/" class="md-nav__link">
         
   
   
@@ -713,7 +697,7 @@
   
   
     <li class="md-nav__item">
-      <a href="rate-limiting/" class="md-nav__link">
+      <a href="../rate-limiting/" class="md-nav__link">
         
   
   
@@ -842,7 +826,7 @@
   
   
     <li class="md-nav__item">
-      <a href="helm/" class="md-nav__link">
+      <a href="../helm/" class="md-nav__link">
         
   
   
@@ -870,7 +854,7 @@
   
   
     <li class="md-nav__item">
-      <a href="helm-values/" class="md-nav__link">
+      <a href="../helm-values/" class="md-nav__link">
         
   
   
@@ -906,7 +890,7 @@
   
   
     <li class="md-nav__item">
-      <a href="upgrade/" class="md-nav__link">
+      <a href="../upgrade/" class="md-nav__link">
         
   
   
@@ -934,7 +918,7 @@
   
   
     <li class="md-nav__item">
-      <a href="logs-metrics/" class="md-nav__link">
+      <a href="../logs-metrics/" class="md-nav__link">
         
   
   
@@ -962,7 +946,7 @@
   
   
     <li class="md-nav__item">
-      <a href="autolearning/" class="md-nav__link">
+      <a href="../autolearning/" class="md-nav__link">
         
   
   
@@ -990,7 +974,7 @@
   
   
     <li class="md-nav__item">
-      <a href="large-payloads/" class="md-nav__link">
+      <a href="../large-payloads/" class="md-nav__link">
         
   
   
@@ -1018,7 +1002,7 @@
   
   
     <li class="md-nav__item">
-      <a href="oidc-operation/" class="md-nav__link">
+      <a href="../oidc-operation/" class="md-nav__link">
         
   
   
@@ -1046,7 +1030,7 @@
   
   
     <li class="md-nav__item">
-      <a href="debugging/" class="md-nav__link">
+      <a href="../debugging/" class="md-nav__link">
         
   
   
@@ -1081,7 +1065,7 @@
   
   
     <li class="md-nav__item">
-      <a href="downloads/" class="md-nav__link">
+      <a href="../downloads/" class="md-nav__link">
         
   
   
@@ -1128,32 +1112,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
+  <a href="#basic-example" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Overview
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#configuring-core-waap" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Configuring Core WAAP
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#getting-started" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Getting Started
+        Basic Example
       
     </span>
   </a>
@@ -1177,25 +1139,69 @@
 
 
 
-<h1 id="usp-core-waap">USP Core WAAP</h1>
-<p>USP Core WAAP (Web Application and API Protection) provides secure access to web-based applications and resources,
-while simplifying the process of configuration and deployment.</p>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>The current <strong><a href="helm/">Helm chart</a></strong> version for the <strong><a href="helm/#install-operator">USP Core WAAP operator</a></strong> is : <strong>1.3.0</strong></p>
-</div>
-<h2 id="overview">Overview</h2>
-<p>For Kubernetes we provide the Core WAAP Operator which deploys Core WAAP based on a Custom 
-Resource with the respective services and pods. With Core WAAP, the security configuration can be fully integrated in applications continuous integration and delivery process 
-while enabling developers move from DevOps to SecDevOps.</p>
-<p><img alt="Core WAAP Overview" src="assets/images/core-waap-illustration1.png" /></p>
-<h2 id="configuring-core-waap">Configuring Core WAAP</h2>
-<p>A basic Core WAAP configuration looks as follows.</p>
-<p><img alt="Core WAAP configuration example" src="assets/images/core-waap-editor-demo.gif" /></p>
-<h2 id="getting-started">Getting Started</h2>
-<p>To pull the Operator helm chart and corresponding container images you need a key. Get in contact with us, we are looking forward to support you.
-<a href="https://www.united-security-providers.ch/technology/application-security/web-application-api-protection-waap/#more">Web Application &#038; API Protection (WAAP) &#8211; United Security Providers AG</a></p>
-<p>If you want to try the Core WAAP yourself head over to the <a href="https://killercoda.com/united-security-providers">Killercoda Core WAAP scenarios</a>.</p>
+<h1 id="crs-basic-usage">CRS Basic Usage</h1>
+<p>(This section assumes you have read the section <a href="../coraza/#what-is-coraza">What is Coraza?</a>)</p>
+<ul>
+<li>By default, CRS is active on all routes,
+  with OWASP CRS rule sets for request validation,
+  i.e. the default is the usually desired protection
+  in a case where the backend is essentially trusted.</li>
+<li>CRS related settings are at <code>spec.coraza.crs</code> and
+  <code>spec.routes[].coraza.crs</code>, plus general Coraza settings
+  at <code>spec.coraza</code> and <code>spec.routes[].coraza</code>
+  in the <a href="../crd-doc/">API Reference</a>.</li>
+<li>You can turn CRS off and on in various ways,
+  by disabling Coraza and/or CRS globally or per route,
+  see the above settings.</li>
+<li>And you can configure various limits and features
+  with also the above settings.</li>
+<li>Regarding size limits,
+  see also the section <a href="../large-payloads/">Large Payloads</a>.</li>
+<li>To use auto-learning,
+  it is recommended to first use CRS in mode DETECT,
+  and then auto-learn using the <a href="../autolearning/">Auto-Learning CLI</a>
+  with processing argument <code>crs</code>.</li>
+</ul>
+<h2 id="basic-example">Basic Example</h2>
+<p>Here's a basic example
+with CRS with some specific rules,
+active (by default)
+in mode BLOCK on the route <code>/</code>,
+and some limits on request and response body.</p>
+<div class="highlight"><pre><span></span><code><span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">[</span><span class="nv">...</span><span class="p p-Indicator">]</span>
+<span class="w">  </span><span class="nt">coraza</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">requestBodyAccess</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">requestBodyLimitKb</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1024</span>
+<span class="w">    </span><span class="nt">responseBodyAccess</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">    </span><span class="nt">responseBodyLimitKb</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">128</span>
+<span class="w">    </span><span class="nt">crs</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BLOCK</span>
+<span class="w">      </span><span class="nt">securityLevel</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
+<span class="w">      </span><span class="nt">paranoiaLevel</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">      </span><span class="nt">enabledRequestRules</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">REQUEST_913_SCANNER_DETECTION</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">REQUEST_921_PROTOCOL_ATTACK</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">REQUEST_922_MULTIPART_ATTACK</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">REQUEST_930_APPLICATION_ATTACK_LFI</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">REQUEST_931_APPLICATION_ATTACK_RFI</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">REQUEST_932_APPLICATION_ATTACK_RCE</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">REQUEST_933_APPLICATION_ATTACK_PHP</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">REQUEST_934_APPLICATION_ATTACK_GENERIC</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">REQUEST_941_APPLICATION_ATTACK_XSS</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">REQUEST_942_APPLICATION_ATTACK_SQLI</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">REQUEST_943_APPLICATION_ATTACK_SESSION_FIXATION</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">REQUEST_944_APPLICATION_ATTACK_JAVA</span>
+<span class="w">  </span><span class="nt">routes</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">match</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/&quot;</span>
+<span class="w">        </span><span class="nt">pathType</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;PREFIX&quot;</span>
+<span class="w">      </span><span class="nt">backend</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">address</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httpbin</span>
+<span class="w">        </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8000</span>
+<span class="w">        </span><span class="nt">protocol</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">selection</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">h1</span>
+</code></pre></div>
 
 
 
@@ -1270,10 +1276,10 @@ while enabling developers move from DevOps to SecDevOps.</p>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": [], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": [], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
     
     
-      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>
