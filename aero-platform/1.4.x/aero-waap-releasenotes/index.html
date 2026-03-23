@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://docs.united-security-providers.ch/usp-aero/latest/autolearning/">
+        <link rel="canonical" href="https://docs.united-security-providers.ch/usp-aero/latest/aero-waap-releasenotes/">
       
       
       
@@ -21,7 +21,7 @@
     
     
       
-        <title>Autolearning - USP Aero Platform documentation</title>
+        <title>Aero WAAP Release Notes - USP Aero Platform documentation</title>
       
     
     
@@ -63,6 +63,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#aero-waap-release-notes" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -98,7 +103,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Autolearning
+              Aero WAAP Release Notes
             
           </span>
         </div>
@@ -226,6 +231,44 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#200-2025-mm-dd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.0.0 - 2025-MM-DD
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.0.0 - 2025-MM-DD">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contents
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -242,60 +285,18 @@
 
 
 
-  <h1>Autolearning</h1>
-
-<div class="highlight"><pre><span></span><code>Usage: java -jar waap-lib-autolearn-cli-&lt;version&gt;.jar [-hV] ([-i=&lt;specIn&gt;
-       -l=&lt;log&gt;] | [-n=&lt;namespace&gt; -w=&lt;instance&gt;]) [[-o=&lt;specOut&gt;]] [[crs]
-       [graphql] [methods]] [[-t=&lt;range&gt;] [-e=&lt;errorFile&gt;] [-s]]
-       [[--skippostparts] [--skipmetadataexport] [--sortexceptions]
-       [--reduceconfigured]]
-Autolearns CRS rule exceptions and methods whitelisting from USP Core WAAP log
-files.
-Copyright (c) United Security Providers AG, Switzerland, All rights reserved.
-  -h, --help                 Show this help message and exit.
-  -V, --version              Print version information and exit.
-file input
-  -i, --waapspecin=&lt;specIn&gt;  USP Core WAAP spec file (or manifest file) to
-                               read, use &#39;-&#39; for stdin, exclusive with -n/-w.
-  -l, --log=&lt;log&gt;            USP Core WAAP log file to parse, exclusive with
-                               -n/-w.
-k8s instance input
-  -n, --namespace=&lt;namespace&gt;
-                             Kubernetes namespace with USP Core WAAP, exclusive
-                               with -i/-l.
-  -w, --waapinstance=&lt;instance&gt;
-                             Kubernetes USP Core WAAP instance name (app.
-                               kubernetes.io/instance), exclusive with -i/-l.
-output
-  -o, --waapspecout=&lt;specOut&gt;
-                             USP Core WAAP spec file (or manifest file) to
-                               write, defaults to &#39;waap.yaml&#39;, use &#39;-&#39; for
-                               stdout (then automatically also -s).
-processors
-      crs                    Autolearns CRS rule exceptions (defaulting to the
-                               new spec.coraza.crs settings over the legacy
-                               spec.crs settings unless only the legacy spec.
-                               crs settings are present or only those are
-                               enabled)
-      graphql                Autolearns max. values for GraphQL queries
-      methods                Autolearns HTTP methods whitelisting
-common options
-  -e, --errorfile=&lt;errorFile&gt;
-                             File to write errors to, optional, by default no
-                               file is written.
-  -s, --silent               No output to stdout with number of learned rules
-                               and errors.
-  -t, --timerange=&lt;range&gt;    Optional time range to learn from, e.g.
-                               &quot;20231201.1010-20231202.1010&quot; (time with
-                               minutes).
-CRS mode options
-      --reduceconfigured     Changes already configured exceptions by removing
-                               a) duplicates &amp; b) more specific rules in favor
-                               of more general ones
-      --skipmetadataexport   Skip metadata export.
-      --skippostparts        Skip part name parsing for ARGS_POST.
-      --sortexceptions       Sort rule exceptions in the output.
-</code></pre></div>
+<h1 id="aero-waap-release-notes">Aero WAAP Release Notes</h1>
+<h2 id="200-2025-mm-dd">2.0.0 - 2025-MM-DD</h2>
+<h3 id="contents">Contents</h3>
+<ul>
+<li>base image: gcr.io/distroless/cc-debian13</li>
+<li>envoy version: 1.37.0</li>
+<li>core-waap proxy version: 2.0.0</li>
+<li>helm chart version: 2.0.0</li>
+<li>operator version: 2.0.0</li>
+<li>coreruleset version: 4.18.0</li>
+<li>coraza version: 3.3.3</li>
+</ul>
 
 
 
