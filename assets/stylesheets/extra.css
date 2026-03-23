@@ -18,7 +18,7 @@
 	margin-bottom: 10px;
 	height: 40px;
 }
-.md-header__ellipsis {
+.md-header__title > .md-header__ellipsis {
 	height: 100%;
 }
 
