@@ -18,6 +18,9 @@
 	margin-bottom: 10px;
 	height: 40px;
 }
+.md-header__ellipsis {
+	height: 100%;
+}
 
 :root {
     --md-text-font: "montserrat-2";
