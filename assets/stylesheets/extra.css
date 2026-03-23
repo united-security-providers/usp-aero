@@ -4,7 +4,13 @@
 }
 
 .md-header__title {
-	float: right;
+	flex-grow: 0.7;
+	font-size: .9rem;
+	height: 2.4rem;
+	line-height: 2.4rem;
+	flex-direction: column;
+	display: flex;
+	align-items: flex-end;
 }
 
 .md-header__button.md-logo img {
