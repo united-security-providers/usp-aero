@@ -33,7 +33,7 @@ plugins:
   - swagger-ui-tag:
       supportedSubmitMethods: []
       validatorUrl: none
-  - privacy
+#  - privacy
   - mike:
       deploy_prefix: aero-platform
       canonical_version: latest
