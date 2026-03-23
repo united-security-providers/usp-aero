@@ -5,6 +5,8 @@
 /generated
 /docs
 
+.cache
+
 *.log
 
 # Eclipse m2e generated files
