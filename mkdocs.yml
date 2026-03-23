@@ -2,14 +2,17 @@ site_name: 'USP Aero Suite documentation'
 docs_dir: './docs'                        # Where to find the English markdown files
 site_dir: './generated'                      # Where to put the English HTML files
 site_url: 'https://docs.united-security-providers.ch/usp-aero'
+copyright: '&copy; 2026 United Security Providers AG. All Rights Reserved.'
 remote_branch: gh-pages-top
 
 theme:
   name: material
   custom_dir: './overrides/'                  # This is where the customization of the theme lives
-  logo: assets/images/USP-Logo-2023-ohne-claim-lang-white1.webp                 # The logo is shared by all languages
-  favicon: assets/images/favicon.png              # The favicon is shared by all languages
+  logo: assets/images/USP-Logo-zentriert-ohne-Claim-white.png                # The logo is shared by all languages
+  favicon: favicon.ico              # The favicon is shared by all languages
   language: en                                    # The build's language
+  static_templates:
+    - 404.html   # 404 page
 extra_css:
   - assets/stylesheets/extra.css
 
@@ -17,14 +20,23 @@ extra:
   version:
     provider: mike
     default: latest
-
+  social:
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/company/united-security-providers/
+      name: United Security Providers on Linkedin
+    - icon: fontawesome/brands/youtube
+      link: https://www.youtube.com/@United-security-providersCh
+      name: United Security Providers on Youtube
 plugins:
+  - search:
+      enabled: false
   - swagger-ui-tag:
       supportedSubmitMethods: []
       validatorUrl: none
   - mike:
       canonical_version: latest
       version_selector: false
+  - privacy
 
 markdown_extensions:
   - pymdownx.superfences:
