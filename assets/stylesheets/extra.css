@@ -2,17 +2,6 @@
     color: white;
     background-color: black;
 }
-.md-header__topic {
-	visibility: hidden;
-}
-.md-header__topic:after {
-	content:'Hello there';
-	display: flex;
-	max-width: 100%;
-	float: right;
-	transition: transform .4s cubic-bezier(.1,.7,.1,1),opacity .15s;
-	white-space: nowrap;
-}
 
 :root {
     --md-text-font: "montserrat-2";
