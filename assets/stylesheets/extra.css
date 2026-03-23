@@ -3,6 +3,10 @@
     background-color: black;
 }
 
+.md-header__topic:after {
+    float: right;
+}
+
 :root {
     --md-text-font: "montserrat-2";
 }
