@@ -52,4 +52,9 @@ markdown_extensions:
   - pymdownx.superfences
 nav:
   - Welcome: 'index.md'
-  - Installation: 'install/installation.md'
+  - Installation:
+      - 'install/overview.md'
+      - 'install/requirements.md'
+      - 'install/download.md'
+      - 'install/installation.md'
+      - 'install/console.md'
