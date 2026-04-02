@@ -2,38 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://docs.united-security-providers.ch/usp-aero/latest/</loc>
-         <lastmod>2026-03-23</lastmod>
+         <lastmod>2026-04-02</lastmod>
     </url>
     <url>
-         <loc>https://docs.united-security-providers.ch/usp-aero/latest/aero-waap-releasenotes/</loc>
-         <lastmod>2026-03-23</lastmod>
+         <loc>https://docs.united-security-providers.ch/usp-aero/latest/install/console/</loc>
+         <lastmod>2026-04-02</lastmod>
     </url>
     <url>
-         <loc>https://docs.united-security-providers.ch/usp-aero/latest/autolearning/</loc>
-         <lastmod>2026-03-23</lastmod>
+         <loc>https://docs.united-security-providers.ch/usp-aero/latest/install/download/</loc>
+         <lastmod>2026-04-02</lastmod>
     </url>
     <url>
-         <loc>https://docs.united-security-providers.ch/usp-aero/latest/crd-doc/</loc>
-         <lastmod>2026-03-23</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.united-security-providers.ch/usp-aero/latest/helm-CHANGELOG/</loc>
-         <lastmod>2026-03-23</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.united-security-providers.ch/usp-aero/latest/helm-values/</loc>
-         <lastmod>2026-03-23</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.united-security-providers.ch/usp-aero/latest/operator-CHANGELOG/</loc>
-         <lastmod>2026-03-23</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.united-security-providers.ch/usp-aero/latest/waap-proxy-CHANGELOG/</loc>
-         <lastmod>2026-03-23</lastmod>
+         <loc>https://docs.united-security-providers.ch/usp-aero/latest/install/firsttimewizard/</loc>
+         <lastmod>2026-04-02</lastmod>
     </url>
     <url>
          <loc>https://docs.united-security-providers.ch/usp-aero/latest/install/installation/</loc>
-         <lastmod>2026-03-23</lastmod>
+         <lastmod>2026-04-02</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.united-security-providers.ch/usp-aero/latest/install/overview/</loc>
+         <lastmod>2026-04-02</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.united-security-providers.ch/usp-aero/latest/install/requirements/</loc>
+         <lastmod>2026-04-02</lastmod>
     </url>
 </urlset>
