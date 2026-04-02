@@ -47,24 +47,17 @@ cp -R src/docs docs
 
 mkdir -p docs/files
 
-######## TODO - copy platform specific docs / files???
-
-# Replace version placeholders in all markdown files
-#for file in docs/*; do
-#    if [ -f "$file" ]; then
-#        sed -i -e 's/%CHARTS_VERSION%/'$CHARTS_VERSION'/g' $file
-#    fi
-#done
 
 echo "Successfully generated site (Markdown) in docs folder."
+
+VERSION=$(echo "$1" | sed -E 's/^v?([0-9]+)\.([0-9]+)\.[0-9]+$/\1.\2.x/')
 
 [ "$2" == "deploy" ] && DEPLOY=true && shift
 [ "$2" == "--latest" ] && RELEASE_ALIAS=latest && shift
 
 if [ $DEPLOY ]; then
-    version=$(echo "$CHARTS_VERSION" | sed -E 's/^v?([0-9]+)\.([0-9]+)\.[0-9]+$/\1.\2.x/')
-    echo "Deploying to GitHub pages with version ${version}..."
-    mike deploy --update-aliases --push "${version}" $RELEASE_ALIAS
+    echo "Deploying to GitHub pages with version ${VERSION}..."
+    mike deploy --update-aliases --push "${VERSION}" $RELEASE_ALIAS
     echo "Successfully deployed to to GitHub pages"
 else
     echo "Building website locally in 'generated' subfolder..."
