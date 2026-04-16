@@ -59,6 +59,8 @@ if [ $DEPLOY ]; then
     git push -f
     cd ../..
     echo "Successfully deployed to to GitHub pages"
+    git tag -f "latest"
+    git push -f --tags
 else
     echo "Building website locally in 'generated' subfolder..."
     mkdocs build

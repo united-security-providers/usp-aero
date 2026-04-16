@@ -59,6 +59,8 @@ if [ $DEPLOY ]; then
     echo "Deploying to GitHub pages with version ${VERSION}..."
     mike deploy --update-aliases --push "${VERSION}" $RELEASE_ALIAS
     echo "Successfully deployed to to GitHub pages"
+    git tag -f ${VERSION}
+    git push -f --tags
 else
     echo "Building website locally in 'generated' subfolder..."
     mkdocs build
