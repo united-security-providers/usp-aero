@@ -1,7 +1,7 @@
 site_name: 'USP Aero Suite documentation'
 docs_dir: './docs'                        # Where to find the English markdown files
 site_dir: './generated'                      # Where to put the English HTML files
-site_url: 'https://docs.united-security-providers.ch/usp-aero/XYZ'
+site_url: 'https://docs.united-security-providers.ch/usp-aero'
 copyright: '&copy; 2026 United Security Providers AG. All Rights Reserved.'
 
 # Top page MUST be in a separate branch; otherwise, whenever it's generated and
