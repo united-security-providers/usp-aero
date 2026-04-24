@@ -62,11 +62,9 @@ echo "Successfully generated site (Markdown) in docs folder."
 
 if [ $DEPLOY ]; then
     echo "Deploying to GitHub pages..."
-    version=$(echo "$CHARTS_VERSION" | sed -E 's/^v?([0-9]+)\.([0-9]+)\.[0-9]+$/\1.\2.x/')
+    version=$(echo "$AERO_WAAP_VERSION" | sed -E 's/^v?([0-9]+)\.([0-9]+)\.[0-9]+$/\1.\2.x/')
     mike deploy --update-aliases --push "${version}" $RELEASE_ALIAS
     echo "Successfully deployed to to GitHub pages"
-    git tag -f ${VERSION}
-    git push -f --tags
 else
     echo "Building website locally in 'generated' subfolder..."
     mkdocs build
