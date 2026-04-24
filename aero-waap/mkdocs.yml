@@ -52,9 +52,8 @@ markdown_extensions:
   - pymdownx.superfences
 nav:
   - Welcome: 'index.md'
-  - Release Notes: 'core-waap-releasenotes.md'
+  - Release Notes: 'aero-waap-releasenotes.md'
   - Configuration:
-      - API Reference: 'crd-doc.md'
       - Coraza:
           - Coraza: "coraza.md"
           - CRS: "coraza-crs.md"
@@ -68,10 +67,7 @@ nav:
       - Lua Filters: 'lua-filters.md'
       - Rate Limiting: 'rate-limiting.md'
   - Operation:
-      - Operator Helm Chart:
-          - Usage: 'helm.md'
-          - Values: 'helm-values.md'
-      - Core WAAP Upgrade: 'upgrade.md'
+      - Aero WAAP Upgrade: 'upgrade.md'
       - Logs and Metrics: 'logs-metrics.md'
       - Auto-Learning: 'autolearning.md'
       - Large Payloads: 'large-payloads.md'

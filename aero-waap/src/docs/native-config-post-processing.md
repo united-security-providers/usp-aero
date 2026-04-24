@@ -1,10 +1,10 @@
 # Native Config Post-Processing (NCPP)
 
-This feature allows the use of all the underlying Envoy capabilities even if they are not (yet) configurable via the Core WAAP custom resource.
+This feature allows the use of all the underlying Envoy capabilities even if they are not (yet) configurable via the Aero WAAP custom resource.
 
 ## Introduction
 
-The Core WAAP Operator translates the Core WAAP custom resource (CR) to native configuration of the Envoy proxy.
+The Aero WAAP Operator translates the Aero WAAP custom resource (CR) to native configuration of the Envoy proxy.
 The resulting native configuration is also in the form of YAML files.
 
 The "native configuration post-processing" feature allows to adapt the generated Envoy configuration before it is deployed, using JavaScript.
@@ -89,27 +89,27 @@ This allows to fix at least some imminent problems without the need to create a 
 
 This can be especially useful in cases where a fix cannot be easily tested outside production, reducing turnaround times and thus a quicker fix in production.
 
-Obviously, in most cases the idea is to afterward include a corresponding fix into the next regular Core WAAP release.
+Obviously, in most cases the idea is to afterward include a corresponding fix into the next regular Aero WAAP release.
 
 #### Quick and flexible integrations of something new
 
 A PoC is maybe the most general example for this use case, where integration issues can be solved ad-hoc whenever they occur without immediate need for a release, again also reducing turnaround times in cases where the feature cannot be easily/immediately tested outside the environment of the customer.
 
-Depending on the nature of the integration, it may later make sense to include new features into the Core WAAP that cover the new integrations, namely if the integrations are of a kind that is generally useful, or are the better choice for other reasons.
+Depending on the nature of the integration, it may later make sense to include new features into the Aero WAAP that cover the new integrations, namely if the integrations are of a kind that is generally useful, or are the better choice for other reasons.
 
 Side remark: Note that this use case is often also interesting internally at USP because it allows to explore new settings sometimes more quickly than operating directly with native Envoy config.
 
 #### Tuning / debugging existing installations
 
-Use features that are present in the underlying Envoy but not (yet) configurable via the Core WAAP custom resource.
+Use features that are present in the underlying Envoy but not (yet) configurable via the Aero WAAP custom resource.
 
 ### Future Improvements
 
-We are evaluating various ways to make using this feature generally more easy and also more robust regarding new Core WAAP releases.
+We are evaluating various ways to make using this feature generally more easy and also more robust regarding new Aero WAAP releases.
 
 _Note that the generated native Envoy config is subject to change:_
 
-Its structure may change, due to changes in the Core WAAP Operator or also due to changes in the underlying Envoy itself, hence it is not an API that is in any way guaranteed to remain stable, while in practice many things will still be quite stable most of the time.
+Its structure may change, due to changes in the Aero WAAP Operator or also due to changes in the underlying Envoy itself, hence it is not an API that is in any way guaranteed to remain stable, while in practice many things will still be quite stable most of the time.
 
 As an example of potential future enhancements, JavaScript functions may be offered to get/set the Core Rule Set (CRS) settings of the Coraza filter more easily.
 And/or similar JavaScript functions that make it both more simple and potentially also more robust to get/set some specific or general items in the native Envoy config.

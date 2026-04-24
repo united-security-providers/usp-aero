@@ -7,3 +7,7 @@ becomes available on the configured IP address; open a web browser with the give
     https://<aero-ip>/
 ----
 
+This will open the first-time setup wizard UI:
+
+![First Time Setup Wizard](assets/images/screenshot_aero_wizard_welcome.png)
+

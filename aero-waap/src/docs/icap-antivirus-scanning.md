@@ -8,9 +8,9 @@ ICAP has practically never been widely used in its full flexibility and would te
 
 ## ICAP Antivirus (AV) Scanning
 
-The Core WAAP allows to send HTTP requests via ICAP to an ICAP server, typically to make sure that uploaded content does not contain any viruses or similar malware. (Modification of HTTP requests or scanning/modification of HTTP responses is, however, not a common use case and is currently not supported.)
+The Aero WAAP allows to send HTTP requests via ICAP to an ICAP server, typically to make sure that uploaded content does not contain any viruses or similar malware. (Modification of HTTP requests or scanning/modification of HTTP responses is, however, not a common use case and is currently not supported.)
 
-Technically, the Core WAAP ICAP AV scanning uses OPTIONS and REQMOD ICAP requests to the ICAP server, the former to query abilities/preferences of the ICAP server, the latter to scan HTTP requests for viruses and similar malware.
+Technically, the Aero WAAP ICAP AV scanning uses OPTIONS and REQMOD ICAP requests to the ICAP server, the former to query abilities/preferences of the ICAP server, the latter to scan HTTP requests for viruses and similar malware.
 
 ## Configuration
 

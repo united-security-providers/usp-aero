@@ -1,6 +1,6 @@
 # Auto-Learning
 
-USP Core WAAP provides a command-line tool that allows to update configuration of an existing USP Core WAAP instance
+USP Aero WAAP provides a command-line tool that allows to update configuration of an existing USP Aero WAAP instance
 based on the information from its runtime log files.
 
 There are different processing options that can be activated independently:

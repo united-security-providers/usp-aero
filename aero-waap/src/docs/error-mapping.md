@@ -47,7 +47,7 @@ data:
 
 Note that you could use any of the [Envoy "%...%" variables](https://www.envoyproxy.io/docs/envoy/latest/configuration/observability/access_log/usage) in the error page.
 
-As described in the [API Reference](crd-doc.md#corewaapservicespecwebresources) it is actually possible to directly serve other static files directly from Core WAAP. Anyhow, since Core WAAP is not a web server, there are strict size limitations. Therefore it is recommended to serve static files like JavaScript, CSS or images from a different web server and only reference them in HTML in Core WAAP. In order to avoid dependency to existing backend server for serving such static resources, one possible approach is to set up a dedicated pod to serve only such content. This is beyond the scope of this documentation. If the required static resources (e.g a CSS like w3.css) are publicly available over a CDN, they can also directly be fetched on browser side.
+As described in the [API Reference](crd-doc.md#corewaapservicespecwebresources) it is actually possible to directly serve other static files directly from Aero WAAP. Anyhow, since Aero WAAP is not a web server, there are strict size limitations. Therefore it is recommended to serve static files like JavaScript, CSS or images from a different web server and only reference them in HTML in Aero WAAP. In order to avoid dependency to existing backend server for serving such static resources, one possible approach is to set up a dedicated pod to serve only such content. This is beyond the scope of this documentation. If the required static resources (e.g a CSS like w3.css) are publicly available over a CDN, they can also directly be fetched on browser side.
 
 ## JSON error document for 504 error mapped to 500
 
@@ -80,5 +80,5 @@ data:
 ```
 ## Behavior on configuration changes
 
-Note that changes to a config map are not directly applied by a running Core WAAP. Therefore the Core WAAP Deployment has to be restarted. e.g.:
+Note that changes to a config map are not directly applied by a running Aero WAAP. Therefore the Aero WAAP Deployment has to be restarted. e.g.:
 `kubectl -n juiceshop rollout restart deployment usp-core-waap`
