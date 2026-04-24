@@ -43,7 +43,7 @@ or generally a shield or protective barrier.
 **United Security Providers** has implemented a
 **Golang filter for the Envoy reverse proxy**
 that provides the functionality of Coraza for Envoy
-– and thus also for the Core WAAP –,
+– and thus also for the Aero WAAP –,
 and has made it available as **Open Source** on GitHub at
 [united-security-providers/coraza-envoy-go-filter](https://github.com/united-security-providers/coraza-envoy-go-filter).
 
@@ -52,7 +52,7 @@ namely things like limiting HTTP request and/or response size
 and, of course, activating OWASP CRS rule sets,
 plus the ability to tweak things.
 
-In the **Core WAAP**, there are the following **major additions**:
+In the **Aero WAAP**, there are the following **major additions**:
 
 * **Simplicity:**
   No need to write/maintain Seclang directives,
@@ -82,7 +82,7 @@ it is possible to turn off these optimizations in case there would be
 compatibility problems in practice, using the settings
 `spec.coraza.useRe2` and `spec.coraza.useLibinjection`.
 
-## Core WAAP Coraza Settings
+## Aero WAAP Coraza Settings
 
 * Settings regarding Coraza in general (e.g. activation or request size limits)
   are specified at `spec.coraza` and `spec.routes[].coraza`

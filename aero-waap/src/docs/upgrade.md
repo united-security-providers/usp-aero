@@ -1,19 +1,19 @@
-# Updating Core WAAP Operator
+# Updating Aero WAAP Operator
 
-To run a newer version of the Core WAAP Operator the corresponding helm chart can be used. Please check in the release notes what has changed and which settings may affect your deployed CoreWaapServices. In case of breaking changes, it is recommended to follow these instructions:
+To run a newer version of the Aero WAAP Operator the corresponding helm chart can be used. Please check in the release notes what has changed and which settings may affect your deployed CoreWaapServices. In case of breaking changes, it is recommended to follow these instructions:
 
-1. Stop the Core WAAP Operator by scaling the deployment down to 0 replicas (i.e. `kubectl scale deployment --replicas 0 -l app.kubernetes.io/name=core-waap-operator -n <operator-namespace>`).
+1. Stop the Aero WAAP Operator by scaling the deployment down to 0 replicas (i.e. `kubectl scale deployment --replicas 0 -l app.kubernetes.io/name=core-waap-operator -n <operator-namespace>`).
 1. Manually update **ONLY** the CRD (see [upgrade operator](./helm.md#upgrade-operator)).
 1. Align the CoreWaapServices with the new schema according to the breaking changes in the release notes.
 1. Update the operator config ConfigMap if needed.
-1. Update the Core WAAP Operator by upgrading the helm chart (ensure the CoreWaapService CustomResourceDefinition was updated, see [upgrade operator](./helm.md#upgrade-operator)).
-1. Check the Core WAAP Operator Logs, to ensure that no error due to incompatibility occurs. Fix the remaining issues in the CoreWaapServices Custom Resources if required.
+1. Update the Aero WAAP Operator by upgrading the helm chart (ensure the CoreWaapService CustomResourceDefinition was updated, see [upgrade operator](./helm.md#upgrade-operator)).
+1. Check the Aero WAAP Operator Logs, to ensure that no error due to incompatibility occurs. Fix the remaining issues in the CoreWaapServices Custom Resources if required.
 
-**Note:** This procedure should prevent any downtime of a CoreWaapService. In case a new Core WAAP Version is included too, the pods will restart accordingly. **Upgrade from helm chart versions < 1.0.2 will have an increased risk by helm upgrade commands to remove the CRD** (and by this any custom resource) in case the upgrade command fails (due to any not core-waap specific reason like not enough resources to start a POD etc)
+**Note:** This procedure should prevent any downtime of a CoreWaapService. In case a new Aero WAAP Version is included too, the pods will restart accordingly. **Upgrade from helm chart versions < 1.0.2 will have an increased risk by helm upgrade commands to remove the CRD** (and by this any custom resource) in case the upgrade command fails (due to any not core-waap specific reason like not enough resources to start a POD etc)
 
-## Core WAAP Migration Guide
+## Aero WAAP Migration Guide
 
-### Core WAAP Operator 1.4.x to >=2.0.0
+### Aero WAAP Operator 1.4.x to >=2.0.0
 
 - In an existing Helm chart, rename the docker image from `usp-core-waap` to `usp-core-waap-proxy`.
 - In an existing Helm chart, remove all traffic processing related settings from the Helm chart (file `values.yaml`,
@@ -185,14 +185,14 @@ To run a newer version of the Core WAAP Operator the corresponding helm chart ca
   esp. header filtering can now also be adjusted on route level,
   see [Header filtering](header-filtering.md).
 
-### Core WAAP Operator 1.3.x to >=1.4.0
+### Aero WAAP Operator 1.3.x to >=1.4.0
 
 - The field `spec.operation.startup.additionalCliArgs` has changed from a single `string` to `[]string`.
   To migrate existing configurations, split the `string` into individual arguments and specify them in a an array.
   Example: `additionalCliArgs: "--service-cluster cluster-name --base-id-path 5 --log-format-escaped"`
   becomes `additionalCliArgs: ["--service-cluster", "cluster-name", "--base-id-path", "5", "--log-format-escaped"]`
 
-### Core WAAP Operator 1.2.0 to >=1.3.0
+### Aero WAAP Operator 1.2.0 to >=1.3.0
 
 - The CRS version has been upgraded from 4.14.0 to 4.17.1.
   Accordingly, testing / auto-learning esp. for false positives is recommended.
@@ -203,7 +203,7 @@ To run a newer version of the Core WAAP Operator the corresponding helm chart ca
 - Replace `spec.crs.enabled` with `spec.coraza.enabled` to retain the same behavior.
   `spec.coraza.crs.enabled` is not the correct replacement, it only disables CRS and not the whole coraza filter.
 
-### Core WAAP Operator 1.1.0 to >=1.2.0
+### Aero WAAP Operator 1.1.0 to >=1.2.0
 
 - The CRS version has been upgraded from 4.3.0 to 4.14.0.
   Accordingly, testing / auto-learning esp. for false positives is recommended.
@@ -213,20 +213,20 @@ To run a newer version of the Core WAAP Operator the corresponding helm chart ca
 - Optional: Use the list of rule ids in CRS rule exception, new field `ruleIds`,
   instead of the now deprecated field `ruleId` for a single rule id.
 
-### Core WAAP Operator 1.0.0 to >=1.1.0
+### Aero WAAP Operator 1.0.0 to >=1.1.0
 
 There are no mandatory migrations, but it is recommended to migrate the following deprecated settings, also in order to avoid deprecation warnings in the operator log:
 
 - Split up the `config.operation.image` field in the form "{image}:{version}" into `config.operation.image` without the version and the version separately in the new field `config.operation.version`.
 
-### Core WAAP Operator 0.8.0 to >=1.0.0
+### Aero WAAP Operator 0.8.0 to >=1.0.0
 
 #### Operation-related settings
 
 The following kinds of settings have been regularized:
 
 - Instead of using annotations, use settings in the CoreWaapService CR under `spec.operation`.<br>
-  **Note:** This means that all Core WAAP annotations have to be removed during migration.
+  **Note:** This means that all Aero WAAP annotations have to be removed during migration.
 - The exact same settings can also be provided as defaults in the operator helm chart under `config.waapSpecDefaults`, replacing a number of previous operator settings.<br>
   **Note:** All previous settings in the operator helm chart have to be moved to the new structure, even the ones that have no equivalent under `spec.operation`; best use the provided new helm chart as a basis.
 

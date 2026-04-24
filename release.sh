@@ -64,6 +64,10 @@ if [ $DEPLOY ]; then
 else
     echo "Building website locally in 'generated' subfolder..."
     mkdocs build
+    mkdir -p docs/aero-waap
+    mkdir -p docs/aero-platform
+    cp -R aero-waap/generated/* docs/aero-waap/
+    cp -R aero-platform/generated/* docs/aero-platform/
     echo "Website generated."
 fi
 

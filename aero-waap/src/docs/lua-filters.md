@@ -1,23 +1,23 @@
 # Lua Filters
 
-Using Lua filters in the USP Core WAAP adds flexibility for custom application integrations.
+Using Lua filters in the USP Aero WAAP adds flexibility for custom application integrations.
 
 Filters written in the [Lua programming language](https://www.lua.org/) can be configured to be processed
-as part of the regular request/response processing in the USP Core WAAP,
+as part of the regular request/response processing in the USP Aero WAAP,
 both before and after other filters (like filters for authentication, openapi validation, etc.).
 
 Since the corresponding filter scripts are part of the configuration
-of the USP Core WAAP — as opposed to part of a USP Core WAAP binary or release —,
+of the USP Aero WAAP — as opposed to part of a USP Aero WAAP binary or release —,
 this feature generally adds more flexibility with usually no significant performance impact.
 (Lua is a very performant and sophisticated script language with a tiny footprint,
 also broadly used in computer games for the same reasons,
-and in the case of USP Core WAAP also precompiled with the Lua JIT compiler.)
+and in the case of USP Aero WAAP also precompiled with the Lua JIT compiler.)
 
 The Envoy Lua filter usage, including what can be done in filter scripts, is generally described here:
 
 * [envoy/Configuration reference/HTTP/HTTP filters/Lua](https://www.envoyproxy.io/docs/envoy/latest/configuration/http/http_filters/lua_filter)
 
-The following examples show how to configure and use Lua filtering in the USP Core WAAP,
+The following examples show how to configure and use Lua filtering in the USP Aero WAAP,
 and provide at the same time some general info and tips regarding how to typically use Lua filters.
 
 ## Example 1: Multiple filters, store path, simple Lua module
@@ -178,7 +178,7 @@ is needed in a "last" filter.
 The underlying mechanism is called "dynamic metadata" in Envoy.
 
 Here is a `util.lua` Lua module that would be defined as a helper script
-in the USP Core WAAP configuration (see example 1 above):
+in the USP Aero WAAP configuration (see example 1 above):
 
 ```lua
 local meta = { }

@@ -52,6 +52,7 @@ markdown_extensions:
   - pymdownx.superfences
 nav:
   - Welcome: 'index.md'
+  - Release Notes: 'aero-platform-releasenotes.md'
   - Installation:
       - 'install/overview.md'
       - 'install/requirements.md'

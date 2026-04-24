@@ -5,59 +5,15 @@
 set -eE # same as: `set -o errexit -o errtrace`
 trap 'catch $? $LINENO' ERR
 
-# Remove extra info in CRD description fields from incl. "||" to before "</br>"
-# or to before a line with "<table>", potentially stretching across multiple lines.
-# LATER: Would in principle be safer to operate on a parsed CRD, but that
-#        would require an additional tool or tools.
-removeExtraCrdInfo() {
-  cat crd/crd-doc-raw.md | awk 'BEGIN { inExtraInfo = 0 }
-    {
-      i = index($0, "||")
-      j = index($0, "<br/>")
-      k = index($0, "<table>")
-      if (inExtraInfo) {
-        if (j) {
-          print substr($0, j, length($0))
-          inExtraInfo = 0
-        } else if (k) {
-          print ""
-          print $0
-          inExtraInfo = 0
-        }
-      } else {
-        if (i) {
-          if (j) {
-            print substr($0, 1, i-1) substr($0, j, length($0))
-          } else {
-            inExtraInfo = 1
-            print substr($0, 1, i-1)
-          }
-        } else {
-          print $0
-        }
-      }
-    }
-  ' > crd/crd-doc.md
-}
-
-generateCrdDocumentation() {
-  mkdir crd
-  cp usp-core-waap-operator/crds/crd-core-waap.yaml crd/
-  crdoc  --resources crd --output crd/crd-doc-raw.md
-  removeExtraCrdInfo
-}
-
 checkbin mkdocs
 checkbin mike
-checkbin helm
 checkbin wget
-checkbin crdoc
 
 if [ "$#" -lt 1 ]
 then
   echo "Not enough arguments supplied. Usage:"
   echo ""
-  echo "./release.sh <helm-chart-version, e.g. 1.0.0> [deploy] [--latest] "
+  echo "./release.sh <aero-waap-version, e.g. 1.0.0> [deploy] [--latest] "
   echo ""
   echo "If the optional 'deploy' argument is set, the website will be deployed to Github and made public!"
   echo "If the optional 'latest' flag is set, then the specified version will become the latest version"
@@ -68,8 +24,8 @@ then
   exit 1
 fi
 
-# 1st input parameter = Helm Chart version
-export CHARTS_VERSION=$1
+# 1st input parameter = Aero WAAP version
+export AERO_WAAP_VERSION=$1
 
 DIR=`pwd`
 rm -rf build
@@ -78,62 +34,9 @@ rm -rf generated
 mkdir build
 cd build
 
-# Get Helm charts to extract operator and spec lib info
-if [[ $CHARTS_VERSION =~ "SNAPSHOT" || $CHARTS_VERSION =~ "-rc" ]]; then
-  helm pull oci://devuspregistry.azurecr.io/helm/usp/core/waap/usp-core-waap-operator --version $CHARTS_VERSION
-else
-  helm pull oci://uspregistry.azurecr.io/helm/usp/core/waap/usp-core-waap-operator --version $CHARTS_VERSION
-fi
-tar xzf usp-core-waap-operator-$CHARTS_VERSION.tgz
-export OPERATOR_VERSION=`grep 'Operator version:' usp-core-waap-operator/crds/crd-core-waap.yaml | cut -d ':' -f 2 | tr -d ' '`
-export CORE_WAAP_PROXY_VERSION=`cat usp-core-waap-operator/values.yaml | yq -r '.operator.config.waapSpecDefaults.version'`
-
-# Perform quick check here - we NEVER want a snapshot documented on the website, so make
-# sure that the Helm chart contains a reference to a fixed operator release
-if [[ $OPERATOR_VERSION =~ "SNAPSHOT" && "$2" == "deploy" ]]; then
-  echo "ERROR: Helm chart contains reference to SNAPSHOT operator: $OPERATOR_VERSION"
-  exit 1;
-fi
-
 echo "-------------------------------------------------------------"
-echo "Selected Helm chart release:             $CHARTS_VERSION"
-echo "- Operator release in Helm chart:        $OPERATOR_VERSION"
-echo "- Core WAAP Proxy release in Helm chart: $CORE_WAAP_PROXY_VERSION"
+echo "- Aero WAAP release: $AERO_WAAP_VERSION"
 echo "-------------------------------------------------------------"
-
-# Adapt for change of tagged version in https://git.u-s-p.local/core-waap/core-waap-proxy-build/-/tags (up to 1.3.0 "v1.3.0", from 1.4.0 "1.4.0")
-if [[ $CHARTS_VERSION =~ ^1.[0-3].* ]]; then
-  export CORE_WAAP_PROXY_VERSION="v$CORE_WAAP_PROXY_VERSION"
-fi
-
-# Get changelogs from Nexus or GitLab
-
-ARGS="$CHARTS_VERSION ch.u-s-p.core.waap waap-operator-helm md changelog"
-downloadFromNexus $ARGS
-CHARTS_CHANGELOG=$(getNexusOutfile $ARGS)
-
-ARGS="$OPERATOR_VERSION ch.u-s-p.core.waap waap-operator md changelog"
-downloadFromNexus $ARGS
-OPERATOR_CHANGELOG=$(getNexusOutfile $ARGS)
-
-ARGS="$CORE_WAAP_PROXY_VERSION core-waap core-waap-proxy-build CHANGELOG.md"
-downloadFromGitLab $ARGS
-CORE_WAAP_PROXY_CHANGELOG=$(getGitLabOutfile $ARGS)
-
-
-# Generate CRD documentation
-generateCrdDocumentation
-
-# Download autolearning tool
-ARGS="$OPERATOR_VERSION ch.u-s-p.core.waap waap-lib-autolearn-cli jar"
-downloadFromNexus $ARGS
-AUTOLEARN_CLI_JAR=$(getNexusOutfile $ARGS)
-
-# TO CHECK ---------------->>>>>>>>>>>>>>>> REALLY GET DEMO APPS FROM CI PROJECT? TBD
-# clone ci project
-git clone  --depth 1 git@git.u-s-p.local:core-waap/core-waap-ci.git
-# checkout tag matching the helm charts release
-#(cd core-waap-ci && git checkout --quiet helm$CHARTS_VERSION)
 
 # =====================================================================
 # Begin site build
@@ -144,42 +47,13 @@ cd $DIR
 
 # Copy base markdown files from sources
 cp -R src/docs docs
-cp build/crd/crd-doc.md docs/
-
-# Generate autolearn-cli tool doc by capturing the help output into a file
-java -jar build/$AUTOLEARN_CLI_JAR --help > build/autolearning-output.log
-echo "\`\`\`"  >> docs/autolearning.md
-cat build/autolearning-output.log >> docs/autolearning.md
-echo "\`\`\`"  >> docs/autolearning.md
-echo " "  >> docs/autolearning.md
-echo "[downloaded here]: /downloads/" >> docs/autolearning.md
-
-# Generate values documentation Markdown file
-helm-docs --chart-search-root=build/usp-core-waap-operator -o helm-values.md
 
 ALPHA_NOTICE="\n\n_This component\/feature is in still active development (\"alpha\"); it is not recommended to already use it in productive environments._"
 MIGRATION_NOTICE="\n\nBreaking changes/additions may require to adapt existing configurations when updating, see [Migration Guide](upgrade.md)."
-prepareChangelog build/$CHARTS_CHANGELOG docs/helm-CHANGELOG.md "$MIGRATION_NOTICE"
-prepareChangelog build/$OPERATOR_CHANGELOG docs/operator-CHANGELOG.md "$MIGRATION_NOTICE"
-prepareChangelog build/$CORE_WAAP_PROXY_CHANGELOG docs/waap-proxy-CHANGELOG.md "$MIGRATION_NOTICE"
+
+############prepareChangelog build/$CHARTS_CHANGELOG docs/helm-CHANGELOG.md "$MIGRATION_NOTICE"
 
 mkdir -p docs/files
-######cp build/usp-core-waap-operator/values.yaml docs/files/
-cp build/$AUTOLEARN_CLI_JAR docs/files/
-cp build/usp-core-waap-operator/helm-values.md docs/
-
-# Replace version placeholders in all markdown files
-for file in docs/*; do
-    if [ -f "$file" ]; then
-        sed -i -e 's/%OPERATOR_VERSION%/'$OPERATOR_VERSION'/g' $file
-        sed -i -e 's/%CHARTS_VERSION%/'$CHARTS_VERSION'/g' $file
-        sed -i -e 's/%CORE_WAAP_PROXY_VERSION%/'$CORE_WAAP_PROXY_VERSION'/g' $file
-    fi
-done
-
-# Prepare file downloads
-zip -q -r docs/files/juiceshop.zip build/core-waap-ci/demo/juiceshop
-zip -q -r docs/files/httpbin.zip build/core-waap-ci/demo/httpbin
 
 echo "Successfully generated site (Markdown) in docs folder."
 
