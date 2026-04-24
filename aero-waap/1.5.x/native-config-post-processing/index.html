@@ -229,7 +229,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../core-waap-releasenotes/" class="md-nav__link">
+      <a href="../aero-waap-releasenotes/" class="md-nav__link">
         
   
   
@@ -304,34 +304,6 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../crd-doc.md" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    API Reference
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
     
     
     
@@ -341,10 +313,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
         
           
-          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
             
   
   
@@ -362,8 +334,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_2">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -913,117 +885,6 @@
   
   
   
-    
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
-        
-          
-          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Operator Helm Chart
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_1">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Operator Helm Chart
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../helm/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Usage
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../helm-values.md" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Values
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
     <li class="md-nav__item">
       <a href="../upgrade/" class="md-nav__link">
         
@@ -1032,7 +893,7 @@
   <span class="md-ellipsis">
     
   
-    Core WAAP Upgrade
+    Aero WAAP Upgrade
   
 
     
@@ -1381,9 +1242,9 @@
 
 
 <h1 id="native-config-post-processing-ncpp">Native Config Post-Processing (NCPP)</h1>
-<p>This feature allows the use of all the underlying Envoy capabilities even if they are not (yet) configurable via the Core WAAP custom resource.</p>
+<p>This feature allows the use of all the underlying Envoy capabilities even if they are not (yet) configurable via the Aero WAAP custom resource.</p>
 <h2 id="introduction">Introduction</h2>
-<p>The Core WAAP Operator translates the Core WAAP custom resource (CR) to native configuration of the Envoy proxy.
+<p>The Aero WAAP Operator translates the Aero WAAP custom resource (CR) to native configuration of the Envoy proxy.
 The resulting native configuration is also in the form of YAML files.</p>
 <p>The "native configuration post-processing" feature allows to adapt the generated Envoy configuration before it is deployed, using JavaScript.
 This allows to freely modify the effective configuration by adding, changing or removing arbitrary settings.</p>
@@ -1442,17 +1303,17 @@ but they should be specific enough to show the possibilities.</p>
 <h4 id="quick-workarounds-for-issues-in-production">Quick workarounds for issues in production</h4>
 <p>This allows to fix at least some imminent problems without the need to create a bugfix release immediately.</p>
 <p>This can be especially useful in cases where a fix cannot be easily tested outside production, reducing turnaround times and thus a quicker fix in production.</p>
-<p>Obviously, in most cases the idea is to afterward include a corresponding fix into the next regular Core WAAP release.</p>
+<p>Obviously, in most cases the idea is to afterward include a corresponding fix into the next regular Aero WAAP release.</p>
 <h4 id="quick-and-flexible-integrations-of-something-new">Quick and flexible integrations of something new</h4>
 <p>A PoC is maybe the most general example for this use case, where integration issues can be solved ad-hoc whenever they occur without immediate need for a release, again also reducing turnaround times in cases where the feature cannot be easily/immediately tested outside the environment of the customer.</p>
-<p>Depending on the nature of the integration, it may later make sense to include new features into the Core WAAP that cover the new integrations, namely if the integrations are of a kind that is generally useful, or are the better choice for other reasons.</p>
+<p>Depending on the nature of the integration, it may later make sense to include new features into the Aero WAAP that cover the new integrations, namely if the integrations are of a kind that is generally useful, or are the better choice for other reasons.</p>
 <p>Side remark: Note that this use case is often also interesting internally at USP because it allows to explore new settings sometimes more quickly than operating directly with native Envoy config.</p>
 <h4 id="tuning-debugging-existing-installations">Tuning / debugging existing installations</h4>
-<p>Use features that are present in the underlying Envoy but not (yet) configurable via the Core WAAP custom resource.</p>
+<p>Use features that are present in the underlying Envoy but not (yet) configurable via the Aero WAAP custom resource.</p>
 <h3 id="future-improvements">Future Improvements</h3>
-<p>We are evaluating various ways to make using this feature generally more easy and also more robust regarding new Core WAAP releases.</p>
+<p>We are evaluating various ways to make using this feature generally more easy and also more robust regarding new Aero WAAP releases.</p>
 <p><em>Note that the generated native Envoy config is subject to change:</em></p>
-<p>Its structure may change, due to changes in the Core WAAP Operator or also due to changes in the underlying Envoy itself, hence it is not an API that is in any way guaranteed to remain stable, while in practice many things will still be quite stable most of the time.</p>
+<p>Its structure may change, due to changes in the Aero WAAP Operator or also due to changes in the underlying Envoy itself, hence it is not an API that is in any way guaranteed to remain stable, while in practice many things will still be quite stable most of the time.</p>
 <p>As an example of potential future enhancements, JavaScript functions may be offered to get/set the Core Rule Set (CRS) settings of the Coraza filter more easily.
 And/or similar JavaScript functions that make it both more simple and potentially also more robust to get/set some specific or general items in the native Envoy config.</p>
 

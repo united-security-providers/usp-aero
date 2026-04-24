@@ -11,7 +11,7 @@
         <link rel="canonical" href="https://docs.united-security-providers.ch/usp-aero/latest/coraza/">
       
       
-        <link rel="prev" href="../core-waap-releasenotes/">
+        <link rel="prev" href="../aero-waap-releasenotes/">
       
       
         <link rel="next" href="../coraza-crs/">
@@ -229,7 +229,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../core-waap-releasenotes/" class="md-nav__link">
+      <a href="../aero-waap-releasenotes/" class="md-nav__link">
         
   
   
@@ -302,34 +302,6 @@
                 
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../crd-doc.md" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    API Reference
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
     
   
   
@@ -343,10 +315,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" checked>
         
           
-          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
             
   
   
@@ -364,8 +336,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_3_2">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_1">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -475,10 +447,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#core-waap-coraza-settings" class="md-nav__link">
+  <a href="#aero-waap-coraza-settings" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Core WAAP Coraza Settings
+        Aero WAAP Coraza Settings
       
     </span>
   </a>
@@ -842,117 +814,6 @@
   
   
   
-    
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
-        
-          
-          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Operator Helm Chart
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_1">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Operator Helm Chart
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../helm/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Usage
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../helm-values.md" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Values
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
     <li class="md-nav__item">
       <a href="../upgrade/" class="md-nav__link">
         
@@ -961,7 +822,7 @@
   <span class="md-ellipsis">
     
   
-    Core WAAP Upgrade
+    Aero WAAP Upgrade
   
 
     
@@ -1209,10 +1070,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#core-waap-coraza-settings" class="md-nav__link">
+  <a href="#aero-waap-coraza-settings" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Core WAAP Coraza Settings
+        Aero WAAP Coraza Settings
       
     </span>
   </a>
@@ -1271,14 +1132,14 @@ or generally a shield or protective barrier.</p>
 <p><strong>United Security Providers</strong> has implemented a
 <strong>Golang filter for the Envoy reverse proxy</strong>
 that provides the functionality of Coraza for Envoy
-– and thus also for the Core WAAP –,
+– and thus also for the Aero WAAP –,
 and has made it available as <strong>Open Source</strong> on GitHub at
 <a href="https://github.com/united-security-providers/coraza-envoy-go-filter">united-security-providers/coraza-envoy-go-filter</a>.</p>
 <p>This filter provides the general functionality via Seclang directives,
 namely things like limiting HTTP request and/or response size
 and, of course, activating OWASP CRS rule sets,
 plus the ability to tweak things.</p>
-<p>In the <strong>Core WAAP</strong>, there are the following <strong>major additions</strong>:</p>
+<p>In the <strong>Aero WAAP</strong>, there are the following <strong>major additions</strong>:</p>
 <ul>
 <li><strong>Simplicity:</strong>
   No need to write/maintain Seclang directives,
@@ -1306,7 +1167,7 @@ Even though we test compatibility with CRS rules in detail (FTW test suite),
 it is possible to turn off these optimizations in case there would be
 compatibility problems in practice, using the settings
 <code>spec.coraza.useRe2</code> and <code>spec.coraza.useLibinjection</code>.</p>
-<h2 id="core-waap-coraza-settings">Core WAAP Coraza Settings</h2>
+<h2 id="aero-waap-coraza-settings">Aero WAAP Coraza Settings</h2>
 <ul>
 <li>Settings regarding Coraza in general (e.g. activation or request size limits)
   are specified at <code>spec.coraza</code> and <code>spec.routes[].coraza</code>

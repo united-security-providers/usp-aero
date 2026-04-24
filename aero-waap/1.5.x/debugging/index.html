@@ -229,7 +229,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../core-waap-releasenotes/" class="md-nav__link">
+      <a href="../aero-waap-releasenotes/" class="md-nav__link">
         
   
   
@@ -302,34 +302,6 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../crd-doc.md" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    API Reference
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
     
     
     
@@ -339,10 +311,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
         
           
-          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
             
   
   
@@ -360,8 +332,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_2">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -749,117 +721,6 @@
   
   
   
-    
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
-        
-          
-          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Operator Helm Chart
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_1">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Operator Helm Chart
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../helm/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Usage
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../helm-values.md" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Values
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
     <li class="md-nav__item">
       <a href="../upgrade/" class="md-nav__link">
         
@@ -868,7 +729,7 @@
   <span class="md-ellipsis">
     
   
-    Core WAAP Upgrade
+    Aero WAAP Upgrade
   
 
     
@@ -1216,11 +1077,11 @@
 <p>This chapter describes the recommended approach for debugging crashes, segmentation faults and other issues you might encounter.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>A core dump file can get very big depending on how long Core WAAP proxy was running. Make sure that you have at least 10G of disk space available to the Core Waap container.</p>
+<p>A core dump file can get very big depending on how long Aero WAAP proxy was running. Make sure that you have at least 10G of disk space available to the Core Waap container.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>The debugging image should <strong>never</strong> be used in production. The used binary for Core WAAP proxy was built in debug mode which means it contains zero optimizations. This has a big impact on performance.</p>
+<p>The debugging image should <strong>never</strong> be used in production. The used binary for Aero WAAP proxy was built in debug mode which means it contains zero optimizations. This has a big impact on performance.</p>
 </div>
 <h2 id="segmentation-faults-and-core-dumps">Segmentation faults and core dumps</h2>
 <p>When a segmentation fault occurs, the first thing to do is to check the logs and the backtrace.
@@ -1229,10 +1090,10 @@ In many cases, these already contain enough information to understand what went 
 The debug version contains debug symbols, which make stack traces and crash analysis more useful.
 In addition, a core dump is always generated whenever a crash happens.
 You can find the generated file at <code>/coredumps/envoy.&lt;UNIX_TIMESTAMP&gt;</code>.
-After the core dump has been written, Core WAAP proxy is restarted automatically.</p>
+After the core dump has been written, Aero WAAP proxy is restarted automatically.</p>
 <h2 id="how-to-switch-to-the-debug-version">How to switch to the debug version</h2>
 <ol>
-<li>Open the Core WAAP configuration file or edit it directly in kubernetes with <code>kubectl edit corewaapservices.waap.core.u-s-p.ch ...</code></li>
+<li>Open the Aero WAAP configuration file or edit it directly in kubernetes with <code>kubectl edit corewaapservices.waap.core.u-s-p.ch ...</code></li>
 <li>Add the "-debug" suffix to the used version in <code>CoreWaapService.spec.operation.version</code>.
    For example if you are using version <code>2.0.0</code> then the debug version is <code>2.0.0-debug</code>.
    If you don't have a version specified, then you can check the default version with <code>kubectl get configmaps --namespace OPERATOR_NAMESPACE usp-core-waap-operator-config -ojsonpath='{.data.operator-config\.yaml}'</code></li>
@@ -1268,7 +1129,7 @@ spec:
 <span class="w"> </span>       path: /
 <span class="w"> </span>       pathType: PREFIX
 </code></pre></div>
-<p>Now the Core WAAP operator should recreated the Core WAAP proxy deployment using the debug version.</p>
+<p>Now the Aero WAAP operator should recreated the Aero WAAP proxy deployment using the debug version.</p>
 <h2 id="core-dump-file-analysis">Core dump file analysis</h2>
 <p>The core dump file can either be analyzed directly in the container:</p>
 <div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>-n<span class="w"> </span>NAMESPACE<span class="w"> </span>CORE_WAAP_POD<span class="w"> </span>envoy<span class="w"> </span>--<span class="w"> </span>bash
@@ -1277,8 +1138,8 @@ lldb-20<span class="w"> </span>/usr/local/bin/envoy<span class="w"> </span>-c<sp
 <p>or you can copy it locally and analyze it outside of kubernetes:</p>
 <div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>cp<span class="w"> </span>NAMESPACE/CORE_WAAP_POD:/coredumps/CORE_DUMP_FILE<span class="w"> </span>CORE_DUMP_FILE<span class="w"> </span>-c<span class="w"> </span>envoy
 </code></pre></div>
-<p>A segfault can also be forced by sending a <code>SIGSEGV</code> signal to the Core WAAP proxy process.
-Simply run <code>kill -11 &lt;CORE_WAAP_PROXY_PID&gt;</code> in a POD that has enough permissions (e.g. the Core WAAP proxy container).</p>
+<p>A segfault can also be forced by sending a <code>SIGSEGV</code> signal to the Aero WAAP proxy process.
+Simply run <code>kill -11 &lt;CORE_WAAP_PROXY_PID&gt;</code> in a POD that has enough permissions (e.g. the Aero WAAP proxy container).</p>
 
 
 

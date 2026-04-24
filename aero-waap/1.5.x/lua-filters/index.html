@@ -229,7 +229,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../core-waap-releasenotes/" class="md-nav__link">
+      <a href="../aero-waap-releasenotes/" class="md-nav__link">
         
   
   
@@ -304,34 +304,6 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../crd-doc.md" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    API Reference
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
     
     
     
@@ -341,10 +313,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
         
           
-          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
             
   
   
@@ -362,8 +334,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_2">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -818,117 +790,6 @@
   
   
   
-    
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
-        
-          
-          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Operator Helm Chart
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_1">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Operator Helm Chart
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../helm/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Usage
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../helm-values.md" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Values
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
     <li class="md-nav__item">
       <a href="../upgrade/" class="md-nav__link">
         
@@ -937,7 +798,7 @@
   <span class="md-ellipsis">
     
   
-    Core WAAP Upgrade
+    Aero WAAP Upgrade
   
 
     
@@ -1191,21 +1052,21 @@
 
 
 <h1 id="lua-filters">Lua Filters</h1>
-<p>Using Lua filters in the USP Core WAAP adds flexibility for custom application integrations.</p>
+<p>Using Lua filters in the USP Aero WAAP adds flexibility for custom application integrations.</p>
 <p>Filters written in the <a href="https://www.lua.org/">Lua programming language</a> can be configured to be processed
-as part of the regular request/response processing in the USP Core WAAP,
+as part of the regular request/response processing in the USP Aero WAAP,
 both before and after other filters (like filters for authentication, openapi validation, etc.).</p>
 <p>Since the corresponding filter scripts are part of the configuration
-of the USP Core WAAP — as opposed to part of a USP Core WAAP binary or release —,
+of the USP Aero WAAP — as opposed to part of a USP Aero WAAP binary or release —,
 this feature generally adds more flexibility with usually no significant performance impact.
 (Lua is a very performant and sophisticated script language with a tiny footprint,
 also broadly used in computer games for the same reasons,
-and in the case of USP Core WAAP also precompiled with the Lua JIT compiler.)</p>
+and in the case of USP Aero WAAP also precompiled with the Lua JIT compiler.)</p>
 <p>The Envoy Lua filter usage, including what can be done in filter scripts, is generally described here:</p>
 <ul>
 <li><a href="https://www.envoyproxy.io/docs/envoy/latest/configuration/http/http_filters/lua_filter">envoy/Configuration reference/HTTP/HTTP filters/Lua</a></li>
 </ul>
-<p>The following examples show how to configure and use Lua filtering in the USP Core WAAP,
+<p>The following examples show how to configure and use Lua filtering in the USP Aero WAAP,
 and provide at the same time some general info and tips regarding how to typically use Lua filters.</p>
 <h2 id="example-1-multiple-filters-store-path-simple-lua-module">Example 1: Multiple filters, store path, simple Lua module</h2>
 <p>Here is the <code>routes</code> and <code>lua</code> configuration for this example:</p>
@@ -1356,7 +1217,7 @@ for example  if some data that can only be obtained in a "first" filter
 is needed in a "last" filter.</p>
 <p>The underlying mechanism is called "dynamic metadata" in Envoy.</p>
 <p>Here is a <code>util.lua</code> Lua module that would be defined as a helper script
-in the USP Core WAAP configuration (see example 1 above):</p>
+in the USP Aero WAAP configuration (see example 1 above):</p>
 <div class="highlight"><pre><span></span><code><span class="kd">local</span><span class="w"> </span><span class="nv">meta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
 
 <span class="c1">-- store given value under given key in given context</span>

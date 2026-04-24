@@ -229,7 +229,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../core-waap-releasenotes/" class="md-nav__link">
+      <a href="../aero-waap-releasenotes/" class="md-nav__link">
         
   
   
@@ -304,34 +304,6 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../crd-doc.md" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    API Reference
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
     
     
     
@@ -341,10 +313,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
         
           
-          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
             
   
   
@@ -362,8 +334,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_2">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -829,117 +801,6 @@
   
   
   
-    
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
-        
-          
-          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Operator Helm Chart
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_1">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Operator Helm Chart
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../helm/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Usage
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../helm-values.md" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Values
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
     <li class="md-nav__item">
       <a href="../upgrade/" class="md-nav__link">
         
@@ -948,7 +809,7 @@
   <span class="md-ellipsis">
     
   
-    Core WAAP Upgrade
+    Aero WAAP Upgrade
   
 
     
@@ -1217,8 +1078,8 @@
 <p>ICAP is a protocol very similar to the original HTTP/1.x protocol, designed to validate HTTP requests and responses and optionally modify them. HTTP requests and responses can be wrapped into ICAP requests and sent to an ICAP server and the server sends back an ICAP response that signals an OK or contains a modified HTTP request or response.</p>
 <p>ICAP has practically never been widely used in its full flexibility and would technologically be slightly outdated by now, but for the following use case it is still the de-facto standard today:</p>
 <h2 id="icap-antivirus-av-scanning">ICAP Antivirus (AV) Scanning</h2>
-<p>The Core WAAP allows to send HTTP requests via ICAP to an ICAP server, typically to make sure that uploaded content does not contain any viruses or similar malware. (Modification of HTTP requests or scanning/modification of HTTP responses is, however, not a common use case and is currently not supported.)</p>
-<p>Technically, the Core WAAP ICAP AV scanning uses OPTIONS and REQMOD ICAP requests to the ICAP server, the former to query abilities/preferences of the ICAP server, the latter to scan HTTP requests for viruses and similar malware.</p>
+<p>The Aero WAAP allows to send HTTP requests via ICAP to an ICAP server, typically to make sure that uploaded content does not contain any viruses or similar malware. (Modification of HTTP requests or scanning/modification of HTTP responses is, however, not a common use case and is currently not supported.)</p>
+<p>Technically, the Aero WAAP ICAP AV scanning uses OPTIONS and REQMOD ICAP requests to the ICAP server, the former to query abilities/preferences of the ICAP server, the latter to scan HTTP requests for viruses and similar malware.</p>
 <h2 id="configuration">Configuration</h2>
 <p>Example Configuration:</p>
 <div class="highlight"><pre><span></span><code><span class="nt">spec</span><span class="p">:</span>

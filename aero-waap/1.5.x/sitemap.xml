@@ -5,6 +5,10 @@
          <lastmod>2026-04-24</lastmod>
     </url>
     <url>
+         <loc>https://docs.united-security-providers.ch/usp-aero/latest/aero-waap-releasenotes/</loc>
+         <lastmod>2026-04-24</lastmod>
+    </url>
+    <url>
          <loc>https://docs.united-security-providers.ch/usp-aero/latest/autolearning/</loc>
          <lastmod>2026-04-24</lastmod>
     </url>
@@ -18,10 +22,6 @@
     </url>
     <url>
          <loc>https://docs.united-security-providers.ch/usp-aero/latest/coraza/</loc>
-         <lastmod>2026-04-24</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.united-security-providers.ch/usp-aero/latest/core-waap-releasenotes/</loc>
          <lastmod>2026-04-24</lastmod>
     </url>
     <url>
@@ -42,10 +42,6 @@
     </url>
     <url>
          <loc>https://docs.united-security-providers.ch/usp-aero/latest/header-filtering/</loc>
-         <lastmod>2026-04-24</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.united-security-providers.ch/usp-aero/latest/helm/</loc>
          <lastmod>2026-04-24</lastmod>
     </url>
     <url>

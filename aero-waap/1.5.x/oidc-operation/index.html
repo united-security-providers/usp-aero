@@ -229,7 +229,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../core-waap-releasenotes/" class="md-nav__link">
+      <a href="../aero-waap-releasenotes/" class="md-nav__link">
         
   
   
@@ -302,34 +302,6 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../crd-doc.md" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    API Reference
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
     
     
     
@@ -339,10 +311,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
         
           
-          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
             
   
   
@@ -360,8 +332,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_2">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -749,117 +721,6 @@
   
   
   
-    
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
-        
-          
-          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Operator Helm Chart
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_1">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Operator Helm Chart
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../helm/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Usage
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../helm-values.md" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Values
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
     <li class="md-nav__item">
       <a href="../upgrade/" class="md-nav__link">
         
@@ -868,7 +729,7 @@
   <span class="md-ellipsis">
     
   
-    Core WAAP Upgrade
+    Aero WAAP Upgrade
   
 
     
@@ -1238,7 +1099,7 @@
 <p>Configuration of the OAuth2 / OIDC client at <code>spec.authentications[]</code> is quite straightforward,
 but there are some things you should be aware of for optimal and secure usage.</p>
 <h2 id="session-store-in-cookies">Session store in cookies</h2>
-<p>The Core WAAP stores its OIDC / OAuth login session in essentially three cookies,
+<p>The Aero WAAP stores its OIDC / OAuth login session in essentially three cookies,
 for <code>id_token</code>, <code>access_token</code> and <code>refresh_token</code>.</p>
 <p>This means that some caution is required regarding the validity period of the
 <code>refresh_token</code> (which is configured on the OP). The longer that validity period is,
@@ -1265,22 +1126,22 @@ during integration and to resolve issues during operation.</p>
 <h2 id="logout">Logout</h2>
 <p>Logout is initiated with a GET request to <code>https://{host}/core-waap/oauth/{realm}/signout'</code>.</p>
 <p>By default, logout is only performed on the OAuth2/OIDC client/RP,
-i.e. only on the Core WAAP, but not on the OP.
+i.e. only on the Aero WAAP, but not on the OP.
 More precisely, session cookies are deleted
-and the HTTP client receives a redirect to the root location <code>/</code> on the Core WAAP.</p>
+and the HTTP client receives a redirect to the root location <code>/</code> on the Aero WAAP.</p>
 <p>This means that the user remains logged in at the OP;
 in other words, if the user tries to access a protected location again shortly afterward,
 the user is redirected to the OP and is automatically logged in again.</p>
 <p>In the case of OIDC,
-the Core WAAP supports a logout additionally also at the OP.
+the Aero WAAP supports a logout additionally also at the OP.
 It is initiated at the same location as indicated above,
 but with an additional config setting <code>spec.authentications[].endSessionEndpoint</code>,
 where you set the URL at the OP for logout.
-(The requested redirect for after OP logout is again the root location <code>/</code> on the Core WAAP.)</p>
+(The requested redirect for after OP logout is again the root location <code>/</code> on the Aero WAAP.)</p>
 <h2 id="response-on-invalid-access-tokens">Response on invalid access tokens</h2>
 <p>By default, requests with invalid or expired access tokens are redirected (HTTP 302) to the authentication page.
 For some applications (e.g. SPA) this may be undesirable.
-The Core WAAP can be configured to return a deny response (HTTP 401) instead of a redirect.</p>
+The Aero WAAP can be configured to return a deny response (HTTP 401) instead of a redirect.</p>
 <p>Example:</p>
 <div class="highlight"><pre><span></span><code><span class="nt">spec</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">authentications</span><span class="p">:</span>

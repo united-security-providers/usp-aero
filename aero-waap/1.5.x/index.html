@@ -12,7 +12,7 @@
       
       
       
-        <link rel="next" href="core-waap-releasenotes/">
+        <link rel="next" href="aero-waap-releasenotes/">
       
       
         
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#usp-core-waap" class="md-skip">
+        <a href="#usp-aero-waap" class="md-skip">
           Skip to content
         </a>
       
@@ -271,10 +271,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#configuring-core-waap" class="md-nav__link">
+  <a href="#configuring-aero-waap" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Configuring Core WAAP
+        Configuring Aero WAAP
       
     </span>
   </a>
@@ -307,7 +307,7 @@
   
   
     <li class="md-nav__item">
-      <a href="core-waap-releasenotes/" class="md-nav__link">
+      <a href="aero-waap-releasenotes/" class="md-nav__link">
         
   
   
@@ -380,34 +380,6 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="crd-doc.md" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    API Reference
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
     
     
     
@@ -417,10 +389,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
         
           
-          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
             
   
   
@@ -438,8 +410,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_2">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -825,117 +797,6 @@
   
   
   
-    
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
-        
-          
-          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Operator Helm Chart
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_1">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Operator Helm Chart
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="helm/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Usage
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="helm-values.md" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Values
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
     <li class="md-nav__item">
       <a href="upgrade/" class="md-nav__link">
         
@@ -944,7 +805,7 @@
   <span class="md-ellipsis">
     
   
-    Core WAAP Upgrade
+    Aero WAAP Upgrade
   
 
     
@@ -1170,10 +1031,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#configuring-core-waap" class="md-nav__link">
+  <a href="#configuring-aero-waap" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Configuring Core WAAP
+        Configuring Aero WAAP
       
     </span>
   </a>
@@ -1208,25 +1069,22 @@
 
 
 
-<h1 id="usp-core-waap">USP Core WAAP</h1>
-<p>USP Core WAAP (Web Application and API Protection) provides secure access to web-based applications and resources,
+<h1 id="usp-aero-waap">USP Aero WAAP</h1>
+<p>USP Aero WAAP (Web Application and API Protection) provides secure access to web-based applications and resources,
 while simplifying the process of configuration and deployment.</p>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>The current <strong><a href="helm/">Helm chart</a></strong> version for the <strong><a href="helm/#install-operator">USP Core WAAP operator</a></strong> is : <strong>%CHARTS_VERSION%</strong></p>
-</div>
 <h2 id="overview">Overview</h2>
-<p>For Kubernetes we provide the Core WAAP Operator which deploys Core WAAP based on a Custom 
-Resource with the respective services and pods. With Core WAAP, the security configuration can be fully integrated in applications continuous integration and delivery process 
-while enabling developers move from DevOps to SecDevOps.</p>
-<p><img alt="Core WAAP Overview" src="assets/images/core-waap-illustration1.png" /></p>
-<h2 id="configuring-core-waap">Configuring Core WAAP</h2>
-<p>A basic Core WAAP configuration looks as follows.</p>
-<p><img alt="Core WAAP configuration example" src="assets/images/core-waap-editor-demo.gif" /></p>
+<p>For hardware or virtual appliance deployments we provide the Aero WAAP ISO installer which installs the FedoraCoreOS 
+base and bootstraps the Aero WAAP container services. </p>
+<p><img alt="Aero WAAP Overview" src="assets/images/core-waap-illustration1.png" /></p>
+<h2 id="configuring-aero-waap">Configuring Aero WAAP</h2>
+<p>Aero WAAP provides a sophisticated web-based GUI:</p>
+<p><img alt="Aero WAAP Overview" src="assets/images/aero-waap-mgmt-ui.png" /></p>
 <h2 id="getting-started">Getting Started</h2>
-<p>To pull the Operator helm chart and corresponding container images you need a key. Get in contact with us, we are looking forward to support you.
-<a href="https://www.united-security-providers.ch/technology/application-security/web-application-api-protection-waap/#more">Web Application &#038; API Protection (WAAP) &#8211; United Security Providers AG</a></p>
-<p>If you want to try the Core WAAP yourself head over to the <a href="https://killercoda.com/united-security-providers">Killercoda Core WAAP scenarios</a>.</p>
+<p>To install the Aero WAAP service, follow the installation instructions for the Aero platform:</p>
+<ul>
+<li>https://docs.united-security-providers.ch/usp-aero/aero-platform/installation.html</li>
+<li></li>
+</ul>
 
 
 

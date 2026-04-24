@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://docs.united-security-providers.ch/usp-aero/latest/helm/">
+        <link rel="canonical" href="https://docs.united-security-providers.ch/usp-aero/latest/aero-waap-releasenotes/">
       
       
-        <link rel="prev" href="../rate-limiting/">
+        <link rel="prev" href="..">
       
       
-        <link rel="next" href="../upgrade/">
+        <link rel="next" href="../coraza/">
       
       
         
@@ -25,7 +25,7 @@
     
     
       
-        <title>Usage - USP Aero WAAP documentation</title>
+        <title>Release Notes - USP Aero WAAP documentation</title>
       
     
     
@@ -68,7 +68,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#helm-charts" class="md-skip">
+        <a href="#aero-waap-release-notes" class="md-skip">
           Skip to content
         </a>
       
@@ -107,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Usage
+              Release Notes
             
           </span>
         </div>
@@ -226,10 +226,37 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../core-waap-releasenotes/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Release Notes
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -245,6 +272,109 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#100-2025-mm-dd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.0.0 - 2025-MM-DD
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.0.0 - 2025-MM-DD">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contents
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#new-features-and-improvements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        New features and improvements
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bug-fixes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bug fixes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#incompatible-behavior-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Incompatible behavior changes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#removed-config-or-runtime" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Removed config or runtime
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#known-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Known Issues
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -302,34 +432,6 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../crd-doc.md" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    API Reference
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
     
     
     
@@ -339,10 +441,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
         
           
-          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
             
   
   
@@ -360,8 +462,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_2">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -698,20 +800,18 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
         
           
           <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
@@ -732,7 +832,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             
@@ -742,221 +842,6 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-    
-  
-  
-  
-    
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" checked>
-        
-          
-          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Operator Helm Chart
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_4_1">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Operator Helm Chart
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-    
-  
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Usage
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Usage
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#download-pull" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Download (pull)
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#install-operator" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Install operator
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#extract-operator-custom-resource-definition-crd" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Extract Operator Custom Resource Definition (CRD)
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#upgrade-operator" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Upgrade operator
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#information" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Information
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../helm-values.md" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Values
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
             
               
                 
@@ -972,7 +857,7 @@
   <span class="md-ellipsis">
     
   
-    Core WAAP Upgrade
+    Aero WAAP Upgrade
   
 
     
@@ -1187,10 +1072,38 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#download-pull" class="md-nav__link">
+  <a href="#100-2025-mm-dd" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Download (pull)
+        1.0.0 - 2025-MM-DD
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.0.0 - 2025-MM-DD">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contents
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#new-features-and-improvements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        New features and improvements
       
     </span>
   </a>
@@ -1198,10 +1111,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#install-operator" class="md-nav__link">
+  <a href="#bug-fixes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Install operator
+        Bug fixes
       
     </span>
   </a>
@@ -1209,10 +1122,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#extract-operator-custom-resource-definition-crd" class="md-nav__link">
+  <a href="#incompatible-behavior-changes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Extract Operator Custom Resource Definition (CRD)
+        Incompatible behavior changes
       
     </span>
   </a>
@@ -1220,10 +1133,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#upgrade-operator" class="md-nav__link">
+  <a href="#removed-config-or-runtime" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Upgrade operator
+        Removed config or runtime
       
     </span>
   </a>
@@ -1231,10 +1144,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#information" class="md-nav__link">
+  <a href="#known-issues" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Information
+        Known Issues
       
     </span>
   </a>
@@ -1258,46 +1171,35 @@
 
 
 
-<h1 id="helm-charts">Helm Charts</h1>
-<p>Install the operator via Helm using the Helm charts. The Helm charts are available on the USP OCI repository:</p>
+<h1 id="aero-waap-release-notes">Aero WAAP Release Notes</h1>
+<h2 id="100-2025-mm-dd">1.0.0 - 2025-MM-DD</h2>
+<h3 id="contents">Contents</h3>
 <ul>
-<li><code>oci://uspregistry.azurecr.io/helm/usp/core/waap/usp-core-waap-operator</code></li>
+<li>base image: gcr.io/distroless/???????????</li>
+<li>envoy version: ???????</li>
+<li>coreruleset version: 4.18.0</li>
+<li>coraza version: 3.3.3</li>
 </ul>
-<h2 id="download-pull">Download (pull)</h2>
-<p>To just download the Helm charts (latest release):</p>
-<div class="highlight"><pre><span></span><code>helm pull oci://uspregistry.azurecr.io/helm/usp/core/waap/usp-core-waap-operator
-</code></pre></div>
-<h2 id="install-operator">Install operator</h2>
-<p>To install the latest operator release (into existing default namespace) use:</p>
-<div class="highlight"><pre><span></span><code>helm install usp-core-waap-operator oci://uspregistry.azurecr.io/helm/usp/core/waap/usp-core-waap-operator --version %CHARTS_VERSION%
-</code></pre></div>
-<p>To install the operator into a custom namespace called <code>usp-core-waap-op</code> use:</p>
-<div class="highlight"><pre><span></span><code>helm install --create-namespace --namespace usp-core-waap-operator usp-core-waap-operator oci://uspregistry.azurecr.io/helm/usp/core/waap/usp-core-waap-operator --version %CHARTS_VERSION%
-</code></pre></div>
-<p><strong>Note:</strong> The <code>--create-namespace</code> is required if the namespace does not yet exist but can be also be used if the namespace already exists (helm will then skip namespace creation). Detailed information about <code>--create-namespace</code> and <code>--namespace</code> options are available via <a href="https://helm.sh/docs/helm/helm_install/">helm documentation</a>.</p>
-<p>To override the operator configuration settings in the <code>operator-configuration.yaml</code> Helm template, use a local values
-file, e.g. <code>custom-values.yaml</code> with the <code>-f</code> Helm CLI argument:</p>
-<div class="highlight"><pre><span></span><code>helm install -f custom-values.yaml usp-core-waap-operator oci://uspregistry.azurecr.io/helm/usp/core/waap/usp-core-waap-operator --version %CHARTS_VERSION%
-</code></pre></div>
-<h2 id="extract-operator-custom-resource-definition-crd">Extract Operator Custom Resource Definition (CRD)</h2>
-<p>In order to extract the CRD (Custom Resource Definition) you can use:</p>
-<div class="highlight"><pre><span></span><code>helm show crds oci://uspregistry.azurecr.io/helm/usp/core/waap/usp-core-waap-operator --version %CHARTS_VERSION% &gt; usp-core-waap-crd-%CHARTS_VERSION%.yaml
-</code></pre></div>
-<p><strong>Note:</strong> If you upgrade the operator <strong>you manually have to apply the new CRD definition</strong> prior to the helm upgrade command!</p>
-<h2 id="upgrade-operator">Upgrade operator</h2>
-<p>As <a href="https://helm.sh/docs/chart_best_practices/custom_resource_definitions/">documented by helm</a> version 3 of helm does not yet support CRD upgrades and as such the will be skipped during a <code>helm upgrade</code> command with a warning, which can be prevented using the <code>--skip-crds</code> flag.</p>
-<p>In order to upgrade the current installed CRD <strong>you manually have to upgrade it</strong> otherwise the upgrade will not be successful!</p>
-<ol>
-<li>extract CRD: <code>helm show crds oci://uspregistry.azurecr.io/helm/usp/core/waap/usp-core-waap-operator --version %CHARTS_VERSION% &gt; usp-core-waap-crd-%CHARTS_VERSION%.yaml</code></li>
-<li><a href="https://kubernetes.io/docs/reference/using-api/server-side-apply/">manually apply</a> new CRD: <code>kubectl apply --server-side -f usp-core-waap-crd-%CHARTS_VERSION%.yaml --force-conflicts</code></li>
-<li>upgrade operator: <code>helm upgrade --namespace &lt;operator-namespace&gt; &lt;release-name&gt; oci://uspregistry.azurecr.io/helm/usp/core/waap/usp-core-waap-operator --version %CHARTS_VERSION%</code></li>
-</ol>
-<p><strong>Note:</strong> This generic procedure does not take into account possible <strong>manual changes to be applied prior to the operator <code>helm upgrade</code> command</strong> as support for automatic migration is not yet provided.</p>
-<h2 id="information">Information</h2>
-<p>You can use <code>helm template</code> to just render the templates to the console in order to look at the contents, before 
-actually installing the operator:</p>
-<div class="highlight"><pre><span></span><code>helm template -f custom-values.yaml usp-core-waap-operator oci://uspregistry.azurecr.io/helm/usp/core/waap/usp-core-waap-operator --version %CHARTS_VERSION%
-</code></pre></div>
+<h2 id="new-features-and-improvements">New features and improvements</h2>
+<ul>
+<li>Lorem ipsum</li>
+</ul>
+<h2 id="bug-fixes">Bug fixes</h2>
+<ul>
+<li>Lorem ipsum</li>
+</ul>
+<h2 id="incompatible-behavior-changes">Incompatible behavior changes</h2>
+<ul>
+<li>Lorem ipsum</li>
+</ul>
+<h2 id="removed-config-or-runtime">Removed config or runtime</h2>
+<ul>
+<li>Lorem ipsum</li>
+</ul>
+<h2 id="known-issues">Known Issues</h2>
+<ul>
+<li>Lorem ipsum</li>
+</ul>
 
 
 
