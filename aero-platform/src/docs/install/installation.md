@@ -11,9 +11,6 @@ straightforward:
  
 * After the initial Fedora CoreOS installation, the system will automatically download the USP base platform 
   from the USP registry (on "uspregistry.azurecr.io") and install it.
-
-![Console window boot complete](../assets/images-console/screenshot_aero_console2.png)
-
 * After a reboot, the [first-time setup wizard](firsttimewizard.md) UI will become available on all network interfaces. 
 
 ## Accessing the GUI / First Time Setup Wizard
