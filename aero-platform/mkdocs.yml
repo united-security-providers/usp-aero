@@ -6,7 +6,7 @@ copyright: '&copy; 2026 United Security Providers AG. All Rights Reserved.'
 
 theme:
   name: material
-  custom_dir: '../overrides/'                  # This is where the customization of the theme lives
+  custom_dir: 'overrides/'                  # This is where the customization of the theme lives
   logo: assets/images/USP-Logo-zentriert-ohne-Claim-white.png                # The logo is shared by all languages
   favicon: favicon.ico              # The favicon is shared by all languages
   language: en                                    # The build's language

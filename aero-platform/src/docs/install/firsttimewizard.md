@@ -11,4 +11,3 @@ This will open the first-time setup wizard UI:
 
 ![First Time Setup Wizard](assets/images/wizard/screenshot_aero_wizard_welcome.png)
 
-![First Time Setup Wizard](../assets/images/wizard/screenshot_aero_config.png)
