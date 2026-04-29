@@ -3,11 +3,6 @@
 The USP Aero Platform is based on Fedora CoreOS and provides a flexible, extensible container-based environment for 
 running several security-related components and services.
 
-![Image Test](assets/images-wizard/screenshot_aero_wizard_welcome.png)
-
-![Image Test2](../assets/images-wizard/screenshot_aero_wizard_welcome.png)
-
-
 It allows to install different versions / releases of different security components as the need arises,
 independent of which release was originally installed.
 
