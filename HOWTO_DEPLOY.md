@@ -29,6 +29,8 @@ Changes in a sub-site like "aero-platform" require to run the "release.sh" scrip
     $ cd aero-platform
     $ ./release.sh 1.5.0 deploy --latest
 
+*NOTE* If there are weird GIT errors regarding the "gh-pages" branch having diverged from the remote, just delete the local one and run "git fetch", and then the deployment again.
+
 # Fixing Things
 
 When something goes wrong, it is always possible to check out the "gh-pages" branch where the generated static content is stored, and fix it manually. Like deleting a version of one of the subsites by removing the directory etc.
