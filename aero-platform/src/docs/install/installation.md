@@ -16,6 +16,12 @@ straightforward:
 
 * After a reboot, the [first-time setup wizard](firsttimewizard.md) UI will become available on all network interfaces. 
 
+## Accessing the GUI / First Time Setup Wizard
+
+The IP address where the UI is available after initial installation will be shown in the console window:
+
+![Console window boot complete](../assets/images-console/screenshot_aero_console3.png)
+
 ## Without DHCP / DNS
 
 If DNS and DHCP are not available in the installation environment, the system will not be able to automatically
