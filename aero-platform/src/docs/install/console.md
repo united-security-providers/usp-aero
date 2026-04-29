@@ -3,6 +3,10 @@
 The console menu allows to configure the network settings for the Aero appliance and trigger the bootstrapping
 of the USP Aero platform, in case this did not happen automatically during the initial installation of the ISO image.
 
+
+![Console menu](../assets/images-console/screenshot_aero_console_menu.png)
+
+
 !!! hint
 
     To use any functionality of the console menu, just enter the corresponding character and press "Enter", e.g.
@@ -13,6 +17,9 @@ of the USP Aero platform, in case this did not happen automatically during the i
 
 * In the console menu type "S":
 * Edit a connection
+
+![Console network](../assets/images-console/screenshot_aero_console_network.png)
+
 * Select the correct connection according to the Mac Adresse e.g. Wired connection 1
 * IPv4 CONFIGURATION <Manual> → "Show"
 * Addresses <Add...> → <static-ip>

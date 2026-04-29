@@ -5,10 +5,16 @@
 If the Aero system is set up in an environment with access to DHCP and DNS services, the setup will be very
 straightforward:
 
-* Insert the custom USP FCOS ISO image into the DVD drive and boot the system with it
+* Insert the DVD with the custom USP FCOS ISO image into the DVD drive and boot the system with it
+
+![Console window during boot / setup](../assets/images-console/screenshot_aero_console1.png)
+ 
 * After the initial Fedora CoreOS installation, the system will automatically download the USP base platform 
   from the USP registry (on "uspregistry.azurecr.io") and install it.
-* After a reboot, the first-time setup wizard UI will become available on all network interfaces. 
+
+![Console window boot complete](../assets/images-console/screenshot_aero_console2.png)
+
+* After a reboot, the [first-time setup wizard](firsttimewizard.md) UI will become available on all network interfaces. 
 
 ## Without DHCP / DNS
 
