@@ -1,29 +1,24 @@
-# USP Core WAAP
+# USP Aero WAAP
 
-USP Core WAAP (Web Application and API Protection) provides secure access to web-based applications and resources,
+USP Aero WAAP (Web Application and API Protection) provides secure access to web-based applications and resources,
 while simplifying the process of configuration and deployment.
-
-!!! tip
-
-    The current **[Helm chart](helm.md)** version for the **[USP Core WAAP operator](helm.md#install-operator)** is : **%CHARTS_VERSION%**
 
 ## Overview
 
-For Kubernetes we provide the Core WAAP Operator which deploys Core WAAP based on a Custom 
-Resource with the respective services and pods. With Core WAAP, the security configuration can be fully integrated in applications continuous integration and delivery process 
-while enabling developers move from DevOps to SecDevOps.
+For hardware or virtual appliance deployments we provide the Aero WAAP ISO installer which installs the FedoraCoreOS 
+base and bootstraps the Aero WAAP container services. 
 
-![Core WAAP Overview](assets/images/core-waap-illustration1.png)
+![Aero WAAP Overview](assets/images/core-waap-illustration1.png)
 
-## Configuring Core WAAP
+## Configuring Aero WAAP
 
-A basic Core WAAP configuration looks as follows.
+Aero WAAP provides a sophisticated web-based GUI:
 
-![Core WAAP configuration example](assets/images/core-waap-editor-demo.gif)
+![Aero WAAP Overview](assets/images/aero-waap-mgmt-ui.png)
 
 ## Getting Started
 
-To pull the Operator helm chart and corresponding container images you need a key. Get in contact with us, we are looking forward to support you.
-[Web Application &#038; API Protection (WAAP) &#8211; United Security Providers AG](https://www.united-security-providers.ch/technology/application-security/web-application-api-protection-waap/#more)
+To install the Aero WAAP service, follow the installation instructions for the Aero platform:
 
-If you want to try the Core WAAP yourself head over to the [Killercoda Core WAAP scenarios](https://killercoda.com/united-security-providers).
+* https://docs.united-security-providers.ch/usp-aero/aero-platform/installation.html
+* 
