@@ -1,4 +1,4 @@
-site_name: 'USP Aero WAAP documentation'
+site_name: 'USP Aero Platform documentation'
 docs_dir: './docs'                        # Where to find the English markdown files
 site_dir: './generated'                      # Where to put the English HTML files
 site_url: 'https://docs.united-security-providers.ch/usp-aero'
@@ -6,8 +6,8 @@ copyright: '&copy; 2026 United Security Providers AG. All Rights Reserved.'
 
 theme:
   name: material
-  custom_dir: '../overrides/'                  # This is where the customization of the theme lives
-  logo: assets/images/USP-Logo-zentriert-ohne-Claim-white.png                # The logo is shared by all languages
+  custom_dir: './overrides/'                  # This is where the customization of the theme lives
+  logo: assets/images/USP-Logo-2023-ohne-claim-lang-white1.webp          # The logo is shared by all languages
   favicon: favicon.ico              # The favicon is shared by all languages
   language: en                                    # The build's language
   static_templates:
@@ -26,7 +26,7 @@ extra:
   version:
     provider: mike
     default: latest
-  homepage: https://docs.united-security-providers.ch/usp-aero
+  homepage: /usp-aero
 
 plugins:
   - search:
@@ -36,7 +36,7 @@ plugins:
       validatorUrl: none
 #  - privacy
   - mike:
-      deploy_prefix: aero-waap
+      deploy_prefix: platform
       canonical_version: latest
       version_selector: true
 
@@ -52,4 +52,11 @@ markdown_extensions:
   - pymdownx.superfences
 nav:
   - Welcome: 'index.md'
-  - Release Notes: 'aero-waap-releasenotes.md'
+  - Release Notes: 'aero-platform-releasenotes.md'
+  - Installation:
+      - 'install/overview.md'
+      - 'install/requirements.md'
+      - 'install/download.md'
+      - 'install/installation.md'
+      - 'install/console.md'
+      - 'install/firsttimewizard.md'

@@ -20,5 +20,5 @@ Aero WAAP provides a sophisticated web-based GUI:
 
 To install the Aero WAAP service, follow the installation instructions for the Aero platform:
 
-* https://docs.united-security-providers.ch/usp-aero/aero-platform/installation.html
+* https://docs.united-security-providers.ch/usp-aero/platform/installation.html
 * 

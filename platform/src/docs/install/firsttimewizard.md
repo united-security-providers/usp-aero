@@ -46,4 +46,5 @@ As the final step for the first-time wizard, you are asked to review the configu
 
 ![First Time Setup Wizard 2](../assets/images-wizard/screenshot_aero_wizard_review.png)
 
-If so, confirm the settings by clicking the "Initialize Aero" button. The system will apply the configuration which can take up to a few minutes, and then reboot again. Afterwards, the Aero Management GUI will become available.
+If so, confirm the settings by clicking the "Initialize Aero" button. The system will apply the configuration which can take up to a few minutes.
+Afterward, you can click the link shown, and you will see a login page. The Aero Platform is initialized and ready to be configured further.
