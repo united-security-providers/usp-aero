@@ -1,0 +1,13 @@
+{{- /* A sortable key for a version directory name, because Hugo has no version
+       comparison and text sorting puts 0.10.x before 0.5.x. Digits are padded
+       and a leading "v" dropped, so "0.5.x" < "0.5.1" < "0.10.x" < "v2.1.0",
+       and "1.0.0-rc1" still sorts before "1.0.0". */ -}}
+{{- $key := "" -}}
+{{- range $part := split (strings.TrimPrefix "v" .) "." -}}
+  {{- if findRE `^[0-9]+$` $part -}}
+    {{- $key = printf "%s.%09d" $key (int $part) -}}
+  {{- else -}}
+    {{- $key = printf "%s.%s" $key $part -}}
+  {{- end -}}
+{{- end -}}
+{{- return $key -}}

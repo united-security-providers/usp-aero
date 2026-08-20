@@ -1,0 +1,15 @@
+{{- /* The linkable pages directly below this one: a product stands for the
+       release it is entered at, an unrendered section for its children. */ -}}
+{{- $pages := slice -}}
+{{- range (where .Pages "Params.hidden" "!=" true).ByWeight -}}
+  {{- $item := . -}}
+  {{- if eq .Layout "redirect" -}}
+    {{- with partial "func/entry.html" . }}{{ $item = . }}{{ end -}}
+  {{- end -}}
+  {{- if $item.RelPermalink -}}
+    {{- $pages = $pages | append $item -}}
+  {{- else -}}
+    {{- with partial "func/nav-pages.html" $item }}{{ $pages = $pages | append . }}{{ end -}}
+  {{- end -}}
+{{- end -}}
+{{- return $pages -}}

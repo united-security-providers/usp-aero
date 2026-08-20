@@ -1,0 +1,62 @@
+theme: usp-docs
+title: 'USP Aero Suite documentation'
+copyright: '&copy; 2026 United Security Providers AG. All Rights Reserved.'
+
+baseURL: 'https://docs.united-security-providers.ch/'
+relativeURLs: true
+
+defaultContentLanguage: en
+defaultContentLanguageInSubdir: false
+languages:
+  en:
+    contentDir: content/en
+    label: English
+    weight: 1
+
+disableKinds: [taxonomy, term, rss]
+
+outputs:
+  home: [html, markdown, llms]
+  section: [html, markdown]
+  page: [html, markdown]
+
+outputFormats:
+  llms:
+    mediaType: text/plain
+    baseName: llms
+    isPlainText: true
+    notAlternative: true
+
+markup:
+  goldmark:
+    extensions:
+      typographer:
+        # keep straight quotes
+        disable: true
+    parser:
+      attribute:
+        block: true
+        title: true
+  highlight:
+    noClasses: false
+
+params:
+  description: 'Installation, configuration and release notes for the USP Aero Suite: the Aero Platform and Aero WAAP.'
+
+  canonicalBase: 'https://docs.united-security-providers.ch/usp-aero/'
+  homepage: 'https://docs.united-security-providers.ch/usp-aero'
+
+  logo: images/USP-Logo-2023-ohne-claim-lang-white1.webp
+
+  eol: []
+
+  search:
+    enabled: true
+
+  social:
+    - icon: linkedin
+      link: https://www.linkedin.com/company/united-security-providers/
+      name: United Security Providers on Linkedin
+    - icon: youtube
+      link: https://www.youtube.com/@United-security-providersCh
+      name: United Security Providers on Youtube

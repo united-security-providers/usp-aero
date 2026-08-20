@@ -1,0 +1,15 @@
+{{- /* Takes a product page, returns its releases - every version directory
+       except the one under development - newest first. */ -}}
+{{- $dev := "latest" -}}
+{{- $keyed := slice -}}
+{{- range .Sections -}}
+  {{- $name := path.Base .Path -}}
+  {{- if ne $name $dev -}}
+    {{- $keyed = $keyed | append (dict "page" . "key" (partial "func/version-key.html" $name)) -}}
+  {{- end -}}
+{{- end -}}
+{{- $releases := slice -}}
+{{- range sort $keyed "key" "desc" -}}
+  {{- $releases = $releases | append .page -}}
+{{- end -}}
+{{- return $releases -}}

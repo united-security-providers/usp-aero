@@ -1,0 +1,10 @@
+<li>
+  <a href="#{{ .ID }}">{{ .Title | safeHTML }}</a>
+  {{- with .Headings }}
+  <ul>
+    {{- range . }}
+      {{ partial "toc-item.html" . }}
+    {{- end }}
+  </ul>
+  {{- end }}
+</li>

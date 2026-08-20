@@ -1,0 +1,27 @@
+{{- /* Every page of every documented release, in navigation order. */ -}}
+{{- $base := site.Params.canonicalBase -}}
+{{- $dev := "latest" -}}
+# {{ site.Title }}
+
+> {{ site.Params.description }}
+
+Every link below points to the markdown source of a page. The page itself is at the same address without index.md.
+
+## Overview
+
+- [{{ partial "func/label.html" . }}]({{ $base }}index.md)
+{{ range site.Home.Sections.ByWeight }}
+{{- $product := . -}}
+{{- $versions := slice -}}
+{{- range .Sections }}{{ if eq (path.Base .Path) $dev }}{{ $versions = $versions | append . }}{{ end }}{{ end -}}
+{{- range partial "func/releases.html" . }}{{ $versions = $versions | append . }}{{ end -}}
+{{- range $versions }}
+## {{ $product.LinkTitle }} {{ path.Base .Path }}
+{{- if eq (path.Base .Path) $dev }} (under development){{ else if in site.Params.eol (strings.TrimPrefix "/" .Path) }} (end of life){{ end }}
+
+- [{{ partial "func/label.html" . }}]({{ printf "%s%sindex.md" $base (strings.TrimPrefix "/" .RelPermalink) }})
+{{- range partial "func/nav-pages-recursive.html" . }}
+- [{{ partial "func/label.html" . }}]({{ printf "%s%sindex.md" $base (strings.TrimPrefix "/" .RelPermalink) }}){{ with .Description }}: {{ . }}{{ end }}
+{{- end }}
+{{ end -}}
+{{- end -}}

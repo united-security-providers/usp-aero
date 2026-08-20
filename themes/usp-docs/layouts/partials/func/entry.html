@@ -1,0 +1,9 @@
+{{- /* The page a product is entered at: its newest maintained release, or the
+       documentation under development while it has none. */ -}}
+{{- $entry := false -}}
+{{- with partial "func/newest-release.html" . -}}
+  {{- $entry = . -}}
+{{- else -}}
+  {{- with site.GetPage (printf "%s/latest" .Path) }}{{ $entry = . }}{{ end -}}
+{{- end -}}
+{{- return $entry -}}

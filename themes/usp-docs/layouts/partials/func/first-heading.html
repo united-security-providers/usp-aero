@@ -1,0 +1,10 @@
+{{- /* The first heading of the page. Hugo wraps everything in an empty
+       placeholder when a page starts below h1. */ -}}
+{{- $first := false -}}
+{{- with .Fragments.Headings -}}
+  {{- $first = index . 0 -}}
+  {{- if and (not $first.ID) $first.Headings -}}
+    {{- $first = index $first.Headings 0 -}}
+  {{- end -}}
+{{- end -}}
+{{- return $first -}}

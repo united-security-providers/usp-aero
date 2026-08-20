@@ -1,0 +1,14 @@
+<footer class="usp-footer">
+  <div class="usp-footer__inner">
+    <div class="usp-footer__copyright">{{ with site.Copyright }}{{ . | safeHTML }}{{ end }}</div>
+    {{- with site.Params.social }}
+    <div class="usp-social">
+      {{- range . }}
+      <a href="{{ .link }}" target="_blank" rel="noopener" title="{{ .name }}" aria-label="{{ .name }}">
+        {{ partial (printf "icons/%s.html" .icon) $ }}
+      </a>
+      {{- end }}
+    </div>
+    {{- end }}
+  </div>
+</footer>

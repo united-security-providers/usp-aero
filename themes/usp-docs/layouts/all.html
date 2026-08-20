@@ -1,0 +1,6 @@
+{{ define "main" }}
+  {{- if not (findRE "<h1" .Content 1) }}
+  <h1>{{ .Title | default site.Title }}</h1>
+  {{- end }}
+  {{ .Content }}
+{{ end }}

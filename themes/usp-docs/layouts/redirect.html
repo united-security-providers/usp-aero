@@ -1,0 +1,16 @@
+{{- /* A product has no documentation of its own, so it forwards to the release
+       it is entered at. Relative, like every other link the site emits. */ -}}
+{{- with partial "func/entry.html" . -}}
+<!doctype html>
+<html lang="{{ site.Language.Locale | default "en" }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="robots" content="noindex">
+    <title>{{ $.Title }}</title>
+    <meta http-equiv="refresh" content="0; url={{ .RelPermalink }}">
+  </head>
+  <body>
+    <p><a href="{{ .RelPermalink }}">Continue to the {{ $.LinkTitle }} {{ path.Base .Path }} documentation</a>.</p>
+  </body>
+</html>
+{{- end -}}

@@ -1,0 +1,21 @@
+{{- $item := .item -}}
+{{- $page := .page -}}
+{{- $children := where $item.Pages "Params.hidden" "!=" true -}}
+{{- if and $item.IsSection $children (not .asLink) -}}
+<li class="usp-nav__section">
+  <span class="usp-nav__label">{{ $item.LinkTitle }}</span>
+  <ul>
+    {{- range $children.ByWeight }}
+      {{ partial "nav-item.html" (dict "item" . "page" $page) }}
+    {{- end }}
+  </ul>
+</li>
+{{- else -}}
+{{- /* A product forwards to the release it is entered at; link there directly
+       rather than through the redirect. */ -}}
+{{- $href := $item.RelPermalink -}}
+{{- if eq $item.Layout "redirect" -}}
+  {{- with partial "func/entry.html" $item }}{{ $href = .RelPermalink }}{{ end -}}
+{{- end }}
+<li><a href="{{ $href }}"{{ if eq $page $item }} aria-current="page"{{ end }}>{{ $item.LinkTitle }}</a></li>
+{{- end -}}

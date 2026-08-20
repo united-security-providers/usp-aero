@@ -1,0 +1,24 @@
+{{- /* Pagefind needs an absolute path to its bundle and cannot work it out, so
+       it is taken from the stylesheet link, which Hugo has already made relative
+       to this page - that keeps the site working wherever it is mounted. */ -}}
+<link rel="stylesheet" href="{{ "pagefind/pagefind-component-ui.css" | relURL }}" data-usp-search-bundle>
+<pagefind-config data-usp-search-config></pagefind-config>
+<script>
+  document.querySelector("[data-usp-search-config]").setAttribute("bundle-path",
+    new URL(".", document.querySelector("[data-usp-search-bundle]").href).href);
+</script>
+<script type="module" src="{{ "pagefind/pagefind-component-ui.js" | relURL }}"></script>
+{{- /* The index covers every product and version; these filters keep a search
+       inside the one the reader is in. A module runs after the one above it, so
+       the components exist by now. */ -}}
+<script type="module">
+  window.PagefindComponents.getInstanceManager().getInstance("default")
+    .searchFilters = {{ dict "docset" (dict "any" .searchScope.scope) | jsonify | safeJS }};
+</script>
+<div class="usp-search">
+  <pagefind-searchbox placeholder="Search" shortcut="/"></pagefind-searchbox>
+</div>
+<div class="usp-search-compact">
+  <pagefind-modal-trigger></pagefind-modal-trigger>
+  <pagefind-modal></pagefind-modal>
+</div>

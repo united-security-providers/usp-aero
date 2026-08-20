@@ -1,0 +1,23 @@
+{{- /* "value" is the Pagefind filter the page is indexed under: product and
+       version as one value, because Pagefind reads only one key and value per
+       element. Pages outside a product are "site".
+
+       "scope" is what a search on the page is pinned to: its own product and
+       version, or, outside one, the newest maintained release of every product
+       plus "site". */ -}}
+{{- $value := "site" -}}
+{{- $scope := slice -}}
+{{- with .docset -}}
+  {{- $value = strings.TrimPrefix "/" .Path -}}
+  {{- $scope = slice $value -}}
+{{- else -}}
+  {{- $scope = slice $value -}}
+  {{- $products := site.Home.Sections -}}
+  {{- with site.GetPage "/latest" }}{{ $products = slice site.Home }}{{ end -}}
+  {{- range $products -}}
+    {{- with partial "func/entry.html" . -}}
+      {{- $scope = $scope | append (strings.TrimPrefix "/" .Path) -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- return dict "value" $value "scope" $scope -}}

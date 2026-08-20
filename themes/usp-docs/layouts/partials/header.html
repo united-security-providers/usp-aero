@@ -1,0 +1,19 @@
+<header class="usp-header">
+  <div class="usp-header__inner">
+    <label class="usp-header__drawer" for="__drawer" aria-label="Navigation">
+      {{ partial "icons/menu.html" . }}
+    </label>
+    <a class="usp-header__logo" href="{{ site.Params.homepage | default (relURL "") }}" aria-label="{{ .siteTitle }}">
+      {{ partial "logo.html" .page }}
+    </a>
+    <span class="usp-header__title">{{ .siteTitle }}</span>
+    {{- with .docset }}
+    {{ partial "version-selector.html" (dict "docset" . "page" $.page) }}
+    {{- end }}
+    <div class="usp-header__tools">
+      {{- if site.Params.search.enabled }}
+      {{ partial "search.html" . }}
+      {{- end }}
+    </div>
+  </div>
+</header>
