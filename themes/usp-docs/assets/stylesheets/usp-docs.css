@@ -171,19 +171,26 @@ a:hover {
     fill: currentColor;
 }
 
-/* version selector */
+/* product and version pickers */
 
-.usp-version {
+.usp-picker {
     position: relative;
     flex-shrink: 0;
     margin-left: 1rem;
     font-size: 0.8rem;
 }
 
-.usp-version__current {
+/* The product name is the one label that can be long enough to need clipping. */
+.usp-picker--product {
+    flex-shrink: 1;
+    min-width: 0;
+}
+
+.usp-picker__current {
     display: flex;
     align-items: center;
     gap: 0.4rem;
+    max-width: 100%;
     padding: 0;
     border: 0;
     background: none;
@@ -192,13 +199,20 @@ a:hover {
     cursor: pointer;
 }
 
-.usp-version__caret {
+.usp-picker__label {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.usp-picker__caret {
+    flex-shrink: 0;
     width: 0.5rem;
     height: 0.25rem;
     fill: currentColor;
 }
 
-.usp-version__list {
+.usp-picker__list {
     position: absolute;
     top: calc(100% + 0.2rem);
     left: 0;
@@ -215,14 +229,14 @@ a:hover {
     transition: opacity 0.15s, transform 0.15s, visibility 0.15s;
 }
 
-.usp-version:hover .usp-version__list,
-.usp-version:focus-within .usp-version__list {
+.usp-picker:hover .usp-picker__list,
+.usp-picker:focus-within .usp-picker__list {
     opacity: 1;
     visibility: visible;
     transform: none;
 }
 
-.usp-version__list a {
+.usp-picker__list a {
     display: block;
     padding: 0.15rem 0.6rem;
     color: var(--usp-ink);
@@ -230,10 +244,43 @@ a:hover {
     white-space: nowrap;
 }
 
-.usp-version__list a:hover {
+.usp-picker__list a[aria-current] {
+    font-weight: 700;
+}
+
+.usp-picker__list a:hover {
     background-color: var(--usp-ink-lightest);
     color: var(--usp-link-hover);
     text-decoration: none;
+}
+
+/* breadcrumb */
+
+.usp-breadcrumb {
+    font-size: 0.7rem;
+    color: var(--usp-ink-light);
+}
+
+.usp-breadcrumb ol {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 0 0.8rem;
+    padding: 0;
+    list-style: none;
+}
+
+.usp-breadcrumb li + li::before {
+    content: "/";
+    padding: 0 0.3rem;
+    color: var(--usp-ink-lighter);
+}
+
+.usp-breadcrumb a {
+    color: inherit;
+}
+
+.usp-breadcrumb a:hover {
+    color: var(--usp-link-hover);
 }
 
 /* search */

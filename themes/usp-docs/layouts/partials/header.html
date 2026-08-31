@@ -6,7 +6,12 @@
     <a class="usp-header__logo" href="{{ site.Params.homepage | default (relURL "") }}" aria-label="{{ .siteTitle }}">
       {{ partial "logo.html" .page }}
     </a>
+    {{- /* Inside a product the two pickers name the page instead of the title. */ -}}
+    {{- if and .docset (not (site.GetPage "/latest")) }}
+    {{ partial "product-selector.html" (dict "docset" .docset) }}
+    {{- else }}
     <span class="usp-header__title">{{ .siteTitle }}</span>
+    {{- end }}
     {{- with .docset }}
     {{ partial "version-selector.html" (dict "docset" . "page" $.page) }}
     {{- end }}

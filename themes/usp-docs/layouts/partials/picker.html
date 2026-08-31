@@ -1,0 +1,14 @@
+{{- /* A header dropdown: the current choice, and the list to switch to. */ -}}
+{{- with .items }}
+<div class="usp-picker usp-picker--{{ $.kind }}">
+  <button class="usp-picker__current" aria-label="{{ $.aria }}">
+    <span class="usp-picker__label">{{ $.label }}</span>
+    <svg class="usp-picker__caret" viewBox="7 10 10 5"><path d="M7 10l5 5 5-5z"/></svg>
+  </button>
+  <ul class="usp-picker__list">
+    {{- range . }}
+    <li><a href="{{ .href }}"{{ if .current }} aria-current="true"{{ end }}>{{ .label }}</a></li>
+    {{- end }}
+  </ul>
+</div>
+{{- end }}

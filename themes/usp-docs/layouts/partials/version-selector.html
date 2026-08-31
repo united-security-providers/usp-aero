@@ -6,16 +6,15 @@
 {{- $ordered := slice -}}
 {{- range $docset.Parent.Sections }}{{ if eq (path.Base .Path) $dev }}{{ $ordered = $ordered | append . }}{{ end }}{{ end -}}
 {{- range partial "func/releases.html" $docset.Parent }}{{ $ordered = $ordered | append . }}{{ end -}}
-{{- if $ordered }}
-<div class="usp-version">
-  <button class="usp-version__current" aria-label="Select version">
-    {{ path.Base $docset.Path }}
-    <svg class="usp-version__caret" viewBox="7 10 10 5"><path d="M7 10l5 5 5-5z"/></svg>
-  </button>
-  <ul class="usp-version__list">
-    {{- range $ordered }}
-    <li><a href="{{ partial "func/version-href.html" (dict "version" . "docset" $docset "page" $page) }}">{{ path.Base .Path }}</a></li>
-    {{- end }}
-  </ul>
-</div>
-{{- end }}
+{{- $items := slice -}}
+{{- range $ordered -}}
+  {{- $items = $items | append (dict
+        "label" (path.Base .Path)
+        "href" (partial "func/version-href.html" (dict "version" . "docset" $docset "page" $page))
+        "current" (eq . $docset)) -}}
+{{- end -}}
+{{ partial "picker.html" (dict
+    "kind" "version"
+    "aria" "Select version"
+    "label" (path.Base $docset.Path)
+    "items" $items) }}

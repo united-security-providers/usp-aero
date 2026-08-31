@@ -44,7 +44,6 @@ params:
   description: 'Installation, configuration and release notes for the USP Aero Suite: the Aero Platform and Aero WAAP.'
 
   canonicalBase: 'https://docs.united-security-providers.ch/usp-aero/'
-  homepage: 'https://docs.united-security-providers.ch/usp-aero'
 
   logo: images/USP-Logo-2023-ohne-claim-lang-white1.webp
 

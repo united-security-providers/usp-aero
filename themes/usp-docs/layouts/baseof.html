@@ -47,6 +47,7 @@
       </div>
       {{ partial "toc.html" . }}
       <main class="usp-content">
+        {{ partial "breadcrumb.html" (dict "page" . "docset" $docset) }}
         {{- /* The search scope of this page - see search.html. */ -}}
         <article class="usp-prose" data-pagefind-filter="docset:{{ $searchScope.value }}">
           {{- block "main" . }}{{ end }}

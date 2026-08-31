@@ -31,7 +31,6 @@ markup:
 
 params:
   canonicalBase: 'https://docs.united-security-providers.ch/usp-nas/'
-  homepage: 'https://docs.united-security-providers.ch/usp-nas'
   description: 'Documentation of the USP NAS'
   logo: images/USP-Logo-2023-ohne-claim-lang-white1.webp
   customStylesheet: stylesheets/site.css   # optional, in the site's own assets/
