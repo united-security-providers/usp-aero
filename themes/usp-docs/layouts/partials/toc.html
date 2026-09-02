@@ -1,0 +1,11 @@
+{{- $headings := partial "func/headings.html" . -}}
+<nav class="usp-toc usp-sidebar" aria-label="Table of contents">
+  {{- with $headings }}
+  <div class="usp-toc__title">Table of contents</div>
+  <ul>
+    {{- range . }}
+      {{ partial "toc-item.html" . }}
+    {{- end }}
+  </ul>
+  {{- end }}
+</nav>

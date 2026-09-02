@@ -1,0 +1,20 @@
+{{- /* The versions of this product, newest first, each linking to the same page
+       when it exists there. */ -}}
+{{- $docset := .docset -}}
+{{- $page := .page -}}
+{{- $dev := "latest" -}}
+{{- $ordered := slice -}}
+{{- range $docset.Parent.Sections }}{{ if eq (path.Base .Path) $dev }}{{ $ordered = $ordered | append . }}{{ end }}{{ end -}}
+{{- range partial "func/releases.html" $docset.Parent }}{{ $ordered = $ordered | append . }}{{ end -}}
+{{- $items := slice -}}
+{{- range $ordered -}}
+  {{- $items = $items | append (dict
+        "label" (path.Base .Path)
+        "href" (partial "func/version-href.html" (dict "version" . "docset" $docset "page" $page))
+        "current" (eq . $docset)) -}}
+{{- end -}}
+{{ partial "picker.html" (dict
+    "kind" "version"
+    "aria" "Select version"
+    "label" (path.Base $docset.Path)
+    "items" $items) }}

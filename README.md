@@ -1,152 +1,58 @@
-# USP Aero WAAP
+# USP Aero documentation
 
-(Web Application and API Protection) provides secure access to web-based applications and resources,
-while simplifying the process of configuration and deployment.
+This repository contains the USP Aero documentation, published under https://docs.united-security-providers.ch/usp-aero/.
+The content is in `content/en/<product>/<version>/`.
 
-This repository contains the scripts required to build the USP Core WAAP website:
+## Building
 
-**http://docs.united-security-providers.ch/usp-aero/**
+There are no required dependencies.
+Hugo and Pagefind will always be downloaded with the make target `download-tools` on first use.
 
-## Requirements
-
-- `mkdocs` to generate the website and deploy it to GitHub pages
-- `helm` command used for pulling the Helm charts to process the "values.yaml" file
-- `helm-docs` to generate markdown from a values YAML file: https://github.com/norwoodj/helm-docs
-- `crdoc` to generate the CRD documentation: https://github.com/fybrik/crdoc
-- `yq` to query values from yaml files: https://mikefarah.gitbook.io/yq
-- `pagefind` to generate a global search over the entire website with all the separate sub-sites.
-
-### mkdocs notes
-
-* Do NOT install mkdocs as a system package (e.g. Debian package). Those are often older releases. Install
-  it with the Python package manager "pip" instead. Also, install all the required Python packages as well.
-
-* mkdocs installation guide: https://www.mkdocs.org/user-guide/installation/#installing-mkdocs
-
-#### Install / upgrade pip
-
-```
-python get-pip.py
-pip install --upgrade pip
+```bash
+make serve           # build, then http://localhost:1313/ with live reload
+make build           # build into public/, search index included
+make clean           # remove the build output; bin/ stays
+make download-tools  # fetch the toolchain without building
+make clean-tools     # remove the toolchain from bin/
 ```
 
-#### Install mkdocs
+## Making a release
 
-```
-# This will create a local directory called ".venv"
-python3 -m venv .venv
-source .venv/bin/activate
-pip install pagefind[extended] mkdocs pymdown-extensions mkdocs-material mkdocs-redirects mkdocs-swagger-ui-tag mike
-```
+A version is a directory. `latest` is the documentation under development, and a
+release is a frozen copy of it beside it, named after the release. Products
+version independently, and the version selector in the header is built from the
+directories that exist.
 
-Now you should be able to run the `mkdocs` command and see something similiar to:
+1. Freeze the current documentation of the product being released:
 
-```
-mkdocs --version
-mkdocs, version 1.6.1 from /home/<myuser>/usp-core-waap/.venv/lib/python3.12/site-packages/mkdocs (Python 3.12)
+```bash
+make prepare-release RELEASE=waap/0.6.x
 ```
 
-To deactivate the virtual environment again, simply run:
+2. Review the changes and then commit it to `main`:
 
-```
-deactivate
-```
-
-### Install pagefind
-
-```
-python3 -m pip install 'pagefind[extended]'
+```bash
+git add content/en/waap/0.6.x
+git commit -m "Release the Aero WAAP documentation as 0.6.x"
+git push
 ```
 
-### Install helm-docs notes
+Every push to `main` runs the `Publish` workflow, which
+builds the site and replaces the `gh-pages` branch with it.
+`pull requests` and pushes to other branches only run the `Build` workflow, which checks that the
+site still builds.
 
-* Download the latest release binary from here: https://github.com/norwoodj/helm-docs/releases
-* Make sure to download the "Linux x86/64" tar.gz archive
-* Then unpack the archive (`tar xzf <filename>`) and just move the executable to a directory in your PATH, e.g.:
+## Retiring a release
 
-```
-sudo mv helm-docs /usr/local/bin
-```
+`latest` always carries a banner saying that it is not a release, linking to the
+newest one that is. Releases carry no banner until they reach their end of
+life, which is a list in `hugo.yaml`:
 
-### Install crdoc notes
-
-* Download the latest release binary from here: https://github.com/fybrik/crdoc/releases
-* Make sure to download the "linux_amd64" tar.gz archive
-* Then unpack the archive (`tar xzf <filename>`) and just move the executable to a directory in your PATH, e.g.:
-
-```
-sudo mv crdoc /usr/local/bin
+```yaml
+params:
+  eol:
+    - waap/0.5.x
 ```
 
-### Install yq notes
-
-* Download the latest release binary from here: https://github.com/mikefarah/yq/releases/latest
-* Make sure to download the "Linux amd64" tar.gz archive
-* Then unpack the archive (`tar xzf <filename>`) and just move the executable to a directory in your PATH, e.g.:
-
-```
-sudo mv yq_linux_amd64 /usr/local/bin/yq
-```
-
-(ast: I installed it via snap instead.)
-
-## Generate site locally
-
-Before running the script which generates the site, you need to log in _once_ manually with
-the "helm" tool. Get the password for user "usp-ci-bob" from the Password Safe (search for "usp-ci-bob").
-
-* PasswordSafe link: ps8://MDpPaERzLTlHYUVlNjRVUUJRVnJjWXZ3
-
-Helm login with:
-
-```
-$ helm registry login uspregistry.azurecr.io --username usp-ci-bob --password <password>
-```
-
-and/or for snapshots and RCs:
-
-* PasswordSafe link: ps8://MDpEU3ZLN2kySkVlLTRWZ0JRVnJjWXZ3
-
-```
-$ helm registry login devuspregistry.azurecr.io --username usp-ci-bob --password <dev-password>
-```
-
-To just generate the site locally, run:
-
-```
-$ ./release.sh <helm-version>
-```
-
-***TODO*** For releases is clear what to indicate and works, but support of snapshots seems to be only partial (e.g. giving `0.0.0-main-SNAPSHOT` as {helm-version} produced at least when I tried an outdated version of the operator changelog).
-
-The site has then been generated within the "build" directory (Markdown source for mkdocs, not yet HTML).
-
-## Test site locally
-
-Generate the site locally as described above, then run `mkdocs` to serve it locally:
-
-```
-$ ./release.sh <helm-version>
-$ mkdocs serve
-```
-
-This will make it available locally (URL visible in output on the shell, typically http://127.0.0.1:8000/).
-
-## Generate site and publish it via GitHub
-
-To generate the site and deploy it to GitHub pages, run:
-
-```
-$ ./release.sh <helm-version> deploy
-```
-
-The published page should then become available after a few minutes at the link on top of this page.
-
-*NOTE*: When releasing the documentation for the latest version, you need to add the `--latest` flag to the `release.sh` script.
-
-### Multi version support
-
-We use `mike` to support multiple versions of the documentation at the same time.
-The `release.sh` script will therefore always only add the newly published version to the `gh-pages` branch.
-Old published versions of the documentation are kept in `gh-pages` and are accessible until someone deletes them
-from the branch.
+Those versions show a banner saying they are no longer maintained, linking to the
+current documentation.

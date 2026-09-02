@@ -1,0 +1,27 @@
+{{- /* A notice for the version under development and for releases listed as
+       "<product>/<version>" in params.eol. A release that is merely not the
+       newest gets none. */ -}}
+{{- $page := .page -}}
+{{- with .docset -}}
+  {{- $docset := . -}}
+  {{- $newest := partial "func/newest-release.html" $docset.Parent -}}
+  {{- if eq (path.Base $docset.Path) "latest" -}}
+    <aside class="usp-banner">
+      You are viewing the documentation under development. It is not a release and can change at any time.
+      {{- with $newest }}
+      <a href="{{ partial "func/version-href.html" (dict "version" . "docset" $docset "page" $page) }}">Go to the {{ path.Base .Path }} release.</a>
+      {{- end }}
+    </aside>
+  {{- else if in site.Params.eol (strings.TrimPrefix "/" $docset.Path) -}}
+    <aside class="usp-banner">
+      This release has reached its end of life and is no longer maintained.
+      {{- with $newest }}
+      <a href="{{ partial "func/version-href.html" (dict "version" . "docset" $docset "page" $page) }}">Go to the {{ path.Base .Path }} release.</a>
+      {{- else }}
+      {{- with site.GetPage (printf "%s/latest" $docset.Parent.Path) }}
+      <a href="{{ partial "func/version-href.html" (dict "version" . "docset" $docset "page" $page) }}">Go to the documentation under development.</a>
+      {{- end }}
+      {{- end }}
+    </aside>
+  {{- end -}}
+{{- end -}}
