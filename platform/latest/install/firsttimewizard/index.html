@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="canonical" href="https://docs.united-security-providers.ch/usp-aero/platform/latest/install/firsttimewizard/">
+    <meta name="description" content="Installation, configuration and release notes for the USP Aero Suite: the Aero Platform and Aero WAAP.">
+    <link rel="icon" href="../../../../favicon.ico">
+    <title>First-time setup wizard - USP Aero Platform documentation</title>
+    <link rel="stylesheet" href="../../../../stylesheets/usp-docs.29a5a70eefa6c096646bb9fe1359a6adfe49af2b1874d15965be3e4aa9c7452c.css">
+    <link rel="stylesheet" href="../../../../stylesheets/fonts.a423719d8c6b857f394a6c70f0289dc8e250e5ad1e3a465fd9930ea27ac05946.css">
+    <link rel="alternate" type="text/markdown" href="../../../../platform/latest/install/firsttimewizard/index.md">
+  </head>
+  <body>
+    <p class="usp-agent-note">For AI agents: this documentation is indexed at https://docs.united-security-providers.ch/usp-aero/llms.txt, and every page is available as markdown at its own address plus index.md.</p>
+
+    <input type="checkbox" id="__drawer" autocomplete="off" hidden>
+    <label class="usp-overlay" for="__drawer" aria-hidden="true"></label>
+    <a href="#first-time-setup-wizard" class="usp-skip">Skip to content</a>
+    <header class="usp-header">
+  <div class="usp-header__inner">
+    <label class="usp-header__drawer" for="__drawer" aria-label="Navigation">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+
+    </label>
+    <a class="usp-header__logo" href="../../../../" aria-label="USP Aero Platform documentation">
+      <img src="../../../../images/USP-Logo-2023-ohne-claim-lang-white1.webp" alt="USP Aero Suite documentation">
+    </a>
+    
+<div class="usp-picker usp-picker--product">
+  <button class="usp-picker__current" aria-label="Select product">
+    <span class="usp-picker__label">Aero Platform</span>
+    <svg class="usp-picker__caret" viewBox="7 10 10 5"><path d="M7 10l5 5 5-5z"/></svg>
+  </button>
+  <ul class="usp-picker__list">
+    <li><a href="../../../../">All products</a></li>
+    <li><a href="../../../../platform/0.5.x/" aria-current="true">Aero Platform</a></li>
+    <li><a href="../../../../waap/0.5.x/">Aero WAAP</a></li>
+  </ul>
+</div>
+
+
+    
+<div class="usp-picker usp-picker--version">
+  <button class="usp-picker__current" aria-label="Select version">
+    <span class="usp-picker__label">latest</span>
+    <svg class="usp-picker__caret" viewBox="7 10 10 5"><path d="M7 10l5 5 5-5z"/></svg>
+  </button>
+  <ul class="usp-picker__list">
+    <li><a href="../../../../platform/latest/install/firsttimewizard/" aria-current="true">latest</a></li>
+    <li><a href="../../../../platform/0.5.x/install/firsttimewizard/">0.5.x</a></li>
+  </ul>
+</div>
+
+
+    <div class="usp-header__tools">
+      <link rel="stylesheet" href="../../../../pagefind/pagefind-component-ui.css" data-usp-search-bundle>
+<pagefind-config data-usp-search-config></pagefind-config>
+<script>
+  document.querySelector("[data-usp-search-config]").setAttribute("bundle-path",
+    new URL(".", document.querySelector("[data-usp-search-bundle]").href).href);
+</script>
+<script type="module" src="../../../../pagefind/pagefind-component-ui.js"></script><script type="module">
+  window.PagefindComponents.getInstanceManager().getInstance("default")
+    .searchFilters = {"docset":{"any":["platform/latest"]}};
+</script>
+<div class="usp-search">
+  <pagefind-searchbox placeholder="Search" shortcut="/"></pagefind-searchbox>
+</div>
+<div class="usp-search-compact">
+  <pagefind-modal-trigger></pagefind-modal-trigger>
+  <pagefind-modal></pagefind-modal>
+</div>
+
+    </div>
+  </div>
+</header>
+
+    <aside class="usp-banner">
+      You are viewing the documentation under development. It is not a release and can change at any time.
+      <a href="../../../../platform/0.5.x/install/firsttimewizard/">Go to the 0.5.x release.</a>
+    </aside>
+    <div class="usp-layout">
+      <div class="usp-nav-wrapper usp-sidebar">
+        <nav class="usp-nav" aria-label="Navigation">
+  <div class="usp-nav__title">USP Aero Platform documentation</div>
+  <ul>
+    
+<li><a href="../../../../platform/latest/">Welcome</a></li>
+      
+<li><a href="../../../../platform/latest/aero-platform-releasenotes/">Release Notes</a></li>
+      <li class="usp-nav__section">
+  <span class="usp-nav__label">Installation</span>
+  <ul>
+      
+<li><a href="../../../../platform/latest/install/overview/">Installation</a></li>
+      
+<li><a href="../../../../platform/latest/install/requirements/">Requirements</a></li>
+      
+<li><a href="../../../../platform/latest/install/download/">Download</a></li>
+      
+<li><a href="../../../../platform/latest/install/installation/">Setup</a></li>
+      
+<li><a href="../../../../platform/latest/install/console/">Console menu</a></li>
+      
+<li><a href="../../../../platform/latest/install/firsttimewizard/" aria-current="page">First-time setup wizard</a></li>
+  </ul>
+</li>
+  </ul>
+</nav>
+
+      </div>
+      <nav class="usp-toc usp-sidebar" aria-label="Table of contents">
+  <div class="usp-toc__title">Table of contents</div>
+  <ul>
+      <li>
+  <a href="#configure-hostname">Configure hostname</a>
+</li>
+
+      <li>
+  <a href="#configure-network-access">Configure Network Access</a>
+</li>
+
+      <li>
+  <a href="#configure-container-settings">Configure Container Settings</a>
+</li>
+
+      <li>
+  <a href="#configure-password">Configure Password</a>
+</li>
+
+      <li>
+  <a href="#review">Review</a>
+</li>
+
+  </ul>
+</nav>
+
+      <main class="usp-content">
+        
+<nav class="usp-breadcrumb" aria-label="Breadcrumb">
+  <ol>
+    <li><a href="../../../../">USP Aero Suite documentation</a></li>
+    <li>Aero Platform</li>
+    <li><a href="../../../../platform/latest/">latest</a></li>
+    <li>Installation</li>
+  </ol>
+</nav>
+<article class="usp-prose" data-pagefind-filter="docset:platform/latest">
+  <h1 id="first-time-setup-wizard">First-time setup wizard</h1>
+<p>Once the network configuration and bootstrapping have been successfully completed, the first-time setup wizard GUI
+becomes available on the configured IP address; open a web browser with the given IP address in a https URL:</p>
+<hr>
+<pre><code>https://&lt;aero-ip&gt;/
+</code></pre>
+<hr>
+<p>This will open the first-time setup wizard UI:</p>
+<p><img src="../../../../platform/latest/assets/images-wizard/screenshot_aero_wizard_welcome.png" alt="First Time Setup Wizard 2">
+</p>
+<h2 id="configure-hostname">Configure hostname</h2>
+<p>Enter the hostname for this system that will be used to access its GUI through a webbrowser:</p>
+<p><img src="../../../../platform/latest/assets/images-wizard/screenshot_aero_wizard_hostname.png" alt="First Time Setup Wizard 2">
+</p>
+<p>As shown in the example above, you may set a temporary hostname using a dynamic DNS service like &quot;nip.io&quot; for the first-time setup, and then afterwards set the final hostname, once all network interfaces can be configured in the GUI.</p>
+<h2 id="configure-network-access">Configure Network Access</h2>
+<p>Configure the network interface used to access the GUI (it is the one in the drop-down list with the same IP address as used to access the wizard):</p>
+<p><img src="../../../../platform/latest/assets/images-wizard/screenshot_aero_wizard_network.png" alt="First Time Setup Wizard 2">
+</p>
+<h2 id="configure-container-settings">Configure Container Settings</h2>
+<p>Specify the USP container registry used to bootstrap the Aero components:</p>
+<p><img src="../../../../platform/latest/assets/images-wizard/screenshot_aero_wizard_container_reg.png" alt="First Time Setup Wizard 2">
+</p>
+<h2 id="configure-password">Configure Password</h2>
+<p>You will have to set a password for the &quot;admin&quot; user next:</p>
+<p><img src="../../../../platform/latest/assets/images-wizard/screenshot_aero_wizard_admin_pwd.png" alt="First Time Setup Wizard 2">
+</p>
+<p>This password will be needed to log in to the Aero Management GUI with the user &quot;admin&quot; once the first-time setup has been completed.</p>
+<h2 id="review">Review</h2>
+<p>As the final step for the first-time wizard, you are asked to review the configuration, and confirm it if everything seems correct.</p>
+<p><img src="../../../../platform/latest/assets/images-wizard/screenshot_aero_wizard_review.png" alt="First Time Setup Wizard 2">
+</p>
+<p>If so, confirm the settings by clicking the &quot;Initialize Aero&quot; button. The system will apply the configuration which can take up to a few minutes.
+Afterward, you can click the link shown, and you will see a login page. The Aero Platform is initialized and ready to be configured further.</p>
+
+
+        </article>
+      </main>
+    </div>
+    <footer class="usp-footer">
+  <div class="usp-footer__inner">
+    <div class="usp-footer__copyright">&copy; 2026 United Security Providers AG. All Rights Reserved.</div>
+    <div class="usp-social">
+      <a href="https://www.linkedin.com/company/united-security-providers/" target="_blank" rel="noopener" title="United Security Providers on Linkedin" aria-label="United Security Providers on Linkedin">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zM102.2 96a38.5 38.5 0 1 1 0 77 38.5 38.5 0 1 1 0-77m282.1 320h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+
+      </a>
+      <a href="https://www.youtube.com/@United-security-providersCh" target="_blank" rel="noopener" title="United Security Providers on Youtube" aria-label="United Security Providers on Youtube">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M549.7 124.1c-6.2-23.7-24.8-42.3-48.3-48.6C458.9 64 288.1 64 288.1 64S117.3 64 74.7 75.5c-23.5 6.3-42 24.9-48.3 48.6C15 167 15 256.4 15 256.4s0 89.4 11.4 132.3c6.3 23.6 24.8 41.5 48.3 47.8C117.3 448 288.1 448 288.1 448s170.8 0 213.4-11.5c23.5-6.3 42-24.2 48.3-47.8 11.4-42.9 11.4-132.3 11.4-132.3s0-89.4-11.4-132.3zM232.2 337.6V175.2l142.7 81.2z"/></svg>
+
+      </a>
+    </div>
+  </div>
+</footer>
+
+    <script src="../../../../javascripts/usp-docs.420438fc4f902397b8dba3a2d330491e6b18d703b3126e7f9c5c7dd0d21ca200.js"></script>
+  </body>
+</html>

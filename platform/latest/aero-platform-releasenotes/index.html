@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="canonical" href="https://docs.united-security-providers.ch/usp-aero/platform/latest/aero-platform-releasenotes/">
+    <meta name="description" content="Installation, configuration and release notes for the USP Aero Suite: the Aero Platform and Aero WAAP.">
+    <link rel="icon" href="../../../favicon.ico">
+    <title>Release Notes - USP Aero Platform documentation</title>
+    <link rel="stylesheet" href="../../../stylesheets/usp-docs.29a5a70eefa6c096646bb9fe1359a6adfe49af2b1874d15965be3e4aa9c7452c.css">
+    <link rel="stylesheet" href="../../../stylesheets/fonts.a423719d8c6b857f394a6c70f0289dc8e250e5ad1e3a465fd9930ea27ac05946.css">
+    <link rel="alternate" type="text/markdown" href="../../../platform/latest/aero-platform-releasenotes/index.md">
+  </head>
+  <body>
+    <p class="usp-agent-note">For AI agents: this documentation is indexed at https://docs.united-security-providers.ch/usp-aero/llms.txt, and every page is available as markdown at its own address plus index.md.</p>
+
+    <input type="checkbox" id="__drawer" autocomplete="off" hidden>
+    <label class="usp-overlay" for="__drawer" aria-hidden="true"></label>
+    <a href="#aero-platform-release-notes" class="usp-skip">Skip to content</a>
+    <header class="usp-header">
+  <div class="usp-header__inner">
+    <label class="usp-header__drawer" for="__drawer" aria-label="Navigation">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+
+    </label>
+    <a class="usp-header__logo" href="../../../" aria-label="USP Aero Platform documentation">
+      <img src="../../../images/USP-Logo-2023-ohne-claim-lang-white1.webp" alt="USP Aero Suite documentation">
+    </a>
+    
+<div class="usp-picker usp-picker--product">
+  <button class="usp-picker__current" aria-label="Select product">
+    <span class="usp-picker__label">Aero Platform</span>
+    <svg class="usp-picker__caret" viewBox="7 10 10 5"><path d="M7 10l5 5 5-5z"/></svg>
+  </button>
+  <ul class="usp-picker__list">
+    <li><a href="../../../">All products</a></li>
+    <li><a href="../../../platform/0.5.x/" aria-current="true">Aero Platform</a></li>
+    <li><a href="../../../waap/0.5.x/">Aero WAAP</a></li>
+  </ul>
+</div>
+
+
+    
+<div class="usp-picker usp-picker--version">
+  <button class="usp-picker__current" aria-label="Select version">
+    <span class="usp-picker__label">latest</span>
+    <svg class="usp-picker__caret" viewBox="7 10 10 5"><path d="M7 10l5 5 5-5z"/></svg>
+  </button>
+  <ul class="usp-picker__list">
+    <li><a href="../../../platform/latest/aero-platform-releasenotes/" aria-current="true">latest</a></li>
+    <li><a href="../../../platform/0.5.x/aero-platform-releasenotes/">0.5.x</a></li>
+  </ul>
+</div>
+
+
+    <div class="usp-header__tools">
+      <link rel="stylesheet" href="../../../pagefind/pagefind-component-ui.css" data-usp-search-bundle>
+<pagefind-config data-usp-search-config></pagefind-config>
+<script>
+  document.querySelector("[data-usp-search-config]").setAttribute("bundle-path",
+    new URL(".", document.querySelector("[data-usp-search-bundle]").href).href);
+</script>
+<script type="module" src="../../../pagefind/pagefind-component-ui.js"></script><script type="module">
+  window.PagefindComponents.getInstanceManager().getInstance("default")
+    .searchFilters = {"docset":{"any":["platform/latest"]}};
+</script>
+<div class="usp-search">
+  <pagefind-searchbox placeholder="Search" shortcut="/"></pagefind-searchbox>
+</div>
+<div class="usp-search-compact">
+  <pagefind-modal-trigger></pagefind-modal-trigger>
+  <pagefind-modal></pagefind-modal>
+</div>
+
+    </div>
+  </div>
+</header>
+
+    <aside class="usp-banner">
+      You are viewing the documentation under development. It is not a release and can change at any time.
+      <a href="../../../platform/0.5.x/aero-platform-releasenotes/">Go to the 0.5.x release.</a>
+    </aside>
+    <div class="usp-layout">
+      <div class="usp-nav-wrapper usp-sidebar">
+        <nav class="usp-nav" aria-label="Navigation">
+  <div class="usp-nav__title">USP Aero Platform documentation</div>
+  <ul>
+    
+<li><a href="../../../platform/latest/">Welcome</a></li>
+      
+<li><a href="../../../platform/latest/aero-platform-releasenotes/" aria-current="page">Release Notes</a></li>
+      <li class="usp-nav__section">
+  <span class="usp-nav__label">Installation</span>
+  <ul>
+      
+<li><a href="../../../platform/latest/install/overview/">Installation</a></li>
+      
+<li><a href="../../../platform/latest/install/requirements/">Requirements</a></li>
+      
+<li><a href="../../../platform/latest/install/download/">Download</a></li>
+      
+<li><a href="../../../platform/latest/install/installation/">Setup</a></li>
+      
+<li><a href="../../../platform/latest/install/console/">Console menu</a></li>
+      
+<li><a href="../../../platform/latest/install/firsttimewizard/">First-time setup wizard</a></li>
+  </ul>
+</li>
+  </ul>
+</nav>
+
+      </div>
+      <nav class="usp-toc usp-sidebar" aria-label="Table of contents">
+  <div class="usp-toc__title">Table of contents</div>
+  <ul>
+      <li>
+  <a href="#050---2026-06-03">0.5.0 - 2026-06-03</a>
+  <ul>
+      <li>
+  <a href="#contents">Contents</a>
+</li>
+
+  </ul>
+</li>
+
+      <li>
+  <a href="#new-features-and-improvements">New features and improvements</a>
+</li>
+
+      <li>
+  <a href="#known-issues">Known Issues</a>
+</li>
+
+  </ul>
+</nav>
+
+      <main class="usp-content">
+        
+<nav class="usp-breadcrumb" aria-label="Breadcrumb">
+  <ol>
+    <li><a href="../../../">USP Aero Suite documentation</a></li>
+    <li>Aero Platform</li>
+    <li><a href="../../../platform/latest/">latest</a></li>
+  </ol>
+</nav>
+<article class="usp-prose" data-pagefind-filter="docset:platform/latest">
+  <h1 id="aero-platform-release-notes">Aero Platform Release Notes</h1>
+<h2 id="050---2026-06-03">0.5.0 - 2026-06-03</h2>
+<h3 id="contents">Contents</h3>
+<ul>
+<li>Fedora Core OS: 44.20260419.3.1</li>
+<li>Aero Management Core Host UI: 0.5.0</li>
+<li>Ansible CLI runner: 1.0.2</li>
+<li>Ansible Playbooks: 0.5.0</li>
+</ul>
+<p>This is the first unofficial release allowing to get familiar with how the platform works.</p>
+<h2 id="new-features-and-improvements">New features and improvements</h2>
+<ul>
+<li>Allow to configure System Settings like Hostname, network interfaces, container registry, ...</li>
+<li>Adding additional Featuer components like Aero WAAP</li>
+<li>Configuration version management and deployment mechanism</li>
+<li>Local User management</li>
+<li>Backup and restore</li>
+</ul>
+<h2 id="known-issues">Known Issues</h2>
+<ul>
+<li>OS Update does not work yet</li>
+<li>Component Version are not shown correctly</li>
+<li>UI triggered restart and shutdown is not working</li>
+<li>High Availability Active/Passive is not functional yet</li>
+</ul>
+
+
+        </article>
+      </main>
+    </div>
+    <footer class="usp-footer">
+  <div class="usp-footer__inner">
+    <div class="usp-footer__copyright">&copy; 2026 United Security Providers AG. All Rights Reserved.</div>
+    <div class="usp-social">
+      <a href="https://www.linkedin.com/company/united-security-providers/" target="_blank" rel="noopener" title="United Security Providers on Linkedin" aria-label="United Security Providers on Linkedin">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zM102.2 96a38.5 38.5 0 1 1 0 77 38.5 38.5 0 1 1 0-77m282.1 320h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+
+      </a>
+      <a href="https://www.youtube.com/@United-security-providersCh" target="_blank" rel="noopener" title="United Security Providers on Youtube" aria-label="United Security Providers on Youtube">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M549.7 124.1c-6.2-23.7-24.8-42.3-48.3-48.6C458.9 64 288.1 64 288.1 64S117.3 64 74.7 75.5c-23.5 6.3-42 24.9-48.3 48.6C15 167 15 256.4 15 256.4s0 89.4 11.4 132.3c6.3 23.6 24.8 41.5 48.3 47.8C117.3 448 288.1 448 288.1 448s170.8 0 213.4-11.5c23.5-6.3 42-24.2 48.3-47.8 11.4-42.9 11.4-132.3 11.4-132.3s0-89.4-11.4-132.3zM232.2 337.6V175.2l142.7 81.2z"/></svg>
+
+      </a>
+    </div>
+  </div>
+</footer>
+
+    <script src="../../../javascripts/usp-docs.420438fc4f902397b8dba3a2d330491e6b18d703b3126e7f9c5c7dd0d21ca200.js"></script>
+  </body>
+</html>
