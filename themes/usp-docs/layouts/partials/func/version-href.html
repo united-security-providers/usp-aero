@@ -1,6 +1,0 @@
-{{- /* The link from a page to another version of its own product: the same page
-       in that version, or that version's landing page when it has none. */ -}}
-{{- $rest := strings.TrimPrefix .docset.Path .page.Path -}}
-{{- $href := .version.RelPermalink -}}
-{{- with site.GetPage (printf "%s%s" .version.Path $rest) }}{{ $href = .RelPermalink }}{{ end -}}
-{{- return $href -}}

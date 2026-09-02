@@ -1,7 +1,0 @@
-name = "USP Docs"
-license = "MIT"
-description = "Documentation theme of United Security Providers"
-min_version = "0.146.0"
-
-[author]
-  name = "United Security Providers"

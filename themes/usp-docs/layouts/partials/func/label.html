@@ -1,6 +1,0 @@
-{{- /* The heading a reader sees on the page, or its navigation title. */ -}}
-{{- $label := .LinkTitle -}}
-{{- with partial "func/first-heading.html" . -}}
-  {{- if eq .Level 1 }}{{ $label = .Title }}{{ end -}}
-{{- end -}}
-{{- return $label -}}

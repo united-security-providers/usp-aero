@@ -1,7 +1,0 @@
-{{- /* Every linkable page below this one, depth first, in navigation order. */ -}}
-{{- $pages := slice -}}
-{{- range partial "func/nav-pages.html" . -}}
-  {{- $pages = $pages | append . -}}
-  {{- with partial "func/nav-pages-recursive.html" . }}{{ $pages = $pages | append . }}{{ end -}}
-{{- end -}}
-{{- return $pages -}}

@@ -1,5 +1,5 @@
-theme: usp-docs
 title: 'USP Aero Suite documentation'
+theme: github.com/united-security-providers/usp-docs-hugo-theme
 copyright: '&copy; 2026 United Security Providers AG. All Rights Reserved.'
 
 baseURL: 'https://docs.united-security-providers.ch/'

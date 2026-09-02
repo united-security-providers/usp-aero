@@ -1,7 +1,0 @@
-{{- /* Paths are relative to the Markdown file, not to the page URL, as in
-       MkDocs - the content still uses "../assets/..." references. */ -}}
-{{- $dest := .Destination -}}
-{{- if not (or (urls.Parse $dest).Scheme (hasPrefix $dest "/") (hasPrefix $dest "#")) -}}
-  {{- $dest = path.Join (path.Dir .Page.File.Path) $dest | relURL -}}
-{{- end -}}
-<img src="{{ $dest }}" alt="{{ .PlainText }}"{{ with .Title }} title="{{ . }}"{{ end }}>
