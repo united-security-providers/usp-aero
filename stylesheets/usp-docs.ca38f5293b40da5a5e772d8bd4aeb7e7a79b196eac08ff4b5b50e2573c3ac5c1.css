@@ -382,7 +382,7 @@ a:hover {
     list-style: none;
 }
 
-.usp-nav__section > ul {
+.usp-nav__section > details > ul {
     margin-left: 0.6rem;
     padding-left: 0.6rem;
     border-left: var(--usp-hairline) solid var(--usp-line);
@@ -397,7 +397,35 @@ a:hover {
 }
 
 .usp-nav__label {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
     font-weight: 700;
+    cursor: pointer;
+    list-style: none;
+}
+
+.usp-nav__label::-webkit-details-marker {
+    display: none;
+}
+
+.usp-nav__label:hover {
+    color: var(--usp-link-hover);
+}
+
+/* The caret sits in the gutter, pointing right when the section is collapsed. */
+.usp-nav__caret {
+    flex-shrink: 0;
+    width: 0.5rem;
+    height: 0.5rem;
+    margin-left: -0.6rem;
+    fill: currentColor;
+    rotate: -90deg;
+    transition: rotate 0.2s;
+}
+
+.usp-nav details[open] > .usp-nav__label .usp-nav__caret {
+    rotate: none;
 }
 
 .usp-nav a:hover {
@@ -516,6 +544,7 @@ a:hover {
 .usp-prose ol,
 .usp-prose ul,
 .usp-prose pre,
+.usp-prose .highlight,
 .usp-prose figure,
 .usp-prose dl {
     margin: 1em 0;
@@ -575,7 +604,8 @@ a:hover {
     color: var(--usp-link-hover);
 }
 
-.usp-prose pre {
+.usp-prose pre,
+.usp-prose .highlight {
     background-color: var(--usp-code-bg);
     border-radius: 0.1rem;
     color: var(--usp-code-ink);
@@ -588,6 +618,18 @@ a:hover {
     overflow: auto;
     background: none;
     word-break: normal;
+}
+
+/* A highlighted block wraps its pre - with line numbers, two of them in a
+   table - so the wrapper is what carries the margin. */
+.usp-prose .highlight pre {
+    margin: 0;
+}
+
+/* The generated palette brings a background of its own; the theme's wins, which
+   keeps highlight.css exactly as hugo gen chromastyles writes it. */
+.usp-prose .highlight .chroma {
+    background-color: var(--usp-code-bg);
 }
 
 .usp-prose blockquote {
