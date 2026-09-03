@@ -2,8 +2,7 @@ title: 'USP Aero Suite documentation'
 theme: github.com/united-security-providers/usp-docs-hugo-theme
 copyright: '&copy; 2026 United Security Providers AG. All Rights Reserved.'
 
-baseURL: 'https://docs.united-security-providers.ch/'
-relativeURLs: true
+baseURL: 'https://docs.united-security-providers.ch/usp-aero/'
 
 defaultContentLanguage: en
 defaultContentLanguageInSubdir: false
@@ -42,8 +41,6 @@ markup:
 
 params:
   description: 'Installation, configuration and release notes for the USP Aero Suite: the Aero Platform and Aero WAAP.'
-
-  canonicalBase: 'https://docs.united-security-providers.ch/usp-aero/'
 
   logo: images/USP-Logo-2023-ohne-claim-lang-white1.webp
 
