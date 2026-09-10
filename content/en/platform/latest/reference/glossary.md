@@ -13,16 +13,16 @@ feature such as WAAP. See [Components](gui/components.md).
 ### Configuration revision
 
 A saved, numbered snapshot of a component's configuration. See
-[Configuration revisions](GUI/deployment/revisions).
+[Configuration revisions](gui/deployment/revisions).
 
 ### Deployment
 
-The activation of a configuration revision. See [Deploying a configuration](GUI/deployment/deploy).
+The activation of a configuration revision. See [Deploying a configuration](gui/deployment/deploy).
 
 ### HA
 
 High Availability: a cluster setup providing continued operation across multiple server instances.
-See [High Availability](GUI/configuration/high-availability).
+See [High Availability](gui/configuration/high-availability).
 
 ### Leader
 

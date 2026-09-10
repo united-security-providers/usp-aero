@@ -17,7 +17,7 @@ without leaving the GUI. Only components that are actually installed on this app
 ### Context bar (2)
 
 Shows the system name, and below it the system label, so that several appliances can be told apart at
-a glance. Both are configured on the [System](../reference/GUI/configuration/system) screen.
+a glance. Both are configured on the [System](../reference/gui/configuration/system) screen.
 
 
 ### Language selector (3)
@@ -31,7 +31,7 @@ Opens this manual in a new tab, at the page registered for the screen you are cu
 ## User profile menu (5)
 
 The account icon in the top-right corner opens a menu with **User Profile**
-(see [User profile and password](../reference/GUI/user-management/user-profile)) and **Logout**.
+(see [User profile and password](../reference/gui/user-management/user-profile)) and **Logout**.
 
 ## Main content area
 

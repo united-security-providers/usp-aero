@@ -19,13 +19,13 @@ after it is saved into a configuration revision, and that revision is deployed.
 
 Each registered component — the core system and each installed feature such as WAAP — has its own
 independent sequence of revisions and its own deployment. See
-[Deploying a configuration](../reference/GUI/deployment/deploy) for how the deployment screen is organized per
+[Deploying a configuration](../reference/gui/deployment/deploy) for how the deployment screen is organized per
 component.
 
 ## Creating a revision
 
 Use **Create Revision** to save the current draft changes as a new configuration revision. See
-[Configuration revisions](../reference/GUI/deployment/revisions) for what a revision consists of.
+[Configuration revisions](../reference/gui/deployment/revisions) for what a revision consists of.
 
 ## Resetting changes
 
@@ -35,7 +35,7 @@ revision, without creating a new one.
 ## Deploying a configuration
 
 Use **Deploy Configuration** to activate a revision. Deployment status — in progress, successful or
-failed — is shown while it runs; see [Deploying a configuration](../reference/GUI/deployment/deploy) for details.
+failed — is shown while it runs; see [Deploying a configuration](../reference/gui/deployment/deploy) for details.
 A revision that has validation errors cannot be deployed until the errors are resolved; see
 [Configuration validation errors](../reference/validation-errors).
 
@@ -44,7 +44,7 @@ A revision that has validation errors cannot be deployed until the errors are re
 Every revision that was ever created is kept in the configuration history, together with its author,
 message and creation/deployment dates. From there, an earlier revision can be rolled back, which
 deploys it again as a new revision. See
-[History and rollback](../reference/GUI/deployment/history-and-rollback).
+[History and rollback](../reference/gui/deployment/history-and-rollback).
 
 ## Configuration validation
 
@@ -55,4 +55,4 @@ the resulting configuration is functional and works together.
 
 On an HA-capable deployment, a revision only needs to be deployed on the leader node; deployed
 configuration is then synchronized to the other cluster nodes. See
-[High Availability status](../reference/GUI/system-management/high-availability).
+[High Availability status](../reference/gui/system-management/high-availability).
