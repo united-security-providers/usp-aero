@@ -1,6 +1,7 @@
 ---
 title: "Set up an HA cluster"
 weight: 20
+draft: true
 ---
 
 # Set up an HA cluster

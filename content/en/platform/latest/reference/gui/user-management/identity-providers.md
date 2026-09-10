@@ -1,9 +1,7 @@
 ---
 title: "Identity Providers"
 weight: 30
-build:
-  render: never
-  list: never
+draft: true
 ---
 
 # Identity Providers

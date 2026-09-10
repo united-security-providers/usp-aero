@@ -55,6 +55,13 @@ on the connection.
 Never carry a default over from older documentation without checking it against the product source -
 the in-app help these pages replaced had five defaults that no longer matched the code.
 
+The anchor is the field's form control name in the product, so that the GUI can link to it, and it
+has to be unique on the page. Where a screen shows the same name twice - a settable field and a
+read-only table column for the same property - the settable field keeps the bare name and the column
+takes a `-column` suffix (`scheduleCron` and `scheduleCron-column`). Read-only screens document
+their columns and their action buttons in the same `###` structure; `###` is reserved for those
+entries, so a group of fields is introduced with `##` or with plain prose, never with `###`.
+
 Other sections/folders are added as needed to provide helpful navigation. These should be task-oriented guides,
 each starting from something the reader wants to achieve. A flat list grouped under topic headings on its landing page;
 a heading becomes a directory once it outgrows the grouping.
@@ -68,8 +75,8 @@ the product from a fixed path layout, not looked up, so a handful of things here
 - `content/{lang}/{module}/{version}/` is the layout the product assumes, with the module directories
   named `platform` and `waap`, and version directories named `<major>.<minor>.x`.
 - A reference page's URL path must not change. When a page has to move, keep an `aliases` entry in
-  its front matter. Pages in `concepts/` and `how-to/` are not linked from the product and may be
-  reorganised freely.
+  its front matter. Concept pages and the task guides (`operations/` for the platform, `how-to/` for
+  WAAP) are not linked from the product and may be reorganised freely.
 - Any heading a field links to carries an **explicit** anchor id - `### Connection Timeout {#connectionTimeout}` -
   and that id never changes, in any language. Hugo's generated anchors come from the heading text and
   would differ between the English and the German page; the product can only link one id.

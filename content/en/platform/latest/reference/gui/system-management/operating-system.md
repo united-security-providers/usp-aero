@@ -7,18 +7,33 @@ weight: 10
 
 This screen manages all OS related settings.
 
-### Button "Install OS update"
+### System: {#systemName}
 
-Downloads and installs the latest version of the Core OS.
+The system's hostname, followed by its label and hardware type when they are set.
 
-### Button "Restart USP Aero Management"
+### Location: {#systemLocation}
 
-Restarts the Aero Management UI.
+The system's configured location.
 
-### Button "Reboot System"
+### Current release: {#currentVersion}
 
-Reboots the entire Aero server.
+The version of the USP Aero Base Image currently installed.
 
-### Button "Shutdown System"
+### Latest release: {#availableVersion}
 
-Performs a controlled shutdown of the Aero server.
+The newest USP Aero Base Image release available for installation. Only shown when it is newer than the currently
+installed version.
+
+### Download & prepare OS update {#installOsUpdate}
+
+Downloads the available USP Aero Base Image release and prepares it for installation. Only shown while a newer
+release is available. Once preparation has finished, reboot the system (see below) to complete the
+update.
+
+### Reboot System {#systemReboot}
+
+Reboots the entire Aero appliance. Required to finalize OS update.
+
+### Shutdown System {#systemShutdown}
+
+Performs a controlled shutdown of the Aero appliance.
