@@ -1,6 +1,6 @@
 ---
 title: "Log Forwarding"
-weight: 35
+weight: 20
 ---
 
 # Forward logs to remote System
@@ -15,19 +15,19 @@ in the clear.
 
 Forwarding over TLS validates the log server's certificate, and some log servers additionally
 require the client to authenticate. Upload what you need before configuring the target, under
-[Configuration → Certificates](../reference/gui/configuration/certificates):
+[Configuration → Certificates](../../reference/gui/configuration/certificates):
 
 - the CA certificate that issued the log server's certificate, as a CA certificate,
 - and, for mutual TLS, the certificate and key this appliance authenticates with.
 
 ## Configure the target
 
-1. Open [Configuration → Logs](../reference/gui/configuration/log) and turn on "Remote Log".
+1. Open [Configuration → Logs](../../reference/gui/configuration/log) and turn on "Remote Log".
 2. Enter the hostname and port of the log server.
 3. Choose the log protocol the server expects, `Syslog` or `OpenTelemetry`.
 4. Turn on "TLS" and select the trusted CA certificate, and the client certificate if the server
    requires mutual TLS.
-5. [Create a revision and deploy it](../concepts/configuration-lifecycle) to start forwarding.
+5. [Create a revision and deploy it](../../concepts/configuration-lifecycle) to start forwarding.
 
 One log server can be configured. Where logs have to reach several systems, forward them to one
 collector and fan them out from there.

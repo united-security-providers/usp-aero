@@ -1,6 +1,6 @@
 ---
 title: "Update Aero OS"
-weight: 20
+weight: 10
 ---
 
 # Update the Aero base OS
@@ -14,12 +14,12 @@ unavailable while it restarts.
 
 > [!TIP]
 > Take a configuration backup first, as with any maintenance on the appliance: see 
-> [Set up automated backups](backup/automated-backups) or create a single backup from
-> [Local backups and restore](../reference/gui/backup/local-backups-and-restore).
+> [Set up automated backups](../backup/automated-backups) or create a single backup from
+> [Local backups and restore](../../reference/gui/backup/local-backups-and-restore).
 
 ## Download and prepare the update
 
-1. Open [Operating System](../reference/gui/system-management/operating-system). It shows the system details 
+1. Open [Operating System](../../reference/gui/system-management/operating-system). It shows the system details 
    and optional its location, the current release, and the latest release when a newer one is available. When
    the appliance is on the newest release, it says "Up to date" and offers no update.
 2. Choose "Download & prepare OS update" and confirm.
@@ -31,7 +31,7 @@ unavailable while it restarts.
 4. When the screen reports that the update is ready to be applied, choose "Reboot System" and
    confirm.
 5. Wait for the appliance to come back and sign in again.
-6. Open [Operating System](../reference/gui/system-management/operating-system) again and confirm
+6. Open [Operating System](../../reference/gui/system-management/operating-system) again and confirm
    that the current release is the new one.
 
 Until the reboot happens, the appliance keeps running the old image and the screen keeps reminding

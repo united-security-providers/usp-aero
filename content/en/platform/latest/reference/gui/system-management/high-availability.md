@@ -1,10 +1,12 @@
 ---
 title: "High Availability status"
 weight: 20
-draft: true
 ---
 
 # High Availability status
+
+> [!NOTICE]
+> This feature is planned to be available from version 1.1 onwards.
 
 This screen shows the operational status of an HA cluster set up on the
 [High Availability](../configuration/high-availability) configuration screen. It is only available on

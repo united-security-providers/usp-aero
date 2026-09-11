@@ -5,14 +5,15 @@ weight: 20
 
 # Configuration lifecycle
 
-This is the single most important concept in the Aero Management GUI: **editing a setting only
-stores it as a draft change.** It does not take effect on its own. A setting becomes active only
-after it is saved into a configuration revision, and that revision is deployed. 
+> [!IMPORTANT]
+> This is the single most important concept in the Aero Management GUI: **editing a setting only
+> stores it as a draft change.** It does not take effect on its own. A setting becomes active only
+> after it is saved into a configuration revision, and that revision is deployed.
 
 ## The lifecycle at a glance
 
-1. You edit settings on any configuration screen. Nothing is applied yet.
-2. You **create a revision**, which freezes the current draft changes into a new, numbered revision
+1. You edit settings on any configuration screen and save. Nothing is applied yet.
+2. Using the `Deployment` screen you **create a revision**, which freezes the current draft changes into a new, numbered revision
    in the configuration storage.
 3. You **deploy** that revision, which activates it and restarts the affected services if necessary.
 4. If a deployed revision turns out to be wrong, you can **roll it back** to an earlier one.
@@ -37,7 +38,7 @@ revision, without creating a new one.
 Use **Deploy Configuration** to activate a revision. Deployment status — in progress, successful or
 failed — is shown while it runs; see [Deploying a configuration](../reference/gui/deployment/deploy) for details.
 A revision that has validation errors cannot be deployed until the errors are resolved; see
-[Configuration validation errors](../reference/validation-errors).
+[Configuration validation errors](../reference/validation-errors.md).
 
 ## Configuration history and rollback
 

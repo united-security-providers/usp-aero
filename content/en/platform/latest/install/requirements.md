@@ -3,10 +3,10 @@ title: "System Requirements"
 weight: 20
 ---
 
-The recommended minimum hardware requirements for running the USP Aero platform are as follows:
+The recommended minimum hardware requirements for running the USP Aero platform are:
 
-* 8 GB RAM
-* 40 GB disk space
-* 4 CPU cores
+* CPU: 4 cores
+* Memory: 8 GB
+* Disk space: 40 GB
 
-The Aero platform supports current x64 hardware as well as virtual machines (VMWare, VirtualBox, Hyper-V).
+The Aero platform supports current `x64` hardware as well as virtual machines (VMWare, VirtualBox, Hyper-V).

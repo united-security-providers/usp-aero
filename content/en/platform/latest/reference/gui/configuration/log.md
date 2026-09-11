@@ -5,8 +5,8 @@ weight: 60
 
 # Log
 
-Should the [logs be forwarded](../../../operations/remote-log.md) to a central log server such as a SIEM, it can be configured here.
-Logs are always available on the appliance itself through [Live Log](../../../operations/live-log).
+Should the [logs be forwarded](../../../operations/logging/remote-log) to a central log server such as a SIEM, it can be configured here.
+Logs are always available on the appliance itself through [Live Log](../../../operations/logging/live-log).
 
 ## Remote Log
 
