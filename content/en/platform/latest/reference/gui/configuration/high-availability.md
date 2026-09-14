@@ -1,10 +1,12 @@
 ---
 title: "High Availability"
 weight: 30
-draft: true
 ---
 
 # High Availability
+
+> [!NOTICE]
+> This feature is planned to be available from version 1.1 onwards.
 
 These screens appear only on an HA-capable deployment. They allow to enable a cluster setup that
 provides high availability of the configured services between multiple server instances. High

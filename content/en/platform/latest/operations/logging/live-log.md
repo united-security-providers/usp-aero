@@ -1,6 +1,6 @@
 ---
 title: "Live Log"
-weight: 30
+weight: 10
 ---
 
 # Live Log
