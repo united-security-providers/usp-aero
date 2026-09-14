@@ -87,7 +87,7 @@ stored on the node and are used by "Show repository tags" and "Bootstrap contain
 |---|---|
 | Container registry | letters, digits, hyphens and periods, optionally followed by `:<port>`; a hyphen or period may not start or end the name or appear twice in a row; at most 255 characters |
 | Does the registry use TLS? | `y` or `n` |
-| Is the registry considered 'insecure'?  | `y` or `n`; asked only when TLS is used. "Insecure" tells the container runtime to accept the registry's TLS certificate without validating it, which is what a registry with a self-signed certificate needs.|
+| Is the registry considered 'insecure'[^1]?  | `y` or `n`; asked only when TLS is used. |
 | Registry username | letters, digits and hyphens, not at the start or end and not twice in a row; at most 30 characters |
 | User password | any characters including spaces, but not at the start or end; asked only when a user name was given |
 | Container image name incl. namespace | letters, digits, hyphens, periods and forward slashes, none of them at the start or end or twice in a row; at most 255 characters |
@@ -117,3 +117,5 @@ interfaces.
 ### R - Reboot {#option-r}
 
 Reboots the node after confirmation.
+
+[^1]: "Insecure" tells the container runtime to accept the registry's TLS certificate without validating it, which is what a registry with a self-signed certificate needs.

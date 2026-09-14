@@ -36,6 +36,7 @@ This is the first **official** release!
 
 * It's not possible to update to this version from previous releases. Systems must be reinstalled from scratch!
 * High Availability Active/Passive is not functional yet
+* Backup always includes private keys.
 
 
 ## 0.5.0 - 2026-06-03

@@ -74,5 +74,5 @@ trigger the bootstrapping process of the USP base platform.
 * Bootstrap the USP Aero Base OS image:
   * Type `B` and confirm with `y`
 
-The system will reboot automatically. Afterward, the [first-time setup wizard](./firsttimewizard)  UI will become
+The system will reboot automatically. Afterward, the [first-time setup wizard](firsttimewizard)  UI will become
 available on all configured network interfaces.

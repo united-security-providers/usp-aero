@@ -24,7 +24,7 @@ successfully finish the bootstrapping process.
 ## First-time Setup Wizard
 
 After the initial installation of the Aero base image has been completed, a setup wizard
-is started for the [first-time configuration](./firsttimewizard.md) of the system. It allows to finalize networking configuration,
+is started for the [first-time configuration](firsttimewizard) of the system. It allows to finalize networking configuration,
 configuring admin access credentials etc.
 
 [^1]: USP Container registry is available at `uspregistry.azurecr.io` using https.
