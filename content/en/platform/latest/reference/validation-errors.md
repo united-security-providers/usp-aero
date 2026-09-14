@@ -12,14 +12,14 @@ Each of these codes is reported by per-component configuration validation (see
 
 At least two network interfaces need to be configured.
 
+### HOST_NON_EXISTING_CONFIGURED_INTERFACE {#HOST_NON_EXISTING_CONFIGURED_INTERFACE}
+
+Configured network interface `{{arg0}}` does not exist.
+<!--
 ### HOST_HA_UNAVAILABLE_FOR_DHCP {#HOST_HA_UNAVAILABLE_FOR_DHCP}
 
 High Availability configuration could be enabled for static IP addresses of Management or Internal
 network interface only.
-
-### HOST_NON_EXISTING_CONFIGURED_INTERFACE {#HOST_NON_EXISTING_CONFIGURED_INTERFACE}
-
-Configured network interface `{{arg0}}` does not exist.
 
 ### HOST_SYSTEM_HOSTNAME_NOT_IN_HA_CONFIG {#HOST_SYSTEM_HOSTNAME_NOT_IN_HA_CONFIG}
 
@@ -29,7 +29,7 @@ First cluster node in High Availability settings must reference System hostname.
 
 First cluster node in High Availability settings must reference static IP address of Management or
 Internal network interface.
-
+-->
 ### INCOMPATIBLE_COMPONENT_VERSION {#INCOMPATIBLE_COMPONENT_VERSION}
 
 Configuration was created for a different `{{arg0}}` component version `{{arg1}}` and is not

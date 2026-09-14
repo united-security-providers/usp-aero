@@ -1,6 +1,7 @@
 ---
 title: "High Availability"
 weight: 30
+draft: true
 ---
 
 # High Availability

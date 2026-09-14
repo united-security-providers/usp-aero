@@ -24,11 +24,11 @@ screen involved, in order. For what an individual setting means, see the
 
 * [Live Log](logging/live-log)
 * [Forward logs to a remote system](logging/remote-log)
-
+<!--
 ## High availability
 
 * [Set up an HA cluster](ha/set-up-an-ha-cluster)
-
+-->
 ## Maintenance
 
 * [Update the Aero base OS](maintenance/update-the-os)

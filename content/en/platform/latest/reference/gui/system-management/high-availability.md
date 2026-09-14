@@ -1,6 +1,7 @@
 ---
 title: "High Availability status"
 weight: 20
+draft: true
 ---
 
 # High Availability status

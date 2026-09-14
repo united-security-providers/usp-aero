@@ -51,9 +51,10 @@ deploys it again as a new revision. See
 
 Before a configuration can be deployed, the selected and active revisions are validated to ensure
 the resulting configuration is functional and works together.
-
+<!--
 ## High Availability
 
 On an HA-capable deployment, a revision only needs to be deployed on the leader node; deployed
 configuration is then synchronized to the other cluster nodes. See
 [High Availability status](../reference/gui/system-management/high-availability).
+-->

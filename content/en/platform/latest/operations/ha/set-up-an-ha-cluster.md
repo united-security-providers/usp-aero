@@ -5,9 +5,6 @@ weight: 20
 
 # Set up an HA cluster
 
-> [!NOTICE]
-> This feature is planned to be available from version 1.1 onwards.
-
 ## Requirements
 
 In order to operate an Aero cluster the following requirements are in effect:
