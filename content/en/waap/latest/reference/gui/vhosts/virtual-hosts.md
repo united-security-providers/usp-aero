@@ -1,14 +1,12 @@
 ---
 title: "Virtual Hosts"
 weight: 10
-aliases:
-  - /waap/latest/reference/vhosts/virtual-hosts/
 ---
 
 # Virtual Hosts
 
 Here you can configure the virtual hosts. This screen shows the virtual servers which have been
-configured for this WAAP instance. Each virtual host represents a single domain name. You may add
+configured for this Aero WAAP instance. Each virtual host represents a single domain name. You may add
 new hosts in order to represent additional sites.
 
 ## Virtual Hosts list

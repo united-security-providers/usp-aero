@@ -5,11 +5,11 @@ weight: 50
 
 # Client Certificate Validation (mTLS)
 
-Normally only WAAP proves its identity to the client, by presenting the virtual host's server certificate.
-With client certificate validation the connecting client has to prove its identity too: WAAP asks for a
+Normally only Aero WAAP proves its identity to the client, by presenting the virtual host's server certificate.
+With client certificate validation the connecting client has to prove its identity too: Aero WAAP asks for a
 certificate and rejects the connection unless it was issued by a CA you trust.
 
-This is the client leg of the connection. For the certificate WAAP presents when it connects onwards
+This is the client leg of the connection. For the certificate Aero WAAP presents when it connects onwards
 to your application server, see [Backend TLS connections](backend-tls) - the two are independent and
 easy to confuse.
 
@@ -29,7 +29,7 @@ easy to confuse.
    it on to keep accepting connections that present none, which is useful while clients are still
    being rolled out.
 5. Turn on "Forward Client Certificate information with XFCC HTTP Header" if the application behind
-   WAAP needs to know which client it was.
+   Aero WAAP needs to know which client it was.
 6. [Create a revision and deploy it](../../../../platform/latest/concepts/configuration-lifecycle).
 
 ## Accept only specific certificates

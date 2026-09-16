@@ -5,7 +5,7 @@ weight: 20
 
 # Detect-/Log-only mode
 
-Integrating a new application and protecting it with USP Aero WAAP, often requires tuning
+Integrating a new application and protecting it with Aero WAAP, often requires tuning
 and configuration adjustment so that the application works as expected.
 
 To ease this step, known features that are likely to interrupt legit traffic without proper

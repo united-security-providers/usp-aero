@@ -11,7 +11,7 @@ upstream through a badly configured proxy, or to drop a header whose value looks
 on the route, configured separately for the request and the response.
 
 > [!TIP]
-> Test with Log Only first. A header the application actually needs - such as `Authorization` or a
+> Test with "Log Only" first. A header the application actually needs - such as `Authorization` or a
 > custom API key header - blocked outright can break the application instantly, with only the log to
 > explain why.
 

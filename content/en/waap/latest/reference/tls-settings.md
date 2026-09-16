@@ -78,15 +78,15 @@ exchange in both TLS 1.2 and TLS 1.3.
 
 These curves are supported:
 
-| Name | Alternative spelling |
-| --- | --- |
-| `X25519MLKEM768` | - |
-| `X25519Kyber768Draft00` | - |
-| `MLKEM1024` | - |
-| `X25519` | `x25519` |
-| `P-256` | `prime256v1` |
-| `P-384` | `secp384r1` |
-| `P-521` | `secp521r1` |
+```
+X25519MLKEM768
+X25519Kyber768Draft00
+MLKEM1024
+X25519
+P-256
+P-384
+P-521
+```
 
 The first two combine the classical X25519 with a post-quantum key exchange, which is what the
 default starts with.

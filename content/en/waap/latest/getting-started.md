@@ -2,8 +2,22 @@
 title: "Getting started"
 weight: 40
 ---
+# Getting started
 
-# Publish a web application
+## Install "WAAP" component
+
+Before you can start the configuration you will need to [install](../../platform/latest/operations/components/install-a-component)
+the "WAAP" component.
+
+> [!IMPORTANT]
+> The "WAAP" component requires that the "External" network role is configured with at least one IP address!
+
+1. In the platform GUI, open [Components](../../platform/latest/reference/gui/components) and click "Add Component"
+2. In the visible pop-up, select the "WAAP", and click "Add"
+3. As soon as the installation is complete, you will find the new icon in the module switcher navigation bar.
+   Select it to get to the Aero WAAP configuration view.
+
+## Publish a web application
 
 This walks through the end-to-end path to expose a web application through Aero WAAP. See
 [How a request is processed](concepts/request-flow) for how these objects relate to each other.

@@ -5,6 +5,37 @@ weight: 10
 
 # Aero Platform Release Notes
 
+<!--
+## x.x.x - 202x-xx-xx
+
+### Contents
+
+- Fedora Core OS: 44.202xxxxx.3.1
+- Aero Management Core Host UI: x.x.x
+- Ansible CLI runner: x.x.x
+- Ansible Playbooks: x.x.x
+
+## New features and improvements
+
+*
+
+## Bug fixes
+
+*
+
+## Incompatible behavior changes
+
+*
+
+## Removed config or runtime
+
+*
+
+## Known Issues
+
+*
+-->
+
 ## 1.0.0 - 2026-09-01
 
 ### Contents
@@ -50,7 +81,6 @@ This is the first **official** release!
 
 This is the first unofficial release allowing to get familiar with how the platform works.
 
-
 ## New features and improvements
 
 * Allow to configure System Settings like Hostname, network interfaces, container registry, ...
@@ -58,20 +88,7 @@ This is the first unofficial release allowing to get familiar with how the platf
 * Configuration version management and deployment mechanism
 * Local User management
 * Backup and restore
-<!---
-## Bug fixes
 
-* Lorem ipsum
-
-## Incompatible behavior changes
-
-* Lorem ipsum
-
-
-## Removed config or runtime
-
-* Lorem ipsum
--->
 ## Known Issues
 
 * OS Update does not work yet

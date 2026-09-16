@@ -1,8 +1,6 @@
 ---
 title: "Rate Limiting"
 weight: 40
-aliases:
-  - /waap/latest/reference/vhosts/rate-limiting/
 ---
 
 # Rate Limiting

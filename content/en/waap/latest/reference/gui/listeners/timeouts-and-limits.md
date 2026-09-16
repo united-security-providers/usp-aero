@@ -54,7 +54,7 @@ The amount of time a stream can exist without any upstream or downstream activit
 ### Request Headers Received Timeout {#requestHeadersReceivedTimeout}
 
 How long the complete header block of a request may take to arrive. The timer starts with the first
-byte of the headers and stops with the last one; if it expires, WAAP answers `408 Request Timeout`
+byte of the headers and stops with the last one; if it expires, Aero WAAP answers `408 Request Timeout`
 and closes the connection.
 
 - **Values:** [duration](../../value-types#duration)
@@ -62,7 +62,7 @@ and closes the connection.
 
 ### Request Total Received Timeout {#requestTotalReceivedTimeout}
 
-How long WAAP waits for the complete reception of a request. The timer starts when the request
+How long Aero WAAP waits for the complete reception of a request. The timer starts when the request
 begins and stops when either the last byte of the request is sent upstream or the response begins.
 
 - **Values:** [duration](../../value-types#duration)

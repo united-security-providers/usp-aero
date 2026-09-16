@@ -5,11 +5,11 @@ weight: 60
 
 # Backend TLS connections
 
-WAAP terminates the client's TLS connection and opens its own connection to the application server.
+Aero WAAP terminates the client's TLS connection and opens its own connection to the application server.
 That second leg is configured separately on the backend, and it is encrypted only if you say so -
-terminating TLS at WAAP does not by itself protect the traffic between WAAP and your application.
+terminating TLS at Aero WAAP does not by itself protect the traffic between Aero WAAP and your application.
 
-This page is about that second leg. For the certificate a *client* has to present to WAAP, see
+This page is about that second leg. For the certificate a *client* has to present to Aero WAAP, see
 [Client Certificate Validation (mTLS)](mtls) - the two are independent and easy to confuse.
 
 ## Encrypt the connection to the backend
@@ -17,7 +17,7 @@ This page is about that second leg. For the certificate a *client* has to presen
 1. Open the backend and go to its [TLS](../../reference/gui/backends/tls) tab.
 2. Turn on "TLS Connection".
 3. Select a [Trusted CA Certificate](../../reference/gui/certificates/ca-certificates) - the CA that
-   issued the backend's own server certificate - so that WAAP can verify it is talking to the right
+   issued the backend's own server certificate - so that Aero WAAP can verify it is talking to the right
    server.
 4. Set an "SNI Hostname" if the backend serves several hostnames on the same address and needs to be
    told which one is meant.
@@ -28,18 +28,18 @@ This page is about that second leg. For the certificate a *client* has to presen
 > against a server with a self-signed certificate, but it also accepts any certificate at all, which
 > removes the protection against talking to the wrong server. This should be avoided in production.
 
-## Authenticate WAAP to the backend
+## Authenticate Aero WAAP to the backend
 
-Where the application server only accepts callers that identify themselves, WAAP can present a
+Where the application server only accepts callers that identify themselves, Aero WAAP can present a
 certificate of its own:
 
 1. On the same tab, select the certificate under "Client Authentication".
-2. Install the matching CA certificate on the application server so it can validate what WAAP
+2. Install the matching CA certificate on the application server so it can validate what Aero WAAP
    presents.
 3. [Create a revision and deploy it](../../../../platform/latest/concepts/configuration-lifecycle).
 
-This makes WAAP the client in that exchange - the mirror image of
-[Client Certificate Validation (mTLS)](mtls), where WAAP is the server checking someone else.
+This makes Aero WAAP the client in that exchange - the mirror image of
+[Client Certificate Validation (mTLS)](mtls), where Aero WAAP is the server checking someone else.
 
 ## Related
 

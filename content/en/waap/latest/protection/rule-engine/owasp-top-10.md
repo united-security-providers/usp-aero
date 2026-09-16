@@ -1,14 +1,9 @@
 ---
-title: "OWASP Top10"
+title: "OWASP Top 10"
 weight: 10
 ---
 
-# OWASP Top10
-
-**TODO**:
-* explain security level & parnoia level
-* integration with detect and security level
-* move higher paranoia level
+# OWASP Top 10
 
 The Core Rule Set (CRS) is Aero WAAP's signature-based defense against common web application
 attacks, built on the [Coraza engine](https://www.coraza.io). Its attack categories cover the kind of attacks the OWASP Top
@@ -30,8 +25,18 @@ score belonging to each level is listed under
 
 ## Turn on the Core Rule Set
 
-Getting started with OWASP Core Rule Set often require a minimal tuning effort. The best way to get
+Getting started with OWASP Core Rule Set always require some tuning effort. The best way to get
 started with is described in [Detect-only mode](../../concepts/detect-only-mode) 
+
+### Moving to a higher Paranoia Level
+
+In case after a successful integration, it's required to increase the paranoia level, it's possible to run
+the higher paranoia level in detect mode. The rules from the higher level, will not increase the blocking
+anomaly score, but violation will be reported and can be tuned away.
+
+To achieve this set the "Detecting" Paranoia Level to the desired level and run it a while, check for
+violations and add exceptions when needed. Once there are no more false-positives reported belonging to
+the higher paranoia level, set the "Enforcing" to the same paranoia level.
 
 ## Related
 

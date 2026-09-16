@@ -5,7 +5,7 @@ weight: 40
 
 # Timeouts & Limits
 
-Timeout and circuit-breaking settings for the connection between WAAP and the endpoints of this
+Timeout and circuit-breaking settings for the connection between Aero WAAP and the endpoints of this
 backend. All of them are mandatory: a backend always has a value for each, and creating a backend
 starts from the defaults given below.
 

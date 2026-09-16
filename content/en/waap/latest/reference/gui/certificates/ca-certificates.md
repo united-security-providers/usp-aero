@@ -5,7 +5,7 @@ weight: 20
 
 # CA Certificates
 
-The certificate chains of the Certificate Authorities this WAAP trusts. They are referenced wherever
+The certificate chains of the Certificate Authorities this Aero WAAP trusts. They are referenced wherever
 a certificate presented by someone else has to be validated - the certificate a
 [backend](../backends/tls) presents, and the certificate a client presents to a
 [listener](../listeners/tls).

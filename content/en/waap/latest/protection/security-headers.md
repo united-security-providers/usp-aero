@@ -31,7 +31,7 @@ about the application server.
 
 ### Server
 
-AeroWAAP always replaces the `Server` header with the default value `Aero WAAP`, so there is no information
+Aero WAAP always replaces the `Server` header with the default value `Aero WAAP`, so there is no information
 leakage about the application server. It is possible to overwrite the default value  in the
 [listener](../reference/gui/listeners/listeners#overwriteServerHeader) with a custom value to hide this as well.
 
