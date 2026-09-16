@@ -65,7 +65,8 @@ AES128-SHA                       AES256-SHA
 ### ECDH curves {#ecdhCurves}
 
 The list of ECDH curves allowed for the TLS connection, one entry per line. They are used for the key
-exchange in both TLS 1.2 and TLS 1.3.
+exchange in TLS 1.2 and TLS 1.3, except for the three post-quantum entries, which a connection can
+only use with TLS 1.3 and which are skipped for anything older.
 
 - **Values:** one curve per line, from the list below. Names are case-sensitive and must match
   exactly.
