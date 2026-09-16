@@ -21,3 +21,28 @@ A number with an optional unit suffix. Binary suffixes are `Ki`, `Mi`, `Gi`, `Ti
 a suffix the number is a plain byte count.
 
 Examples: `32Ki` (32768 bytes), `1Mi`, `65536`, `10M`.
+
+## Hostname {#hostname}
+
+A host name or fully qualified domain name of at most 253 characters, written as labels separated by
+dots. Each label may contain letters, digits and hyphens, and may not begin or end with a hyphen.
+
+Examples: `app-01`, `shop.example.com`.
+
+## IP address {#ip-address}
+
+An IPv4 address in dotted-decimal notation, or an IPv6 address.
+
+Examples: `192.168.10.5`, `2001:db8::1`.
+
+## Network in CIDR notation {#cidr}
+
+A network address followed by a prefix length: `/1` to `/32` for IPv4, `/1` to `/128` for IPv6. The
+default routes `0.0.0.0/0` and `::/0` are accepted as well.
+
+Examples: `10.0.0.0/8`, `192.168.10.0/24`, `2001:db8::/32`.
+
+## Port {#port}
+
+A TCP port number from `1` to `65535`.
+
