@@ -11,7 +11,7 @@ weight: 10
 
 ### Module switcher (1)
 
-Lets you switch between the platform shell and any installed feature component (for example WAAP)
+Lets you switch between the platform module and any installed feature component (for example WAAP)
 without leaving the GUI. Only components that are actually installed on this appliance appear here.
 
 ### Context bar (2)
@@ -42,7 +42,7 @@ Its content changes together with the module switcher.
 
 ## Page back button
 
-Appears next to a page's heading whenever that page was opened from another one — for example a
-details view opened from a list — and returns you to it.
+Appears next to a page's heading whenever that page was opened from another one, for example a
+details view opened from a list, and returns you to it.
 
 ![Page back button](../assets/images-concepts/ui_back.png)

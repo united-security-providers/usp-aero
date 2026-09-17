@@ -1,5 +1,6 @@
 ---
 title: "Welcome"
+toc: false
 ---
 
 # USP Aero Platform
@@ -12,8 +13,8 @@ independent of which release was originally installed.
 
 ## Where to go next
 
+* [Release Notes](aero-platform-releasenotes)
 * [Installation](install/overview) - requirements and how to install and setup the platform
 * [Concepts](concepts/gui-overview) - the management GUI and how a configuration change becomes active
-* [Operations](operations/) - guides to use and operate the platform
+* [Operations](operations/) - guides on how to use and operate the platform
 * [Reference](reference/) - detailed description for each view and every setting
-* [Release Notes](aero-platform-releasenotes)

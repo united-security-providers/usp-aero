@@ -25,14 +25,14 @@ Enter the hostname for this system. Besides the configured IP address in the nex
 
 ## Configure Management Network Interface
 
-Configure the management network interface used to access the UI.
+Configure the management network interface used to access the Aero Management GUI .
 Typically it is the one in the drop-down list with the same IP address as used to access the wizard and the values
 should already be prefilled:
 
 ![First Time Setup Wizard Network Interface](../assets/images-wizard/3_fts_network.png)
 
 > [!NOTICE]
-> The management network interface will be the only interface where the configuration UI is available from after First Time Setup.
+> The management network interface will be the only interface where the Aero Management GUI is available from after First Time Setup.
 
 ## Configure Container Settings
 

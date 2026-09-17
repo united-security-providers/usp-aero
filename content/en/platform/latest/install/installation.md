@@ -11,7 +11,7 @@ This installation method allows to set up the USP Aero Platform on hardware or v
 
 The first requisite for installing the USP Aero Platform is to download the USP Aero installer iso
 from the [USP Service Platform](https://service.united-security-providers.ch/). You will
-find the available installing ISO files in the `Products` download section.
+find the available ISO files in the `Products` download section.
 
 ## Booting the Installer
 
@@ -61,7 +61,7 @@ trigger the bootstrapping process of the USP base platform.
     ![Console network](../assets/images-console/screenshot_aero_console_network.png)
 
   * In `IPv4 CONFIGURATION` select `<Manual>` and open the configuration dialog by selecting `Show`
-  * Addresses select `<Add...>` and enter the static IP address in CIDR notation
+  * Addresses: select `<Add...>` and enter the static IP address in CIDR notation
   * Gateway: set default gateway IP address
   * DNS servers: add nameserver IP address and optionally search-domains
   * Select `OK` to save settings

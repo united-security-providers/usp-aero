@@ -23,24 +23,24 @@ Skip this section for a job that keeps its archives on the appliance.
    [Backup targets](../../reference/gui/backup/backup-targets) for the individual fields.
 3. Save the target.
 
-The appliance authenticates with an SSH key pair that it generates itself; no password for the
+The appliance authenticates with an SSH key pair that it generates itself. No password for the
 backup server is ever stored on the appliance. Install its public key on the backup server:
 
 4. Choose "Show SSH Public Key" on the target and copy the key.
 5. On the backup server, append it to the `authorized_keys` file of the user you entered in step 2,
    and make sure that user may write to the target directory.
 6. Back on the appliance, choose "Check connection" to confirm that the login and the directory
-   work. Fix the target or the backup server until this succeeds - a job against an unreachable
+   work. Fix the target or the backup server until this succeeds. A job against an unreachable
    target simply fails at its scheduled time.
 
 ## Add the backup job
 
 1. On [Automated Backups](../../reference/gui/backup/backup-jobs), choose "Add Backup job".
 2. Enter a name.
-3. Choose the target. `Local` keeps the archives on the appliance; otherwise pick one of the backup
+3. Choose the target. `Local` keeps the archives on the appliance, otherwise pick one of the backup
    targets you configured.
 4. Enter the schedule as a [cron expression](../../reference/value-types#cron). While you type, the
-   screen shows what the expression means in plain language - check that line before saving. For a
+   screen shows what the expression means in plain language, check that line before saving. For a
    nightly backup at 02:00, use `0 2 * * *`.
 5. Choose the type and save the job.
 6. [Create a revision and deploy it](../../concepts/configuration-lifecycle). The job begins running

@@ -12,13 +12,13 @@ weight: 20
 
 ## The lifecycle at a glance
 
-1. You edit settings on any configuration screen and save. Nothing is applied yet.
-2. Using the `Deployment` screen you **create a revision**, which freezes the current draft changes into a new, numbered revision
-   in the configuration storage.
+1. You edit settings on any configuration page and save. Nothing is applied yet.
+2. Using the `Deployment` page in the platform module, you **create a revision**,
+    which freezes the current draft changes into a new and numbered revision in the configuration storage.
 3. You **deploy** that revision, which activates it and restarts the affected services if necessary.
 4. If a deployed revision turns out to be wrong, you can **roll it back** to an earlier one.
 
-Each registered component — the core system and each installed feature such as WAAP — has its own
+Each registered component, the core system and each installed feature such as WAAP, has its own
 independent sequence of revisions and its own deployment. See
 [Deploying a configuration](../reference/gui/deployment/deploy) for how the deployment screen is organized per
 component.
@@ -35,9 +35,17 @@ revision, without creating a new one.
 
 ## Deploying a configuration
 
-Use **Deploy Configuration** to activate a revision. Deployment status — in progress, successful or
-failed — is shown while it runs; see [Deploying a configuration](../reference/gui/deployment/deploy) for details.
-A revision that has validation errors cannot be deployed until the errors are resolved; see
+Use **Deploy Configuration** to activate a revision.
+
+There are three Deployment statuses
+
+* in progress
+* successful
+* failed
+
+They will be shown while the activation is running. See [Deploying a configuration](../reference/gui/deployment/deploy) for more details.
+
+A revision that has validation errors cannot be deployed until the errors are resolved, see
 [Configuration validation errors](../reference/validation-errors.md).
 
 ## Configuration history and rollback

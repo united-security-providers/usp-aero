@@ -12,5 +12,5 @@ To restore this appliance from a downloaded backup archive:
 3. Confirm the restore.
 
 To restore from a backup that is already stored locally on this appliance (produced by a backup job
-with a "Local" target), use "Restore" on the corresponding entry in the Local Backups list instead —
-see [Local backups and restore](../../reference/gui/backup/local-backups-and-restore).
+with a "Local" target), use "Restore" on the corresponding entry in the Local Backups list instead.
+See [Local backups and restore](../../reference/gui/backup/local-backups-and-restore) for more details.
