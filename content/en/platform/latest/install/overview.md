@@ -1,6 +1,7 @@
 ---
 title: "Installation"
 weight: 10
+draft: true # is a bit duplicate information, maybe delete it
 ---
 
 # Installation
