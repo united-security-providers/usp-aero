@@ -7,8 +7,8 @@ weight: 30
 
 Repeat Offender Detection blocks a client once it triggers too many violations in a short time,
 instead of judging each request in isolation. Use it against a client that keeps retrying a request
-the [Rule Engine](../reference/gui/vhosts/rule-engine) keeps rejecting, or that keeps generating errors -
-typical of scanners and automated attack tools - while leaving well-behaved clients untouched.
+the [Rule Engine](../reference/gui/vhosts/rule-engine) keeps rejecting, or that keeps generating errors.
+This is typical for scanners and automated attack tools.
 
 ## Configure detection
 
@@ -17,8 +17,8 @@ typical of scanners and automated attack tools - while leaving well-behaved clie
 2. Under Violations, set the Status codes counted as violation (single codes or ranges such as
    `4xx`), the Counting period the count resets after, and the Allowed violations a client gets
    before it is blocked. Set the Status code when blocked.
-3. Under Client Identification, set the Status code if client not identified, and list any Client
-   IPs excluded from detection - for example your own monitoring or a load balancer's health-check
+3. Under Client Identification, set the **Status code if client not identified**, and list any Client
+   IPs excluded from detection. For example your own monitoring or a load balancer's health-check
    address.
 4. [Create a revision and deploy it](../../../platform/latest/concepts/configuration-lifecycle).
 

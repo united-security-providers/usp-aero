@@ -14,8 +14,8 @@ Another security relevant header is `Server`, which often carries detailed versi
 about the application server.
 
 > [!NOTE]
-> These headers are instructions to a browser. A route consumed only by non-browser clients - an API
-> called by a server, a mobile backend - gains little from most of them, because such a client simply
+> These headers are instructions to a browser. A route consumed only by non-browser clients, such as a API
+> called by a server or a mobile backend, gains little from most of them because such a client simply
 > ignores them. They never replace a check on the server side.
 
 ## Where to start

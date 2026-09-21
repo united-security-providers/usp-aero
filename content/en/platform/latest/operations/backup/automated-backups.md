@@ -67,7 +67,7 @@ arrange.
 
 ## Related
 
-- [Restore from backup](restore-from-backup) - putting an archive back
-- [Automated Backups](../../reference/gui/backup/backup-jobs) - the fields of a job
-- [Local backups and restore](../../reference/gui/backup/local-backups-and-restore) - the local
+- [Restore from backup](restore-from-backup): putting an archive back
+- [Automated Backups](../../reference/gui/backup/backup-jobs): the fields of a job
+- [Local backups and restore](../../reference/gui/backup/local-backups-and-restore): the local
   archive list, and creating a single backup by hand

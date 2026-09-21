@@ -13,7 +13,7 @@ Use this section while looking at a screen. To see how the pieces fit together, 
 [Getting started](../getting-started), [Application integration](../application-integration/) or
 [Application protection](../protection/).
 
-* [GUI](gui/) - one page per screen of the management GUI, in the order of its navigation
-* [TLS versions, ciphers and algorithms](tls-settings) - the shared TLS settings block
-* [Value types](value-types) - the value formats that recur across settings
+* [GUI](gui/): one page per screen of the management GUI, in the order of its navigation
+* [TLS versions, ciphers and algorithms](tls-settings): the shared TLS settings block
+* [Value types](value-types): the value formats that recur across settings
 * [Glossary](glossary)
