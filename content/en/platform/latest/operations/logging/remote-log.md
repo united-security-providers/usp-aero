@@ -6,12 +6,12 @@ weight: 20
 # Forward logs to remote System
 
 The appliance can forward its log data to a central log server, such as a SIEM, over Syslog or
-OpenTelemetry. Logs stay available on the appliance as well - see [Live Log](live-log).
+OpenTelemetry. Logs stay available on the appliance as well. See [Live Log](live-log) for more details.
 
 ## Prepare the certificates
 
 Skip this section if the log server accepts unencrypted connections and you accept sending log data
-in the clear.
+in cleartext.
 
 Forwarding over TLS validates the log server's certificate, and some log servers additionally
 require the client to authenticate. Upload what you need before configuring the target, under
@@ -35,8 +35,11 @@ collector and fan them out from there.
 ## Verify
 
 After the deployment, confirm on the log server that entries from this appliance are arriving. If
-nothing shows up, check in this order: that the deployment finished, that the appliance can reach
-the log server's host and port, and that the protocol matches what the server expects. TLS problems
-usually mean the trusted CA certificate does not match the certificate the server presents; the
-"Disable Server Certificate validation" switch will confirm that suspicion, but leave it off in
-production.
+nothing shows up, then you should do the following checks in the following order:
+
+1. the deployment finished
+2. the appliance can reach the log server's host and port
+3. the protocol matches what the server expects
+
+If you encounter TLS problems, the that usually means the trusted CA certificate does not match the certificate the server presents.
+In this case, use the "Disable Server Certificate validation" switch to confirm this suspicion, but leave it off in production.

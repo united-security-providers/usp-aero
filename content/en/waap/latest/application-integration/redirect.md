@@ -23,29 +23,30 @@ the backend to receive a different path while the client keeps seeing the origin
    route has exactly one matching rule with a path-prefix matcher.
 5. Set the [Replacement Path](../reference/gui/vhosts/routes/translation-and-redirect#replacementPath).
 
-> [!IMPORTANT]
-> Turning on Request Redirect turns off Request Path Translation on the same route, and vice versa - a
-> route can only use one at a time.
+    > [!IMPORTANT]
+    > Turning on Request Redirect turns off Request Path Translation on the same route, and vice versa. A
+    > route can only use one at a time.
 
-Leaving Scheme, Hostname and Port at their original-request value on every field means the redirect
-target can end up identical to the request that triggered it, which sends the client into a redirect loop.
+    Leaving Scheme, Hostname and Port at their original-request value on every field means the redirect
+    target can end up identical to the request that triggered it, which sends the client into a redirect loop.
+
+6. [Create a revision and deploy it](../../../platform/latest/concepts/configuration-lifecycle) to
+apply the change.
 
 ## HTTP to HTTPS redirect for an entire virtual host
 
 By default, a new virtual host redirects all plain HTTP requests to HTTPS.
-This redirects the whole virtual host; it does not need a route-level Request Redirect. 
+This redirects the whole virtual host, it does not need a route-level Request Redirect.
 If both HTTP and HTTP traffic should be allowed, disable the virtual host's redirect setting:
 
 1. Open the [virtual host](../reference/gui/vhosts/virtual-hosts)'s Settings tab.
 2. Disable "Generate HTTP to HTTPS redirect".
-
-[Create a revision and deploy it](../../../platform/latest/concepts/configuration-lifecycle) to
+3. [Create a revision and deploy it](../../../platform/latest/concepts/configuration-lifecycle) to
 apply the change.
 
 ## Related
 
-- [Translation & Redirect](../reference/gui/vhosts/routes/translation-and-redirect) - all redirect
-  fields
-- [Virtual Hosts](../reference/gui/vhosts/virtual-hosts) - the HTTP to HTTPS redirect setting
-- [Rewrite the request path](translation) - changing the path the backend sees without redirecting
+- [Translation & Redirect](../reference/gui/vhosts/routes/translation-and-redirect): all redirect fields
+- [Virtual Hosts](../reference/gui/vhosts/virtual-hosts): the HTTP to HTTPS redirect setting
+- [Rewrite the request path](translation): changing the path the backend sees without redirecting
   the client

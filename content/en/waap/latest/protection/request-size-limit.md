@@ -18,14 +18,14 @@ bottlenecks or denial-of-service (DoS) vulnerabilities.
 
 1. Open the virtual host, select the route, and go to its [HTTP](../reference/gui/vhosts/routes/http)
    tab, under Request Body Inspection.
-2. Set Maximum payload size to the largest request body this route should accept for inspection.
-3. Leave Disable rule engine for body payload off unless the route genuinely needs to accept bodies
-   the Rule Engine cannot handle - see the warning below.
+2. Set **Maximum payload size** to the largest request body this route should accept for inspection.
+3. Leave **Disable rule engine for body payload** off unless the route genuinely needs to accept bodies
+   the Rule Engine cannot handle. See the warning below.
 4. [Create a revision and deploy it](../../../platform/latest/concepts/configuration-lifecycle).
 
-> [!WARNING] 
+> [!WARNING]
 > Disable rule engine for body payload switches off every Rule Engine rule that inspects or parses
-> the body for that route. Use it only for a route that genuinely needs to accept bodies the rule 
+> the body for that route. Use it only for a route that genuinely needs to accept bodies the rule
 > engine cannot handle, such as large file uploads.
 
 > [!TIP]

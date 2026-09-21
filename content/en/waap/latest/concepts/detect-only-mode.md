@@ -22,7 +22,7 @@ disruptive action like blocking the request or altering the request/response lik
 ### Phase 1 - Log only
 1. When starting fresh with a new application:
    * Set the virtual host's Core Rule Set mode of the rule engine to `Detect`
-   * Enable the route's header filter `Log Only` mode 
+   * Enable the route's header filter `Log Only` mode
 2. Deploy the configuration, and watch the logged matches for the traffic the application actually produces.
 3. For matches that turn out to be legitimate traffic, [add a rule exception](../protection/rule-engine/handle-a-crs-false-positive),
    or add additional allowed headers etc. until no new violations are logged.
@@ -34,16 +34,16 @@ disruptive action like blocking the request or altering the request/response lik
 2. Additionally, you should set the Core Rule Sets' `Security Level` to `2`. This will not block every rule violation directly
    and allows you to tune the rule engine further with real traffic, without the risk that requests are blocked immediately.
 3. Deploy the configuration, and proceed in the same way as in phase 1 with tuning the configuration.
- 
+
 ### Phase 3 - Strict blocking
 1. Once sufficient certainty has been established, that all legit traffic is not blocked,
-   gradually increase the `Security Level` up to `5`. This ensures that every rule violation is blocked. 
-  
+   gradually increase the `Security Level` up to `5`. This ensures that every rule violation is blocked.
+
 ## Related
 
-- [Rule Engine](../reference/gui/vhosts/rule-engine) - Mode, paranoia levels, security level and rule
+- [Rule Engine](../reference/gui/vhosts/rule-engine): Mode, paranoia levels, security level and rule
   exceptions
-- [Handle a CRS false positive](../protection/rule-engine/handle-a-crs-false-positive) - adding an
+- [Handle a CRS false positive](../protection/rule-engine/handle-a-crs-false-positive): adding an
   exception instead of disabling protection
 - [Headers](../reference/gui/vhosts/routes/headers)
 - [Header filtering](../protection/header-filtering)

@@ -10,22 +10,22 @@ With client certificate validation the connecting client has to prove its identi
 certificate and rejects the connection unless it was issued by a CA you trust.
 
 This is the client leg of the connection. For the certificate Aero WAAP presents when it connects onwards
-to your application server, see [Backend TLS connections](backend-tls) - the two are independent and
+to your application server, see [Backend TLS connections](backend-tls). The two are independent and
 easy to confuse.
 
 > [!IMPORTANT]
 > The setting lives on the **listener**, so it applies to every virtual host that shares that listener.
 > You cannot require a client certificate for one application and leave another one open if both sit
-> on the same listener; give them separate listeners when their requirements differ.
+> on the same listener. Give them separate listeners when their requirements differ.
 
 ## Require a certificate from the client
 
 1. Open the listener and go to its [TLS](../../reference/gui/listeners/tls) tab.
 2. Turn on "Client Certificate Validation (mTLS)".
-3. Select a [Trusted CA Certificate](../../reference/gui/certificates/ca-certificates) - the CA that
-   issued the client certificates you intend to accept. Upload it beforehand if it is not in the
-   list yet.
-4. Decide whether a certificate is mandatory. Leave "Optional validation" off to require one; turn
+3. Select a [Trusted CA Certificate](../../reference/gui/certificates/ca-certificates).
+   The selected CA must match the CA that will issue client certificates.
+   Upload it beforehand if it is not in the list yet.
+4. Decide whether a certificate is mandatory. Leave "Optional validation" off to require one or turn
    it on to keep accepting connections that present none, which is useful while clients are still
    being rolled out.
 5. Turn on "Forward Client Certificate information with XFCC HTTP Header" if the application behind
@@ -38,9 +38,9 @@ Trusting a CA means accepting every certificate that CA has issued. Where that i
 SAN Match to narrow it to particular identities:
 
 1. On the same tab, add a SAN Match.
-2. Choose the Type - `Email` matches the certificate's email SAN, `Other Names` matches another SAN
+2. Choose the Type: `Email` matches the certificate's email SAN, `Other Names` matches another SAN
    entry and additionally needs an OID identifying which one.
-3. Choose the Matcher - `Exact`, `Prefix`, `Suffix` or `Regex` - and enter the Value to compare
+3. Choose the Matcher: `Exact`, `Prefix`, `Suffix` or `Regex` and enter the Value to compare
    against.
 
 > [!TIP]
@@ -48,6 +48,6 @@ SAN Match to narrow it to particular identities:
 
 ## Related
 
-- [TLS](../../reference/gui/listeners/tls) - every field of the listener's TLS tab
-- [CA Certificates](../../reference/gui/certificates/ca-certificates) - the trust store
-- [Backend TLS connections](backend-tls) - the other leg of the connection
+- [TLS](../../reference/gui/listeners/tls): every field of the listener's TLS tab
+- [CA Certificates](../../reference/gui/certificates/ca-certificates): the trust store
+- [Backend TLS connections](backend-tls): the other leg of the connection

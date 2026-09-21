@@ -5,25 +5,27 @@ weight: 10
 
 # Update the Aero base OS
 
-The appliance runs on a base operating system image that is updated as a whole. Updating happens in
-two steps: the appliance downloads and prepares the new image while it keeps running, and a reboot
-then switches to it.
+The appliance runs on a base operating system image that is updated as a whole.
+Updating happens in two steps:
 
-Plan the reboot - the appliance does not serve traffic and the GUI is
-unavailable while it restarts.
+* the appliance downloads and prepares the new image while it keeps everything running
+* a reboot switches to the newly updated base operating system
+
+The appliance does not serve traffic nor is the GUI unavailable while it reboot,
+plan your reboots carefully.
 
 > [!TIP]
-> Take a configuration backup first, as with any maintenance on the appliance: see 
+> Take a configuration backup first, as with any maintenance on the appliance: see
 > [Set up automated backups](../backup/automated-backups) or create a single backup from
 > [Local backups and restore](../../reference/gui/backup/local-backups-and-restore).
 
 ## Download and prepare the update
 
-1. Open [Operating System](../../reference/gui/system-management/operating-system). It shows the system details 
-   and optional its location, the current release, and the latest release when a newer one is available. When
+1. Open [Operating System](../../reference/gui/system-management/operating-system). It shows the system details
+   and optionally its location, the current release, and the latest release when a newer one is available. When
    the appliance is on the newest release, it says "Up to date" and offers no update.
 2. Choose "Download & prepare OS update" and confirm.
-3. Wait for the operation to finish. It runs on the appliance and takes a while; the screen reports
+3. Wait for the operation to finish. It runs on the appliance and takes a while. The screen reports
    its progress and the appliance stays fully in service throughout.
 
 ## Apply the update

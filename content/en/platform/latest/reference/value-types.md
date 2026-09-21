@@ -37,8 +37,7 @@ Examples:
 
 Only the five-field form is accepted. Shorthands such as `@daily`, and six-field expressions that
 start with a seconds field, are rejected when the configuration is saved. While you type, the GUI
-shows the schedule in plain language underneath the field - a good check that the expression means
-what you intended.
+shows the schedule in plain language underneath the field.
 
 Times follow the system timezone, which is set under
 [Configuration → System](gui/configuration/system#timezone).

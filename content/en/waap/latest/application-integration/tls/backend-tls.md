@@ -6,19 +6,19 @@ weight: 60
 # Backend TLS connections
 
 Aero WAAP terminates the client's TLS connection and opens its own connection to the application server.
-That second leg is configured separately on the backend, and it is encrypted only if you say so -
-terminating TLS at Aero WAAP does not by itself protect the traffic between Aero WAAP and your application.
+That second leg is configured separately on the backend, and it is encrypted only if you say so.
+Terminating TLS at Aero WAAP does not by itself protect the traffic between Aero WAAP and your application.
 
 This page is about that second leg. For the certificate a *client* has to present to Aero WAAP, see
-[Client Certificate Validation (mTLS)](mtls) - the two are independent and easy to confuse.
+[Client Certificate Validation (mTLS)](mtls) The two are independent and easy to confuse.
 
 ## Encrypt the connection to the backend
 
 1. Open the backend and go to its [TLS](../../reference/gui/backends/tls) tab.
 2. Turn on "TLS Connection".
-3. Select a [Trusted CA Certificate](../../reference/gui/certificates/ca-certificates) - the CA that
-   issued the backend's own server certificate - so that Aero WAAP can verify it is talking to the right
-   server.
+3. Select a [Trusted CA Certificate](../../reference/gui/certificates/ca-certificates).
+   The selected CA must match the CA that will issue the backend's own server certificate
+   so that Aero WAAP can verify it is talking to the right server.
 4. Set an "SNI Hostname" if the backend serves several hostnames on the same address and needs to be
    told which one is meant.
 5. [Create a revision and deploy it](../../../../platform/latest/concepts/configuration-lifecycle).
@@ -38,11 +38,11 @@ certificate of its own:
    presents.
 3. [Create a revision and deploy it](../../../../platform/latest/concepts/configuration-lifecycle).
 
-This makes Aero WAAP the client in that exchange - the mirror image of
+This makes Aero WAAP the client in that exchange, the mirror image of
 [Client Certificate Validation (mTLS)](mtls), where Aero WAAP is the server checking someone else.
 
 ## Related
 
-- [TLS](../../reference/gui/backends/tls) - every field of the backend's TLS tab
-- [CA Certificates](../../reference/gui/certificates/ca-certificates) - the trust store used on both legs
-- [Client Certificate Validation (mTLS)](mtls) - the client leg
+- [TLS](../../reference/gui/backends/tls): every field of the backend's TLS tab
+- [CA Certificates](../../reference/gui/certificates/ca-certificates): the trust store used on both legs
+- [Client Certificate Validation (mTLS)](mtls): the client leg

@@ -10,7 +10,7 @@ roles:
 
 ### Administrator
 
-Can edit and deploy the configuration, add/remove components, install updated and manage local users.
+Can edit and deploy the configuration, can add or remove components, can install updates and manage local users.
 
 ### Viewer
 

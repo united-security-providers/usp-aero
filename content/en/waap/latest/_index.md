@@ -17,11 +17,11 @@ revision.
 
 ## Where to go next
 
-* [Getting started](getting-started) - publish a first web application, end to end
-* Concepts - how a request is processed
-* Task-oriented guides:
-  * Application integration - fitting Aero WAAP into an application's URLs, headers, cookies and TLS
-  * Application protection - the rule engine, and the limits and restrictions that
-    keep unwanted traffic away from the application
-* [Reference](reference/) - every screen and every setting of the management GUI
 * [Release Notes](aero-waap-releasenotes)
+* Concepts: how a request is processed
+* [Getting started](getting-started): publish a first web application, end to end
+* Task-oriented guides:
+  * Application integration: fitting Aero WAAP into an application's URLs, headers, cookies and TLS
+  * Application protection: the rule engine, and the limits and restrictions that
+    keep unwanted traffic away from the application
+* [Reference](reference/): every screen and every setting of the management GUI

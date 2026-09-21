@@ -6,7 +6,7 @@ weight: 30
 # Restrict HTTP Methods
 
 Restricting HTTP methods stops a request using a verb the backend does not expect from ever reaching
-it - for example blocking `TRACE` or `PUT` on a route that should only ever serve `GET` and `POST`.
+it. For example blocking `TRACE` or `PUT` on a route that should only ever serve `GET` and `POST`.
 It narrows the attack surface a route exposes without changing the application itself.
 
 A request using a method that is not on the right is rejected with `405 Method Not Allowed`,
@@ -22,9 +22,9 @@ without reaching the backend.
 4. [Create a revision and deploy it](../../../platform/latest/concepts/configuration-lifecycle).
 
 > [!NOTE]
-> `GET`, `HEAD`, `OPTIONS` and `POST` are allowed by default; any other method the application
-> actually needs - `PATCH` for a REST API, or `OPTIONS` handling for a CORS preflight that the
-> application answers itself - must be added explicitly, or it is rejected outright.
+> `GET`, `HEAD`, `OPTIONS` and `POST` are allowed by default, any other method the application
+> actually needs (e.g. `PATCH` for a REST API, or `OPTIONS` handling for a CORS preflight)
+> must be added explicitly, or it is rejected outright.
 
 ## Related
 
