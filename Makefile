@@ -1,25 +1,38 @@
 HUGO_VERSION := 0.165.0
 PAGEFIND_VERSION := 1.5.2
+LYCHEE_VERSION := 0.24.2
 
 BIN := bin
 HUGO := $(BIN)/hugo-$(HUGO_VERSION)
 PAGEFIND := $(BIN)/pagefind-$(PAGEFIND_VERSION)
+LYCHEE := $(BIN)/lychee-$(LYCHEE_VERSION)
 
 HUGO_BASE := https://github.com/gohugoio/hugo/releases/download/v$(HUGO_VERSION)
 HUGO_ASSET := hugo_extended_$(HUGO_VERSION)_linux-amd64.tar.gz
 PAGEFIND_BASE := https://github.com/Pagefind/pagefind/releases/download/v$(PAGEFIND_VERSION)
 PAGEFIND_ASSET := pagefind_extended-v$(PAGEFIND_VERSION)-x86_64-unknown-linux-musl.tar.gz
+LYCHEE_BASE := https://github.com/lycheeverse/lychee/releases/download/lychee-v$(LYCHEE_VERSION)
+LYCHEE_DIR := lychee-x86_64-unknown-linux-musl
+LYCHEE_ASSET := $(LYCHEE_DIR).tar.gz
+LYCHEE_FLAGS := --no-progress --include-fragments --index-files index.html
 
 THEME := github.com/united-security-providers/usp-docs-hugo-theme
 THEME_VERSION := latest
 
 DEV_VERSION := latest
+VERSION := all
 RELEASE_PRODUCT = $(firstword $(subst /, ,$(RELEASE)))
 RELEASE_VERSION = $(word 2,$(subst /, ,$(RELEASE)))
 RELEASE_EXTRA = $(word 3,$(subst /, ,$(RELEASE)))
 
+IN_PRODUCT = $(firstword $(subst /, ,$(IN)))
+IN_VERSION = $(word 2,$(subst /, ,$(IN)))
+TO_PRODUCT = $(firstword $(subst /, ,$(TO)))
+TO_VERSION = $(word 2,$(subst /, ,$(TO)))
+XREF = $(TO_PRODUCT)/($(DEV_VERSION)|[0-9][^/)"\#[:space:]]*)
+
 .PHONY: download-tools
-download-tools: $(HUGO) $(PAGEFIND)
+download-tools: $(HUGO) $(PAGEFIND) $(LYCHEE)
 
 $(HUGO):
 	@mkdir -p $(BIN)
@@ -43,6 +56,17 @@ $(PAGEFIND):
 	  tar -xzf "$$tmp/asset" -C "$$tmp" pagefind_extended && \
 	  mv "$$tmp/pagefind_extended" "$@" && chmod +x "$@"
 
+$(LYCHEE):
+	@mkdir -p $(BIN)
+	@echo "Fetching lychee $(LYCHEE_VERSION) into $(BIN)/"
+	@tmp=$$(mktemp -d) && trap 'rm -rf "$$tmp"' EXIT && \
+	  curl -sSfL -o "$$tmp/asset" "$(LYCHEE_BASE)/$(LYCHEE_ASSET)" && \
+	  curl -sSfL "$(LYCHEE_BASE)/$(LYCHEE_ASSET).sha256" \
+	    | sed 's|$(LYCHEE_ASSET)|asset|' > "$$tmp/sum" && \
+	  (cd "$$tmp" && sha256sum -c sum > /dev/null) && \
+	  tar -xzf "$$tmp/asset" -C "$$tmp" --strip-components=1 $(LYCHEE_DIR)/lychee && \
+	  mv "$$tmp/lychee" "$@" && chmod +x "$@"
+
 .PHONY: build
 build: download-tools
 	$(HUGO) --gc --cleanDestinationDir
@@ -55,6 +79,40 @@ build: download-tools
 .PHONY: serve
 serve: build
 	$(HUGO) server
+
+.PHONY: check-links
+check-links: build
+	@set -f; site=$(CURDIR)/public; status=0; \
+	base=$$($(HUGO) config | sed -n "s/^baseurl = '\(.*\)'/\1/p"); \
+	prefix=$$(echo "$$base" | sed -E 's|^[a-z]+://[^/]*/?||; s|/$$||'); \
+	if [ "$(VERSION)" = all ]; then \
+	  inputs="$$site/**/*.html $$site/**/*.txt $$site/**/*.xml"; \
+	  releases=$$(set +f; ls -d $$site/*/*/ | grep -v '/latest/$$'); \
+	else \
+	  inputs=$$(set +f; ls -d $$site/*/$(VERSION) 2>/dev/null | sed 's|$$|/**/*.html|'); \
+	  test -n "$$inputs" || { \
+	    echo "No component has a version '$(VERSION)'. Built versions:"; \
+	    (set +f; ls -d $$site/*/*/) | sed "s|$$site/|  |;s|/$$||"; exit 1; }; \
+	  releases=$$(test "$(VERSION)" = $(DEV_VERSION) || (set +f; ls -d $$site/*/$(VERSION)/)); \
+	fi; \
+	$(LYCHEE) $(LYCHEE_FLAGS) $(if $(OFFLINE),--offline) --root-dir "$$site" \
+	          --remap "^file://$$site/$$prefix/ file://$$site/" \
+	          --remap "^file://$$site/$$prefix$$ file://$$site/" \
+	          --remap "^$$base file://$$site/" \
+	          $$inputs || status=$$?; \
+	if [ -n "$$releases" ]; then \
+	  echo "Checking that no release links to $(DEV_VERSION)"; \
+	  (set +f; find $$releases -name index.html) \
+	    | xargs awk -v prefix="$$prefix" -f scripts/frozen-links.awk \
+	    && echo "No release links to $(DEV_VERSION)." \
+	    || { echo "A release must not link to $(DEV_VERSION); it is still changing."; status=1; }; \
+	fi; \
+	if [ -n "$(OFFLINE)" ]; then \
+	  echo; \
+	  echo "WARNING: OFFLINE=1 - not one http(s) link was requested."; \
+	  echo "         Re-run without it before trusting this result."; \
+	fi; \
+	exit $$status
 
 .PHONY: update-theme
 update-theme: $(HUGO)
@@ -72,6 +130,26 @@ prepare-release:
 	  { echo "Already exists: content/en/$(RELEASE)"; exit 1; }
 	@cp -r content/en/$(RELEASE_PRODUCT)/$(DEV_VERSION) content/en/$(RELEASE)
 	@echo "Froze content/en/$(RELEASE_PRODUCT)/$(DEV_VERSION) as content/en/$(RELEASE)."
+
+.PHONY: update-cross-reference
+update-cross-reference:
+	@{ test -n "$(IN_VERSION)" && test -n "$(TO_VERSION)"; } || \
+	  { echo "Usage: make update-cross-reference IN=<product>/<version> TO=<product>/<version>,"; \
+	    echo "for example IN=waap/1.0.x TO=platform/1.0.x"; exit 1; }
+	@test "$(IN_PRODUCT)" != "$(TO_PRODUCT)" || \
+	  { echo "$(IN_PRODUCT) cannot cross-reference itself"; exit 1; }
+	@test -d content/en/$(IN) || { echo "No such documentation: content/en/$(IN)"; exit 1; }
+	@test -d content/en/$(TO) || { echo "No such documentation: content/en/$(TO)"; exit 1; }
+	@files=$$(grep -rlE '$(XREF)' content/en/$(IN) --include='*.md'); \
+	if [ -z "$$files" ]; then \
+	  echo "Nothing in content/en/$(IN) refers to $(TO_PRODUCT)."; exit 0; \
+	fi; \
+	for f in $$files; do \
+	  n=$$(grep -oE '$(XREF)' "$$f" | grep -cv '/$(TO_VERSION)$$' || true); \
+	  sed -i -E 's@$(XREF)@$(TO_PRODUCT)/$(TO_VERSION)@g' "$$f"; \
+	  test "$$n" -eq 0 || echo "  $$f ($$n)"; \
+	done; \
+	echo "The $(TO_PRODUCT) references in content/en/$(IN) now point at $(TO_VERSION)."
 
 .PHONY: clean
 clean:

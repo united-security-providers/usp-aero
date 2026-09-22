@@ -6,15 +6,43 @@ The content is in `content/en/<product>/<version>/`.
 ## Building
 
 There are no required dependencies.
-Hugo and Pagefind will always be downloaded with the make target `download-tools` on first use.
+Hugo, Pagefind and lychee will always be downloaded with the make target `download-tools` on first use.
 
 ```bash
-make serve           # build, then http://localhost:1313/usp-aero/ with live reload
-make build           # build into public/, search index included
-make clean           # remove the build output; bin/ stays
-make download-tools  # fetch the toolchain without building
-make clean-tools     # remove the toolchain from bin/
+make serve                  # build, then http://localhost:1313/usp-aero/ with live reload
+make build                  # build into public/, search index included
+make check-links            # build, then check every link, anchor and image
+make update-cross-reference # updates cross component references from latest to a given version 
+make clean                  # remove the build output; bin/ stays
+make download-tools         # fetch the toolchain without building
+make clean-tools            # remove the toolchain from bin/
 ```
+
+## Checking the links
+
+`make check-links` builds the site and runs [lychee](https://lychee.cli.rs/) over
+the result. It checks internal and external links, heading anchors and images.
+For releases, it checks that no page of a release may link into any component's `latest`.
+
+```bash
+make check-links VERSION=1.0.x   # one version, in every component
+make check-links                 # the whole site; VERSION defaults to all
+```
+
+## Update cross components links
+
+Documentation of one component can link to pages in another component. This is typical
+`latest` during development, but could also apply to a released version if we want to point
+to a newer released.
+
+The following command will update all links to component platform in the component waap/1.0.x to 
+version `1.0.x`.
+```bash
+make update-cross-reference IN=waap/1.0.x TO=platform/1.0.x
+```
+It replaces `latest` as well as other version numbers, so it ensures the whole documentation links
+to the same version.
+
 
 ## Updating the theme
 
@@ -121,7 +149,21 @@ directories that exist.
 make prepare-release RELEASE=waap/0.6.x
 ```
 
-2. Review the changes and then commit it to `main`:
+2. Point its references to the other product at a release, rather than at the
+   `latest` they were copied from:
+
+```bash
+make update-cross-reference IN=waap/0.6.x TO=platform/1.0.x
+```
+
+3. Check that the new documentation has no dead references, and
+   fix what it reports:
+
+```bash
+make check-links VERSION=0.6.x
+```
+
+4. Review the changes and then commit it to `main`:
 
 ```bash
 git add content/en/waap/0.6.x
