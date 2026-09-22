@@ -1,0 +1,33 @@
+{{- /* Overrides the theme partial: a section label is only a <details> toggle,
+       so a section that has its own page gets an "Overview" child link to it. */ -}}
+{{- $item := .item -}}
+{{- $page := .page -}}
+{{- $children := where $item.Pages "Params.hidden" "!=" true -}}
+{{- if and $item.IsSection $children (not .asLink) -}}
+{{- $open := or (eq $page $item) ($page.IsDescendant $item) -}}
+<li class="usp-nav__section">
+  <details{{ if $open }} open{{ end }}>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>{{ $item.LinkTitle }}</span>
+    </summary>
+    <ul>
+      {{- /* Empty for a navigation-only section, that is build.render never. */ -}}
+      {{- with $item.RelPermalink }}
+        <li><a href="{{ . }}"{{ if eq $page $item }} aria-current="page"{{ end }}>{{ $item.Params.navOverviewTitle | default "Overview" }}</a></li>
+      {{- end }}
+      {{- range $children.ByWeight }}
+        {{ partial "nav-item.html" (dict "item" . "page" $page) }}
+      {{- end }}
+    </ul>
+  </details>
+</li>
+{{- else -}}
+{{- /* A product forwards to the release it is entered at; link there directly
+       rather than through the redirect. */ -}}
+{{- $href := $item.RelPermalink -}}
+{{- if eq $item.Layout "redirect" -}}
+  {{- with partial "func/entry.html" $item }}{{ $href = .RelPermalink }}{{ end -}}
+{{- end }}
+<li><a href="{{ $href }}"{{ if eq $page $item }} aria-current="page"{{ end }}>{{ $item.LinkTitle }}</a></li>
+{{- end -}}

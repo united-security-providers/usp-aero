@@ -22,8 +22,8 @@ of the USP Aero platform, in case this did not happen automatically during the i
 ![Console network](../assets/images-console/screenshot_aero_console_network.png)
 
 * Select the correct connection according to the Mac Address e.g. Wired connection 1
-* IPv4 CONFIGURATION `<Manual>` → "Show"
-* Addresses `<Add...>` → `<static-ip>`
+* IPv4 CONFIGURATION `<Manual>` -> "Show"
+* Addresses `<Add...>` -> `<static-ip>`
 * Gateway: `<default-gateway>`
 * DNS servers: `<nameserver>` incl. search-domains
 * IPv6 CONFIGURATION `<Disabled>`
