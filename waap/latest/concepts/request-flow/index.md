@@ -24,9 +24,9 @@ other reference pages in this manual each document one link of this chain. This 
 
 ## Local files
 
-[Static Content](../reference/gui/local-files/static-content) and [Local Error Pages](../reference/gui/local-files/error-pages)
-are files stored on the appliance itself rather than on an upstream backend. A virtual host's
-[Error Pages](../reference/gui/vhosts/error-pages) tab can serve a local error page instead of forwarding a failed
+[Static Content](../reference/gui/local-files/static-content) <!-- and [Local Error Pages](../reference/gui/local-files/error-pages) -->
+are files stored on the appliance itself rather than on an upstream backend. <!-- A virtual host's
+[Error Pages](../reference/gui/vhosts/error-pages) tab can serve a local error page instead of forwarding a failed -->
 request to a backend.
 
 ## Where TLS material comes from
