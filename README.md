@@ -6,15 +6,48 @@ The content is in `content/en/<product>/<version>/`.
 ## Building
 
 There are no required dependencies.
-Hugo and Pagefind will always be downloaded with the make target `download-tools` on first use.
+Hugo, Pagefind and lychee will always be downloaded with the make target `download-tools` on first use.
 
 ```bash
 make serve           # build, then http://localhost:1313/usp-aero/ with live reload
 make build           # build into public/, search index included
+make check-links     # build, then check every link, anchor and image
 make clean           # remove the build output; bin/ stays
 make download-tools  # fetch the toolchain without building
 make clean-tools     # remove the toolchain from bin/
 ```
+
+## Checking the links
+
+`make check-links` builds the site and runs [lychee](https://lychee.cli.rs/) over
+the result, which is the only way to see what a link really resolved to: a link
+to a moved page, a misspelled path and a link into a `draft: true` page all look
+the same in the Markdown and differ only in the output.
+
+```bash
+make check-links VERSION=1.0.x   # one version, in every component
+make check-links                 # the whole site; VERSION defaults to all
+```
+
+It checks internal links, heading anchors and images, reports everything it finds
+and exits non-zero if there was anything, so it works as a release gate.
+
+Every `http(s)` link is requested too, on every run - a site that has quietly gone
+away is exactly the dead link nobody notices for years, and a flaky host costing a
+rerun is the better trade. It adds a second or two. `OFFLINE=1` skips them when
+there is no network and says loudly that it did, so a run that checked nothing
+cannot be mistaken for a clean one.
+
+Releases are checked for one thing more: no page of a release may link into any
+component's `latest`. Such a link resolves, so the link checker is right not to
+mind it, but it aims a frozen release at documentation that keeps changing. Link
+to the matching release instead, or restate what the page needs. `latest` itself
+is exempt, and only the prose counts - the version selector and the navigation
+cross versions by design.
+
+Findings name the built file under `public/`. The Markdown behind it is the same
+path under `content/en/`, with `/index.html` becoming `.md` - or `_index.md` where
+the page is a section.
 
 ## Updating the theme
 
@@ -115,13 +148,20 @@ release is a frozen copy of it beside it, named after the release. Products
 version independently, and the version selector in the header is built from the
 directories that exist.
 
-1. Freeze the current documentation of the product being released:
+1. Check that the documentation about to be frozen has no dead references, and
+   fix what it reports:
+
+```bash
+make check-links VERSION=latest
+```
+
+2. Freeze the current documentation of the product being released:
 
 ```bash
 make prepare-release RELEASE=waap/0.6.x
 ```
 
-2. Review the changes and then commit it to `main`:
+3. Review the changes and then commit it to `main`:
 
 ```bash
 git add content/en/waap/0.6.x
