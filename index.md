@@ -12,5 +12,5 @@ The appliance consists of the following component:
 
 ## Pages
 
-- [USP Aero Platform](https://docs.united-security-providers.ch/usp-aero/platform/0.5.x/index.md)
-- [USP Aero WAAP](https://docs.united-security-providers.ch/usp-aero/waap/0.5.x/index.md)
+- [USP Aero Platform](https://docs.united-security-providers.ch/usp-aero/platform/1.0.x/index.md)
+- [USP Aero WAAP](https://docs.united-security-providers.ch/usp-aero/waap/1.0.x/index.md)
