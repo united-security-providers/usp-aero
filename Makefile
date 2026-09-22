@@ -74,19 +74,6 @@ build: download-tools
 serve: build
 	$(HUGO) server
 
-# Checks every link, heading anchor and image of one version - VERSION=0.5.x -
-# or of the whole site with VERSION=all. It depends on build, so it always looks
-# at output that matches the content: a check against a stale build silently
-# reports yesterday's answer.
-#
-# http(s) links are requested too, every run. A site that has gone away is the
-# kind of dead link nobody notices for years, and a flaky host costing a rerun
-# is the better trade. OFFLINE=1 skips them when there is no network, and says
-# loudly that it did.
-#
-# Releases get a second check on top: a link into `latest` resolves, so lychee
-# is right not to mind, but it points a frozen release at documentation that
-# keeps changing. Both checks always run, so one round reports everything.
 .PHONY: check-links
 check-links: build
 	@set -f; site=$(CURDIR)/public; status=0; \

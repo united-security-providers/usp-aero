@@ -1,7 +1,4 @@
-# Flags a link from a frozen release into any component's `latest`, which is
-# documentation still under development: the release would describe whatever
-# that page says next release. Reads built pages and looks only inside the prose,
-# because the version selector and the navigation cross versions by design.
+# Flags a link from a frozen release into any component's `latest`.
 #
 # Call as: awk -v prefix=<base URL path> -f frozen-links.awk <index.html>...
 
