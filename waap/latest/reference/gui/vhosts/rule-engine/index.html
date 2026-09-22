@@ -1,0 +1,1004 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="canonical" href="https://docs.united-security-providers.ch/usp-aero/waap/latest/reference/gui/vhosts/rule-engine/">
+    <meta name="description" content="Installation, configuration and release notes for the USP Aero Suite: the Aero Platform and Aero WAAP.">
+    <link rel="icon" href="/usp-aero/favicon.ico">
+    <title>Rule Engine - USP Aero WAAP documentation</title>
+    <link rel="stylesheet" href="/usp-aero/stylesheets/usp-docs.ca38f5293b40da5a5e772d8bd4aeb7e7a79b196eac08ff4b5b50e2573c3ac5c1.css">
+    <link rel="stylesheet" href="/usp-aero/stylesheets/highlight.8ffd1f6914fb6b60dcf36f5b43cb54b0b569b46920e0f6c9223866c1132784f5.css">
+    <link rel="stylesheet" href="/usp-aero/stylesheets/fonts.a423719d8c6b857f394a6c70f0289dc8e250e5ad1e3a465fd9930ea27ac05946.css">
+    <link rel="alternate" type="text/markdown" href="/usp-aero/waap/latest/reference/gui/vhosts/rule-engine/index.md">
+  </head>
+  <body>
+    <p class="usp-agent-note">For AI agents: this documentation is indexed at https://docs.united-security-providers.ch/usp-aero/llms.txt, and every page is available as markdown at its own address plus index.md.</p>
+
+    <input type="checkbox" id="__drawer" autocomplete="off" hidden>
+    <label class="usp-overlay" for="__drawer" aria-hidden="true"></label>
+    <a href="#rule-engine" class="usp-skip">Skip to content</a>
+    <header class="usp-header">
+  <div class="usp-header__inner">
+    <label class="usp-header__drawer" for="__drawer" aria-label="Navigation">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+
+    </label>
+    <a class="usp-header__logo" href="/usp-aero/" aria-label="USP Aero WAAP documentation">
+      <img src="/usp-aero/images/USP-Logo-2023-ohne-claim-lang-white1.webp" alt="USP Aero Suite documentation">
+    </a>
+    
+<div class="usp-picker usp-picker--product">
+  <button class="usp-picker__current" aria-label="Select product">
+    <span class="usp-picker__label">Aero WAAP</span>
+    <svg class="usp-picker__caret" viewBox="7 10 10 5"><path d="M7 10l5 5 5-5z"/></svg>
+  </button>
+  <ul class="usp-picker__list">
+    <li><a href="/usp-aero/">All products</a></li>
+    <li><a href="/usp-aero/platform/0.5.x/">Aero Platform</a></li>
+    <li><a href="/usp-aero/waap/0.5.x/" aria-current="true">Aero WAAP</a></li>
+  </ul>
+</div>
+
+
+    
+<div class="usp-picker usp-picker--version">
+  <button class="usp-picker__current" aria-label="Select version">
+    <span class="usp-picker__label">latest</span>
+    <svg class="usp-picker__caret" viewBox="7 10 10 5"><path d="M7 10l5 5 5-5z"/></svg>
+  </button>
+  <ul class="usp-picker__list">
+    <li><a href="/usp-aero/waap/latest/reference/gui/vhosts/rule-engine/" aria-current="true">latest</a></li>
+    <li><a href="/usp-aero/waap/0.5.x/">0.5.x</a></li>
+  </ul>
+</div>
+
+
+    <div class="usp-header__tools">
+      <link rel="stylesheet" href="/usp-aero/pagefind/pagefind-component-ui.css" data-usp-search-bundle>
+<pagefind-config data-usp-search-config></pagefind-config>
+<script>
+  document.querySelector("[data-usp-search-config]").setAttribute("bundle-path",
+    new URL(".", document.querySelector("[data-usp-search-bundle]").href).href);
+</script>
+<script type="module" src="/usp-aero/pagefind/pagefind-component-ui.js"></script><script type="module">
+  window.PagefindComponents.getInstanceManager().getInstance("default")
+    .searchFilters = {"docset":{"any":["waap/latest"]}};
+</script>
+<div class="usp-search">
+  <pagefind-searchbox placeholder="Search" shortcut="/"></pagefind-searchbox>
+</div>
+<div class="usp-search-compact">
+  <pagefind-modal-trigger></pagefind-modal-trigger>
+  <pagefind-modal></pagefind-modal>
+</div>
+
+    </div>
+  </div>
+</header>
+
+    <aside class="usp-banner">
+      You are viewing the documentation under development. It is not a release and can change at any time.
+      <a href="/usp-aero/waap/0.5.x/">Go to the 0.5.x release.</a>
+    </aside>
+    <div class="usp-layout">
+      <div class="usp-nav-wrapper usp-sidebar">
+        <nav class="usp-nav" aria-label="Navigation">
+  <div class="usp-nav__title">USP Aero WAAP documentation</div>
+  <ul>
+    
+<li><a href="/usp-aero/waap/latest/">Welcome</a></li>
+      
+<li><a href="/usp-aero/waap/latest/aero-waap-releasenotes/">Release Notes</a></li>
+      <li class="usp-nav__section">
+  <details>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>Concepts</span>
+    </summary>
+    <ul>
+        
+<li><a href="/usp-aero/waap/latest/concepts/request-flow/">How a request is processed</a></li>
+        
+<li><a href="/usp-aero/waap/latest/concepts/detect-only-mode/">Detect-only mode</a></li>
+        
+<li><a href="/usp-aero/waap/latest/concepts/notes/">Notes</a></li>
+    </ul>
+  </details>
+</li>
+      
+<li><a href="/usp-aero/waap/latest/getting-started/">Getting started</a></li>
+      <li class="usp-nav__section">
+  <details>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>Application integration</span>
+    </summary>
+    <ul>
+        <li class="usp-nav__section">
+  <details>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>TLS</span>
+    </summary>
+    <ul>
+        
+<li><a href="/usp-aero/waap/latest/application-integration/tls/replace-a-certificate/">Replace a certificate</a></li>
+        
+<li><a href="/usp-aero/waap/latest/application-integration/tls/acme/">Automated certificate renewal (ACME)</a></li>
+        
+<li><a href="/usp-aero/waap/latest/application-integration/tls/mtls/">Client Certificate Validation (mTLS)</a></li>
+        
+<li><a href="/usp-aero/waap/latest/application-integration/tls/backend-tls/">Backend TLS connections</a></li>
+    </ul>
+  </details>
+</li>
+        
+<li><a href="/usp-aero/waap/latest/application-integration/header-manipulation/">Header manipulation</a></li>
+        
+<li><a href="/usp-aero/waap/latest/application-integration/cookie-manipulation/">Cookie manipulation</a></li>
+        
+<li><a href="/usp-aero/waap/latest/application-integration/translation/">Rewrite the request path</a></li>
+        
+<li><a href="/usp-aero/waap/latest/application-integration/redirect/">Redirect requests</a></li>
+    </ul>
+  </details>
+</li>
+      <li class="usp-nav__section">
+  <details>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>Protection</span>
+    </summary>
+    <ul>
+        <li class="usp-nav__section">
+  <details>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>Rule Engine</span>
+    </summary>
+    <ul>
+        
+<li><a href="/usp-aero/waap/latest/protection/rule-engine/owasp-top-10/">OWASP Top 10</a></li>
+        
+<li><a href="/usp-aero/waap/latest/protection/rule-engine/virtual-patch/">Virtual patching</a></li>
+        
+<li><a href="/usp-aero/waap/latest/protection/rule-engine/handle-a-crs-false-positive/">Handle a CRS false positive</a></li>
+    </ul>
+  </details>
+</li>
+        
+<li><a href="/usp-aero/waap/latest/protection/ddos-protection/">(D)DoS protection</a></li>
+        
+<li><a href="/usp-aero/waap/latest/protection/header-filtering/">Header filtering</a></li>
+        
+<li><a href="/usp-aero/waap/latest/protection/ip-restrictions/">IP restriction</a></li>
+        
+<li><a href="/usp-aero/waap/latest/protection/request-size-limit/">Limit request size</a></li>
+        
+<li><a href="/usp-aero/waap/latest/protection/repeat-offender/">Repeat offender</a></li>
+        
+<li><a href="/usp-aero/waap/latest/protection/limit-http-methods/">Restrict HTTP Methods</a></li>
+        
+<li><a href="/usp-aero/waap/latest/protection/security-headers/">Security Headers</a></li>
+    </ul>
+  </details>
+</li>
+      <li class="usp-nav__section">
+  <details open>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>Reference</span>
+    </summary>
+    <ul>
+        <li><a href="/usp-aero/waap/latest/reference/">Overview</a></li>
+        <li class="usp-nav__section">
+  <details open>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>GUI</span>
+    </summary>
+    <ul>
+        <li><a href="/usp-aero/waap/latest/reference/gui/">Overview</a></li>
+        <li class="usp-nav__section">
+  <details>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>Listeners</span>
+    </summary>
+    <ul>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/listeners/listeners/">Listeners</a></li>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/listeners/tls/">TLS</a></li>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/listeners/timeouts-and-limits/">Timeouts &amp; Limits</a></li>
+    </ul>
+  </details>
+</li>
+        <li class="usp-nav__section">
+  <details open>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>Virtual Hosts</span>
+    </summary>
+    <ul>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/vhosts/virtual-hosts/">Virtual Hosts</a></li>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/vhosts/rule-engine/" aria-current="page">Rule Engine</a></li>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/vhosts/rate-limiting/">Rate Limiting</a></li>
+        <li class="usp-nav__section">
+  <details>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>Routes</span>
+    </summary>
+    <ul>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/vhosts/routes/routes/">Routes</a></li>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/vhosts/routes/http/">HTTP</a></li>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/vhosts/routes/headers/">Headers</a></li>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/vhosts/routes/cookies/">Cookies</a></li>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/vhosts/routes/access-control/">Access Control</a></li>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/vhosts/routes/translation-and-redirect/">Translation &amp; Redirect</a></li>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/vhosts/routes/timeouts/">Timeouts</a></li>
+    </ul>
+  </details>
+</li>
+    </ul>
+  </details>
+</li>
+        <li class="usp-nav__section">
+  <details>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>Backends</span>
+    </summary>
+    <ul>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/backends/backends/">Backends</a></li>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/backends/health-check/">Health Check</a></li>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/backends/tls/">TLS</a></li>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/backends/timeouts-and-limits/">Timeouts &amp; Limits</a></li>
+    </ul>
+  </details>
+</li>
+        <li class="usp-nav__section">
+  <details>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>Certificates</span>
+    </summary>
+    <ul>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/certificates/certificates-and-keys/">Certificates &amp; Keys</a></li>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/certificates/ca-certificates/">CA Certificates</a></li>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/certificates/acme/">ACME providers</a></li>
+    </ul>
+  </details>
+</li>
+        <li class="usp-nav__section">
+  <details>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>Local Files</span>
+    </summary>
+    <ul>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/local-files/static-content/">Static Content</a></li>
+    </ul>
+  </details>
+</li>
+    </ul>
+  </details>
+</li>
+        
+<li><a href="/usp-aero/waap/latest/reference/header-filtering-classes/">Header Filtering Classes</a></li>
+        
+<li><a href="/usp-aero/waap/latest/reference/tls-settings/">TLS versions, ciphers and algorithms</a></li>
+        
+<li><a href="/usp-aero/waap/latest/reference/value-types/">Value types</a></li>
+        
+<li><a href="/usp-aero/waap/latest/reference/glossary/">Glossary</a></li>
+    </ul>
+  </details>
+</li>
+  </ul>
+</nav>
+
+      </div>
+      <nav class="usp-toc usp-sidebar" aria-label="Table of contents">
+  <div class="usp-toc__title">Table of contents</div>
+  <ul>
+      <li>
+  <a href="#rule-engine-1">Rule Engine</a>
+  <ul>
+      <li>
+  <a href="#request-body-processing">Request Body Processing</a>
+  <ul>
+      <li>
+  <a href="#parseJson">Parse JSON</a>
+</li>
+
+      <li>
+  <a href="#parseXml">Parse XML</a>
+</li>
+
+      <li>
+  <a href="#validateBody">Validate Body - fail on body parsing issues</a>
+</li>
+
+  </ul>
+</li>
+
+      <li>
+  <a href="#request-body-processing-1">Request Body Processing</a>
+  <ul>
+      <li>
+  <a href="#bodyAccess">Body Access</a>
+</li>
+
+      <li>
+  <a href="#bodySizeLimit">Body Size Limit</a>
+</li>
+
+  </ul>
+</li>
+
+      <li>
+  <a href="#debugLogLevel">Debug Log Level</a>
+</li>
+
+  </ul>
+</li>
+
+      <li>
+  <a href="#core-rule-set-crs">Core Rule Set (CRS)</a>
+  <ul>
+      <li>
+  <a href="#coreRuleSetMode">Mode</a>
+</li>
+
+      <li>
+  <a href="#paranoiaLevel">Paranoia Level</a>
+  <ul>
+      <li>
+  <a href="#paranoiaLevelEnforcing">Enforcing</a>
+</li>
+
+      <li>
+  <a href="#paranoiaLevelDetecting">Detecting</a>
+</li>
+
+  </ul>
+</li>
+
+      <li>
+  <a href="#securityLevel">Security Level</a>
+</li>
+
+      <li>
+  <a href="#request-categories">Request categories</a>
+  <ul>
+      <li>
+  <a href="#scannerDetection">Scanner Detection</a>
+</li>
+
+      <li>
+  <a href="#protocolEnforcement">Protocol Enforcement</a>
+</li>
+
+      <li>
+  <a href="#protocolAttack">Protocol Attack</a>
+</li>
+
+      <li>
+  <a href="#multipartAttack">Multipart Attack</a>
+</li>
+
+      <li>
+  <a href="#localFileInclusionAttack">Local File Inclusion Attack</a>
+</li>
+
+      <li>
+  <a href="#remoteFileInclusionAttack">Remote File Inclusion Attack</a>
+</li>
+
+      <li>
+  <a href="#remoteCodeExecutionAttack">Remote Code Execution Attack</a>
+</li>
+
+      <li>
+  <a href="#phpApplicationAttack">PHP Application Attack</a>
+</li>
+
+      <li>
+  <a href="#genericApplicationAttack">Generic Application Attack</a>
+</li>
+
+      <li>
+  <a href="#crossSiteScriptingAttack">Cross Site Scripting (XSS) Attack</a>
+</li>
+
+      <li>
+  <a href="#sqlInjectionAttack">SQL Injection Attack</a>
+</li>
+
+      <li>
+  <a href="#sessionFixationAttack">Session Fixation Attack</a>
+</li>
+
+      <li>
+  <a href="#javaApplicationAttack">Java Application Attack</a>
+</li>
+
+  </ul>
+</li>
+
+      <li>
+  <a href="#request-rule-exceptions">Request Rule Exceptions</a>
+  <ul>
+      <li>
+  <a href="#ruleId">Rules</a>
+</li>
+
+      <li>
+  <a href="#requestPart">Request Part</a>
+</li>
+
+      <li>
+  <a href="#requestPartName">Request Part Name</a>
+</li>
+
+      <li>
+  <a href="#path">Path</a>
+</li>
+
+      <li>
+  <a href="#regExMatcherForPath">Regular Expression matcher for Path</a>
+</li>
+
+      <li>
+  <a href="#comments-request-exception">Comment</a>
+</li>
+
+  </ul>
+</li>
+
+      <li>
+  <a href="#response-categories">Response categories</a>
+  <ul>
+      <li>
+  <a href="#generalDataLeakage">General Data Leakage</a>
+</li>
+
+      <li>
+  <a href="#sqlDataLeakage">SQL Data Leakage</a>
+</li>
+
+      <li>
+  <a href="#javaDataLeakage">Java Data Leakage</a>
+</li>
+
+      <li>
+  <a href="#phpDataLeakage">PHP Data Leakage</a>
+</li>
+
+      <li>
+  <a href="#iisDataLeakage">IIS Data Leakage</a>
+</li>
+
+      <li>
+  <a href="#webShellsDetection">Web Shells Detection</a>
+</li>
+
+      <li>
+  <a href="#rubyDataLeakage">Ruby Data Leakage</a>
+</li>
+
+  </ul>
+</li>
+
+      <li>
+  <a href="#response-rule-exceptions">Response Rule Exceptions</a>
+  <ul>
+      <li>
+  <a href="#ruleId-response">Rules</a>
+</li>
+
+      <li>
+  <a href="#path-response">Path</a>
+</li>
+
+      <li>
+  <a href="#regExMatcherForPath-response">Regular Expression matcher for Path</a>
+</li>
+
+      <li>
+  <a href="#comments-response-exception">Comment</a>
+</li>
+
+  </ul>
+</li>
+
+  </ul>
+</li>
+
+      <li>
+  <a href="#custom-rules">Custom Rules</a>
+  <ul>
+      <li>
+  <a href="#name">Name</a>
+</li>
+
+      <li>
+  <a href="#rule">Rule</a>
+</li>
+
+      <li>
+  <a href="#placeBeforeCoreRuleSet">Before CRS</a>
+</li>
+
+      <li>
+  <a href="#comments-custom-rule">Comment</a>
+</li>
+
+      <li>
+  <a href="#lastEdited-column">Last Edited</a>
+</li>
+
+  </ul>
+</li>
+
+  </ul>
+</nav>
+      <main class="usp-content">
+        
+<nav class="usp-breadcrumb" aria-label="Breadcrumb">
+  <ol>
+    <li><a href="/usp-aero/">USP Aero Suite documentation</a></li>
+    <li>Aero WAAP</li>
+    <li><a href="/usp-aero/waap/latest/">latest</a></li>
+    <li><a href="/usp-aero/waap/latest/reference/">Reference</a></li>
+    <li><a href="/usp-aero/waap/latest/reference/gui/">GUI</a></li>
+    <li>Virtual Hosts</li>
+  </ol>
+</nav>
+<article class="usp-prose" data-pagefind-filter="docset:waap/latest">
+  <h1 id="rule-engine">Rule Engine</h1>
+<p>Scans incoming requests and outgoing responses for attacks using a Core Rule Set, with separate
+settings for the request and the response direction, plus custom rules written in SecLang.</p>
+<h2 id="rule-engine-1">Rule Engine</h2>
+<h3 id="request-body-processing">Request Body Processing</h3>
+<h4 id="parseJson">Parse JSON</h4>
+<p>Enables JSON parsing of the request body, so that the rule engine can inspect its structure.</p>
+<ul>
+<li><strong>Values:</strong> <code>on</code> or <code>off</code></li>
+<li><strong>Default:</strong> <code>off</code></li>
+</ul>
+<h4 id="parseXml">Parse XML</h4>
+<p>Enables XML parsing of the request body, so that the rule engine can inspect its structure.</p>
+<ul>
+<li><strong>Values:</strong> <code>on</code> or <code>off</code></li>
+<li><strong>Default:</strong> <code>off</code></li>
+</ul>
+<h4 id="validateBody">Validate Body - fail on body parsing issues</h4>
+<p>When enabled, a request whose body fails JSON or XML parsing is blocked instead of being passed
+through unparsed.</p>
+<ul>
+<li><strong>Values:</strong> <code>on</code> or <code>off</code></li>
+<li><strong>Default:</strong> <code>off</code></li>
+</ul>
+<h3 id="request-body-processing-1">Request Body Processing</h3>
+<h4 id="bodyAccess">Body Access</h4>
+<p>Allows the rule engine to access the response body. Turning this on reveals the body size limit
+below.</p>
+<ul>
+<li><strong>Values:</strong> <code>on</code> or <code>off</code></li>
+<li><strong>Default:</strong> <code>off</code></li>
+</ul>
+<h4 id="bodySizeLimit">Body Size Limit</h4>
+<p>The maximum size of the response body that will be inspected.</p>
+<ul>
+<li><strong>Values:</strong> a number followed by a unit - <code>B</code>, <code>KB</code>, <code>MB</code>, <code>GB</code> or <code>TB</code> (e.g. <code>10MB</code>) - from 1 byte
+up to 1 GB</li>
+<li><strong>Default:</strong> none</li>
+</ul>
+<h3 id="debugLogLevel">Debug Log Level</h3>
+<p>Sets the debug log level for the rule engine.</p>
+<ul>
+<li><strong>Values:</strong> a whole number from <code>0</code> to <code>9</code></li>
+<li><strong>Default:</strong> <code>0</code></li>
+</ul>
+<h2 id="core-rule-set-crs">Core Rule Set (CRS)</h2>
+<h3 id="coreRuleSetMode">Mode</h3>
+<p>Configures the behavior of the CRS rules:</p>
+<ul>
+<li>
+<p><code>Disabled</code> - the CRS rules are disabled entirely.</p>
+</li>
+<li>
+<p><code>Detect</code> - the request or response content is scanned and detected issues are logged, but nothing
+is blocked.</p>
+</li>
+<li>
+<p><code>Block</code> - the request or response content is scanned and, in case of detected issues, the request
+or response will be blocked.</p>
+</li>
+<li>
+<p><strong>Values:</strong> <code>Disabled</code>, <code>Detect</code>, <code>Block</code></p>
+</li>
+<li>
+<p><strong>Default:</strong> <code>Block</code></p>
+</li>
+</ul>
+<h3 id="paranoiaLevel">Paranoia Level</h3>
+<p>Each rule category is split in up to 4 paranoia levels. The higher the level the more rules are applied,
+making it more difficult for an attacker. But also it's more likely to produce false positives resulting
+in a higher tuning effort!</p>
+<div class="usp-table">
+  <table>
+    <thead>
+      <tr>
+        <th>Paranoia Level</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>1</code>(default)</td>
+        <td>Baseline applicable to all services</td>
+      </tr>
+      <tr>
+        <td><code>2</code></td>
+        <td>Extended baseline for application handling a lot of user inputs. Tuneing will be required.</td>
+      </tr>
+      <tr>
+        <td><code>3</code></td>
+        <td>High security requirement, similar to Online banking. Expect many false positives!</td>
+      </tr>
+      <tr>
+        <td><code>4</code></td>
+        <td>Highest security requirement for the cost of tuning a tremendous amount of false positive</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<h4 id="paranoiaLevelEnforcing">Enforcing</h4>
+<p>The Core Rule Set paranoia level applied while in <code>Block</code> mode.</p>
+<ul>
+<li><strong>Values:</strong> <code>1</code>, <code>2</code>, <code>3</code>, <code>4</code></li>
+<li><strong>Default:</strong> <code>1</code></li>
+</ul>
+<h4 id="paranoiaLevelDetecting">Detecting</h4>
+<p>The Core Rule Set paranoia level applied but not counted towards the block anomaly score.
+This allows to increase the paranoia level in production operation without risking blocks due
+to false positives and without the need to lower the security level.</p>
+<ul>
+<li><strong>Values:</strong> <code>1</code>, <code>2</code>, <code>3</code>, <code>4</code></li>
+<li><strong>Default:</strong> <code>1</code></li>
+</ul>
+<h3 id="securityLevel">Security Level</h3>
+<p>Configures the rule engine's security level on a sliding scale from Loose to Tight.</p>
+<p>Every Core Rule Set rule that matches adds points to the request's or response's
+<a href="https://coreruleset.org/docs/2-how-crs-works/2-1-anomaly_scoring/">anomaly score</a>
+. The security level
+sets the score at which that request or response is blocked: reaching the threshold is enough, the
+score does not have to exceed it. A lower level tolerates more findings before it acts.</p>
+<div class="usp-table">
+  <table>
+    <thead>
+      <tr>
+        <th>Security Level</th>
+        <th>Request threshold</th>
+        <th>Response threshold</th>
+        <th>Critical rule match</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>1</code> (Loose)</td>
+        <td>50</td>
+        <td>40</td>
+        <td>10</td>
+      </tr>
+      <tr>
+        <td><code>2</code></td>
+        <td>25</td>
+        <td>20</td>
+        <td>5</td>
+      </tr>
+      <tr>
+        <td><code>3</code></td>
+        <td>15</td>
+        <td>12</td>
+        <td>3</td>
+      </tr>
+      <tr>
+        <td><code>4</code> (default)</td>
+        <td>10</td>
+        <td>8</td>
+        <td>2</td>
+      </tr>
+      <tr>
+        <td><code>5</code> (Tight)</td>
+        <td>5</td>
+        <td>4</td>
+        <td>1</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<p>A rule of critical severity contributes 5 points to the request score and 4 to the response score, so
+the last column is the number of critical findings a request or response may collect before it is
+blocked. Rules of lower severity contribute fewer points, and several of them can add up to the same
+threshold.</p>
+<p>The thresholds do not change with the Mode: in <code>Detect</code> mode the score is still counted against them
+and a crossing is logged, but nothing is blocked.</p>
+<ul>
+<li><strong>Values:</strong> a whole number from <code>1</code> (Loose) to <code>5</code> (Tight)</li>
+<li><strong>Default:</strong> <code>4</code></li>
+</ul>
+<h3 id="request-categories">Request categories</h3>
+<p>The following options enable or disable Core Rule Set detection for specific request
+attack categories.</p>
+<h4 id="scannerDetection">Scanner Detection</h4>
+<p>Detects requests originating from vulnerability scanners.</p>
+<ul>
+<li><strong>Values:</strong> <code>on</code> or <code>off</code></li>
+<li><strong>Default:</strong> <code>on</code></li>
+</ul>
+<h4 id="protocolEnforcement">Protocol Enforcement</h4>
+<p>Enforces conformance with the HTTP protocol.</p>
+<ul>
+<li><strong>Values:</strong> <code>on</code> or <code>off</code></li>
+<li><strong>Default:</strong> <code>on</code></li>
+</ul>
+<h4 id="protocolAttack">Protocol Attack</h4>
+<p>Detects HTTP protocol-level attacks, such as request smuggling or header injection.</p>
+<ul>
+<li><strong>Values:</strong> <code>on</code> or <code>off</code></li>
+<li><strong>Default:</strong> <code>on</code></li>
+</ul>
+<h4 id="multipartAttack">Multipart Attack</h4>
+<p>Detects attacks against multipart/form-data request bodies.</p>
+<ul>
+<li><strong>Values:</strong> <code>on</code> or <code>off</code></li>
+<li><strong>Default:</strong> <code>on</code></li>
+</ul>
+<h4 id="localFileInclusionAttack">Local File Inclusion Attack</h4>
+<p>Detects attempts to include local files.</p>
+<ul>
+<li><strong>Values:</strong> <code>on</code> or <code>off</code></li>
+<li><strong>Default:</strong> <code>on</code></li>
+</ul>
+<h4 id="remoteFileInclusionAttack">Remote File Inclusion Attack</h4>
+<p>Detects attempts to include remote files.</p>
+<ul>
+<li><strong>Values:</strong> <code>on</code> or <code>off</code></li>
+<li><strong>Default:</strong> <code>on</code></li>
+</ul>
+<h4 id="remoteCodeExecutionAttack">Remote Code Execution Attack</h4>
+<p>Detects attempts to execute code remotely.</p>
+<ul>
+<li><strong>Values:</strong> <code>on</code> or <code>off</code></li>
+<li><strong>Default:</strong> <code>on</code></li>
+</ul>
+<h4 id="phpApplicationAttack">PHP Application Attack</h4>
+<p>Detects attacks specific to PHP applications.</p>
+<ul>
+<li><strong>Values:</strong> <code>on</code> or <code>off</code></li>
+<li><strong>Default:</strong> <code>on</code></li>
+</ul>
+<h4 id="genericApplicationAttack">Generic Application Attack</h4>
+<p>Detects generic application-layer attacks not specific to a particular technology.</p>
+<ul>
+<li><strong>Values:</strong> <code>on</code> or <code>off</code></li>
+<li><strong>Default:</strong> <code>on</code></li>
+</ul>
+<h4 id="crossSiteScriptingAttack">Cross Site Scripting (XSS) Attack</h4>
+<p>Detects cross-site scripting attacks.</p>
+<ul>
+<li><strong>Values:</strong> <code>on</code> or <code>off</code></li>
+<li><strong>Default:</strong> <code>on</code></li>
+</ul>
+<h4 id="sqlInjectionAttack">SQL Injection Attack</h4>
+<p>Detects SQL injection attacks.</p>
+<ul>
+<li><strong>Values:</strong> <code>on</code> or <code>off</code></li>
+<li><strong>Default:</strong> <code>on</code></li>
+</ul>
+<h4 id="sessionFixationAttack">Session Fixation Attack</h4>
+<p>Detects session fixation attacks.</p>
+<ul>
+<li><strong>Values:</strong> <code>on</code> or <code>off</code></li>
+<li><strong>Default:</strong> <code>on</code></li>
+</ul>
+<h4 id="javaApplicationAttack">Java Application Attack</h4>
+<p>Detects attacks specific to Java applications.</p>
+<ul>
+<li><strong>Values:</strong> <code>on</code> or <code>off</code></li>
+<li><strong>Default:</strong> <code>on</code></li>
+</ul>
+<h3 id="request-rule-exceptions">Request Rule Exceptions</h3>
+<p>Exceptions for Core Rule Set rules can be defined to mitigate false
+positives, i.e. valid, legitimate requests being blocked because they get flagged as malicious (which
+is more likely to happen the higher the selected paranoia level is). To create a rule exception,
+click the &quot;+&quot; icon.</p>
+<h4 id="ruleId">Rules</h4>
+<p>The rule set, or individual rule, for which to create the exception.</p>
+<ul>
+<li><strong>Values:</strong> one of the request-phase Core Rule Set categories or rules</li>
+<li><strong>Required:</strong> yes</li>
+</ul>
+<h4 id="requestPart">Request Part</h4>
+<p>The part of the request the exception applies to. Only offered when the selected rule has a fixed
+set of targets to choose from.</p>
+<ul>
+<li><strong>Values:</strong> one of the request parts defined by the selected rule</li>
+<li><strong>Default:</strong> none</li>
+</ul>
+<h4 id="requestPartName">Request Part Name</h4>
+<p>The specific name within the selected request part the exception applies to (e.g. a header name when
+the request part is request headers). Only shown for request parts that take a name.</p>
+<ul>
+<li><strong>Values:</strong> free text</li>
+<li><strong>Default:</strong> none</li>
+</ul>
+<h4 id="path">Path</h4>
+<p>The URI path for which the exception must be used.</p>
+<ul>
+<li><strong>Values:</strong> free text</li>
+<li><strong>Default:</strong> none</li>
+</ul>
+<h4 id="regExMatcherForPath">Regular Expression matcher for Path</h4>
+<p>Enables a regular expression matcher for the path above, instead of matching it literally.</p>
+<ul>
+<li><strong>Values:</strong> <code>on</code> or <code>off</code></li>
+<li><strong>Default:</strong> <code>off</code></li>
+</ul>
+<h4 id="comments-request-exception">Comment</h4>
+<p>Free-text notes stored with the rule exception. They have no effect on request processing.</p>
+<ul>
+<li><strong>Values:</strong> free text</li>
+<li><strong>Default:</strong> none</li>
+</ul>
+<h3 id="response-categories">Response categories</h3>
+<p>The following options enable or disable Core Rule Set detection for specific response
+attack categories.</p>
+<h4 id="generalDataLeakage">General Data Leakage</h4>
+<p>Detects generic sensitive-data leakage in responses.</p>
+<ul>
+<li><strong>Values:</strong> <code>on</code> or <code>off</code></li>
+<li><strong>Default:</strong> <code>off</code></li>
+</ul>
+<h4 id="sqlDataLeakage">SQL Data Leakage</h4>
+<p>Detects SQL-related data leakage in responses.</p>
+<ul>
+<li><strong>Values:</strong> <code>on</code> or <code>off</code></li>
+<li><strong>Default:</strong> <code>off</code></li>
+</ul>
+<h4 id="javaDataLeakage">Java Data Leakage</h4>
+<p>Detects Java-related data leakage in responses, such as stack traces.</p>
+<ul>
+<li><strong>Values:</strong> <code>on</code> or <code>off</code></li>
+<li><strong>Default:</strong> <code>off</code></li>
+</ul>
+<h4 id="phpDataLeakage">PHP Data Leakage</h4>
+<p>Detects PHP-related data leakage in responses.</p>
+<ul>
+<li><strong>Values:</strong> <code>on</code> or <code>off</code></li>
+<li><strong>Default:</strong> <code>off</code></li>
+</ul>
+<h4 id="iisDataLeakage">IIS Data Leakage</h4>
+<p>Detects IIS-related data leakage in responses.</p>
+<ul>
+<li><strong>Values:</strong> <code>on</code> or <code>off</code></li>
+<li><strong>Default:</strong> <code>off</code></li>
+</ul>
+<h4 id="webShellsDetection">Web Shells Detection</h4>
+<p>Detects signs of a web shell in responses.</p>
+<ul>
+<li><strong>Values:</strong> <code>on</code> or <code>off</code></li>
+<li><strong>Default:</strong> <code>off</code></li>
+</ul>
+<h4 id="rubyDataLeakage">Ruby Data Leakage</h4>
+<p>Detects Ruby-related data leakage in responses.</p>
+<ul>
+<li><strong>Values:</strong> <code>on</code> or <code>off</code></li>
+<li><strong>Default:</strong> <code>off</code></li>
+</ul>
+<h3 id="response-rule-exceptions">Response Rule Exceptions</h3>
+<p>Exceptions for Core Rule Set rules applied to the response, defined
+the same way as request rule exceptions.</p>
+<h4 id="ruleId-response">Rules</h4>
+<p>The rule set, or individual rule, for which to create the exception.</p>
+<ul>
+<li><strong>Values:</strong> one of the response-phase Core Rule Set categories or rules</li>
+<li><strong>Required:</strong> yes</li>
+</ul>
+<h4 id="path-response">Path</h4>
+<p>The URI path for which the exception must be used.</p>
+<ul>
+<li><strong>Values:</strong> free text</li>
+<li><strong>Default:</strong> none</li>
+</ul>
+<h4 id="regExMatcherForPath-response">Regular Expression matcher for Path</h4>
+<p>Enables a regular expression matcher for the path above, instead of matching it literally.</p>
+<ul>
+<li><strong>Values:</strong> <code>on</code> or <code>off</code></li>
+<li><strong>Default:</strong> <code>off</code></li>
+</ul>
+<h4 id="comments-response-exception">Comment</h4>
+<p>Free-text notes stored with the rule exception. They have no effect on request processing.</p>
+<ul>
+<li><strong>Values:</strong> free text</li>
+<li><strong>Default:</strong> none</li>
+</ul>
+<h2 id="custom-rules">Custom Rules</h2>
+<p>In addition to the Core Rule Set, custom rules written in SecLang can be defined. Click the &quot;+&quot; icon
+to add one.</p>
+<h3 id="name">Name</h3>
+<p>The name of the rule.</p>
+<ul>
+<li><strong>Values:</strong> free text</li>
+<li><strong>Required:</strong> yes</li>
+</ul>
+<h3 id="rule">Rule</h3>
+<p>The rule expression to evaluate, written in SecLang.</p>
+<ul>
+<li><strong>Values:</strong> free text</li>
+<li><strong>Required:</strong> yes</li>
+</ul>
+<h3 id="placeBeforeCoreRuleSet">Before CRS</h3>
+<p>If switched on, this custom rule will be applied before the Core Rule Set. Otherwise, the Core Rule
+Set is evaluated first.</p>
+<ul>
+<li><strong>Values:</strong> <code>on</code> or <code>off</code></li>
+<li><strong>Default:</strong> <code>off</code></li>
+</ul>
+<h3 id="comments-custom-rule">Comment</h3>
+<p>Free-text notes stored with the custom rule. They have no effect on request processing.</p>
+<ul>
+<li><strong>Values:</strong> free text</li>
+<li><strong>Default:</strong> none</li>
+</ul>
+<h3 id="lastEdited-column">Last Edited</h3>
+<p>When the rule was last saved. Set automatically; not editable.</p>
+
+
+        </article>
+      </main>
+    </div>
+    <footer class="usp-footer">
+  <div class="usp-footer__inner">
+    <div class="usp-footer__copyright">&copy; 2026 United Security Providers AG. All Rights Reserved.</div>
+    <div class="usp-social">
+      <a href="https://www.linkedin.com/company/united-security-providers/" target="_blank" rel="noopener" title="United Security Providers on Linkedin" aria-label="United Security Providers on Linkedin">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zM102.2 96a38.5 38.5 0 1 1 0 77 38.5 38.5 0 1 1 0-77m282.1 320h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+
+      </a>
+      <a href="https://www.youtube.com/@United-security-providersCh" target="_blank" rel="noopener" title="United Security Providers on Youtube" aria-label="United Security Providers on Youtube">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M549.7 124.1c-6.2-23.7-24.8-42.3-48.3-48.6C458.9 64 288.1 64 288.1 64S117.3 64 74.7 75.5c-23.5 6.3-42 24.9-48.3 48.6C15 167 15 256.4 15 256.4s0 89.4 11.4 132.3c6.3 23.6 24.8 41.5 48.3 47.8C117.3 448 288.1 448 288.1 448s170.8 0 213.4-11.5c23.5-6.3 42-24.2 48.3-47.8 11.4-42.9 11.4-132.3 11.4-132.3s0-89.4-11.4-132.3zM232.2 337.6V175.2l142.7 81.2z"/></svg>
+
+      </a>
+    </div>
+  </div>
+</footer>
+
+    <script src="/usp-aero/javascripts/usp-docs.420438fc4f902397b8dba3a2d330491e6b18d703b3126e7f9c5c7dd0d21ca200.js"></script>
+  </body>
+</html>

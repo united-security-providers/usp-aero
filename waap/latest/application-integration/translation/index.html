@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="canonical" href="https://docs.united-security-providers.ch/usp-aero/waap/latest/application-integration/translation/">
+    <meta name="description" content="Installation, configuration and release notes for the USP Aero Suite: the Aero Platform and Aero WAAP.">
+    <link rel="icon" href="/usp-aero/favicon.ico">
+    <title>Rewrite the request path - USP Aero WAAP documentation</title>
+    <link rel="stylesheet" href="/usp-aero/stylesheets/usp-docs.ca38f5293b40da5a5e772d8bd4aeb7e7a79b196eac08ff4b5b50e2573c3ac5c1.css">
+    <link rel="stylesheet" href="/usp-aero/stylesheets/highlight.8ffd1f6914fb6b60dcf36f5b43cb54b0b569b46920e0f6c9223866c1132784f5.css">
+    <link rel="stylesheet" href="/usp-aero/stylesheets/fonts.a423719d8c6b857f394a6c70f0289dc8e250e5ad1e3a465fd9930ea27ac05946.css">
+    <link rel="alternate" type="text/markdown" href="/usp-aero/waap/latest/application-integration/translation/index.md">
+  </head>
+  <body>
+    <p class="usp-agent-note">For AI agents: this documentation is indexed at https://docs.united-security-providers.ch/usp-aero/llms.txt, and every page is available as markdown at its own address plus index.md.</p>
+
+    <input type="checkbox" id="__drawer" autocomplete="off" hidden>
+    <label class="usp-overlay" for="__drawer" aria-hidden="true"></label>
+    <a href="#rewrite-the-request-path" class="usp-skip">Skip to content</a>
+    <header class="usp-header">
+  <div class="usp-header__inner">
+    <label class="usp-header__drawer" for="__drawer" aria-label="Navigation">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+
+    </label>
+    <a class="usp-header__logo" href="/usp-aero/" aria-label="USP Aero WAAP documentation">
+      <img src="/usp-aero/images/USP-Logo-2023-ohne-claim-lang-white1.webp" alt="USP Aero Suite documentation">
+    </a>
+    
+<div class="usp-picker usp-picker--product">
+  <button class="usp-picker__current" aria-label="Select product">
+    <span class="usp-picker__label">Aero WAAP</span>
+    <svg class="usp-picker__caret" viewBox="7 10 10 5"><path d="M7 10l5 5 5-5z"/></svg>
+  </button>
+  <ul class="usp-picker__list">
+    <li><a href="/usp-aero/">All products</a></li>
+    <li><a href="/usp-aero/platform/0.5.x/">Aero Platform</a></li>
+    <li><a href="/usp-aero/waap/0.5.x/" aria-current="true">Aero WAAP</a></li>
+  </ul>
+</div>
+
+
+    
+<div class="usp-picker usp-picker--version">
+  <button class="usp-picker__current" aria-label="Select version">
+    <span class="usp-picker__label">latest</span>
+    <svg class="usp-picker__caret" viewBox="7 10 10 5"><path d="M7 10l5 5 5-5z"/></svg>
+  </button>
+  <ul class="usp-picker__list">
+    <li><a href="/usp-aero/waap/latest/application-integration/translation/" aria-current="true">latest</a></li>
+    <li><a href="/usp-aero/waap/0.5.x/">0.5.x</a></li>
+  </ul>
+</div>
+
+
+    <div class="usp-header__tools">
+      <link rel="stylesheet" href="/usp-aero/pagefind/pagefind-component-ui.css" data-usp-search-bundle>
+<pagefind-config data-usp-search-config></pagefind-config>
+<script>
+  document.querySelector("[data-usp-search-config]").setAttribute("bundle-path",
+    new URL(".", document.querySelector("[data-usp-search-bundle]").href).href);
+</script>
+<script type="module" src="/usp-aero/pagefind/pagefind-component-ui.js"></script><script type="module">
+  window.PagefindComponents.getInstanceManager().getInstance("default")
+    .searchFilters = {"docset":{"any":["waap/latest"]}};
+</script>
+<div class="usp-search">
+  <pagefind-searchbox placeholder="Search" shortcut="/"></pagefind-searchbox>
+</div>
+<div class="usp-search-compact">
+  <pagefind-modal-trigger></pagefind-modal-trigger>
+  <pagefind-modal></pagefind-modal>
+</div>
+
+    </div>
+  </div>
+</header>
+
+    <aside class="usp-banner">
+      You are viewing the documentation under development. It is not a release and can change at any time.
+      <a href="/usp-aero/waap/0.5.x/">Go to the 0.5.x release.</a>
+    </aside>
+    <div class="usp-layout">
+      <div class="usp-nav-wrapper usp-sidebar">
+        <nav class="usp-nav" aria-label="Navigation">
+  <div class="usp-nav__title">USP Aero WAAP documentation</div>
+  <ul>
+    
+<li><a href="/usp-aero/waap/latest/">Welcome</a></li>
+      
+<li><a href="/usp-aero/waap/latest/aero-waap-releasenotes/">Release Notes</a></li>
+      <li class="usp-nav__section">
+  <details>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>Concepts</span>
+    </summary>
+    <ul>
+        
+<li><a href="/usp-aero/waap/latest/concepts/request-flow/">How a request is processed</a></li>
+        
+<li><a href="/usp-aero/waap/latest/concepts/detect-only-mode/">Detect-only mode</a></li>
+        
+<li><a href="/usp-aero/waap/latest/concepts/notes/">Notes</a></li>
+    </ul>
+  </details>
+</li>
+      
+<li><a href="/usp-aero/waap/latest/getting-started/">Getting started</a></li>
+      <li class="usp-nav__section">
+  <details open>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>Application integration</span>
+    </summary>
+    <ul>
+        <li class="usp-nav__section">
+  <details>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>TLS</span>
+    </summary>
+    <ul>
+        
+<li><a href="/usp-aero/waap/latest/application-integration/tls/replace-a-certificate/">Replace a certificate</a></li>
+        
+<li><a href="/usp-aero/waap/latest/application-integration/tls/acme/">Automated certificate renewal (ACME)</a></li>
+        
+<li><a href="/usp-aero/waap/latest/application-integration/tls/mtls/">Client Certificate Validation (mTLS)</a></li>
+        
+<li><a href="/usp-aero/waap/latest/application-integration/tls/backend-tls/">Backend TLS connections</a></li>
+    </ul>
+  </details>
+</li>
+        
+<li><a href="/usp-aero/waap/latest/application-integration/header-manipulation/">Header manipulation</a></li>
+        
+<li><a href="/usp-aero/waap/latest/application-integration/cookie-manipulation/">Cookie manipulation</a></li>
+        
+<li><a href="/usp-aero/waap/latest/application-integration/translation/" aria-current="page">Rewrite the request path</a></li>
+        
+<li><a href="/usp-aero/waap/latest/application-integration/redirect/">Redirect requests</a></li>
+    </ul>
+  </details>
+</li>
+      <li class="usp-nav__section">
+  <details>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>Protection</span>
+    </summary>
+    <ul>
+        <li class="usp-nav__section">
+  <details>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>Rule Engine</span>
+    </summary>
+    <ul>
+        
+<li><a href="/usp-aero/waap/latest/protection/rule-engine/owasp-top-10/">OWASP Top 10</a></li>
+        
+<li><a href="/usp-aero/waap/latest/protection/rule-engine/virtual-patch/">Virtual patching</a></li>
+        
+<li><a href="/usp-aero/waap/latest/protection/rule-engine/handle-a-crs-false-positive/">Handle a CRS false positive</a></li>
+    </ul>
+  </details>
+</li>
+        
+<li><a href="/usp-aero/waap/latest/protection/ddos-protection/">(D)DoS protection</a></li>
+        
+<li><a href="/usp-aero/waap/latest/protection/header-filtering/">Header filtering</a></li>
+        
+<li><a href="/usp-aero/waap/latest/protection/ip-restrictions/">IP restriction</a></li>
+        
+<li><a href="/usp-aero/waap/latest/protection/request-size-limit/">Limit request size</a></li>
+        
+<li><a href="/usp-aero/waap/latest/protection/repeat-offender/">Repeat offender</a></li>
+        
+<li><a href="/usp-aero/waap/latest/protection/limit-http-methods/">Restrict HTTP Methods</a></li>
+        
+<li><a href="/usp-aero/waap/latest/protection/security-headers/">Security Headers</a></li>
+    </ul>
+  </details>
+</li>
+      <li class="usp-nav__section">
+  <details>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>Reference</span>
+    </summary>
+    <ul>
+        <li><a href="/usp-aero/waap/latest/reference/">Overview</a></li>
+        <li class="usp-nav__section">
+  <details>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>GUI</span>
+    </summary>
+    <ul>
+        <li><a href="/usp-aero/waap/latest/reference/gui/">Overview</a></li>
+        <li class="usp-nav__section">
+  <details>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>Listeners</span>
+    </summary>
+    <ul>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/listeners/listeners/">Listeners</a></li>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/listeners/tls/">TLS</a></li>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/listeners/timeouts-and-limits/">Timeouts &amp; Limits</a></li>
+    </ul>
+  </details>
+</li>
+        <li class="usp-nav__section">
+  <details>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>Virtual Hosts</span>
+    </summary>
+    <ul>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/vhosts/virtual-hosts/">Virtual Hosts</a></li>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/vhosts/rule-engine/">Rule Engine</a></li>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/vhosts/rate-limiting/">Rate Limiting</a></li>
+        <li class="usp-nav__section">
+  <details>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>Routes</span>
+    </summary>
+    <ul>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/vhosts/routes/routes/">Routes</a></li>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/vhosts/routes/http/">HTTP</a></li>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/vhosts/routes/headers/">Headers</a></li>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/vhosts/routes/cookies/">Cookies</a></li>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/vhosts/routes/access-control/">Access Control</a></li>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/vhosts/routes/translation-and-redirect/">Translation &amp; Redirect</a></li>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/vhosts/routes/timeouts/">Timeouts</a></li>
+    </ul>
+  </details>
+</li>
+    </ul>
+  </details>
+</li>
+        <li class="usp-nav__section">
+  <details>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>Backends</span>
+    </summary>
+    <ul>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/backends/backends/">Backends</a></li>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/backends/health-check/">Health Check</a></li>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/backends/tls/">TLS</a></li>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/backends/timeouts-and-limits/">Timeouts &amp; Limits</a></li>
+    </ul>
+  </details>
+</li>
+        <li class="usp-nav__section">
+  <details>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>Certificates</span>
+    </summary>
+    <ul>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/certificates/certificates-and-keys/">Certificates &amp; Keys</a></li>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/certificates/ca-certificates/">CA Certificates</a></li>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/certificates/acme/">ACME providers</a></li>
+    </ul>
+  </details>
+</li>
+        <li class="usp-nav__section">
+  <details>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>Local Files</span>
+    </summary>
+    <ul>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/local-files/static-content/">Static Content</a></li>
+    </ul>
+  </details>
+</li>
+    </ul>
+  </details>
+</li>
+        
+<li><a href="/usp-aero/waap/latest/reference/header-filtering-classes/">Header Filtering Classes</a></li>
+        
+<li><a href="/usp-aero/waap/latest/reference/tls-settings/">TLS versions, ciphers and algorithms</a></li>
+        
+<li><a href="/usp-aero/waap/latest/reference/value-types/">Value types</a></li>
+        
+<li><a href="/usp-aero/waap/latest/reference/glossary/">Glossary</a></li>
+    </ul>
+  </details>
+</li>
+  </ul>
+</nav>
+
+      </div>
+      <nav class="usp-toc usp-sidebar" aria-label="Table of contents">
+  <div class="usp-toc__title">Table of contents</div>
+  <ul>
+      <li>
+  <a href="#related">Related</a>
+</li>
+
+  </ul>
+</nav>
+      <main class="usp-content">
+        
+<nav class="usp-breadcrumb" aria-label="Breadcrumb">
+  <ol>
+    <li><a href="/usp-aero/">USP Aero Suite documentation</a></li>
+    <li>Aero WAAP</li>
+    <li><a href="/usp-aero/waap/latest/">latest</a></li>
+    <li>Application integration</li>
+  </ol>
+</nav>
+<article class="usp-prose" data-pagefind-filter="docset:waap/latest">
+  <h1 id="rewrite-the-request-path">Rewrite the request path</h1>
+<p>Request path translation rewrites the path of a request before it is forwarded to the backend. The
+client never sees the rewritten path, it stays in the browser's address bar unchanged, which makes
+this the right tool when an application's URL structure does not match what its backend actually
+serves. If you instead want the client to be sent to a different URL, use <a href="/usp-aero/waap/latest/application-integration/redirect/">Redirect requests</a>
+.</p>
+<ol>
+<li>
+<p>Open the route and go to the <a href="/usp-aero/waap/latest/reference/gui/vhosts/routes/translation-and-redirect/">Translation &amp; Redirect</a>
+ tab.</p>
+</li>
+<li>
+<p>Turn on &quot;Request Path Translation&quot;.</p>
+</li>
+<li>
+<p>Set the <a href="/usp-aero/waap/latest/reference/gui/vhosts/routes/translation-and-redirect/#pattern">Pattern</a>
+: a regular expression matched against the request URI.</p>
+</li>
+<li>
+<p>Set the <a href="/usp-aero/waap/latest/reference/gui/vhosts/routes/translation-and-redirect/#substitution">Substitution</a>
+: the text that replaces the matched part.
+You can reference a group captured by the pattern with <code>\1</code>, <code>\2</code>, and so on.</p>
+<div class="usp-admonition usp-admonition--note">
+    <p class="usp-admonition__title">Important</p>
+    <p>Turning on Request Path Translation turns off Request Redirect on the same route, and vice versa. A
+route can only use one at a time.</p>
+  </div><p>Test the pattern against real request paths. A pattern that matches more broadly than intended
+rewrites paths silently; the client gets no error, but the backend receives a path it does not recognize.</p>
+</li>
+<li>
+<p><a href="/usp-aero/platform/latest/concepts/configuration-lifecycle/">Create a revision and deploy it</a>
+ to
+apply the change.</p>
+</li>
+</ol>
+<h2 id="related">Related</h2>
+<ul>
+<li><a href="/usp-aero/waap/latest/reference/gui/vhosts/routes/translation-and-redirect/">Translation &amp; Redirect</a>
+: pattern and
+substitution field limits</li>
+<li><a href="/usp-aero/waap/latest/application-integration/redirect/">Redirect requests</a>
+: sending the client to a different URL instead of rewriting the
+path internally</li>
+</ul>
+
+
+        </article>
+      </main>
+    </div>
+    <footer class="usp-footer">
+  <div class="usp-footer__inner">
+    <div class="usp-footer__copyright">&copy; 2026 United Security Providers AG. All Rights Reserved.</div>
+    <div class="usp-social">
+      <a href="https://www.linkedin.com/company/united-security-providers/" target="_blank" rel="noopener" title="United Security Providers on Linkedin" aria-label="United Security Providers on Linkedin">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zM102.2 96a38.5 38.5 0 1 1 0 77 38.5 38.5 0 1 1 0-77m282.1 320h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+
+      </a>
+      <a href="https://www.youtube.com/@United-security-providersCh" target="_blank" rel="noopener" title="United Security Providers on Youtube" aria-label="United Security Providers on Youtube">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M549.7 124.1c-6.2-23.7-24.8-42.3-48.3-48.6C458.9 64 288.1 64 288.1 64S117.3 64 74.7 75.5c-23.5 6.3-42 24.9-48.3 48.6C15 167 15 256.4 15 256.4s0 89.4 11.4 132.3c6.3 23.6 24.8 41.5 48.3 47.8C117.3 448 288.1 448 288.1 448s170.8 0 213.4-11.5c23.5-6.3 42-24.2 48.3-47.8 11.4-42.9 11.4-132.3 11.4-132.3s0-89.4-11.4-132.3zM232.2 337.6V175.2l142.7 81.2z"/></svg>
+
+      </a>
+    </div>
+  </div>
+</footer>
+
+    <script src="/usp-aero/javascripts/usp-docs.420438fc4f902397b8dba3a2d330491e6b18d703b3126e7f9c5c7dd0d21ca200.js"></script>
+  </body>
+</html>

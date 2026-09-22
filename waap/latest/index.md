@@ -5,25 +5,48 @@
 USP Aero WAAP (Web Application and API Protection) provides secure access to web-based applications and resources,
 while simplifying the process of configuration and deployment.
 
-## Overview
+It sits in front of the applications you publish and terminates the client connection: it accepts
+the request, decides which application it belongs to, inspects it, applies the limits and restrictions
+you configured, and only then forwards it to the application server. Responses pass back through the
+same path, which is where the response headers a browser relies on are set.
 
-For hardware or virtual appliance deployments we provide the Aero WAAP ISO installer which installs the FedoraCoreOS
-base and bootstraps the Aero WAAP container services.
+Everything is configured in the management GUI and takes effect when you deploy a configuration
+revision.
 
-![Aero WAAP Overview](assets/images/core-waap-illustration1.png)
+## Where to go next
 
-## Configuring Aero WAAP
-
-Aero WAAP provides a sophisticated web-based GUI:
-
-![Aero WAAP Overview](assets/images/aero-waap-mgmt-ui.png)
-
-## Getting Started
-
-To install the Aero WAAP service, follow the installation instructions for the Aero platform:
-
-* https://docs.united-security-providers.ch/usp-aero/platform/installation.html
+* [Release Notes](aero-waap-releasenotes)
+* Concepts: how a request is processed
+* [Getting started](getting-started): publish a first web application, end to end
+* Task-oriented guides:
+  * Application integration: fitting Aero WAAP into an application's URLs, headers, cookies and TLS
+  * Application protection: the rule engine, and the limits and restrictions that
+    keep unwanted traffic away from the application
+* [Reference](reference/): every screen and every setting of the management GUI
 
 ## Pages
 
 - [Aero WAAP Release Notes](https://docs.united-security-providers.ch/usp-aero/waap/latest/aero-waap-releasenotes/index.md)
+- [How a request is processed](https://docs.united-security-providers.ch/usp-aero/waap/latest/concepts/request-flow/index.md)
+- [Detect-/Log-only mode](https://docs.united-security-providers.ch/usp-aero/waap/latest/concepts/detect-only-mode/index.md)
+- [Keeping the configuration documented](https://docs.united-security-providers.ch/usp-aero/waap/latest/concepts/notes/index.md)
+- [Getting started](https://docs.united-security-providers.ch/usp-aero/waap/latest/getting-started/index.md)
+- [Replace a certificate](https://docs.united-security-providers.ch/usp-aero/waap/latest/application-integration/tls/replace-a-certificate/index.md)
+- [Automated certificate renewal (ACME)](https://docs.united-security-providers.ch/usp-aero/waap/latest/application-integration/tls/acme/index.md)
+- [Client Certificate Validation (mTLS)](https://docs.united-security-providers.ch/usp-aero/waap/latest/application-integration/tls/mtls/index.md)
+- [Backend TLS connections](https://docs.united-security-providers.ch/usp-aero/waap/latest/application-integration/tls/backend-tls/index.md)
+- [Header manipulation](https://docs.united-security-providers.ch/usp-aero/waap/latest/application-integration/header-manipulation/index.md)
+- [Cookie manipulation](https://docs.united-security-providers.ch/usp-aero/waap/latest/application-integration/cookie-manipulation/index.md)
+- [Rewrite the request path](https://docs.united-security-providers.ch/usp-aero/waap/latest/application-integration/translation/index.md)
+- [Redirect requests](https://docs.united-security-providers.ch/usp-aero/waap/latest/application-integration/redirect/index.md)
+- [OWASP Top 10](https://docs.united-security-providers.ch/usp-aero/waap/latest/protection/rule-engine/owasp-top-10/index.md)
+- [Virtual patching](https://docs.united-security-providers.ch/usp-aero/waap/latest/protection/rule-engine/virtual-patch/index.md)
+- [Handle a CRS false positive](https://docs.united-security-providers.ch/usp-aero/waap/latest/protection/rule-engine/handle-a-crs-false-positive/index.md)
+- [(D)DoS protection](https://docs.united-security-providers.ch/usp-aero/waap/latest/protection/ddos-protection/index.md)
+- [Header filtering](https://docs.united-security-providers.ch/usp-aero/waap/latest/protection/header-filtering/index.md)
+- [IP restriction](https://docs.united-security-providers.ch/usp-aero/waap/latest/protection/ip-restrictions/index.md)
+- [Limit request size](https://docs.united-security-providers.ch/usp-aero/waap/latest/protection/request-size-limit/index.md)
+- [Repeat offender](https://docs.united-security-providers.ch/usp-aero/waap/latest/protection/repeat-offender/index.md)
+- [Restrict HTTP Methods](https://docs.united-security-providers.ch/usp-aero/waap/latest/protection/limit-http-methods/index.md)
+- [Security Headers](https://docs.united-security-providers.ch/usp-aero/waap/latest/protection/security-headers/index.md)
+- [Reference](https://docs.united-security-providers.ch/usp-aero/waap/latest/reference/index.md)

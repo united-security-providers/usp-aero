@@ -2,24 +2,28 @@
 
 # USP Aero Platform
 
-The USP Aero Platform is based on Fedora CoreOS and provides a flexible, extensible container-based environment for
-running several security-related components and services.
+The **USP Aero Platform** is based on Fedora CoreOS and provides a flexible, extensible container-based environment for
+running several components and services.
 
 It allows to install different versions / releases of different security components as the need arises,
 independent of which release was originally installed.
 
-* Ease-of-use: The platform allows an easy setup and regular (automated) updates to ensure a low cost of operations but also ensures to keep up to date with software components and allows to fix vulnerabilities in an efficient and timely manner.
-* Ease-of-Integration: Todays security components must be integrated in the overall IT system, like IDM, SIEM, etc.
-  Therefore, the Aero Platform allows for easy integration with systems like AD/LDAP or OIDC OP for management access,
-  SIEM for Log analysis, Prometheus etc. for monitoring.
-* Versatility and extensibility: The Aero platform can be seamlessly extended with several component (WAAP reverse proxy, WAAP Authenticate, ***TODO*** ) and future component that will provide new functionality.
+## Where to go next
+
+* [Release Notes](aero-platform-releasenotes)
+* [Installation](install/overview): requirements and how to install and setup the platform
+* [Concepts](concepts/gui-overview): the management GUI and how a configuration change becomes active
+* [Operations](operations/): guides on how to use and operate the platform
+* [Reference](reference/): detailed description for each view and every setting
 
 ## Pages
 
 - [Aero Platform Release Notes](https://docs.united-security-providers.ch/usp-aero/platform/latest/aero-platform-releasenotes/index.md)
-- [Installation](https://docs.united-security-providers.ch/usp-aero/platform/latest/install/overview/index.md)
-- [Requirements](https://docs.united-security-providers.ch/usp-aero/platform/latest/install/requirements/index.md)
-- [Download](https://docs.united-security-providers.ch/usp-aero/platform/latest/install/download/index.md)
-- [Setup](https://docs.united-security-providers.ch/usp-aero/platform/latest/install/installation/index.md)
-- [Console menu](https://docs.united-security-providers.ch/usp-aero/platform/latest/install/console/index.md)
+- [System Requirements](https://docs.united-security-providers.ch/usp-aero/platform/latest/install/requirements/index.md)
+- [Installing from ISO](https://docs.united-security-providers.ch/usp-aero/platform/latest/install/installation/index.md)
 - [First-time setup wizard](https://docs.united-security-providers.ch/usp-aero/platform/latest/install/firsttimewizard/index.md)
+- [Management GUI overview](https://docs.united-security-providers.ch/usp-aero/platform/latest/concepts/gui-overview/index.md)
+- [Configuration lifecycle](https://docs.united-security-providers.ch/usp-aero/platform/latest/concepts/configuration-lifecycle/index.md)
+- [Roles and permissions](https://docs.united-security-providers.ch/usp-aero/platform/latest/concepts/roles-and-permissions/index.md)
+- [Operations](https://docs.united-security-providers.ch/usp-aero/platform/latest/operations/index.md)
+- [Reference](https://docs.united-security-providers.ch/usp-aero/platform/latest/reference/index.md)
