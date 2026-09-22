@@ -74,7 +74,6 @@ This is the first official release allowing to get familiar with how the platfor
 
 * ACME `key type` is ignored
 * Backend load-balancing `Consisten Hash` doesn't work as expected
-* 
 
 ## 0.5.0 - 2026-06-03
 
