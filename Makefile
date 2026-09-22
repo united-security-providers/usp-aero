@@ -25,6 +25,12 @@ RELEASE_PRODUCT = $(firstword $(subst /, ,$(RELEASE)))
 RELEASE_VERSION = $(word 2,$(subst /, ,$(RELEASE)))
 RELEASE_EXTRA = $(word 3,$(subst /, ,$(RELEASE)))
 
+IN_PRODUCT = $(firstword $(subst /, ,$(IN)))
+IN_VERSION = $(word 2,$(subst /, ,$(IN)))
+TO_PRODUCT = $(firstword $(subst /, ,$(TO)))
+TO_VERSION = $(word 2,$(subst /, ,$(TO)))
+XREF = $(TO_PRODUCT)/($(DEV_VERSION)|[0-9][^/)"\#[:space:]]*)
+
 .PHONY: download-tools
 download-tools: $(HUGO) $(PAGEFIND) $(LYCHEE)
 
@@ -124,6 +130,26 @@ prepare-release:
 	  { echo "Already exists: content/en/$(RELEASE)"; exit 1; }
 	@cp -r content/en/$(RELEASE_PRODUCT)/$(DEV_VERSION) content/en/$(RELEASE)
 	@echo "Froze content/en/$(RELEASE_PRODUCT)/$(DEV_VERSION) as content/en/$(RELEASE)."
+
+.PHONY: update-cross-reference
+update-cross-reference:
+	@{ test -n "$(IN_VERSION)" && test -n "$(TO_VERSION)"; } || \
+	  { echo "Usage: make update-cross-reference IN=<product>/<version> TO=<product>/<version>,"; \
+	    echo "for example IN=waap/1.0.x TO=platform/1.0.x"; exit 1; }
+	@test "$(IN_PRODUCT)" != "$(TO_PRODUCT)" || \
+	  { echo "$(IN_PRODUCT) cannot cross-reference itself"; exit 1; }
+	@test -d content/en/$(IN) || { echo "No such documentation: content/en/$(IN)"; exit 1; }
+	@test -d content/en/$(TO) || { echo "No such documentation: content/en/$(TO)"; exit 1; }
+	@files=$$(grep -rlE '$(XREF)' content/en/$(IN) --include='*.md'); \
+	if [ -z "$$files" ]; then \
+	  echo "Nothing in content/en/$(IN) refers to $(TO_PRODUCT)."; exit 0; \
+	fi; \
+	for f in $$files; do \
+	  n=$$(grep -oE '$(XREF)' "$$f" | grep -cv '/$(TO_VERSION)$$' || true); \
+	  sed -i -E 's@$(XREF)@$(TO_PRODUCT)/$(TO_VERSION)@g' "$$f"; \
+	  test "$$n" -eq 0 || echo "  $$f ($$n)"; \
+	done; \
+	echo "The $(TO_PRODUCT) references in content/en/$(IN) now point at $(TO_VERSION)."
 
 .PHONY: clean
 clean:

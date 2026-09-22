@@ -85,8 +85,18 @@ A release must not link to latest; it is still changing.
 
 The link resolves - that is why the link checker says nothing about it - but a
 frozen release must not point at documentation still under development, in its own
-component or any other. Link to the matching release of that component instead, or
-restate on the page whatever the reader needed.
+component or any other.
+
+Where a whole release points at another component's `latest`, which is what a
+fresh `make prepare-release` leaves behind, repoint it in one go:
+
+```bash
+make update-cross-reference IN=waap/1.0.x TO=platform/1.0.x
+```
+
+That rewrites only the version segment of each link, keeps the relative depth, and
+is safe to re-run. Otherwise, fix the link by hand, or restate on the page whatever
+the reader needed.
 
 `latest` itself is exempt, and only the prose is examined, so the version selector
 and the navigation do not trip it. The rule lives in `scripts/frozen-links.awk`.
