@@ -2,4 +2,4 @@ module github.com/united-security-providers/usp-aero
 
 go 1.26.7
 
-require github.com/united-security-providers/usp-docs-hugo-theme v0.5.0
+require github.com/united-security-providers/usp-docs-hugo-theme v0.4.0
