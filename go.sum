@@ -1,10 +1,2 @@
-github.com/united-security-providers/usp-docs-hugo-theme v0.1.0 h1:lA1lZWx4H31x3eq2B/EWHzszBll5sSrr1GCCBneMe0w=
-github.com/united-security-providers/usp-docs-hugo-theme v0.1.0/go.mod h1:rwZtLjkPqosYMbjPqx3W2vNSHWS/oFqBnqJo0MM9IUQ=
-github.com/united-security-providers/usp-docs-hugo-theme v0.2.0 h1:qGMdjKjc2LNshRo3ZxqosDkk/6UqgP6gLvBQsqsNMTU=
-github.com/united-security-providers/usp-docs-hugo-theme v0.2.0/go.mod h1:rwZtLjkPqosYMbjPqx3W2vNSHWS/oFqBnqJo0MM9IUQ=
-github.com/united-security-providers/usp-docs-hugo-theme v0.3.0 h1:9v0aTxqYnVByKdQQMhwmr0oDjB3CQQd0MPYI6g7m0Ko=
-github.com/united-security-providers/usp-docs-hugo-theme v0.3.0/go.mod h1:rwZtLjkPqosYMbjPqx3W2vNSHWS/oFqBnqJo0MM9IUQ=
-github.com/united-security-providers/usp-docs-hugo-theme v0.3.1 h1:Dxjf54iXjk4dDW8G08zMnE7KWycUfXJgpipZq5AuHUM=
-github.com/united-security-providers/usp-docs-hugo-theme v0.3.1/go.mod h1:rwZtLjkPqosYMbjPqx3W2vNSHWS/oFqBnqJo0MM9IUQ=
-github.com/united-security-providers/usp-docs-hugo-theme v0.4.0 h1:IG3N81mdwLn9uuCdhspjIKtjxsVfo+mr2yhs8owG8Yo=
-github.com/united-security-providers/usp-docs-hugo-theme v0.4.0/go.mod h1:rwZtLjkPqosYMbjPqx3W2vNSHWS/oFqBnqJo0MM9IUQ=
+github.com/united-security-providers/usp-docs-hugo-theme v0.6.0 h1:pEHqzI48huHCDlVR9qQepeI8TStFM8rxeckLJ4xoKbw=
+github.com/united-security-providers/usp-docs-hugo-theme v0.6.0/go.mod h1:rwZtLjkPqosYMbjPqx3W2vNSHWS/oFqBnqJo0MM9IUQ=
