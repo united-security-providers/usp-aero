@@ -7,7 +7,7 @@
     <meta name="description" content="Installation, configuration and release notes for the USP Aero Suite: the Aero Platform and Aero WAAP.">
     <link rel="icon" href="/usp-aero/favicon.ico">
     <title>Rule Engine - USP Aero WAAP documentation</title>
-    <link rel="stylesheet" href="/usp-aero/stylesheets/usp-docs.ca38f5293b40da5a5e772d8bd4aeb7e7a79b196eac08ff4b5b50e2573c3ac5c1.css">
+    <link rel="stylesheet" href="/usp-aero/stylesheets/usp-docs.65ec41a132b70ffc2bd4b17a4dea8dd262f9ca31a22c29647c0b47711492f6ef.css">
     <link rel="stylesheet" href="/usp-aero/stylesheets/highlight.8ffd1f6914fb6b60dcf36f5b43cb54b0b569b46920e0f6c9223866c1132784f5.css">
     <link rel="stylesheet" href="/usp-aero/stylesheets/fonts.a423719d8c6b857f394a6c70f0289dc8e250e5ad1e3a465fd9930ea27ac05946.css">
     <link rel="alternate" type="text/markdown" href="/usp-aero/waap/latest/reference/gui/vhosts/rule-engine/index.md">
@@ -651,33 +651,64 @@ making it more difficult for an attacker. But also it's more likely to produce f
 in a higher tuning effort!</p>
 <div class="usp-table">
   <table>
-    <thead>
-      <tr>
-        <th>Paranoia Level</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><code>1</code>(default)</td>
-        <td>Baseline applicable to all services</td>
-      </tr>
-      <tr>
-        <td><code>2</code></td>
-        <td>Extended baseline for application handling a lot of user inputs. Tuneing will be required.</td>
-      </tr>
-      <tr>
-        <td><code>3</code></td>
-        <td>High security requirement, similar to Online banking. Expect many false positives!</td>
-      </tr>
-      <tr>
-        <td><code>4</code></td>
-        <td>Highest security requirement for the cost of tuning a tremendous amount of false positive</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-<h4 id="paranoiaLevelEnforcing">Enforcing</h4>
+  <thead>
+    <tr>
+      <th>Paranoia Level</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>1</code>(default)</td>
+      <td>Baseline applicable to all services</td>
+    </tr>
+    <tr>
+      <td><code>2</code></td>
+      <td>Extended baseline for application handling a lot of user inputs. Tuneing will be required.</td>
+    </tr>
+    <tr>
+      <td><code>3</code></td>
+      <td>High security requirement, similar to Online banking. Expect many false positives!</td>
+    </tr>
+    <tr>
+      <td><code>4</code></td>
+      <td>Highest security requirement for the cost of tuning a tremendous amount of false positive</td>
+    </tr>
+  </tbody>
+</table>
+  <button type="button" class="usp-table__expand" popovertarget="usp-zoom-table-0" aria-label="Expand table">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 4h6v2H6v4H4V4zm10 0h6v6h-2V6h-4V4zM4 14h2v4h4v2H4v-6zm16 0v6h-6v-2h4v-4h2z"/></svg>
+  </button>
+  <div id="usp-zoom-table-0" class="usp-lightbox" popover data-pagefind-ignore>
+    <button type="button" class="usp-lightbox__close" popovertarget="usp-zoom-table-0" popovertargetaction="hide" aria-label="Close">&times;</button>
+    <table>
+  <thead>
+    <tr>
+      <th>Paranoia Level</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>1</code>(default)</td>
+      <td>Baseline applicable to all services</td>
+    </tr>
+    <tr>
+      <td><code>2</code></td>
+      <td>Extended baseline for application handling a lot of user inputs. Tuneing will be required.</td>
+    </tr>
+    <tr>
+      <td><code>3</code></td>
+      <td>High security requirement, similar to Online banking. Expect many false positives!</td>
+    </tr>
+    <tr>
+      <td><code>4</code></td>
+      <td>Highest security requirement for the cost of tuning a tremendous amount of false positive</td>
+    </tr>
+  </tbody>
+</table>
+  </div>
+</div><h4 id="paranoiaLevelEnforcing">Enforcing</h4>
 <p>The Core Rule Set paranoia level applied while in <code>Block</code> mode.</p>
 <ul>
 <li><strong>Values:</strong> <code>1</code>, <code>2</code>, <code>3</code>, <code>4</code></li>
@@ -694,55 +725,102 @@ to false positives and without the need to lower the security level.</p>
 <h3 id="securityLevel">Security Level</h3>
 <p>Configures the rule engine's security level on a sliding scale from Loose to Tight.</p>
 <p>Every Core Rule Set rule that matches adds points to the request's or response's
-<a href="https://coreruleset.org/docs/2-how-crs-works/2-1-anomaly_scoring/">anomaly score</a>
+<a href="https://coreruleset.org/docs/2-how-crs-works/2-1-anomaly_scoring/" target="_blank" rel="noopener">anomaly score</a>
 . The security level
 sets the score at which that request or response is blocked: reaching the threshold is enough, the
 score does not have to exceed it. A lower level tolerates more findings before it acts.</p>
 <div class="usp-table">
   <table>
-    <thead>
-      <tr>
-        <th>Security Level</th>
-        <th>Request threshold</th>
-        <th>Response threshold</th>
-        <th>Critical rule match</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><code>1</code> (Loose)</td>
-        <td>50</td>
-        <td>40</td>
-        <td>10</td>
-      </tr>
-      <tr>
-        <td><code>2</code></td>
-        <td>25</td>
-        <td>20</td>
-        <td>5</td>
-      </tr>
-      <tr>
-        <td><code>3</code></td>
-        <td>15</td>
-        <td>12</td>
-        <td>3</td>
-      </tr>
-      <tr>
-        <td><code>4</code> (default)</td>
-        <td>10</td>
-        <td>8</td>
-        <td>2</td>
-      </tr>
-      <tr>
-        <td><code>5</code> (Tight)</td>
-        <td>5</td>
-        <td>4</td>
-        <td>1</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-<p>A rule of critical severity contributes 5 points to the request score and 4 to the response score, so
+  <thead>
+    <tr>
+      <th>Security Level</th>
+      <th>Request threshold</th>
+      <th>Response threshold</th>
+      <th>Critical rule match</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>1</code> (Loose)</td>
+      <td>50</td>
+      <td>40</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <td><code>2</code></td>
+      <td>25</td>
+      <td>20</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <td><code>3</code></td>
+      <td>15</td>
+      <td>12</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td><code>4</code> (default)</td>
+      <td>10</td>
+      <td>8</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td><code>5</code> (Tight)</td>
+      <td>5</td>
+      <td>4</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+  <button type="button" class="usp-table__expand" popovertarget="usp-zoom-table-1" aria-label="Expand table">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 4h6v2H6v4H4V4zm10 0h6v6h-2V6h-4V4zM4 14h2v4h4v2H4v-6zm16 0v6h-6v-2h4v-4h2z"/></svg>
+  </button>
+  <div id="usp-zoom-table-1" class="usp-lightbox" popover data-pagefind-ignore>
+    <button type="button" class="usp-lightbox__close" popovertarget="usp-zoom-table-1" popovertargetaction="hide" aria-label="Close">&times;</button>
+    <table>
+  <thead>
+    <tr>
+      <th>Security Level</th>
+      <th>Request threshold</th>
+      <th>Response threshold</th>
+      <th>Critical rule match</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>1</code> (Loose)</td>
+      <td>50</td>
+      <td>40</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <td><code>2</code></td>
+      <td>25</td>
+      <td>20</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <td><code>3</code></td>
+      <td>15</td>
+      <td>12</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td><code>4</code> (default)</td>
+      <td>10</td>
+      <td>8</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td><code>5</code> (Tight)</td>
+      <td>5</td>
+      <td>4</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+  </div>
+</div><p>A rule of critical severity contributes 5 points to the request score and 4 to the response score, so
 the last column is the number of critical findings a request or response may collect before it is
 blocked. Rules of lower severity contribute fewer points, and several of them can add up to the same
 threshold.</p>
