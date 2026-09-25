@@ -11,13 +11,14 @@ If such a header is needed for proper functionality (and hence cannot be filtere
 header validation can be turned off per header as follows:
 
 1. Open the virtual host and go to the Rule Engine tab.
-2. Enter the names of headers to ignore during validation (case-insensitive).
+2. In the Header Validation section, click the "+" icon and enter the header to except
+   (header names are case-insensitive), optionally with a comment saying why it is needed.
 
-A refined approach is to set the feature first to detect and grep corresponding log entries.
-Note that for each header there are two validations, one with a  regular expression
-and one for the maximal length.
+A refined approach is to set the mode first to detect and grep corresponding log entries.
+Note that for each header there are two validations, one for the syntax and one for the
+maximal length.
 It is possible to exclude just one of the two checks from validation,
-for example with `Accept-Charset/regex` or `Accept-Charset/length`.
+for example with `Accept-Charset/syntax` or `Accept-Charset/length`.
 
 ## Related
 
