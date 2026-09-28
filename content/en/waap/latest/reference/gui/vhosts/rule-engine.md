@@ -403,3 +403,48 @@ Free-text notes stored with the custom rule. They have no effect on request proc
 ### Last Edited {#lastEdited-column}
 
 When the rule was last saved. Set automatically; not editable.
+
+## Header Validation
+
+Independently of the Core Rule Set, incoming request headers are checked against their respective
+standards, both for their length and for their syntax. Header validation is configured per virtual
+host and cannot be overridden per route. See
+[Header validation](../../../protection/rule-engine/header-validation) for how to find the headers
+an application needs excepted.
+
+### Mode {#mode}
+
+Configures how a failed header validation is handled.
+
+- **Values:**
+  - `Disabled` - headers are not validated
+  - `Detect` - failed validations are logged, but the request is not blocked
+  - `Block` - requests with a failed header validation are blocked
+- **Default:** `Block`
+
+### Exceptions
+
+Individual headers can be excluded from validation, to keep legitimate requests from being blocked.
+Click the "+" icon to add one.
+
+#### Exception {#exception}
+
+The header to exclude, in one of three notations: `Accept-Charset` excludes the header from both
+checks, `Accept-Charset/length` excludes only the length check and `Accept-Charset/syntax` only the
+syntax check. Header names are case-insensitive, so the same header cannot be excepted twice in a
+different case; the suffix is case-sensitive and must be written in lower case.
+
+- **Values:** text of at most 263 characters, a header name optionally followed by `/length` or
+  `/syntax`. A header name consists of letters, digits and the characters `` !#$%&'*+.^_`|~- ``
+- **Required:** yes
+
+#### Comment {#comments-header-validation}
+
+Free-text notes stored with the exception. They have no effect on request processing.
+
+- **Values:** free text
+- **Default:** none
+
+#### Last Edited {#lastEdited-header-validation}
+
+When the exception was last saved. Set automatically; not editable.
