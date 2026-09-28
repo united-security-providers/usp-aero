@@ -42,6 +42,7 @@ revision.
 - [OWASP Top 10](https://docs.united-security-providers.ch/usp-aero/waap/latest/protection/rule-engine/owasp-top-10/index.md)
 - [Virtual patching](https://docs.united-security-providers.ch/usp-aero/waap/latest/protection/rule-engine/virtual-patch/index.md)
 - [Handle a CRS false positive](https://docs.united-security-providers.ch/usp-aero/waap/latest/protection/rule-engine/handle-a-crs-false-positive/index.md)
+- [Header validation](https://docs.united-security-providers.ch/usp-aero/waap/latest/protection/rule-engine/header-validation/index.md)
 - [(D)DoS protection](https://docs.united-security-providers.ch/usp-aero/waap/latest/protection/ddos-protection/index.md)
 - [Header filtering](https://docs.united-security-providers.ch/usp-aero/waap/latest/protection/header-filtering/index.md)
 - [IP restriction](https://docs.united-security-providers.ch/usp-aero/waap/latest/protection/ip-restrictions/index.md)
