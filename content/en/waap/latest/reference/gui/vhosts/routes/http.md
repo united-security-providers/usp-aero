@@ -22,10 +22,12 @@ right. Move methods left and right as desired and save.
 
 ### Maximum payload size {#bodySizeLimit}
 
-The maximum size of the request body that will be inspected.
+The maximum size of the request body this route accepts. A request with a larger body is rejected
+with status code `413`.
 
 - **Values:** a number followed by a unit `B`, `KB`, `MB`, `GB` or `TB` (e.g. `10KB`), from 1 byte
-  up to 1 GB
+  up to 1 GB. Units are multiples of 1024, so `1KB` is 1024 bytes. The 1 GB maximum only applies
+  while the rule engine inspects the body.
 - **Default:** `10kb`
 - **Required:** yes
 
