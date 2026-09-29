@@ -53,7 +53,10 @@ CPU use under load. Raise it only on the routes that need it.
 Open the backend and go to [Timeouts & Limits](../reference/gui/backends/timeouts-and-limits). The
 Circuit Breaking values cap the connections, queued requests and parallel requests passed on to the
 backend. Requests beyond them are answered by Aero WAAP itself, so an overloaded backend is not
-pushed further into failure. On each route, the
+pushed further into failure. The
+[Connection Timeout](../reference/gui/backends/timeouts-and-limits#connectionTimeout) bounds how
+long Aero WAAP keeps trying to connect to an endpoint that does not accept connections, so requests
+do not pile up waiting for a backend that cannot be reached. On each route, the
 [Route Total Upstream Timeout](../reference/gui/vhosts/routes/timeouts) ends a request the backend
 does not answer in time.
 
@@ -97,7 +100,8 @@ stay incomplete and how many may exist at once:
   requests is blocked outright by Repeat Offender Detection, before it accumulates further cost on
   the backend.
 - **Backend overload**: circuit breaking rejects requests beyond what the backend is allowed to
-  handle, and the route's upstream timeout ends requests the backend is too slow to answer.
+  handle, the backend's connection timeout gives up on endpoints that do not accept connections, and
+  the route's upstream timeout ends requests the backend is too slow to answer.
 
 ## What these settings do not stop
 
