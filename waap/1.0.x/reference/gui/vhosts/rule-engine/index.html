@@ -161,8 +161,6 @@
 <li><a href="/usp-aero/waap/1.0.x/protection/rule-engine/virtual-patch/">Virtual patching</a></li>
         
 <li><a href="/usp-aero/waap/1.0.x/protection/rule-engine/handle-a-crs-false-positive/">Handle a CRS false positive</a></li>
-        
-<li><a href="/usp-aero/waap/1.0.x/protection/rule-engine/header-validation/">Header validation</a></li>
     </ul>
   </details>
 </li>
@@ -557,34 +555,6 @@
 
       <li>
   <a href="#lastEdited-column">Last Edited</a>
-</li>
-
-  </ul>
-</li>
-
-      <li>
-  <a href="#header-validation">Header Validation</a>
-  <ul>
-      <li>
-  <a href="#mode">Mode</a>
-</li>
-
-      <li>
-  <a href="#exceptions">Exceptions</a>
-  <ul>
-      <li>
-  <a href="#exception">Exception</a>
-</li>
-
-      <li>
-  <a href="#comments-header-validation">Comment</a>
-</li>
-
-      <li>
-  <a href="#lastEdited-header-validation">Last Edited</a>
-</li>
-
-  </ul>
 </li>
 
   </ul>
@@ -1083,46 +1053,6 @@ Set is evaluated first.</p>
 </ul>
 <h3 id="lastEdited-column">Last Edited</h3>
 <p>When the rule was last saved. Set automatically; not editable.</p>
-<h2 id="header-validation">Header Validation</h2>
-<p>Independently of the Core Rule Set, incoming request headers are checked against their respective
-standards, both for their length and for their syntax. Header validation is configured per virtual
-host and cannot be overridden per route. See
-<a href="/usp-aero/waap/1.0.x/protection/rule-engine/header-validation/">Header validation</a>
- for how to find the headers
-an application needs excepted.</p>
-<h3 id="mode">Mode</h3>
-<p>Configures how a failed header validation is handled.</p>
-<ul>
-<li><strong>Values:</strong>
-<ul>
-<li><code>Disabled</code> - headers are not validated</li>
-<li><code>Detect</code> - failed validations are logged, but the request is not blocked</li>
-<li><code>Block</code> - requests with a failed header validation are blocked</li>
-</ul>
-</li>
-<li><strong>Default:</strong> <code>Block</code></li>
-</ul>
-<h3 id="exceptions">Exceptions</h3>
-<p>Individual headers can be excluded from validation, to keep legitimate requests from being blocked.
-Click the &quot;+&quot; icon to add one.</p>
-<h4 id="exception">Exception</h4>
-<p>The header to exclude, in one of three notations: <code>Accept-Charset</code> excludes the header from both
-checks, <code>Accept-Charset/length</code> excludes only the length check and <code>Accept-Charset/syntax</code> only the
-syntax check. Header names are case-insensitive, so the same header cannot be excepted twice in a
-different case; the suffix is case-sensitive and must be written in lower case.</p>
-<ul>
-<li><strong>Values:</strong> text of at most 263 characters, a header name optionally followed by <code>/length</code> or
-<code>/syntax</code>. A header name consists of letters, digits and the characters <code>!#$%&amp;'*+.^_`|~-</code></li>
-<li><strong>Required:</strong> yes</li>
-</ul>
-<h4 id="comments-header-validation">Comment</h4>
-<p>Free-text notes stored with the exception. They have no effect on request processing.</p>
-<ul>
-<li><strong>Values:</strong> free text</li>
-<li><strong>Default:</strong> none</li>
-</ul>
-<h4 id="lastEdited-header-validation">Last Edited</h4>
-<p>When the exception was last saved. Set automatically; not editable.</p>
 
 
         </article>

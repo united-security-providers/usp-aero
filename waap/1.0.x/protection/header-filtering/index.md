@@ -37,4 +37,3 @@ on the route, configured separately for the request and the response.
 - [Security Headers](security-headers)
 - [IP restriction](ip-restrictions)
 - [Restrict HTTP Methods](limit-http-methods)
-- [Header validation](rule-engine/header-validation)
