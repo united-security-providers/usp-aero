@@ -7,8 +7,7 @@ weight: 30
 
 Aero WAAP checks every request header against its standard, both for its syntax and for its
 maximum length. By default, a request with a header that fails either check is blocked with status
-code `403`. If an application legitimately needs such a header, and it cannot be removed with
-[header filtering](../header-filtering), exclude it from validation on the virtual host's
+code `403`. If an application legitimately needs such a header, exclude it from validation on the virtual host's
 [Rule Engine](../../reference/gui/vhosts/rule-engine#header-validation) tab.
 
 ## Find the headers that fail validation
