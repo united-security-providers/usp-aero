@@ -19,14 +19,17 @@ disruptive action like blocking the request or altering the request/response lik
 ### Phase 1 - Log only
 1. When starting fresh with a new application:
    * Set the virtual host's Core Rule Set mode of the rule engine to `Detect`
+   * Set the virtual host's Header Validation mode of the rule engine to `Detect`
    * Enable the route's header filter `Log Only` mode
 2. Deploy the configuration, and watch the logged matches for the traffic the application actually produces.
 3. For matches that turn out to be legitimate traffic, [add a rule exception](../protection/rule-engine/handle-a-crs-false-positive),
-   or add additional allowed headers etc. until no new violations are logged.
+   add a [header validation exception](../protection/rule-engine/header-validation), or add additional
+   allowed headers etc. until no new violations are logged.
 
 ### Phase 2 - Enable protection mechanism
 1. Once the remaining matches are genuine attacks:
     * switch Core Rule Set mode to `Block`
+    * switch Header Validation mode to `Block`
     * disable the route's header filter `Log Only` mode
 2. Additionally, you should set the Core Rule Sets' `Security Level` to `2`. This will not block every rule violation directly
    and allows you to tune the rule engine further with real traffic, without the risk that requests are blocked immediately.
@@ -42,5 +45,7 @@ disruptive action like blocking the request or altering the request/response lik
   exceptions
 - [Handle a CRS false positive](../protection/rule-engine/handle-a-crs-false-positive): adding an
   exception instead of disabling protection
+- [Header validation](../protection/rule-engine/header-validation): finding and allowing headers
+  that fail validation
 - [Headers](../reference/gui/vhosts/routes/headers)
 - [Header filtering](../protection/header-filtering)

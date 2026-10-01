@@ -326,7 +326,19 @@
   <div class="usp-toc__title">Table of contents</div>
   <ul>
       <li>
+  <a href="#how-detection-works">How detection works</a>
+</li>
+
+      <li>
+  <a href="#how-a-client-is-identified">How a client is identified</a>
+</li>
+
+      <li>
   <a href="#configure-detection">Configure detection</a>
+</li>
+
+      <li>
+  <a href="#choose-the-settings">Choose the settings</a>
 </li>
 
       <li>
@@ -352,17 +364,66 @@ instead of judging each request in isolation. Use it against a client that keeps
 the <a href="/usp-aero/waap/latest/reference/gui/vhosts/rule-engine/">Rule Engine</a>
  keeps rejecting, or that keeps generating errors.
 This is typical for scanners and automated attack tools.</p>
-<h2 id="configure-detection">Configure detection</h2>
+<p>It is not a request rate limit. A client whose responses are never counted as a violation is never
+blocked, however fast it sends.</p>
+<h2 id="how-detection-works">How detection works</h2>
+<ul>
+<li>A violation is a response to the client whose status code is in
+<a href="/usp-aero/waap/latest/reference/gui/vhosts/rate-limiting/#httpCodesToObserve">Status Codes Counted As Violation</a>
+.
+Rule Engine blocks are <code>403</code> and therefore count with the default <code>4xx</code>.</li>
+<li>Counting starts with a client's first violation and runs for the
+<a href="/usp-aero/waap/latest/reference/gui/vhosts/rate-limiting/#violationsCounterResetDuration">Counting Period</a>
+.</li>
+<li>Once the client's count reaches
+<a href="/usp-aero/waap/latest/reference/gui/vhosts/rate-limiting/#maximumAllowedViolations">Allowed Violations</a>
+
+within that period, it is blocked immediately. Every further request is answered with
+<a href="/usp-aero/waap/latest/reference/gui/vhosts/rate-limiting/#maximumViolationsLimitExceededStatusCode">Status Code When Blocked</a>
+.</li>
+<li>The block lasts for the
+<a href="/usp-aero/waap/latest/reference/gui/vhosts/rate-limiting/#violationsCounterResetDuration">Counting Period</a>
+
+as well. Afterwards the client is served normally again.</li>
+</ul>
+<h2 id="how-a-client-is-identified">How a client is identified</h2>
+<p>Violations are counted per client identifier. When the
+<a href="/usp-aero/waap/latest/reference/gui/listeners/listeners/#clientIpDetectionMode">listener</a>
+ uses a custom header for
+client IP detection, the value of that header is the client identifier. Otherwise the client IP
+address is used.</p>
+<p>A request without a client identifier is rejected with
+<a href="/usp-aero/waap/latest/reference/gui/vhosts/rate-limiting/#clientIdMissingStatusCode">Status Code If Client Not Identified</a>
+
+on every virtual host that has Repeat Offender Detection enabled.</p>
+<div class="usp-admonition usp-admonition--warning">
+    <p class="usp-admonition__title">Warning</p>
+    <p>The protection is only as reliable as the client identifier. A client that can change its
+identifier with every request never collects enough violations to be blocked.</p>
+  </div><h2 id="configure-detection">Configure detection</h2>
 <ol>
 <li>Open the virtual host's <a href="/usp-aero/waap/latest/reference/gui/vhosts/rate-limiting/">Rate Limiting</a>
- tab and turn on Repeat
-Offender Detection.</li>
-<li>Under Violations, set the Status codes counted as violation (single codes or ranges such as
-<code>4xx</code>), the Counting period the count resets after, and the Allowed violations a client gets
-before it is blocked. Set the Status code when blocked.</li>
-<li>Under Client Identification, set the <strong>Status code if client not identified</strong>, and list any Client
-IPs excluded from detection. For example your own monitoring or a load balancer's health-check
-address.</li>
+ tab and turn on
+<a href="/usp-aero/waap/latest/reference/gui/vhosts/rate-limiting/#enabled">Repeat Offender Detection</a>
+.</li>
+<li>Under <a href="/usp-aero/waap/latest/reference/gui/vhosts/rate-limiting/#violations">Violations</a>
+, set the
+<a href="/usp-aero/waap/latest/reference/gui/vhosts/rate-limiting/#httpCodesToObserve">Status Codes Counted As Violation</a>
+
+(single codes or ranges such as <code>4xx</code>), the
+<a href="/usp-aero/waap/latest/reference/gui/vhosts/rate-limiting/#violationsCounterResetDuration">Counting Period</a>
+, and the
+<a href="/usp-aero/waap/latest/reference/gui/vhosts/rate-limiting/#maximumAllowedViolations">Allowed Violations</a>
+ a client gets before it is blocked. Set the
+<a href="/usp-aero/waap/latest/reference/gui/vhosts/rate-limiting/#maximumViolationsLimitExceededStatusCode">Status Code When Blocked</a>
+.</li>
+<li>Under <a href="/usp-aero/waap/latest/reference/gui/vhosts/rate-limiting/#client-identification">Client Identification</a>
+, set the
+<a href="/usp-aero/waap/latest/reference/gui/vhosts/rate-limiting/#clientIdMissingStatusCode">Status Code If Client Not Identified</a>
+, and list any
+<a href="/usp-aero/waap/latest/reference/gui/vhosts/rate-limiting/#excludedClientIPs">Client IPs Excluded From Detection</a>
+. For example your own monitoring or
+a load balancer's health-check address.</li>
 <li><a href="/usp-aero/platform/latest/concepts/configuration-lifecycle/">Create a revision and deploy it</a>
 .</li>
 </ol>
@@ -370,7 +431,27 @@ address.</li>
     <p class="usp-admonition__title">Important</p>
     <p>An excluded IP is removed from detection entirely. Excluding a shared address, such as a NAT
 gateway or a reverse proxy in front of many clients, defeats the protection for everyone behind it.</p>
-  </div><h2 id="related">Related</h2>
+  </div><div class="usp-admonition usp-admonition--note">
+    <p class="usp-admonition__title">Note</p>
+    <p>Exclusions are based on the client IP address, not on the client identifier. A client whose IP
+address is excluded is never blocked, whatever its client identifier is.</p>
+  </div><h2 id="choose-the-settings">Choose the settings</h2>
+<p>There is no detect-only mode, so a deployed configuration blocks right away. Start lenient and
+tighten it once you know the traffic.</p>
+<ul>
+<li><strong>Status codes.</strong> The default <code>4xx</code> and <code>5xx</code> also counts errors the client did not cause. If the
+backend fails, or <a href="/usp-aero/waap/latest/reference/gui/backends/timeouts-and-limits/#circuit-breaking">circuit breaking</a>
+
+answers <code>503</code>, every client that keeps using the site collects violations and is blocked. Where
+that is a concern, count only <code>4xx</code>, or only the codes an attacker typically produces, such as <code>403</code>
+and <code>404</code>.</li>
+<li><strong>Allowed violations and Counting period.</strong> A browser can collect a few <code>404</code> responses on a normal
+page load, for example for a missing icon. Allow enough violations that ordinary use never reaches
+the limit within the period. A longer period also means a longer block.</li>
+<li><strong>Shared addresses.</strong> When the client identifier is an IP address, all users behind the same
+NAT gateway or corporate proxy count as one client and are blocked together.</li>
+</ul>
+<h2 id="related">Related</h2>
 <ul>
 <li><a href="/usp-aero/waap/latest/protection/ddos-protection/">(D)DoS protection</a>
 </li>

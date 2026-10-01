@@ -375,10 +375,12 @@ right. Move methods left and right as desired and save.</p>
 </ul>
 <h2 id="request-body-inspection">Request Body Inspection</h2>
 <h3 id="bodySizeLimit">Maximum payload size</h3>
-<p>The maximum size of the request body that will be inspected.</p>
+<p>The maximum size of the request body this route accepts. A request with a larger body is rejected
+with status code <code>413</code>.</p>
 <ul>
 <li><strong>Values:</strong> a number followed by a unit <code>B</code>, <code>KB</code>, <code>MB</code>, <code>GB</code> or <code>TB</code> (e.g. <code>10KB</code>), from 1 byte
-up to 1 GB</li>
+up to 1 GB. Units are multiples of 1024, so <code>1KB</code> is 1024 bytes. The 1 GB maximum only applies
+while the rule engine inspects the body.</li>
 <li><strong>Default:</strong> <code>10kb</code></li>
 <li><strong>Required:</strong> yes</li>
 </ul>

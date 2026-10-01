@@ -326,6 +326,14 @@
   <div class="usp-toc__title">Table of contents</div>
   <ul>
       <li>
+  <a href="#find-the-headers-that-fail-validation">Find the headers that fail validation</a>
+</li>
+
+      <li>
+  <a href="#allow-a-header-that-fails-validation">Allow a header that fails validation</a>
+</li>
+
+      <li>
   <a href="#related">Related</a>
 </li>
 
@@ -344,22 +352,47 @@
 </nav>
 <article class="usp-prose" data-pagefind-filter="docset:waap/latest">
   <h1 id="header-validation">Header validation</h1>
-<p>If a client sends request headers that do not abide by their respective standards,
-they are blocked by default.
-If such a header is needed for proper functionality (and hence cannot be filtered out),
-header validation can be turned off per header as follows:</p>
+<p>Aero WAAP checks every request header against its standard, both for its syntax and for its
+maximum length. By default, a request with a header that fails either check is blocked with status
+code <code>403</code>. If an application legitimately needs such a header, exclude it from validation on the virtual host's
+<a href="/usp-aero/waap/latest/reference/gui/vhosts/rule-engine/#header-validation">Rule Engine</a>
+ tab.</p>
+<h2 id="find-the-headers-that-fail-validation">Find the headers that fail validation</h2>
 <ol>
-<li>Open the virtual host and go to the Rule Engine tab.</li>
-<li>In the Header Validation section, click the &quot;+&quot; icon and enter the header to except
-(header names are case-insensitive), optionally with a comment saying why it is needed.</li>
+<li>Open the virtual host, go to the <a href="/usp-aero/waap/latest/reference/gui/vhosts/rule-engine/#header-validation">Rule Engine</a>
+ tab, and set the Header
+Validation <a href="/usp-aero/waap/latest/reference/gui/vhosts/rule-engine/#mode">Mode</a>
+ to <code>Detect</code>. Failed validations are logged, but no request is blocked.</li>
+<li><a href="/usp-aero/platform/latest/concepts/configuration-lifecycle/">Create a revision and deploy it</a>
+,
+then use the application as usual.</li>
+<li>Look for failed header validations in the <a href="/usp-aero/platform/latest/operations/logging/live-log/">Live Log</a>
+
+and note which headers fail which check.</li>
 </ol>
-<p>A refined approach is to set the mode first to detect and grep corresponding log entries.
-Note that for each header there are two validations, one for the syntax and one for the
-maximal length.
-It is possible to exclude just one of the two checks from validation,
-for example with <code>Accept-Charset/syntax</code> or <code>Accept-Charset/length</code>.</p>
+<h2 id="allow-a-header-that-fails-validation">Allow a header that fails validation</h2>
+<ol>
+<li>On the <a href="/usp-aero/waap/latest/reference/gui/vhosts/rule-engine/#header-validation">Rule Engine</a>
+ tab, click the &quot;+&quot; icon in the
+<a href="/usp-aero/waap/latest/reference/gui/vhosts/rule-engine/#exceptions">Exceptions</a>
+ table of the Header Validation
+section.</li>
+<li>In <a href="/usp-aero/waap/latest/reference/gui/vhosts/rule-engine/#exception">Exception</a>
+, enter the name of the header. The name alone skips both checks
+for that header. To skip only one of them, add <code>/syntax</code> or <code>/length</code> to the name, for example
+<code>Accept-Charset/syntax</code>. Skip only the check that actually fails, so the other one still protects
+the header.</li>
+<li>In <a href="/usp-aero/waap/latest/reference/gui/vhosts/rule-engine/#comments-header-validation">Comment</a>
+, note why the application needs the header.</li>
+<li>Set the <a href="/usp-aero/waap/latest/reference/gui/vhosts/rule-engine/#mode">Mode</a>
+ back to <code>Block</code> if you changed it.</li>
+<li><a href="/usp-aero/platform/latest/concepts/configuration-lifecycle/">Create a revision and deploy it</a>
+.</li>
+</ol>
 <h2 id="related">Related</h2>
 <ul>
+<li><a href="/usp-aero/waap/latest/reference/gui/vhosts/rule-engine/#header-validation">Rule Engine</a>
+</li>
 <li><a href="/usp-aero/waap/latest/protection/header-filtering/">Header filtering</a>
 </li>
 </ul>

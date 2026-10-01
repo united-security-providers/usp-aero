@@ -641,7 +641,8 @@ below.</p>
 <li><strong>Default:</strong> <code>off</code></li>
 </ul>
 <h4 id="bodySizeLimit">Body Size Limit</h4>
-<p>The maximum size of the response body that will be inspected.</p>
+<p>The maximum size of the response body that will be inspected. A response with a larger body is not
+delivered and the client receives status code <code>500</code> instead.</p>
 <ul>
 <li><strong>Values:</strong> a number followed by a unit - <code>B</code>, <code>KB</code>, <code>MB</code>, <code>GB</code> or <code>TB</code> (e.g. <code>10MB</code>) - from 1 byte
 up to 1 GB</li>
@@ -1100,10 +1101,11 @@ an application needs excepted.</p>
 <ul>
 <li><code>Disabled</code> - headers are not validated</li>
 <li><code>Detect</code> - failed validations are logged, but the request is not blocked</li>
-<li><code>Block</code> - requests with a failed header validation are blocked</li>
+<li><code>Block</code> - requests with a failed header validation are blocked with status code <code>403</code></li>
 </ul>
 </li>
 <li><strong>Default:</strong> <code>Block</code></li>
+<li><strong>Required:</strong> yes</li>
 </ul>
 <h3 id="exceptions">Exceptions</h3>
 <p>Individual headers can be excluded from validation, to keep legitimate requests from being blocked.

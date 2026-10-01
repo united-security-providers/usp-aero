@@ -4,10 +4,15 @@
 
 A flood of connections, or a single client that keeps hammering a route, can exhaust an appliance or
 a site long before any application-level defense gets a chance to look at the traffic. Aero WAAP
-protects against this at two levels: the listener limits how many connections and streams it
-accepts at all and repeat offender detection blocks individual clients that keep triggering failures.
+protects against this at every level a request passes through:
 
-Both work on connections and requests that already reach the appliance. That covers the slow and
+- **Listener:** limits how many connections and streams it accepts at all, and how long a connection
+  may take to complete or stay open.
+- **Virtual host:** Repeat Offender Detection blocks individual clients that keep triggering failures.
+- **Route:** limits the request body size and how long the backend may take to answer.
+- **Backend:** circuit breaking bounds how much load is passed on to a backend.
+
+All of them work on connections and requests that already reach the appliance. That covers the slow and
 low-bandwidth attacks described below, but not volumetric floods, see
 [What these settings do not stop](#what-these-settings-do-not-stop).
 
@@ -33,6 +38,28 @@ period, and how many violations a client is allowed before it gets blocked. See
 This does not throttle traffic by rate, it blocks a client outright once it accumulates enough
 violations, which is effective against a client that keeps retrying a request that keeps failing or
 getting rejected.
+
+## Limit request body size
+
+On each route, set the [maximum payload size](request-size-limit) to what the route actually needs.
+A generous limit lets every request carry a large body into inspection, which multiplies memory and
+CPU use under load. Raise it only on the routes that need it.
+
+## Protect the backend
+
+Open the backend and go to [Timeouts & Limits](../reference/gui/backends/timeouts-and-limits). The
+Circuit Breaking values cap the connections, queued requests and parallel requests passed on to the
+backend. Requests beyond them are answered by Aero WAAP itself, so an overloaded backend is not
+pushed further into failure. The
+[Connection Timeout](../reference/gui/backends/timeouts-and-limits#connectionTimeout) bounds how
+long Aero WAAP keeps trying to connect to an endpoint that does not accept connections, so requests
+do not pile up waiting for a backend that cannot be reached. On each route, the
+[Route Total Upstream Timeout](../reference/gui/vhosts/routes/timeouts) ends a request the backend
+does not answer in time.
+
+> [!NOTE]
+> The circuit breaking limits apply separately to every route that uses the backend. Size them from
+> what the backend can handle in total, divided by the number of routes that share it.
 
 ## What these settings stop
 
@@ -64,9 +91,14 @@ stay incomplete and how many may exist at once:
   cancelled, so it bounds rather than eliminates reset-based HTTP/2 attacks.
 - **Per-connection memory exhaustion**: **Connection Buffer Limit** caps the buffer each connection may
   consume, which keeps worst-case memory use a predictable multiple of the connection limit.
+- **Oversized request bodies**: the route's [maximum payload size](request-size-limit) rejects a body
+  larger than the route needs.
 - **Scanners, brute-force and retry storms**: a client that keeps producing rejected or failing
   requests is blocked outright by Repeat Offender Detection, before it accumulates further cost on
   the backend.
+- **Backend overload**: circuit breaking rejects requests beyond what the backend is allowed to
+  handle, the backend's connection timeout gives up on endpoints that do not accept connections, and
+  the route's upstream timeout ends requests the backend is too slow to answer.
 
 ## What these settings do not stop
 
@@ -82,11 +114,36 @@ stay incomplete and how many may exist at once:
 - **Request rate abuse within the limits**: there is no requests-per-second limit. Repeat Offender
   Detection counts response status codes, not request rate, so a client whose requests all succeed
   can send as fast as the connection allows.
+- **Clients that change their identity**: Repeat Offender Detection counts violations per client
+  identifier. A client that can change its identifier with every request is never blocked, see
+  [How a client is identified](repeat-offender#how-a-client-is-identified).
 - **Expensive-endpoint abuse**: a low rate of requests to a costly operation (search, report
   generation, login with password hashing) can exhaust the backend while every connection-level
   limit stays untouched. Bound this on the backend, and set the route's
   [Timeouts](../reference/gui/vhosts/routes/timeouts) so a slow upstream does not tie up the
   connection.
+
+## What the client receives
+
+When one of these mechanisms rejects a request, the client receives:
+
+- **No HTTP response, the connection is closed:**
+  [Connection Acceptance Timeout](../reference/gui/listeners/timeouts-and-limits#connectionAcceptanceTimeout),
+  [TLS Handshake Timeout](../reference/gui/listeners/timeouts-and-limits#tlsHandshakeTimeout), and
+  connections beyond
+  [Maximum Concurrent Connections](../reference/gui/listeners/timeouts-and-limits#maxConcurrentConnections).
+- **`408`:**
+  [Request Headers Received Timeout](../reference/gui/listeners/timeouts-and-limits#requestHeadersReceivedTimeout).
+- **`413`:** a request body larger than the route's
+  [Maximum payload size](../reference/gui/vhosts/routes/http#bodySizeLimit).
+- **Configurable, `429` and `403` by default:** a client blocked by Repeat Offender Detection
+  ([Status Code When Blocked](../reference/gui/vhosts/rate-limiting#maximumViolationsLimitExceededStatusCode)),
+  and a request without a client identifier on a virtual host with Repeat Offender Detection
+  ([Status Code If Client Not Identified](../reference/gui/vhosts/rate-limiting#clientIdMissingStatusCode)).
+- **`503`:** the backend's [Circuit Breaking](../reference/gui/backends/timeouts-and-limits#circuit-breaking)
+  limits.
+- **`504`:** [Stream Idle Timeout](../reference/gui/listeners/timeouts-and-limits#streamIdleTimeout) and
+  [Route Total Upstream Timeout](../reference/gui/vhosts/routes/timeouts#totalUpstreamTimeout).
 
 ## Related
 
@@ -95,4 +152,5 @@ stay incomplete and how many may exist at once:
 - [Repeat offender](repeat-offender)
 - [Limit request size](request-size-limit)
 - [Route Timeouts](../reference/gui/vhosts/routes/timeouts)
+- [Backend Timeouts & Limits](../reference/gui/backends/timeouts-and-limits)
 - [How a request is processed](../concepts/request-flow)

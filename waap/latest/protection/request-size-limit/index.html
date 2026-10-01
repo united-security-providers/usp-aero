@@ -326,7 +326,11 @@
   <div class="usp-toc__title">Table of contents</div>
   <ul>
       <li>
-  <a href="#limit-the-payload-the-route-accepts-for-inspection">Limit the payload the route accepts for inspection</a>
+  <a href="#the-limit-and-the-rule-engine">The limit and the Rule Engine</a>
+</li>
+
+      <li>
+  <a href="#limit-the-payload-the-route-accepts">Limit the payload the route accepts</a>
 </li>
 
       <li>
@@ -347,35 +351,50 @@
 </nav>
 <article class="usp-prose" data-pagefind-filter="docset:waap/latest">
   <h1 id="limit-request-size">Limit request size</h1>
-<p>For the WAF to effectively inspect substantial data volumes, including extensive request bodies
-and large file uploads, precise configuration is paramount. Misconfigured limits can result in
-the erroneous blocking of legitimate requests, whereas excessively high thresholds can cause
-significant memory overhead, elevated CPU utilization, and a heightened risk of performance
-bottlenecks or denial-of-service (DoS) vulnerabilities.</p>
+<p>Every route limits the size of the request bodies it accepts. A request whose body is larger than
+the route's <strong>Maximum payload size</strong> is rejected with status code <code>413</code> and never reaches the
+backend. A limit that is too low blocks legitimate requests such as file uploads, and one that is
+too high lets every request tie up memory and CPU on the appliance.</p>
 <div class="usp-admonition usp-admonition--note">
     <p class="usp-admonition__title">Note</p>
     <p>By default every route has a request limit size set to 10kb.</p>
-  </div><h2 id="limit-the-payload-the-route-accepts-for-inspection">Limit the payload the route accepts for inspection</h2>
+  </div><h2 id="the-limit-and-the-rule-engine">The limit and the Rule Engine</h2>
+<p><strong>Maximum payload size</strong> is shown under Request Body Inspection, but it does not depend on the
+<a href="/usp-aero/waap/latest/reference/gui/vhosts/rule-engine/">Rule Engine</a>
+. The limit is enforced on its own, whether or not
+the Rule Engine inspects the body. What <strong>Disable rule engine for body payload</strong> changes is how the
+body is handled on its way to the backend.</p>
+<ul>
+<li><strong>With the Rule Engine inspecting the body</strong>, which is the default, Aero WAAP receives the complete
+body and keeps it in memory, lets the Rule Engine inspect it, and only then forwards it to the
+backend. Every request can therefore occupy memory up to the Maximum payload size, which is
+limited to 1 GB in this case.</li>
+<li><strong>With Disable rule engine for body payload switched on</strong>, the body is not kept for inspection. It
+is passed on to the backend as it arrives, so a large body does not have to fit in memory. The
+Maximum payload size is still enforced and can be set above 1 GB.</li>
+</ul>
+<h2 id="limit-the-payload-the-route-accepts">Limit the payload the route accepts</h2>
 <ol>
 <li>Open the virtual host, select the route, and go to its <a href="/usp-aero/waap/latest/reference/gui/vhosts/routes/http/">HTTP</a>
 
 tab, under Request Body Inspection.</li>
-<li>Set <strong>Maximum payload size</strong> to the largest request body this route should accept for inspection.</li>
+<li>Set <strong>Maximum payload size</strong> to the largest request body this route should accept.</li>
 <li>Leave <strong>Disable rule engine for body payload</strong> off unless the route genuinely needs to accept bodies
-the Rule Engine cannot handle. See the warning below.</li>
+that are too large to be held in memory for inspection. See the warning below.</li>
 <li><a href="/usp-aero/platform/latest/concepts/configuration-lifecycle/">Create a revision and deploy it</a>
 .</li>
 </ol>
 <div class="usp-admonition usp-admonition--warning">
     <p class="usp-admonition__title">Warning</p>
     <p>Disable rule engine for body payload switches off every Rule Engine rule that inspects or parses
-the body for that route. Use it only for a route that genuinely needs to accept bodies the rule
-engine cannot handle, such as large file uploads.</p>
+the body for that route. An attack carried in the body, such as SQL injection in a form field,
+then reaches the backend unchecked. Use it only for a route that genuinely needs it, such as one
+for large file uploads.</p>
   </div><div class="usp-admonition usp-admonition--hint">
     <p class="usp-admonition__title">Hint</p>
-    <p>Often only one or two endpoint require a higher payload size. It is advised to create for these paths
-a separate route so the limit can be adjusted precisely and to address the warning above in the best
-way.</p>
+    <p>Often only one or two endpoints need a larger payload size. Create a separate route for these
+paths, so that the limit can be raised, and the Rule Engine switched off for the body, only where
+it is needed.</p>
   </div><h2 id="related">Related</h2>
 <ul>
 <li><a href="/usp-aero/waap/latest/reference/gui/vhosts/routes/http/">HTTP</a>

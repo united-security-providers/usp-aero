@@ -384,23 +384,27 @@
 <h2 id="enabled">Repeat Offender Detection</h2>
 <p>Blocks clients that repeatedly trigger violations (such as being rejected by the
 <a href="/usp-aero/waap/latest/reference/gui/vhosts/rule-engine/">Rule Engine</a>
-) for a configured period of time.</p>
+) for a configured period of time. See
+<a href="/usp-aero/waap/latest/protection/repeat-offender/">Repeat offender</a>
+ for how detection works.</p>
+<p>Switching it off discards all settings below.</p>
 <ul>
 <li><strong>Values:</strong> <code>on</code> or <code>off</code></li>
 <li><strong>Default:</strong> <code>off</code></li>
 </ul>
 <h2 id="client-identification">Client Identification</h2>
-<p>Clients are tracked using a client identifier. If the identifying header is missing from a request,
-the configured status code is sent to the client instead.</p>
+<p>Clients are tracked by a client identifier. If a request carries no client identifier, the
+configured status code is sent to the client instead.</p>
 <h3 id="clientIdMissingStatusCode">Status Code If Client Not Identified</h3>
-<p>Sent when the client ID header is missing.</p>
+<p>Sent when a request carries no client identifier.</p>
 <ul>
 <li><strong>Values:</strong> a number from <code>100</code> to <code>599</code></li>
 <li><strong>Default:</strong> <code>403</code></li>
 <li><strong>Required:</strong> yes</li>
 </ul>
 <h3 id="excludedClientIPs">Client IPs Excluded From Detection</h3>
-<p>IP addresses that are never subject to repeat-offender blocking.</p>
+<p>Client IP addresses that are never subject to repeat-offender blocking. Each entry is compared with
+the client IP address, not with the client identifier.</p>
 <ul>
 <li><strong>Values:</strong> a list of IPv4 addresses</li>
 <li><strong>Default:</strong> none</li>
@@ -409,18 +413,20 @@ the configured status code is sent to the client instead.</p>
 <h3 id="httpCodesToObserve">Status Codes Counted As Violation</h3>
 <p>The response status codes (or ranges, e.g. <code>4xx</code>) that count as a violation for a client.</p>
 <ul>
-<li><strong>Values:</strong> a list of status codes or ranges, e.g. <code>404</code> or <code>4xx</code></li>
-<li><strong>Default:</strong> none</li>
+<li><strong>Values:</strong> a list of status codes or ranges from <code>100</code> to <code>599</code>, e.g. <code>404</code> or <code>4xx</code></li>
+<li><strong>Default:</strong> <code>4xx</code>, <code>5xx</code></li>
+<li><strong>Required:</strong> yes, at least one entry</li>
 </ul>
 <h3 id="violationsCounterResetDuration">Counting Period</h3>
-<p>Resets the violation counter after this duration.</p>
+<p>Resets the violation counter after this duration. The same duration is how long a client stays
+blocked.</p>
 <ul>
 <li><strong>Values:</strong> a number of seconds, at least <code>1</code></li>
 <li><strong>Default:</strong> <code>60</code></li>
 <li><strong>Required:</strong> yes</li>
 </ul>
 <h3 id="maximumAllowedViolations">Allowed Violations</h3>
-<p>The client is blocked once its violation count exceeds this number within the counting period.</p>
+<p>The client is blocked as soon as its violation count reaches this number within the counting period.</p>
 <ul>
 <li><strong>Values:</strong> a number from <code>1</code> to <code>65535</code></li>
 <li><strong>Default:</strong> <code>10</code></li>

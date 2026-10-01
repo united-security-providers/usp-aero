@@ -377,19 +377,23 @@ in a test or development environment and disable it when moving to production.</
 <li>When starting fresh with a new application:
 <ul>
 <li>Set the virtual host's Core Rule Set mode of the rule engine to <code>Detect</code></li>
+<li>Set the virtual host's Header Validation mode of the rule engine to <code>Detect</code></li>
 <li>Enable the route's header filter <code>Log Only</code> mode</li>
 </ul>
 </li>
 <li>Deploy the configuration, and watch the logged matches for the traffic the application actually produces.</li>
 <li>For matches that turn out to be legitimate traffic, <a href="/usp-aero/waap/latest/protection/rule-engine/handle-a-crs-false-positive/">add a rule exception</a>
 ,
-or add additional allowed headers etc. until no new violations are logged.</li>
+add a <a href="/usp-aero/waap/latest/protection/rule-engine/header-validation/">header validation exception</a>
+, or add additional
+allowed headers etc. until no new violations are logged.</li>
 </ol>
 <h3 id="phase-2---enable-protection-mechanism">Phase 2 - Enable protection mechanism</h3>
 <ol>
 <li>Once the remaining matches are genuine attacks:
 <ul>
 <li>switch Core Rule Set mode to <code>Block</code></li>
+<li>switch Header Validation mode to <code>Block</code></li>
 <li>disable the route's header filter <code>Log Only</code> mode</li>
 </ul>
 </li>
@@ -410,6 +414,9 @@ exceptions</li>
 <li><a href="/usp-aero/waap/latest/protection/rule-engine/handle-a-crs-false-positive/">Handle a CRS false positive</a>
 : adding an
 exception instead of disabling protection</li>
+<li><a href="/usp-aero/waap/latest/protection/rule-engine/header-validation/">Header validation</a>
+: finding and allowing headers
+that fail validation</li>
 <li><a href="/usp-aero/waap/latest/reference/gui/vhosts/routes/headers/">Headers</a>
 </li>
 <li><a href="/usp-aero/waap/latest/protection/header-filtering/">Header filtering</a>

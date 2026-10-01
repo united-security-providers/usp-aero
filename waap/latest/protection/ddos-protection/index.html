@@ -334,11 +334,23 @@
 </li>
 
       <li>
+  <a href="#limit-request-body-size">Limit request body size</a>
+</li>
+
+      <li>
+  <a href="#protect-the-backend">Protect the backend</a>
+</li>
+
+      <li>
   <a href="#what-these-settings-stop">What these settings stop</a>
 </li>
 
       <li>
   <a href="#what-these-settings-do-not-stop">What these settings do not stop</a>
+</li>
+
+      <li>
+  <a href="#what-the-client-receives">What the client receives</a>
 </li>
 
       <li>
@@ -361,9 +373,15 @@
   <h1 id="ddos-protection">(D)DoS protection</h1>
 <p>A flood of connections, or a single client that keeps hammering a route, can exhaust an appliance or
 a site long before any application-level defense gets a chance to look at the traffic. Aero WAAP
-protects against this at two levels: the listener limits how many connections and streams it
-accepts at all and repeat offender detection blocks individual clients that keep triggering failures.</p>
-<p>Both work on connections and requests that already reach the appliance. That covers the slow and
+protects against this at every level a request passes through:</p>
+<ul>
+<li><strong>Listener:</strong> limits how many connections and streams it accepts at all, and how long a connection
+may take to complete or stay open.</li>
+<li><strong>Virtual host:</strong> Repeat Offender Detection blocks individual clients that keep triggering failures.</li>
+<li><strong>Route:</strong> limits the request body size and how long the backend may take to answer.</li>
+<li><strong>Backend:</strong> circuit breaking bounds how much load is passed on to a backend.</li>
+</ul>
+<p>All of them work on connections and requests that already reach the appliance. That covers the slow and
 low-bandwidth attacks described below, but not volumetric floods, see
 <a href="#what-these-settings-do-not-stop">What these settings do not stop</a>
 .</p>
@@ -387,7 +405,29 @@ period, and how many violations a client is allowed before it gets blocked. See
 <p>This does not throttle traffic by rate, it blocks a client outright once it accumulates enough
 violations, which is effective against a client that keeps retrying a request that keeps failing or
 getting rejected.</p>
-<h2 id="what-these-settings-stop">What these settings stop</h2>
+<h2 id="limit-request-body-size">Limit request body size</h2>
+<p>On each route, set the <a href="/usp-aero/waap/latest/protection/request-size-limit/">maximum payload size</a>
+ to what the route actually needs.
+A generous limit lets every request carry a large body into inspection, which multiplies memory and
+CPU use under load. Raise it only on the routes that need it.</p>
+<h2 id="protect-the-backend">Protect the backend</h2>
+<p>Open the backend and go to <a href="/usp-aero/waap/latest/reference/gui/backends/timeouts-and-limits/">Timeouts &amp; Limits</a>
+. The
+Circuit Breaking values cap the connections, queued requests and parallel requests passed on to the
+backend. Requests beyond them are answered by Aero WAAP itself, so an overloaded backend is not
+pushed further into failure. The
+<a href="/usp-aero/waap/latest/reference/gui/backends/timeouts-and-limits/#connectionTimeout">Connection Timeout</a>
+ bounds how
+long Aero WAAP keeps trying to connect to an endpoint that does not accept connections, so requests
+do not pile up waiting for a backend that cannot be reached. On each route, the
+<a href="/usp-aero/waap/latest/reference/gui/vhosts/routes/timeouts/">Route Total Upstream Timeout</a>
+ ends a request the backend
+does not answer in time.</p>
+<div class="usp-admonition usp-admonition--note">
+    <p class="usp-admonition__title">Note</p>
+    <p>The circuit breaking limits apply separately to every route that uses the backend. Size them from
+what the backend can handle in total, divided by the number of routes that share it.</p>
+  </div><h2 id="what-these-settings-stop">What these settings stop</h2>
 <p>These are attacks that cost the attacker almost no bandwidth and work by holding resources (sockets,
 handshake state, streams, buffers) hostage. They are stopped by bounding how long a connection may
 stay incomplete and how many may exist at once:</p>
@@ -417,9 +457,15 @@ that it limits how many streams are open at the same time, not how fast streams 
 cancelled, so it bounds rather than eliminates reset-based HTTP/2 attacks.</li>
 <li><strong>Per-connection memory exhaustion</strong>: <strong>Connection Buffer Limit</strong> caps the buffer each connection may
 consume, which keeps worst-case memory use a predictable multiple of the connection limit.</li>
+<li><strong>Oversized request bodies</strong>: the route's <a href="/usp-aero/waap/latest/protection/request-size-limit/">maximum payload size</a>
+ rejects a body
+larger than the route needs.</li>
 <li><strong>Scanners, brute-force and retry storms</strong>: a client that keeps producing rejected or failing
 requests is blocked outright by Repeat Offender Detection, before it accumulates further cost on
 the backend.</li>
+<li><strong>Backend overload</strong>: circuit breaking rejects requests beyond what the backend is allowed to
+handle, the backend's connection timeout gives up on endpoints that do not accept connections, and
+the route's upstream timeout ends requests the backend is too slow to answer.</li>
 </ul>
 <h2 id="what-these-settings-do-not-stop">What these settings do not stop</h2>
 <ul>
@@ -435,12 +481,47 @@ does so by refusing legitimate users along with the flood.</li>
 <li><strong>Request rate abuse within the limits</strong>: there is no requests-per-second limit. Repeat Offender
 Detection counts response status codes, not request rate, so a client whose requests all succeed
 can send as fast as the connection allows.</li>
+<li><strong>Clients that change their identity</strong>: Repeat Offender Detection counts violations per client
+identifier. A client that can change its identifier with every request is never blocked, see
+<a href="/usp-aero/waap/latest/protection/repeat-offender/#how-a-client-is-identified">How a client is identified</a>
+.</li>
 <li><strong>Expensive-endpoint abuse</strong>: a low rate of requests to a costly operation (search, report
 generation, login with password hashing) can exhaust the backend while every connection-level
 limit stays untouched. Bound this on the backend, and set the route's
 <a href="/usp-aero/waap/latest/reference/gui/vhosts/routes/timeouts/">Timeouts</a>
  so a slow upstream does not tie up the
 connection.</li>
+</ul>
+<h2 id="what-the-client-receives">What the client receives</h2>
+<p>When one of these mechanisms rejects a request, the client receives:</p>
+<ul>
+<li><strong>No HTTP response, the connection is closed:</strong>
+<a href="/usp-aero/waap/latest/reference/gui/listeners/timeouts-and-limits/#connectionAcceptanceTimeout">Connection Acceptance Timeout</a>
+,
+<a href="/usp-aero/waap/latest/reference/gui/listeners/timeouts-and-limits/#tlsHandshakeTimeout">TLS Handshake Timeout</a>
+, and
+connections beyond
+<a href="/usp-aero/waap/latest/reference/gui/listeners/timeouts-and-limits/#maxConcurrentConnections">Maximum Concurrent Connections</a>
+.</li>
+<li><strong><code>408</code>:</strong>
+<a href="/usp-aero/waap/latest/reference/gui/listeners/timeouts-and-limits/#requestHeadersReceivedTimeout">Request Headers Received Timeout</a>
+.</li>
+<li><strong><code>413</code>:</strong> a request body larger than the route's
+<a href="/usp-aero/waap/latest/reference/gui/vhosts/routes/http/#bodySizeLimit">Maximum payload size</a>
+.</li>
+<li><strong>Configurable, <code>429</code> and <code>403</code> by default:</strong> a client blocked by Repeat Offender Detection
+(<a href="/usp-aero/waap/latest/reference/gui/vhosts/rate-limiting/#maximumViolationsLimitExceededStatusCode">Status Code When Blocked</a>
+),
+and a request without a client identifier on a virtual host with Repeat Offender Detection
+(<a href="/usp-aero/waap/latest/reference/gui/vhosts/rate-limiting/#clientIdMissingStatusCode">Status Code If Client Not Identified</a>
+).</li>
+<li><strong><code>503</code>:</strong> the backend's <a href="/usp-aero/waap/latest/reference/gui/backends/timeouts-and-limits/#circuit-breaking">Circuit Breaking</a>
+
+limits.</li>
+<li><strong><code>504</code>:</strong> <a href="/usp-aero/waap/latest/reference/gui/listeners/timeouts-and-limits/#streamIdleTimeout">Stream Idle Timeout</a>
+ and
+<a href="/usp-aero/waap/latest/reference/gui/vhosts/routes/timeouts/#totalUpstreamTimeout">Route Total Upstream Timeout</a>
+.</li>
 </ul>
 <h2 id="related">Related</h2>
 <ul>
@@ -453,6 +534,8 @@ connection.</li>
 <li><a href="/usp-aero/waap/latest/protection/request-size-limit/">Limit request size</a>
 </li>
 <li><a href="/usp-aero/waap/latest/reference/gui/vhosts/routes/timeouts/">Route Timeouts</a>
+</li>
+<li><a href="/usp-aero/waap/latest/reference/gui/backends/timeouts-and-limits/">Backend Timeouts &amp; Limits</a>
 </li>
 <li><a href="/usp-aero/waap/latest/concepts/request-flow/">How a request is processed</a>
 </li>
