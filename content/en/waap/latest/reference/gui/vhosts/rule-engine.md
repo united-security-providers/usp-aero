@@ -46,7 +46,8 @@ below.
 
 #### Body Size Limit {#bodySizeLimit}
 
-The maximum size of the response body that will be inspected.
+The maximum size of the response body that will be inspected. A response with a larger body is not
+delivered and the client receives status code `500` instead.
 
 - **Values:** a number followed by a unit - `B`, `KB`, `MB`, `GB` or `TB` (e.g. `10MB`) - from 1 byte
   up to 1 GB
@@ -78,7 +79,7 @@ Configures the behavior of the CRS rules:
 
 Each rule category is split in up to 4 paranoia levels. The higher the level the more rules are applied,
 making it more difficult for an attacker. But also it's more likely to produce false positives resulting
-in a higher tuning effort! 
+in a higher tuning effort!
 
 | Paranoia Level | Description                                                                                |
 |----------------|--------------------------------------------------------------------------------------------|
@@ -107,7 +108,7 @@ to false positives and without the need to lower the security level.
 
 Configures the rule engine's security level on a sliding scale from Loose to Tight.
 
-Every Core Rule Set rule that matches adds points to the request's or response's 
+Every Core Rule Set rule that matches adds points to the request's or response's
 [anomaly score](https://coreruleset.org/docs/2-how-crs-works/2-1-anomaly_scoring/). The security level
 sets the score at which that request or response is blocked: reaching the threshold is enough, the
 score does not have to exceed it. A lower level tolerates more findings before it acts.
@@ -419,8 +420,9 @@ Configures how a failed header validation is handled.
 - **Values:**
   - `Disabled` - headers are not validated
   - `Detect` - failed validations are logged, but the request is not blocked
-  - `Block` - requests with a failed header validation are blocked
+  - `Block` - requests with a failed header validation are blocked with status code `403`
 - **Default:** `Block`
+- **Required:** yes
 
 ### Exceptions
 
