@@ -1,10 +1,9 @@
 ---
-title: "Set up an HA cluster"
-weight: 20
-draft: true
+title: "Set up an HA Cluster"
+weight: 10
 ---
 
-# Set up an HA cluster
+# Set up an HA Cluster
 
 ## Requirements
 
@@ -15,6 +14,10 @@ In order to operate an Aero cluster the following requirements are in effect:
 - All nodes being able to connect to each other using `TCP/2224`, `TCP/3121`, `TCP/21064`, `TCP/22` and `UDP/5405`
 
 ## Cluster creation
+
+> [!IMPORTANT]
+> Cluster communication is fixed to the Management network interface. This can't be changed. Use each node's
+> Management network IP address when you add it as a cluster node.
 
 1. On the node that will be the first cluster member, open
    [High Availability](../../reference/gui/configuration/high-availability) and press the key icon to generate a
@@ -34,7 +37,7 @@ Having configure a set of nodes to form a cluster, creating the revision and dep
 
 1. The node using the lowest octet-IP from management interface will act as `setup-coordinator` which is in charge for form the cluster
 1. Every other node configures the cluster configuration during the deployment run
-1. Once all members are pre-configured (deployment run finished) which the `setup-coordinator` waits for (timing out after 5min) cluster creation will be finished and status can be observed via [High Availability status](../../reference/gui/system-management/high-availability) screen
+2. Once all members are pre-configured (deployment run finished) which the `setup-coordinator` waits for (timing out after 5min) cluster creation will be finished and status can be observed via [High Availability status](../../reference/gui/system-management/high-availability) screen
 
 > [!IMPORTANT]
 > The `setup-coordinator` node will wait for other nodes to complete the successful deployment. After 5min it aborts the deployment run indicating
