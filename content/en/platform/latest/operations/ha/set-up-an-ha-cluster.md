@@ -5,6 +5,9 @@ weight: 10
 
 # Set up an HA Cluster
 
+This guide explains how to set up a High Availability (HA) cluster from two or more Aero nodes, and what happens on
+the nodes while the cluster forms.
+
 ## Requirements
 
 In order to operate an Aero cluster the following requirements are in effect:
@@ -12,6 +15,19 @@ In order to operate an Aero cluster the following requirements are in effect:
 - At minimum two nodes configured by [First time wizard](../../install/firsttimewizard.md) ready to use
 - Management Network configured within the same network
 - All nodes being able to connect to each other using `TCP/2224`, `TCP/3121`, `TCP/21064`, `TCP/22` and `UDP/5405`
+
+> [!IMPORTANT]
+> Use at least three nodes. Two nodes work, but they can't form a reliable quorum.
+>
+> The cluster makes decisions, such as which node is the leader, only when a majority of its nodes (the quorum) agree.
+> In a two-node cluster, a broken connection between the nodes leaves each node alone with half of the votes, so
+> neither has a majority. Each node can assume that the other has failed and act as the leader on its own. This is
+> called a *split brain*: both nodes serve traffic and change their configuration independently, and the cluster ends
+> up in an inconsistent state.
+>
+> With three nodes, the two nodes that can still reach each other keep the majority and continue to run the cluster.
+> The isolated node knows it is in the minority and does not act on its own. For the same reason, prefer an odd number
+> of nodes when you add more.
 
 ## Cluster creation
 

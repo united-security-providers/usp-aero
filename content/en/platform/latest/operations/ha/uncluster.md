@@ -1,6 +1,6 @@
 ---
 title: "Dissolving a HA Cluster"
-weight: 40
+weight: 50
 ---
 
 # Dissolving a HA Cluster (Uncluster)
@@ -11,7 +11,8 @@ instance again, and what happens on each node while that runs.
 ## Before you start
 
 - **Start on the leader node.** The uncluster is driven by the leader. The *High Availability* page
-  (*System Management > High Availability*) shows which node is the leader.
+  (*System Management > High Availability*) shows which node is the leader. Disabling HA on a follower removes only
+  that follower from the cluster (see [Adding and Removing Cluster Nodes](add-remove-nodes)).
 - **Bring every node online and out of standby.** The leader tells the followers to leave the cluster. A node that is
   offline or in standby at that moment does not act on it and stays configured as a cluster member.
 - **Finish or discard pending platform changes on all nodes.** The uncluster stores the platform configuration as a

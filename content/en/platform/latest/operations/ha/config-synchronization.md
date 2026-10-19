@@ -1,6 +1,6 @@
 ---
 title: "Synchronizing Configuration in a HA Cluster"
-weight: 20
+weight: 30
 ---
 
 # Synchronizing Configuration in a HA Cluster
@@ -158,8 +158,9 @@ On the leader, open *System Management > High Availability*:
 
 - **Synchronize after every change on the leader.** Until you do, the followers run the previous configuration. If a
   follower takes over before you synchronize, it serves the old configuration.
-- **Bring standby nodes back first.** Nodes in standby are skipped. After **UnStandby**, trigger another
-  synchronization to bring them up to date.
+- **Standby nodes catch up on their own.** Nodes in standby are skipped. After **UnStandby**, the node first
+  synchronizes from the current leader, using the configuration of the last synchronization. Changes you activated
+  on the leader since then are not included until you synchronize again.
 - **One operation at a time per node.** If another installation or activation is still running on a follower, the
   follower waits for it to finish before it continues.
 - **Nothing changed, nothing done.** If the leader's configuration has not changed since the last synchronization,

@@ -1,6 +1,6 @@
 ---
 title: "HA Cluster Status"
-weight: 30
+weight: 40
 ---
 
 # HA Cluster Status
