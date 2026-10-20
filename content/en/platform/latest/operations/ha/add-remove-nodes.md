@@ -10,32 +10,31 @@ again, either to keep it as a standalone Aero instance or to decommission it.
 
 ## How cluster membership works
 
-Every node has its own list of cluster nodes in *Configuration > High Availability*. When you activate a platform
-configuration on the **leader**, the leader compares the running cluster with its list and adjusts the cluster:
+Every node has its own list of cluster nodes in *Configuration > High Availability*.
 
-- a node that is in the list but not in the cluster is **added**,
-- a node that is in the cluster but no longer in the list is **removed**.
+When you activate a Deployment the configuration is compared against the nodes cluster setup and is adjusted if needed:
 
-Activating on a follower never changes the cluster membership. It only updates that follower's own view of the
-cluster.
+- a node that is in the configuration but not in the cluster is **added**,
+- a node that is in the cluster but no longer in the configuration is **removed**.
+
+Changing the participating nodes on the **leader** will adjust the cluster configuration and remove cluster members - this includes revoking cluster node authentication tokens created during setup.
+
+Changing the participating nodes on a **follower** will adjust that nodes authentication tokens with these memers.
+
+> [!IMPORTANT]
+> Make sure all cluster nodes use the same list of nodes participating in the cluster!
 
 The HA settings, including the list of cluster nodes, belong to each node and are **not** distributed by a
 [configuration synchronization](config-synchronization). Whenever the membership changes, update the list on
 **every** node that stays in the cluster.
 
-> [!IMPORTANT]
-> Change the membership **one node at a time**.
->
-> - **Removing:** the leader removes at most one node per activation. If the node list on the leader would remove
->   more than one node, the leader refuses the change and removes none. This protects the cluster against a
->   configuration that arrived only partly or in a truncated form, which would otherwise look like a request to remove
->   several nodes at once.
-> - **Adding:** the leader does not limit how many nodes join in one activation. Adding one node at a time is still
->   recommended, so that you can confirm each node has joined before you add the next.
-
 The *High Availability* page (*System Management > High Availability*) shows which node is the leader.
 
 ## Adding a node
+
+> [!NOTICE]
+> The leader does not limit how many nodes join in one activation. Adding one node at a time is still
+> recommended, so that you can confirm each node has joined before you add the next.
 
 ### Before you start
 
@@ -57,19 +56,18 @@ The *High Availability* page (*System Management > High Availability*) shows whi
 
 ### Steps
 
-1. **On the new node**, open
-   [Configuration > High Availability](../../reference/gui/configuration/high-availability):
-   1. Switch on **Enabled**.
-   2. Enter the cluster's **Shared Secret**. Copy it from one of the cluster nodes. Do **not** generate a new one.
-   3. Select the same **Mode** as the cluster. (Currently only active/passive is supported.)
-   4. Add one entry per existing cluster node with its hostname, management IP address and SSH public key. You can
+1. **On the new node**, open [Configuration > High Availability](../../reference/gui/configuration/high-availability):
+    1. Switch on **Enabled**.
+    2. Enter the cluster's **Shared Secret**. Copy it from one of the cluster nodes. Do **not** generate a new one.
+    3. Select the same **Mode** as the cluster. (Currently only active/passive is supported.)
+    4. Add one entry per existing cluster node with its hostname, management IP address and SSH public key. You can
       copy each node's SSH public key from its own *High Availability* page.
-   5. Save, then [create a revision and activate it](../../concepts/configuration-lifecycle).
+    5. Save, then [create a revision and activate it](../../concepts/configuration-lifecycle).
 
    The new node finds the running cluster and prepares itself to join. It does **not** create a cluster of its own.
-2. **On the leader**, add an entry for the new node (hostname, management IP address and the SSH public key copied
+2. **On the existing leader**, add an entry for the new node (hostname, management IP address and the SSH public key copied
    from the new node), save, and activate the new revision. The leader adds the new node to the cluster.
-3. **On every other follower**, add the same entry for the new node, save, and activate the new revision.
+3. **On every other existing follower**, add the same entry for the new node, save and activate the new revision.
 4. **Check the result** on the leader's
    [High Availability status](../../reference/gui/system-management/high-availability) page: the new node is listed
    in *Node Status* and is `online`. While it joins, it can briefly show `pending`.
@@ -77,11 +75,19 @@ The *High Availability* page (*System Management > High Availability*) shows whi
    feature components that run on the leader and receives the leader's configuration, including the cluster-shared
    external interface. Until then, it runs only its own initial configuration.
 
-The order of steps 1 and 2 is a recommendation. If you activate on the leader first, the leader waits up to five
+The order of steps 1 and 2 is a recommendation. If you activate on the leader first, the leader waits up to 15
 minutes for the new node to become ready. If the new node is still not ready after that, the leader skips it and
 adds it at the next activation on the leader.
 
 ## Removing a node
+
+> [!WARNING]
+> Remove/Replace nodes **one node at a time**.
+>
+> The leader removes at most one node per activation. If the node list on the leader would remove
+> more than one node, the leader refuses the change and removes none. This protects the cluster against a
+> configuration that arrived only partly or in a truncated form, which would otherwise look like a request to remove
+> several nodes at once.
 
 How you remove a node depends on whether it should keep running as a standalone Aero instance:
 
@@ -135,8 +141,7 @@ Use this procedure for a node that has already been shut down, has failed for go
 2. **On every other follower**, delete the same entry, save, and activate the new revision.
 3. **Check the result** on the leader's *High Availability* page: the node is no longer listed in *Node Status*.
 
-If the removed node is ever switched on again, it still has its old cluster configuration. Reinstall it, or contact
-support, before you connect it to the network again.
+If the removed node is ever switched on again, it still has its old cluster configuration. Reinstall it, or execute [Remove a node and keep it standalone](#remove-a-node-and-keep-it-standalone).
 
 ## If something goes wrong
 

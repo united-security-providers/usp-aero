@@ -11,7 +11,8 @@ synchronization got. It also offers the actions you need to operate the cluster.
 
 The page updates by itself whenever the cluster state changes. You do not need to reload it.
 
-> **Tip:** Open this page on the **leader node**. Some information (the *Active Configuration ID* and the comparison
+> [!TIP]
+> Open this page on the **leader node**. Some information (the *Active Configuration ID* and the comparison
 > of configuration IDs) is only available there, because only the leader knows which configuration the cluster
 > should be running.
 

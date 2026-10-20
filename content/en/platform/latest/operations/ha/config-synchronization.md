@@ -134,7 +134,8 @@ This usually happens during a rolling upgrade, where you upgrade a follower firs
 version as a fallback. When you have finished upgrading, update the leader too, so that every node runs the same
 versions again.
 
-> **Note:** The synchronization only installs, updates and removes **feature components**. It never changes the
+> [!NOTICE]
+> The synchronization only installs, updates and removes **feature components**. It never changes the
 > management platform (*core host*) itself. Upgrade the platform on each node separately.
 
 ### When a component cannot be installed or updated
