@@ -141,7 +141,8 @@ Use this procedure for a node that has already been shut down, has failed for go
 2. **On every other follower**, delete the same entry, save, and activate the new revision.
 3. **Check the result** on the leader's *High Availability* page: the node is no longer listed in *Node Status*.
 
-If the removed node is ever switched on again, it still has its old cluster configuration. Reinstall it, or execute [Remove a node and keep it standalone](#remove-a-node-and-keep-it-standalone).
+If the removed node is ever switched on again, it still has its old cluster configuration. Reinstall it as it holds
+outdated / wrong cluster configuration settings.
 
 ## If something goes wrong
 
