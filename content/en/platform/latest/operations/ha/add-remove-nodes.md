@@ -19,7 +19,7 @@ When you activate a Deployment the configuration is compared against the nodes c
 
 Changing the participating nodes on the **leader** will adjust the cluster configuration and remove cluster members - this includes revoking cluster node authentication tokens created during setup.
 
-Changing the participating nodes on a **follower** will adjust that nodes authentication tokens with these memers.
+Changing the participating nodes on a **follower** will adjust that nodes authentication tokens with these members.
 
 > [!IMPORTANT]
 > Make sure all cluster nodes use the same list of nodes participating in the cluster!
