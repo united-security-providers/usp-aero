@@ -39,8 +39,8 @@ the *High Availability* page.
 2. Activate the configuration you want to distribute. Only the **active** configuration of each component is
    synchronized. Drafts and revisions that are not yet activated stay on the leader.
 3. Start the synchronization in one of these places:
-   - *Deployment* page: **Synchronize HA**
-   - *System Management > High Availability*, in the *Sync Status* section: **Trigger Sync** (asks you to confirm)
+    - *Deployment* page: **Synchronize HA**
+    - *System Management > High Availability*, in the *Sync Status* section: **Trigger Sync** (asks you to confirm)
 4. Watch the progress on the *High Availability* page (see [Monitoring the result](#monitoring-the-result)).
 
 The button returns right away. The synchronization keeps running in the background and can take several minutes,
@@ -68,9 +68,9 @@ especially if components have to be installed or updated on the followers.
 4. **Copy.** Each follower copies the exported configuration from the leader over the cluster's internal, encrypted
    connection. Standby nodes skip this step and every step after it.
 5. **Align the installed components.** Each follower compares its components with the leader's:
-   - a component the leader has but the follower does not have is **installed**,
-   - a component that is older on the follower than on the leader is **updated**,
-   - a component that is installed on the follower but was removed from the leader is **removed**.
+    - a component the leader has but the follower does not have is **installed**,
+    - a component that is older on the follower than on the leader is **updated**,
+    - a component that is installed on the follower but was removed from the leader is **removed**.
 
    These operations run one after another. The follower waits until each component is up and running before
    it continues.
@@ -101,9 +101,9 @@ the follower and **activates it immediately**.
   created for it.
 - **Node-specific settings are kept.** Some platform settings belong to the individual node and are never taken from
   the leader. The follower keeps its own:
-  - hostname, label, color scheme, location and contact,
-  - network interfaces, except the *external* interface, which the cluster shares,
-  - High Availability settings.
+    - hostname, label, color scheme, location and contact,
+    - network interfaces, except the *external* interface, which the cluster shares,
+    - High Availability settings.
 - **Unsaved work on the follower is discarded.** If someone left an open draft for a component on the follower, the
   synchronization deletes it. Always make configuration changes on the leader.
 - **Earlier revisions remain.** The follower's older revisions stay in its history, but they are replaced as the
@@ -134,7 +134,8 @@ This usually happens during a rolling upgrade, where you upgrade a follower firs
 version as a fallback. When you have finished upgrading, update the leader too, so that every node runs the same
 versions again.
 
-> **Note:** The synchronization only installs, updates and removes **feature components**. It never changes the
+> [!NOTICE]
+> The synchronization only installs, updates and removes **feature components**. It never changes the
 > management platform (*core host*) itself. Upgrade the platform on each node separately.
 
 ### When a component cannot be installed or updated
