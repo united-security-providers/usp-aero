@@ -24,11 +24,15 @@ screen involved, in order. For what an individual setting means, see the
 
 * [Live Log](logging/live-log)
 * [Forward logs to a remote system](logging/remote-log)
-<!--
-## High availability
 
-* [Set up an HA cluster](ha/set-up-an-ha-cluster)
--->
+## High Availability
+
+* [Set up an HA Cluster](ha/set-up-an-ha-cluster)
+* [Adding and Removing Cluster Nodes](ha/add-remove-nodes)
+* [Synchronizing Configuration in an HA Cluster](ha/config-synchronization)
+* [HA Cluster Status](ha/cluster-status)
+* [Dissolve an HA Cluster](ha/uncluster)
+
 ## Maintenance
 
 * [Update the Aero base OS](maintenance/update-the-os)
