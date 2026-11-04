@@ -35,6 +35,36 @@ weight: 20
 *
 -->
 
+## 1.1.0 - 202x-xx-xx
+
+### Contents
+
+- Aero Management Feature WAAP UI: x.x.x
+- Aero WAAP Gateway: x.x.x
+- WAAP Extension Server for Gateway: x.x.x
+- Aero WAAP Acme: x.x.x
+
+## New features and improvements
+
+*
+
+## Bug fixes
+
+*
+
+## Incompatible behavior changes
+
+*
+
+## Removed config or runtime
+
+*
+
+## Known Issues
+
+* The configured request body size limit may be enforced one byte differently than specified.
+  This affects only requests whose body size is exactly at the limit.
+
 ## 1.0.0 - 2026-09-01
 
 ### Contents
@@ -63,7 +93,7 @@ This is the first official release allowing to get familiar with how the platfor
 * Fixed read-only viewer role access enforcement.
 * Fixed allowed HTTP method ui element, so moving items works as expected
 * ACME client now creates self-signed temporary certificate only, when there is no old certificate available
-* Fixed ACME client error recovery/retry, when certificate order did not succeed  
+* Fixed ACME client error recovery/retry, when certificate order did not succeed
 * Fixed Coraza logging for phase 3-5
 
 ## Removed config or runtime
