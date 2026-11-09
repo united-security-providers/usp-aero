@@ -91,6 +91,9 @@
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/latest/reference/gui/vhosts/routes/routes/</loc>
   </url>
   <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/platform/latest/operations/ha/set-up-an-ha-cluster/</loc>
+  </url>
+  <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.0.x/operations/backup/automated-backups/</loc>
   </url>
   <url>
@@ -119,6 +122,9 @@
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/latest/reference/gui/vhosts/virtual-hosts/</loc>
+  </url>
+  <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/platform/latest/operations/ha/add-remove-nodes/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.0.x/reference/gui/backup/backup-targets/</loc>
@@ -334,6 +340,9 @@
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/latest/protection/security-headers/</loc>
   </url>
   <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/platform/latest/operations/ha/config-synchronization/</loc>
+  </url>
+  <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.0.x/reference/gui/listeners/timeouts-and-limits/</loc>
   </url>
   <url>
@@ -376,6 +385,9 @@
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/latest/getting-started/</loc>
   </url>
   <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/platform/latest/operations/ha/cluster-status/</loc>
+  </url>
+  <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.0.x/install/installation/</loc>
   </url>
   <url>
@@ -416,6 +428,9 @@
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/latest/application-integration/tls/mtls/</loc>
+  </url>
+  <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/platform/latest/operations/ha/uncluster/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.0.x/reference/header-filtering-classes/</loc>

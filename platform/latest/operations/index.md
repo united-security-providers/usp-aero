@@ -21,11 +21,15 @@ screen involved, in order. For what an individual setting means, see the
 
 * [Live Log](logging/live-log)
 * [Forward logs to a remote system](logging/remote-log)
-<!--
-## High availability
 
-* [Set up an HA cluster](ha/set-up-an-ha-cluster)
--->
+## High Availability
+
+* [Set up an HA Cluster](ha/set-up-an-ha-cluster)
+* [Adding and Removing Cluster Nodes](ha/add-remove-nodes)
+* [Synchronizing Configuration in an HA Cluster](ha/config-synchronization)
+* [HA Cluster Status](ha/cluster-status)
+* [Dissolve an HA Cluster](ha/uncluster)
+
 ## Maintenance
 
 * [Update the Aero base OS](maintenance/update-the-os)
@@ -39,4 +43,9 @@ screen involved, in order. For what an individual setting means, see the
 - [Restore from backup](https://docs.united-security-providers.ch/usp-aero/platform/latest/operations/backup/restore-from-backup/index.md)
 - [Live Log](https://docs.united-security-providers.ch/usp-aero/platform/latest/operations/logging/live-log/index.md)
 - [Forward logs to remote System](https://docs.united-security-providers.ch/usp-aero/platform/latest/operations/logging/remote-log/index.md)
+- [Set up an HA Cluster](https://docs.united-security-providers.ch/usp-aero/platform/latest/operations/ha/set-up-an-ha-cluster/index.md)
+- [Adding and Removing Cluster Nodes](https://docs.united-security-providers.ch/usp-aero/platform/latest/operations/ha/add-remove-nodes/index.md)
+- [Synchronizing Configuration in a HA Cluster](https://docs.united-security-providers.ch/usp-aero/platform/latest/operations/ha/config-synchronization/index.md)
+- [HA Cluster Status](https://docs.united-security-providers.ch/usp-aero/platform/latest/operations/ha/cluster-status/index.md)
+- [Dissolving a HA Cluster (Uncluster)](https://docs.united-security-providers.ch/usp-aero/platform/latest/operations/ha/uncluster/index.md)
 - [Update the Aero base OS](https://docs.united-security-providers.ch/usp-aero/platform/latest/operations/maintenance/update-the-os/index.md)

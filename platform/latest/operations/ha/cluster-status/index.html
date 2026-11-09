@@ -1,0 +1,1195 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="canonical" href="https://docs.united-security-providers.ch/usp-aero/platform/latest/operations/ha/cluster-status/">
+    <meta name="description" content="Installation, configuration and release notes for the USP Aero Suite: the Aero Platform and Aero WAAP.">
+    <link rel="icon" href="/usp-aero/favicon.ico">
+    <title>HA Cluster Status - USP Aero Platform documentation</title>
+    <link rel="stylesheet" href="/usp-aero/stylesheets/usp-docs.65ec41a132b70ffc2bd4b17a4dea8dd262f9ca31a22c29647c0b47711492f6ef.css">
+    <link rel="stylesheet" href="/usp-aero/stylesheets/highlight.8ffd1f6914fb6b60dcf36f5b43cb54b0b569b46920e0f6c9223866c1132784f5.css">
+    <link rel="stylesheet" href="/usp-aero/stylesheets/fonts.a423719d8c6b857f394a6c70f0289dc8e250e5ad1e3a465fd9930ea27ac05946.css">
+    <link rel="alternate" type="text/markdown" href="/usp-aero/platform/latest/operations/ha/cluster-status/index.md">
+  </head>
+  <body>
+    <p class="usp-agent-note">For AI agents: this documentation is indexed at https://docs.united-security-providers.ch/usp-aero/llms.txt, and every page is available as markdown at its own address plus index.md.</p>
+
+    <input type="checkbox" id="__drawer" autocomplete="off" hidden>
+    <label class="usp-overlay" for="__drawer" aria-hidden="true"></label>
+    <a href="#ha-cluster-status" class="usp-skip">Skip to content</a>
+    <header class="usp-header">
+  <div class="usp-header__inner">
+    <label class="usp-header__drawer" for="__drawer" aria-label="Navigation">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+
+    </label>
+    <a class="usp-header__logo" href="/usp-aero/" aria-label="USP Aero Platform documentation">
+      <img src="/usp-aero/images/USP-Logo-2023-ohne-claim-lang-white1.webp" alt="USP Aero Suite documentation">
+    </a>
+    
+<div class="usp-picker usp-picker--product">
+  <button class="usp-picker__current" aria-label="Select product">
+    <span class="usp-picker__label">Aero Platform</span>
+    <svg class="usp-picker__caret" viewBox="7 10 10 5"><path d="M7 10l5 5 5-5z"/></svg>
+  </button>
+  <ul class="usp-picker__list">
+    <li><a href="/usp-aero/">All products</a></li>
+    <li><a href="/usp-aero/platform/1.0.x/" aria-current="true">Aero Platform</a></li>
+    <li><a href="/usp-aero/waap/1.0.x/">Aero WAAP</a></li>
+  </ul>
+</div>
+
+
+    
+<div class="usp-picker usp-picker--version">
+  <button class="usp-picker__current" aria-label="Select version">
+    <span class="usp-picker__label">latest</span>
+    <svg class="usp-picker__caret" viewBox="7 10 10 5"><path d="M7 10l5 5 5-5z"/></svg>
+  </button>
+  <ul class="usp-picker__list">
+    <li><a href="/usp-aero/platform/latest/operations/ha/cluster-status/" aria-current="true">latest</a></li>
+    <li><a href="/usp-aero/platform/1.0.x/">1.0.x</a></li>
+  </ul>
+</div>
+
+
+    <div class="usp-header__tools">
+      <link rel="stylesheet" href="/usp-aero/pagefind/pagefind-component-ui.css" data-usp-search-bundle>
+<pagefind-config data-usp-search-config></pagefind-config>
+<script>
+  document.querySelector("[data-usp-search-config]").setAttribute("bundle-path",
+    new URL(".", document.querySelector("[data-usp-search-bundle]").href).href);
+</script>
+<script type="module" src="/usp-aero/pagefind/pagefind-component-ui.js"></script><script type="module">
+  window.PagefindComponents.getInstanceManager().getInstance("default")
+    .searchFilters = {"docset":{"any":["platform/latest"]}};
+</script>
+<div class="usp-search">
+  <pagefind-searchbox placeholder="Search" shortcut="/"></pagefind-searchbox>
+</div>
+<div class="usp-search-compact">
+  <pagefind-modal-trigger></pagefind-modal-trigger>
+  <pagefind-modal></pagefind-modal>
+</div>
+
+    </div>
+  </div>
+</header>
+
+    <aside class="usp-banner">
+      You are viewing the documentation under development. It is not a release and can change at any time.
+      <a href="/usp-aero/platform/1.0.x/">Go to the 1.0.x release.</a>
+    </aside>
+    <div class="usp-layout">
+      <div class="usp-nav-wrapper usp-sidebar">
+        <nav class="usp-nav" aria-label="Navigation">
+  <div class="usp-nav__title">USP Aero Platform documentation</div>
+  <ul>
+    
+<li><a href="/usp-aero/platform/latest/">Welcome</a></li>
+      
+<li><a href="/usp-aero/platform/latest/aero-platform-releasenotes/">Release Notes</a></li>
+      <li class="usp-nav__section">
+  <details>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>Installation</span>
+    </summary>
+    <ul>
+        
+<li><a href="/usp-aero/platform/latest/install/requirements/">System Requirements</a></li>
+        
+<li><a href="/usp-aero/platform/latest/install/installation/">Installing from ISO</a></li>
+        
+<li><a href="/usp-aero/platform/latest/install/firsttimewizard/">First-time setup wizard</a></li>
+    </ul>
+  </details>
+</li>
+      <li class="usp-nav__section">
+  <details>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>Concepts</span>
+    </summary>
+    <ul>
+        
+<li><a href="/usp-aero/platform/latest/concepts/gui-overview/">GUI overview</a></li>
+        
+<li><a href="/usp-aero/platform/latest/concepts/configuration-lifecycle/">Configuration lifecycle</a></li>
+        
+<li><a href="/usp-aero/platform/latest/concepts/roles-and-permissions/">Roles and permissions</a></li>
+    </ul>
+  </details>
+</li>
+      <li class="usp-nav__section">
+  <details open>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>Operations</span>
+    </summary>
+    <ul>
+        <li><a href="/usp-aero/platform/latest/operations/">Overview</a></li>
+        <li class="usp-nav__section">
+  <details>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>Component Management</span>
+    </summary>
+    <ul>
+        
+<li><a href="/usp-aero/platform/latest/operations/components/install-a-component/">Install a component</a></li>
+        
+<li><a href="/usp-aero/platform/latest/operations/components/update-a-component/">Update a component</a></li>
+        
+<li><a href="/usp-aero/platform/latest/operations/components/remove-a-component/">Remove a component</a></li>
+    </ul>
+  </details>
+</li>
+        <li class="usp-nav__section">
+  <details>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>Configuration Backup</span>
+    </summary>
+    <ul>
+        
+<li><a href="/usp-aero/platform/latest/operations/backup/automated-backups/">Set up automated backups</a></li>
+        
+<li><a href="/usp-aero/platform/latest/operations/backup/restore-from-backup/">Restore from backup</a></li>
+    </ul>
+  </details>
+</li>
+        <li class="usp-nav__section">
+  <details>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>Logging</span>
+    </summary>
+    <ul>
+        
+<li><a href="/usp-aero/platform/latest/operations/logging/live-log/">Live Log</a></li>
+        
+<li><a href="/usp-aero/platform/latest/operations/logging/remote-log/">Log Forwarding</a></li>
+    </ul>
+  </details>
+</li>
+        <li class="usp-nav__section">
+  <details open>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>High Availability</span>
+    </summary>
+    <ul>
+        
+<li><a href="/usp-aero/platform/latest/operations/ha/set-up-an-ha-cluster/">Set up an HA Cluster</a></li>
+        
+<li><a href="/usp-aero/platform/latest/operations/ha/add-remove-nodes/">Adding and Removing Cluster Nodes</a></li>
+        
+<li><a href="/usp-aero/platform/latest/operations/ha/config-synchronization/">Synchronizing Configuration in a HA Cluster</a></li>
+        
+<li><a href="/usp-aero/platform/latest/operations/ha/cluster-status/" aria-current="page">HA Cluster Status</a></li>
+        
+<li><a href="/usp-aero/platform/latest/operations/ha/uncluster/">Dissolving a HA Cluster</a></li>
+    </ul>
+  </details>
+</li>
+        <li class="usp-nav__section">
+  <details>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>Maintenance</span>
+    </summary>
+    <ul>
+        
+<li><a href="/usp-aero/platform/latest/operations/maintenance/update-the-os/">Update Aero OS</a></li>
+    </ul>
+  </details>
+</li>
+    </ul>
+  </details>
+</li>
+      <li class="usp-nav__section">
+  <details>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>Reference</span>
+    </summary>
+    <ul>
+        <li><a href="/usp-aero/platform/latest/reference/">Overview</a></li>
+        <li class="usp-nav__section">
+  <details>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>GUI</span>
+    </summary>
+    <ul>
+        <li class="usp-nav__section">
+  <details>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>Configuration</span>
+    </summary>
+    <ul>
+        
+<li><a href="/usp-aero/platform/latest/reference/gui/configuration/system/">System</a></li>
+        
+<li><a href="/usp-aero/platform/latest/reference/gui/configuration/network/">Network</a></li>
+        
+<li><a href="/usp-aero/platform/latest/reference/gui/configuration/container/">Container</a></li>
+        
+<li><a href="/usp-aero/platform/latest/reference/gui/configuration/certificates/">Certificates</a></li>
+        
+<li><a href="/usp-aero/platform/latest/reference/gui/configuration/log/">Log</a></li>
+    </ul>
+  </details>
+</li>
+        <li class="usp-nav__section">
+  <details>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>Configuration Deployment</span>
+    </summary>
+    <ul>
+        
+<li><a href="/usp-aero/platform/latest/reference/gui/deployment/deploy/">Deploying a configuration</a></li>
+        
+<li><a href="/usp-aero/platform/latest/reference/gui/deployment/revisions/">Configuration revisions</a></li>
+        
+<li><a href="/usp-aero/platform/latest/reference/gui/deployment/history-and-rollback/">History and rollback</a></li>
+    </ul>
+  </details>
+</li>
+        <li class="usp-nav__section">
+  <details>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>System Management</span>
+    </summary>
+    <ul>
+        
+<li><a href="/usp-aero/platform/latest/reference/gui/system-management/operating-system/">Operating System</a></li>
+    </ul>
+  </details>
+</li>
+        
+<li><a href="/usp-aero/platform/latest/reference/gui/components/">Components</a></li>
+        <li class="usp-nav__section">
+  <details>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>User Management</span>
+    </summary>
+    <ul>
+        
+<li><a href="/usp-aero/platform/latest/reference/gui/user-management/local-users/">Local Users</a></li>
+        
+<li><a href="/usp-aero/platform/latest/reference/gui/user-management/user-profile/">User profile and password</a></li>
+    </ul>
+  </details>
+</li>
+        <li class="usp-nav__section">
+  <details>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>Backup</span>
+    </summary>
+    <ul>
+        
+<li><a href="/usp-aero/platform/latest/reference/gui/backup/backup-jobs/">Backup jobs</a></li>
+        
+<li><a href="/usp-aero/platform/latest/reference/gui/backup/backup-targets/">Backup targets</a></li>
+        
+<li><a href="/usp-aero/platform/latest/reference/gui/backup/local-backups-and-restore/">Local backups and restore</a></li>
+    </ul>
+  </details>
+</li>
+    </ul>
+  </details>
+</li>
+        
+<li><a href="/usp-aero/platform/latest/reference/console/">Console menu</a></li>
+        
+<li><a href="/usp-aero/platform/latest/reference/value-types/">Value types</a></li>
+        
+<li><a href="/usp-aero/platform/latest/reference/validation-errors/">Configuration validation errors</a></li>
+        
+<li><a href="/usp-aero/platform/latest/reference/glossary/">Glossary</a></li>
+    </ul>
+  </details>
+</li>
+  </ul>
+</nav>
+
+      </div>
+      <nav class="usp-toc usp-sidebar" aria-label="Table of contents">
+  <div class="usp-toc__title">Table of contents</div>
+  <ul>
+      <li>
+  <a href="#colours-at-a-glance">Colours at a glance</a>
+  <ul>
+      <li>
+  <a href="#the-ha-indicator-in-the-top-bar">The HA indicator in the top bar</a>
+</li>
+
+  </ul>
+</li>
+
+      <li>
+  <a href="#node-status">Node Status</a>
+  <ul>
+      <li>
+  <a href="#node-states">Node states</a>
+</li>
+
+      <li>
+  <a href="#actions">Actions</a>
+</li>
+
+  </ul>
+</li>
+
+      <li>
+  <a href="#leader-status">Leader Status</a>
+</li>
+
+      <li>
+  <a href="#sync-status">Sync Status</a>
+  <ul>
+      <li>
+  <a href="#active-configuration-id-vs-config-id">Active Configuration ID vs. Config ID</a>
+</li>
+
+      <li>
+  <a href="#colors">Colors</a>
+</li>
+
+  </ul>
+</li>
+
+      <li>
+  <a href="#deployment-status">Deployment Status</a>
+  <ul>
+      <li>
+  <a href="#status-values">Status values</a>
+</li>
+
+  </ul>
+</li>
+
+      <li>
+  <a href="#typical-situations">Typical situations</a>
+</li>
+
+  </ul>
+</nav>
+      <main class="usp-content">
+        
+<nav class="usp-breadcrumb" aria-label="Breadcrumb">
+  <ol>
+    <li><a href="/usp-aero/">USP Aero Suite documentation</a></li>
+    <li>Aero Platform</li>
+    <li><a href="/usp-aero/platform/latest/">latest</a></li>
+    <li><a href="/usp-aero/platform/latest/operations/">Operations</a></li>
+    <li>High Availability</li>
+  </ol>
+</nav>
+<article class="usp-prose" data-pagefind-filter="docset:platform/latest">
+  <h1 id="ha-cluster-status">HA Cluster Status</h1>
+<p>The <em>High Availability</em> page (<em>System Management &gt; High Availability</em>) shows the current state of your HA cluster:
+which nodes are online, which node is the leader, which configuration each node runs, and how far the last
+synchronization got. It also offers the actions you need to operate the cluster.</p>
+<p>The page updates by itself whenever the cluster state changes. You do not need to reload it.</p>
+<div class="usp-admonition usp-admonition--hint">
+    <p class="usp-admonition__title">Hint</p>
+    <p>Open this page on the <strong>leader node</strong>. Some information (the <em>Active Configuration ID</em> and the comparison
+of configuration IDs) is only available there, because only the leader knows which configuration the cluster
+should be running.</p>
+  </div><h2 id="colours-at-a-glance">Colours at a glance</h2>
+<p>The page and the HA indicator in the top bar use the same three colors:</p>
+<div class="usp-table">
+  <table>
+  <thead>
+    <tr>
+      <th>Color</th>
+      <th>Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Green</strong></td>
+      <td>Everything is OK.</td>
+    </tr>
+    <tr>
+      <td><strong>Yellow</strong></td>
+      <td>HA works, but something needs your attention, for example a node is in standby or not synchronized yet.</td>
+    </tr>
+    <tr>
+      <td><strong>Red</strong></td>
+      <td>HA is limited or unavailable, for example a node is offline or a synchronization failed.</td>
+    </tr>
+  </tbody>
+</table>
+  <button type="button" class="usp-table__expand" popovertarget="usp-zoom-table-0" aria-label="Expand table">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 4h6v2H6v4H4V4zm10 0h6v6h-2V6h-4V4zM4 14h2v4h4v2H4v-6zm16 0v6h-6v-2h4v-4h2z"/></svg>
+  </button>
+  <div id="usp-zoom-table-0" class="usp-lightbox" popover data-pagefind-ignore>
+    <button type="button" class="usp-lightbox__close" popovertarget="usp-zoom-table-0" popovertargetaction="hide" aria-label="Close">&times;</button>
+    <table>
+  <thead>
+    <tr>
+      <th>Color</th>
+      <th>Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Green</strong></td>
+      <td>Everything is OK.</td>
+    </tr>
+    <tr>
+      <td><strong>Yellow</strong></td>
+      <td>HA works, but something needs your attention, for example a node is in standby or not synchronized yet.</td>
+    </tr>
+    <tr>
+      <td><strong>Red</strong></td>
+      <td>HA is limited or unavailable, for example a node is offline or a synchronization failed.</td>
+    </tr>
+  </tbody>
+</table>
+  </div>
+</div><h3 id="the-ha-indicator-in-the-top-bar">The HA indicator in the top bar</h3>
+<p>The heart-shaped icon in the top bar summarizes the whole page. It evaluates four areas, one for each section of
+this page: nodes, leader, synchronization and deployment.</p>
+<ul>
+<li><strong>No badge:</strong> all four areas are green.</li>
+<li><strong>Badge with a number:</strong> the number of areas that are not green. The badge is <strong>red</strong> if at least one area is red,
+otherwise it is <strong>yellow</strong>.</li>
+</ul>
+<p>Click the icon to open this page and see which area needs attention.</p>
+<h2 id="node-status">Node Status</h2>
+<p>Lists every node configured in the cluster, with its current state and the actions you can take on it.</p>
+<div class="usp-table">
+  <table>
+  <thead>
+    <tr>
+      <th>Column</th>
+      <th>Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Member</strong></td>
+      <td>The node's hostname.</td>
+    </tr>
+    <tr>
+      <td><strong>Status</strong></td>
+      <td>The node's state as reported by the cluster.</td>
+    </tr>
+    <tr>
+      <td><strong>Action</strong></td>
+      <td>Buttons to change the node's role (see below).</td>
+    </tr>
+  </tbody>
+</table>
+  <button type="button" class="usp-table__expand" popovertarget="usp-zoom-table-1" aria-label="Expand table">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 4h6v2H6v4H4V4zm10 0h6v6h-2V6h-4V4zM4 14h2v4h4v2H4v-6zm16 0v6h-6v-2h4v-4h2z"/></svg>
+  </button>
+  <div id="usp-zoom-table-1" class="usp-lightbox" popover data-pagefind-ignore>
+    <button type="button" class="usp-lightbox__close" popovertarget="usp-zoom-table-1" popovertargetaction="hide" aria-label="Close">&times;</button>
+    <table>
+  <thead>
+    <tr>
+      <th>Column</th>
+      <th>Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Member</strong></td>
+      <td>The node's hostname.</td>
+    </tr>
+    <tr>
+      <td><strong>Status</strong></td>
+      <td>The node's state as reported by the cluster.</td>
+    </tr>
+    <tr>
+      <td><strong>Action</strong></td>
+      <td>Buttons to change the node's role (see below).</td>
+    </tr>
+  </tbody>
+</table>
+  </div>
+</div><h3 id="node-states">Node states</h3>
+<div class="usp-table">
+  <table>
+  <thead>
+    <tr>
+      <th>Status</th>
+      <th>Color</th>
+      <th>Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>online</code></td>
+      <td>Green</td>
+      <td>The node is running and takes part in the cluster.</td>
+    </tr>
+    <tr>
+      <td><code>standby</code></td>
+      <td>Yellow</td>
+      <td>You put the node into standby. It runs no cluster services and does not take over on failure.</td>
+    </tr>
+    <tr>
+      <td><code>maintenance</code></td>
+      <td>Yellow</td>
+      <td>The node is in maintenance mode. The cluster does not manage its services.</td>
+    </tr>
+    <tr>
+      <td><code>pending</code></td>
+      <td>Yellow</td>
+      <td>The node is joining or leaving the cluster.</td>
+    </tr>
+    <tr>
+      <td><code>offline</code></td>
+      <td>Red</td>
+      <td>The cluster cannot reach the node. If another node fails, this one cannot take over.</td>
+    </tr>
+    <tr>
+      <td><code>unclean</code></td>
+      <td>Red</td>
+      <td>The node is in an undefined state, for example after a crash, until the cluster has recovered it.</td>
+    </tr>
+    <tr>
+      <td><code>unknown</code></td>
+      <td>–</td>
+      <td>The cluster state could not be read.</td>
+    </tr>
+  </tbody>
+</table>
+  <button type="button" class="usp-table__expand" popovertarget="usp-zoom-table-2" aria-label="Expand table">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 4h6v2H6v4H4V4zm10 0h6v6h-2V6h-4V4zM4 14h2v4h4v2H4v-6zm16 0v6h-6v-2h4v-4h2z"/></svg>
+  </button>
+  <div id="usp-zoom-table-2" class="usp-lightbox" popover data-pagefind-ignore>
+    <button type="button" class="usp-lightbox__close" popovertarget="usp-zoom-table-2" popovertargetaction="hide" aria-label="Close">&times;</button>
+    <table>
+  <thead>
+    <tr>
+      <th>Status</th>
+      <th>Color</th>
+      <th>Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>online</code></td>
+      <td>Green</td>
+      <td>The node is running and takes part in the cluster.</td>
+    </tr>
+    <tr>
+      <td><code>standby</code></td>
+      <td>Yellow</td>
+      <td>You put the node into standby. It runs no cluster services and does not take over on failure.</td>
+    </tr>
+    <tr>
+      <td><code>maintenance</code></td>
+      <td>Yellow</td>
+      <td>The node is in maintenance mode. The cluster does not manage its services.</td>
+    </tr>
+    <tr>
+      <td><code>pending</code></td>
+      <td>Yellow</td>
+      <td>The node is joining or leaving the cluster.</td>
+    </tr>
+    <tr>
+      <td><code>offline</code></td>
+      <td>Red</td>
+      <td>The cluster cannot reach the node. If another node fails, this one cannot take over.</td>
+    </tr>
+    <tr>
+      <td><code>unclean</code></td>
+      <td>Red</td>
+      <td>The node is in an undefined state, for example after a crash, until the cluster has recovered it.</td>
+    </tr>
+    <tr>
+      <td><code>unknown</code></td>
+      <td>–</td>
+      <td>The cluster state could not be read.</td>
+    </tr>
+  </tbody>
+</table>
+  </div>
+</div><p>In the top bar indicator, this area is <strong>red</strong> if any node is <code>offline</code> or <code>unclean</code>, <strong>yellow</strong> if any node is not
+<code>online</code>, and <strong>green</strong> if all nodes are <code>online</code>.</p>
+<h3 id="actions">Actions</h3>
+<ul>
+<li><strong>StandBy</strong> / <strong>UnStandby</strong>: shown only on the row of the node you are signed in to. <em>StandBy</em> takes the node out
+of service: it stops running cluster services, and if it is the leader, another node becomes the leader.
+<em>UnStandby</em> brings it back.</li>
+<li><strong>Take Over</strong>: shown on every online node that is not the leader. It makes that node the new leader.</li>
+</ul>
+<h2 id="leader-status">Leader Status</h2>
+<p>Shows which node is currently the leader. The leader is the node where you change the configuration and start
+synchronizations.</p>
+<div class="usp-table">
+  <table>
+  <thead>
+    <tr>
+      <th>Row</th>
+      <th>Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Status</strong></td>
+      <td><code>online</code> (green): a leader is active. <code>offline</code> (red): no node is acting as leader at the moment.</td>
+    </tr>
+    <tr>
+      <td><strong>Member</strong></td>
+      <td>The hostname of the current leader, or <code>-</code> if there is none.</td>
+    </tr>
+    <tr>
+      <td><strong>Active Configuration ID</strong></td>
+      <td>Only shown on the leader. The configuration revision that is <strong>currently active on the leader</strong>, per component, for example <code>aero-mgmt-core-host=12, feature-waap=7</code>.</td>
+    </tr>
+  </tbody>
+</table>
+  <button type="button" class="usp-table__expand" popovertarget="usp-zoom-table-3" aria-label="Expand table">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 4h6v2H6v4H4V4zm10 0h6v6h-2V6h-4V4zM4 14h2v4h4v2H4v-6zm16 0v6h-6v-2h4v-4h2z"/></svg>
+  </button>
+  <div id="usp-zoom-table-3" class="usp-lightbox" popover data-pagefind-ignore>
+    <button type="button" class="usp-lightbox__close" popovertarget="usp-zoom-table-3" popovertargetaction="hide" aria-label="Close">&times;</button>
+    <table>
+  <thead>
+    <tr>
+      <th>Row</th>
+      <th>Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Status</strong></td>
+      <td><code>online</code> (green): a leader is active. <code>offline</code> (red): no node is acting as leader at the moment.</td>
+    </tr>
+    <tr>
+      <td><strong>Member</strong></td>
+      <td>The hostname of the current leader, or <code>-</code> if there is none.</td>
+    </tr>
+    <tr>
+      <td><strong>Active Configuration ID</strong></td>
+      <td>Only shown on the leader. The configuration revision that is <strong>currently active on the leader</strong>, per component, for example <code>aero-mgmt-core-host=12, feature-waap=7</code>.</td>
+    </tr>
+  </tbody>
+</table>
+  </div>
+</div><p>A leader that is <code>offline</code> usually means the cluster is switching over (for example right after <em>Take Over</em>), or
+every node is in standby. If it stays <code>offline</code>, use <strong>Restart Config Leader Resource</strong>. Leadership may briefly move
+to another node while it restarts.</p>
+<h2 id="sync-status">Sync Status</h2>
+<p>Shows which configuration each node has received through HA synchronization.</p>
+<div class="usp-table">
+  <table>
+  <thead>
+    <tr>
+      <th>Column</th>
+      <th>Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Member</strong></td>
+      <td>The node's hostname.</td>
+    </tr>
+    <tr>
+      <td><strong>Config ID</strong></td>
+      <td>Per component, the configuration revision the node last synchronized, for example <code>feature-waap=7</code>. <code>-</code> if the node has never been synchronized.</td>
+    </tr>
+  </tbody>
+</table>
+  <button type="button" class="usp-table__expand" popovertarget="usp-zoom-table-4" aria-label="Expand table">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 4h6v2H6v4H4V4zm10 0h6v6h-2V6h-4V4zM4 14h2v4h4v2H4v-6zm16 0v6h-6v-2h4v-4h2z"/></svg>
+  </button>
+  <div id="usp-zoom-table-4" class="usp-lightbox" popover data-pagefind-ignore>
+    <button type="button" class="usp-lightbox__close" popovertarget="usp-zoom-table-4" popovertargetaction="hide" aria-label="Close">&times;</button>
+    <table>
+  <thead>
+    <tr>
+      <th>Column</th>
+      <th>Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Member</strong></td>
+      <td>The node's hostname.</td>
+    </tr>
+    <tr>
+      <td><strong>Config ID</strong></td>
+      <td>Per component, the configuration revision the node last synchronized, for example <code>feature-waap=7</code>. <code>-</code> if the node has never been synchronized.</td>
+    </tr>
+  </tbody>
+</table>
+  </div>
+</div><p>On the leader, the column header also has the <strong>Trigger Sync</strong> button, which starts a synchronization to all
+followers.</p>
+<h3 id="active-configuration-id-vs-config-id">Active Configuration ID vs. Config ID</h3>
+<p>The two values look similar, but they answer different questions:</p>
+<div class="usp-table">
+  <table>
+  <thead>
+    <tr>
+      <th></th>
+      <th><em>Active Configuration ID</em> (Leader Status)</th>
+      <th><em>Config ID</em> (Sync Status)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Question</td>
+      <td>What does the leader run <strong>right now</strong>?</td>
+      <td>What did each node <strong>last synchronize</strong>?</td>
+    </tr>
+    <tr>
+      <td>Shown for</td>
+      <td>The leader only</td>
+      <td>Every node, including the leader</td>
+    </tr>
+    <tr>
+      <td>Changes when</td>
+      <td>You activate a new revision on the leader</td>
+      <td>A synchronization runs</td>
+    </tr>
+    <tr>
+      <td>Leader's own value</td>
+      <td>Its currently active revisions</td>
+      <td>The revisions it last <strong>sent</strong> to the followers</td>
+    </tr>
+    <tr>
+      <td>Follower's value</td>
+      <td>–</td>
+      <td>The revisions it last <strong>received and activated</strong></td>
+    </tr>
+  </tbody>
+</table>
+  <button type="button" class="usp-table__expand" popovertarget="usp-zoom-table-5" aria-label="Expand table">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 4h6v2H6v4H4V4zm10 0h6v6h-2V6h-4V4zM4 14h2v4h4v2H4v-6zm16 0v6h-6v-2h4v-4h2z"/></svg>
+  </button>
+  <div id="usp-zoom-table-5" class="usp-lightbox" popover data-pagefind-ignore>
+    <button type="button" class="usp-lightbox__close" popovertarget="usp-zoom-table-5" popovertargetaction="hide" aria-label="Close">&times;</button>
+    <table>
+  <thead>
+    <tr>
+      <th></th>
+      <th><em>Active Configuration ID</em> (Leader Status)</th>
+      <th><em>Config ID</em> (Sync Status)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Question</td>
+      <td>What does the leader run <strong>right now</strong>?</td>
+      <td>What did each node <strong>last synchronize</strong>?</td>
+    </tr>
+    <tr>
+      <td>Shown for</td>
+      <td>The leader only</td>
+      <td>Every node, including the leader</td>
+    </tr>
+    <tr>
+      <td>Changes when</td>
+      <td>You activate a new revision on the leader</td>
+      <td>A synchronization runs</td>
+    </tr>
+    <tr>
+      <td>Leader's own value</td>
+      <td>Its currently active revisions</td>
+      <td>The revisions it last <strong>sent</strong> to the followers</td>
+    </tr>
+    <tr>
+      <td>Follower's value</td>
+      <td>–</td>
+      <td>The revisions it last <strong>received and activated</strong></td>
+    </tr>
+  </tbody>
+</table>
+  </div>
+</div><p>The <em>Active Configuration ID</em> is the reference. When you activate a new configuration on the leader, only the
+<em>Active Configuration ID</em> changes. Every <em>Config ID</em>, including the leader's own row, still shows the previous
+revision until you start a synchronization. When the synchronization is complete, every node's <em>Config ID</em> matches
+the <em>Active Configuration ID</em> again.</p>
+<h3 id="colors">Colors</h3>
+<p>On the leader, every <em>Config ID</em> entry is compared with the <em>Active Configuration ID</em> of the same component:</p>
+<div class="usp-table">
+  <table>
+  <thead>
+    <tr>
+      <th>Entry</th>
+      <th>Color</th>
+      <th>Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Same revision as the active configuration</td>
+      <td>Green</td>
+      <td>This component is up to date on this node.</td>
+    </tr>
+    <tr>
+      <td>Different revision</td>
+      <td>Yellow</td>
+      <td>The node runs an older configuration. Synchronize.</td>
+    </tr>
+    <tr>
+      <td><code>component=-</code> (added automatically)</td>
+      <td>Yellow</td>
+      <td>The node has not received this component yet, for example after you installed a new feature. Synchronize.</td>
+    </tr>
+  </tbody>
+</table>
+  <button type="button" class="usp-table__expand" popovertarget="usp-zoom-table-6" aria-label="Expand table">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 4h6v2H6v4H4V4zm10 0h6v6h-2V6h-4V4zM4 14h2v4h4v2H4v-6zm16 0v6h-6v-2h4v-4h2z"/></svg>
+  </button>
+  <div id="usp-zoom-table-6" class="usp-lightbox" popover data-pagefind-ignore>
+    <button type="button" class="usp-lightbox__close" popovertarget="usp-zoom-table-6" popovertargetaction="hide" aria-label="Close">&times;</button>
+    <table>
+  <thead>
+    <tr>
+      <th>Entry</th>
+      <th>Color</th>
+      <th>Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Same revision as the active configuration</td>
+      <td>Green</td>
+      <td>This component is up to date on this node.</td>
+    </tr>
+    <tr>
+      <td>Different revision</td>
+      <td>Yellow</td>
+      <td>The node runs an older configuration. Synchronize.</td>
+    </tr>
+    <tr>
+      <td><code>component=-</code> (added automatically)</td>
+      <td>Yellow</td>
+      <td>The node has not received this component yet, for example after you installed a new feature. Synchronize.</td>
+    </tr>
+  </tbody>
+</table>
+  </div>
+</div><p>On a follower, the entries are not compared, because a follower does not know the cluster's reference
+configuration. They are all shown in green, but that does <strong>not</strong> mean the nodes are up to date. To check that, open
+this page on the leader.</p>
+<p>In the top bar indicator, this area is <strong>red</strong> if any node runs a different revision of a component, <strong>yellow</strong> if a
+node has not received a component at all, and <strong>green</strong> if every node matches. On a follower, it is always green.</p>
+<h2 id="deployment-status">Deployment Status</h2>
+<p>Shows the progress and outcome of the last synchronization on each node.</p>
+<div class="usp-table">
+  <table>
+  <thead>
+    <tr>
+      <th>Column</th>
+      <th>Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Member</strong></td>
+      <td>The node's hostname.</td>
+    </tr>
+    <tr>
+      <td><strong>Status</strong></td>
+      <td>The last synchronization step the node reported, or <em>Unknown</em> if none so far.</td>
+    </tr>
+  </tbody>
+</table>
+  <button type="button" class="usp-table__expand" popovertarget="usp-zoom-table-7" aria-label="Expand table">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 4h6v2H6v4H4V4zm10 0h6v6h-2V6h-4V4zM4 14h2v4h4v2H4v-6zm16 0v6h-6v-2h4v-4h2z"/></svg>
+  </button>
+  <div id="usp-zoom-table-7" class="usp-lightbox" popover data-pagefind-ignore>
+    <button type="button" class="usp-lightbox__close" popovertarget="usp-zoom-table-7" popovertargetaction="hide" aria-label="Close">&times;</button>
+    <table>
+  <thead>
+    <tr>
+      <th>Column</th>
+      <th>Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Member</strong></td>
+      <td>The node's hostname.</td>
+    </tr>
+    <tr>
+      <td><strong>Status</strong></td>
+      <td>The last synchronization step the node reported, or <em>Unknown</em> if none so far.</td>
+    </tr>
+  </tbody>
+</table>
+  </div>
+</div><h3 id="status-values">Status values</h3>
+<p>On the <strong>leader</strong>:</p>
+<div class="usp-table">
+  <table>
+  <thead>
+    <tr>
+      <th>Status</th>
+      <th>Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>export_started</code></td>
+      <td>The leader is exporting its active configuration.</td>
+    </tr>
+    <tr>
+      <td><code>exported</code></td>
+      <td>The export is done. The followers have been told to copy it.</td>
+    </tr>
+    <tr>
+      <td><code>synchronized</code></td>
+      <td>A follower has successfully activated the leader's configuration.</td>
+    </tr>
+    <tr>
+      <td><code>sync_failed</code></td>
+      <td>The export failed.</td>
+    </tr>
+  </tbody>
+</table>
+  <button type="button" class="usp-table__expand" popovertarget="usp-zoom-table-8" aria-label="Expand table">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 4h6v2H6v4H4V4zm10 0h6v6h-2V6h-4V4zM4 14h2v4h4v2H4v-6zm16 0v6h-6v-2h4v-4h2z"/></svg>
+  </button>
+  <div id="usp-zoom-table-8" class="usp-lightbox" popover data-pagefind-ignore>
+    <button type="button" class="usp-lightbox__close" popovertarget="usp-zoom-table-8" popovertargetaction="hide" aria-label="Close">&times;</button>
+    <table>
+  <thead>
+    <tr>
+      <th>Status</th>
+      <th>Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>export_started</code></td>
+      <td>The leader is exporting its active configuration.</td>
+    </tr>
+    <tr>
+      <td><code>exported</code></td>
+      <td>The export is done. The followers have been told to copy it.</td>
+    </tr>
+    <tr>
+      <td><code>synchronized</code></td>
+      <td>A follower has successfully activated the leader's configuration.</td>
+    </tr>
+    <tr>
+      <td><code>sync_failed</code></td>
+      <td>The export failed.</td>
+    </tr>
+  </tbody>
+</table>
+  </div>
+</div><p>On a <strong>follower</strong>, in the order they occur:</p>
+<div class="usp-table">
+  <table>
+  <thead>
+    <tr>
+      <th>Status</th>
+      <th>Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>transfer_started</code></td>
+      <td>The leader asked this node to copy its configuration.</td>
+    </tr>
+    <tr>
+      <td><code>transferred</code></td>
+      <td>The configuration has been copied to this node.</td>
+    </tr>
+    <tr>
+      <td><code>component_deploy_started</code></td>
+      <td>Components are being installed, updated or removed to match the leader.</td>
+    </tr>
+    <tr>
+      <td><code>components_ready</code></td>
+      <td>All components match the leader.</td>
+    </tr>
+    <tr>
+      <td><code>import_started</code></td>
+      <td>The configuration is being stored as new revisions.</td>
+    </tr>
+    <tr>
+      <td><code>imported</code></td>
+      <td>The new revisions have been created.</td>
+    </tr>
+    <tr>
+      <td><code>activation_started</code></td>
+      <td>The new revisions are being activated.</td>
+    </tr>
+    <tr>
+      <td><code>activated</code></td>
+      <td>Done: the node runs the leader's configuration.</td>
+    </tr>
+    <tr>
+      <td><code>sync_failed</code></td>
+      <td>The synchronization failed on this node. It keeps its previous configuration.</td>
+    </tr>
+  </tbody>
+</table>
+  <button type="button" class="usp-table__expand" popovertarget="usp-zoom-table-9" aria-label="Expand table">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 4h6v2H6v4H4V4zm10 0h6v6h-2V6h-4V4zM4 14h2v4h4v2H4v-6zm16 0v6h-6v-2h4v-4h2z"/></svg>
+  </button>
+  <div id="usp-zoom-table-9" class="usp-lightbox" popover data-pagefind-ignore>
+    <button type="button" class="usp-lightbox__close" popovertarget="usp-zoom-table-9" popovertargetaction="hide" aria-label="Close">&times;</button>
+    <table>
+  <thead>
+    <tr>
+      <th>Status</th>
+      <th>Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>transfer_started</code></td>
+      <td>The leader asked this node to copy its configuration.</td>
+    </tr>
+    <tr>
+      <td><code>transferred</code></td>
+      <td>The configuration has been copied to this node.</td>
+    </tr>
+    <tr>
+      <td><code>component_deploy_started</code></td>
+      <td>Components are being installed, updated or removed to match the leader.</td>
+    </tr>
+    <tr>
+      <td><code>components_ready</code></td>
+      <td>All components match the leader.</td>
+    </tr>
+    <tr>
+      <td><code>import_started</code></td>
+      <td>The configuration is being stored as new revisions.</td>
+    </tr>
+    <tr>
+      <td><code>imported</code></td>
+      <td>The new revisions have been created.</td>
+    </tr>
+    <tr>
+      <td><code>activation_started</code></td>
+      <td>The new revisions are being activated.</td>
+    </tr>
+    <tr>
+      <td><code>activated</code></td>
+      <td>Done: the node runs the leader's configuration.</td>
+    </tr>
+    <tr>
+      <td><code>sync_failed</code></td>
+      <td>The synchronization failed on this node. It keeps its previous configuration.</td>
+    </tr>
+  </tbody>
+</table>
+  </div>
+</div><p>The statuses in this table are shown without color. In the top bar indicator, this area is <strong>red</strong> if any node
+reports <code>sync_failed</code>, <strong>green</strong> if every node reports <code>activated</code> or <code>synchronized</code>, and <strong>yellow</strong> otherwise (still
+in progress, or <em>Unknown</em>).</p>
+<h2 id="typical-situations">Typical situations</h2>
+<div class="usp-table">
+  <table>
+  <thead>
+    <tr>
+      <th>What you see</th>
+      <th>What it means / what to do</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>All green, no badge in the top bar</td>
+      <td>The cluster is healthy and every node runs the leader's configuration.</td>
+    </tr>
+    <tr>
+      <td>Yellow <em>Config ID</em> entries after you activated a change on the leader</td>
+      <td>Expected. Start a synchronization with <strong>Trigger Sync</strong>.</td>
+    </tr>
+    <tr>
+      <td>A node <code>standby</code> (yellow)</td>
+      <td>The node does not take over on failure. Use <strong>UnStandby</strong> on that node, then synchronize it.</td>
+    </tr>
+    <tr>
+      <td>A node <code>offline</code> (red)</td>
+      <td>Check the node and its network connection. Until it is back, the cluster has less or no failover protection.</td>
+    </tr>
+    <tr>
+      <td>Leader <code>offline</code> (red) for more than a few moments</td>
+      <td>Use <strong>Restart Config Leader Resource</strong>, or <strong>Take Over</strong> on a healthy node.</td>
+    </tr>
+    <tr>
+      <td>A follower stays at <code>sync_failed</code></td>
+      <td>Check the follower's logs for the cause, fix it, and synchronize again.</td>
+    </tr>
+  </tbody>
+</table>
+  <button type="button" class="usp-table__expand" popovertarget="usp-zoom-table-10" aria-label="Expand table">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 4h6v2H6v4H4V4zm10 0h6v6h-2V6h-4V4zM4 14h2v4h4v2H4v-6zm16 0v6h-6v-2h4v-4h2z"/></svg>
+  </button>
+  <div id="usp-zoom-table-10" class="usp-lightbox" popover data-pagefind-ignore>
+    <button type="button" class="usp-lightbox__close" popovertarget="usp-zoom-table-10" popovertargetaction="hide" aria-label="Close">&times;</button>
+    <table>
+  <thead>
+    <tr>
+      <th>What you see</th>
+      <th>What it means / what to do</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>All green, no badge in the top bar</td>
+      <td>The cluster is healthy and every node runs the leader's configuration.</td>
+    </tr>
+    <tr>
+      <td>Yellow <em>Config ID</em> entries after you activated a change on the leader</td>
+      <td>Expected. Start a synchronization with <strong>Trigger Sync</strong>.</td>
+    </tr>
+    <tr>
+      <td>A node <code>standby</code> (yellow)</td>
+      <td>The node does not take over on failure. Use <strong>UnStandby</strong> on that node, then synchronize it.</td>
+    </tr>
+    <tr>
+      <td>A node <code>offline</code> (red)</td>
+      <td>Check the node and its network connection. Until it is back, the cluster has less or no failover protection.</td>
+    </tr>
+    <tr>
+      <td>Leader <code>offline</code> (red) for more than a few moments</td>
+      <td>Use <strong>Restart Config Leader Resource</strong>, or <strong>Take Over</strong> on a healthy node.</td>
+    </tr>
+    <tr>
+      <td>A follower stays at <code>sync_failed</code></td>
+      <td>Check the follower's logs for the cause, fix it, and synchronize again.</td>
+    </tr>
+  </tbody>
+</table>
+  </div>
+</div>
+
+        </article>
+      </main>
+    </div>
+    <footer class="usp-footer">
+  <div class="usp-footer__inner">
+    <div class="usp-footer__copyright">&copy; 2026 United Security Providers AG. All Rights Reserved.</div>
+    <div class="usp-social">
+      <a href="https://www.linkedin.com/company/united-security-providers/" target="_blank" rel="noopener" title="United Security Providers on Linkedin" aria-label="United Security Providers on Linkedin">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zM102.2 96a38.5 38.5 0 1 1 0 77 38.5 38.5 0 1 1 0-77m282.1 320h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+
+      </a>
+      <a href="https://www.youtube.com/@United-security-providersCh" target="_blank" rel="noopener" title="United Security Providers on Youtube" aria-label="United Security Providers on Youtube">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M549.7 124.1c-6.2-23.7-24.8-42.3-48.3-48.6C458.9 64 288.1 64 288.1 64S117.3 64 74.7 75.5c-23.5 6.3-42 24.9-48.3 48.6C15 167 15 256.4 15 256.4s0 89.4 11.4 132.3c6.3 23.6 24.8 41.5 48.3 47.8C117.3 448 288.1 448 288.1 448s170.8 0 213.4-11.5c23.5-6.3 42-24.2 48.3-47.8 11.4-42.9 11.4-132.3 11.4-132.3s0-89.4-11.4-132.3zM232.2 337.6V175.2l142.7 81.2z"/></svg>
+
+      </a>
+    </div>
+  </div>
+</footer>
+
+    <script src="/usp-aero/javascripts/usp-docs.420438fc4f902397b8dba3a2d330491e6b18d703b3126e7f9c5c7dd0d21ca200.js"></script>
+  </body>
+</html>

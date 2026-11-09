@@ -1,0 +1,64 @@
+> For AI agents: this documentation is indexed at https://docs.united-security-providers.ch/usp-aero/llms.txt, and every page is available as markdown at its own address plus index.md.
+
+# Set up an HA Cluster
+
+This guide explains how to set up a High Availability (HA) cluster from two or more Aero nodes, and what happens on
+the nodes while the cluster forms.
+
+## Requirements
+
+In order to operate an Aero cluster the following requirements are in effect:
+
+- At minimum two nodes configured by [First time wizard](../../install/firsttimewizard.md) ready to use
+- Management Network configured within the same network
+- All nodes being able to connect to each other using `TCP/2224`, `TCP/3121`, `TCP/21064`, `TCP/22` and `UDP/5405`
+
+> [!IMPORTANT]
+> Use at least three nodes. Two nodes work, but they can't form a reliable quorum.
+>
+> The cluster makes decisions, such as which node is the leader, only when a majority of its nodes (the quorum) agree.
+> In a two-node cluster, a broken connection between the nodes leaves each node alone with half of the votes, so
+> neither has a majority. Each node can assume that the other has failed and act as the leader on its own. This is
+> called a *split brain*: both nodes serve traffic and change their configuration independently, and the cluster ends
+> up in an inconsistent state.
+>
+> With three nodes, the two nodes that can still reach each other keep the majority and continue to run the cluster.
+> The isolated node knows it is in the minority and does not act on its own. For the same reason, prefer an odd number
+> of nodes when you add more.
+
+## Cluster creation
+
+> [!IMPORTANT]
+> Cluster communication is fixed to the Management network interface. This can't be changed. Use each node's
+> Management network IP address when you add it as a cluster node.
+
+1. On the node that will be the first cluster member, open
+   [High Availability](../../reference/gui/configuration/high-availability) and press the key icon to generate a
+   `Shared Secret` or set a secure password yourself.
+2. Copy that same `Shared Secret` to every other node that will join the cluster.
+3. For each additional node, add a cluster node entry with its Hostname, IP Address and SSH Public
+   Key (copy from the other node UI).
+4. Choose the cluster Mode, `ACTIVE/PASSIVE` or `ACTIVE/ACTIVE` depending on feature availability.
+5. [Create a revision and deploy it](../../concepts/configuration-lifecycle) to apply the cluster
+   configuration on each node.
+6. Once the cluster is running, check its state on
+   [High Availability status](../../reference/gui/system-management/high-availability).
+
+## Cluster initialization process
+
+Having configured a set of nodes to form a cluster, creating a new revision and deploy the change then initiates the 
+following process:
+
+1. The node using the lowest octet-IP from management interface will act as `setup-coordinator` which is in charge 
+   to form the cluster
+2. Every other node prepares the cluster configuration during the deployment run
+3. Once all members are pre-configured (deployment run finished) which the `setup-coordinator` waits for (timing out 
+   after 15min) cluster
+4. creation will be finished and status can be observed via 
+   [High Availability status](../../reference/gui/system-management/high-availability) screen
+
+> [!IMPORTANT]
+> The `setup-coordinator` node will wait for other nodes to complete the successful deployment. After 15min it aborts 
+  the deployment run indicating a deployment failure. Make sure all other nodes have run their deployment too and 
+  re-initiate the deployment run on the `setup-coordinator` (node having the lowest last Octet IP within Management 
+  network) if needed.

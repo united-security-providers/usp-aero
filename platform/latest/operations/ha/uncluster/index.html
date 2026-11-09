@@ -1,0 +1,646 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="canonical" href="https://docs.united-security-providers.ch/usp-aero/platform/latest/operations/ha/uncluster/">
+    <meta name="description" content="Installation, configuration and release notes for the USP Aero Suite: the Aero Platform and Aero WAAP.">
+    <link rel="icon" href="/usp-aero/favicon.ico">
+    <title>Dissolving a HA Cluster - USP Aero Platform documentation</title>
+    <link rel="stylesheet" href="/usp-aero/stylesheets/usp-docs.65ec41a132b70ffc2bd4b17a4dea8dd262f9ca31a22c29647c0b47711492f6ef.css">
+    <link rel="stylesheet" href="/usp-aero/stylesheets/highlight.8ffd1f6914fb6b60dcf36f5b43cb54b0b569b46920e0f6c9223866c1132784f5.css">
+    <link rel="stylesheet" href="/usp-aero/stylesheets/fonts.a423719d8c6b857f394a6c70f0289dc8e250e5ad1e3a465fd9930ea27ac05946.css">
+    <link rel="alternate" type="text/markdown" href="/usp-aero/platform/latest/operations/ha/uncluster/index.md">
+  </head>
+  <body>
+    <p class="usp-agent-note">For AI agents: this documentation is indexed at https://docs.united-security-providers.ch/usp-aero/llms.txt, and every page is available as markdown at its own address plus index.md.</p>
+
+    <input type="checkbox" id="__drawer" autocomplete="off" hidden>
+    <label class="usp-overlay" for="__drawer" aria-hidden="true"></label>
+    <a href="#dissolving-a-ha-cluster-uncluster" class="usp-skip">Skip to content</a>
+    <header class="usp-header">
+  <div class="usp-header__inner">
+    <label class="usp-header__drawer" for="__drawer" aria-label="Navigation">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+
+    </label>
+    <a class="usp-header__logo" href="/usp-aero/" aria-label="USP Aero Platform documentation">
+      <img src="/usp-aero/images/USP-Logo-2023-ohne-claim-lang-white1.webp" alt="USP Aero Suite documentation">
+    </a>
+    
+<div class="usp-picker usp-picker--product">
+  <button class="usp-picker__current" aria-label="Select product">
+    <span class="usp-picker__label">Aero Platform</span>
+    <svg class="usp-picker__caret" viewBox="7 10 10 5"><path d="M7 10l5 5 5-5z"/></svg>
+  </button>
+  <ul class="usp-picker__list">
+    <li><a href="/usp-aero/">All products</a></li>
+    <li><a href="/usp-aero/platform/1.0.x/" aria-current="true">Aero Platform</a></li>
+    <li><a href="/usp-aero/waap/1.0.x/">Aero WAAP</a></li>
+  </ul>
+</div>
+
+
+    
+<div class="usp-picker usp-picker--version">
+  <button class="usp-picker__current" aria-label="Select version">
+    <span class="usp-picker__label">latest</span>
+    <svg class="usp-picker__caret" viewBox="7 10 10 5"><path d="M7 10l5 5 5-5z"/></svg>
+  </button>
+  <ul class="usp-picker__list">
+    <li><a href="/usp-aero/platform/latest/operations/ha/uncluster/" aria-current="true">latest</a></li>
+    <li><a href="/usp-aero/platform/1.0.x/">1.0.x</a></li>
+  </ul>
+</div>
+
+
+    <div class="usp-header__tools">
+      <link rel="stylesheet" href="/usp-aero/pagefind/pagefind-component-ui.css" data-usp-search-bundle>
+<pagefind-config data-usp-search-config></pagefind-config>
+<script>
+  document.querySelector("[data-usp-search-config]").setAttribute("bundle-path",
+    new URL(".", document.querySelector("[data-usp-search-bundle]").href).href);
+</script>
+<script type="module" src="/usp-aero/pagefind/pagefind-component-ui.js"></script><script type="module">
+  window.PagefindComponents.getInstanceManager().getInstance("default")
+    .searchFilters = {"docset":{"any":["platform/latest"]}};
+</script>
+<div class="usp-search">
+  <pagefind-searchbox placeholder="Search" shortcut="/"></pagefind-searchbox>
+</div>
+<div class="usp-search-compact">
+  <pagefind-modal-trigger></pagefind-modal-trigger>
+  <pagefind-modal></pagefind-modal>
+</div>
+
+    </div>
+  </div>
+</header>
+
+    <aside class="usp-banner">
+      You are viewing the documentation under development. It is not a release and can change at any time.
+      <a href="/usp-aero/platform/1.0.x/">Go to the 1.0.x release.</a>
+    </aside>
+    <div class="usp-layout">
+      <div class="usp-nav-wrapper usp-sidebar">
+        <nav class="usp-nav" aria-label="Navigation">
+  <div class="usp-nav__title">USP Aero Platform documentation</div>
+  <ul>
+    
+<li><a href="/usp-aero/platform/latest/">Welcome</a></li>
+      
+<li><a href="/usp-aero/platform/latest/aero-platform-releasenotes/">Release Notes</a></li>
+      <li class="usp-nav__section">
+  <details>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>Installation</span>
+    </summary>
+    <ul>
+        
+<li><a href="/usp-aero/platform/latest/install/requirements/">System Requirements</a></li>
+        
+<li><a href="/usp-aero/platform/latest/install/installation/">Installing from ISO</a></li>
+        
+<li><a href="/usp-aero/platform/latest/install/firsttimewizard/">First-time setup wizard</a></li>
+    </ul>
+  </details>
+</li>
+      <li class="usp-nav__section">
+  <details>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>Concepts</span>
+    </summary>
+    <ul>
+        
+<li><a href="/usp-aero/platform/latest/concepts/gui-overview/">GUI overview</a></li>
+        
+<li><a href="/usp-aero/platform/latest/concepts/configuration-lifecycle/">Configuration lifecycle</a></li>
+        
+<li><a href="/usp-aero/platform/latest/concepts/roles-and-permissions/">Roles and permissions</a></li>
+    </ul>
+  </details>
+</li>
+      <li class="usp-nav__section">
+  <details open>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>Operations</span>
+    </summary>
+    <ul>
+        <li><a href="/usp-aero/platform/latest/operations/">Overview</a></li>
+        <li class="usp-nav__section">
+  <details>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>Component Management</span>
+    </summary>
+    <ul>
+        
+<li><a href="/usp-aero/platform/latest/operations/components/install-a-component/">Install a component</a></li>
+        
+<li><a href="/usp-aero/platform/latest/operations/components/update-a-component/">Update a component</a></li>
+        
+<li><a href="/usp-aero/platform/latest/operations/components/remove-a-component/">Remove a component</a></li>
+    </ul>
+  </details>
+</li>
+        <li class="usp-nav__section">
+  <details>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>Configuration Backup</span>
+    </summary>
+    <ul>
+        
+<li><a href="/usp-aero/platform/latest/operations/backup/automated-backups/">Set up automated backups</a></li>
+        
+<li><a href="/usp-aero/platform/latest/operations/backup/restore-from-backup/">Restore from backup</a></li>
+    </ul>
+  </details>
+</li>
+        <li class="usp-nav__section">
+  <details>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>Logging</span>
+    </summary>
+    <ul>
+        
+<li><a href="/usp-aero/platform/latest/operations/logging/live-log/">Live Log</a></li>
+        
+<li><a href="/usp-aero/platform/latest/operations/logging/remote-log/">Log Forwarding</a></li>
+    </ul>
+  </details>
+</li>
+        <li class="usp-nav__section">
+  <details open>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>High Availability</span>
+    </summary>
+    <ul>
+        
+<li><a href="/usp-aero/platform/latest/operations/ha/set-up-an-ha-cluster/">Set up an HA Cluster</a></li>
+        
+<li><a href="/usp-aero/platform/latest/operations/ha/add-remove-nodes/">Adding and Removing Cluster Nodes</a></li>
+        
+<li><a href="/usp-aero/platform/latest/operations/ha/config-synchronization/">Synchronizing Configuration in a HA Cluster</a></li>
+        
+<li><a href="/usp-aero/platform/latest/operations/ha/cluster-status/">HA Cluster Status</a></li>
+        
+<li><a href="/usp-aero/platform/latest/operations/ha/uncluster/" aria-current="page">Dissolving a HA Cluster</a></li>
+    </ul>
+  </details>
+</li>
+        <li class="usp-nav__section">
+  <details>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>Maintenance</span>
+    </summary>
+    <ul>
+        
+<li><a href="/usp-aero/platform/latest/operations/maintenance/update-the-os/">Update Aero OS</a></li>
+    </ul>
+  </details>
+</li>
+    </ul>
+  </details>
+</li>
+      <li class="usp-nav__section">
+  <details>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>Reference</span>
+    </summary>
+    <ul>
+        <li><a href="/usp-aero/platform/latest/reference/">Overview</a></li>
+        <li class="usp-nav__section">
+  <details>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>GUI</span>
+    </summary>
+    <ul>
+        <li class="usp-nav__section">
+  <details>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>Configuration</span>
+    </summary>
+    <ul>
+        
+<li><a href="/usp-aero/platform/latest/reference/gui/configuration/system/">System</a></li>
+        
+<li><a href="/usp-aero/platform/latest/reference/gui/configuration/network/">Network</a></li>
+        
+<li><a href="/usp-aero/platform/latest/reference/gui/configuration/container/">Container</a></li>
+        
+<li><a href="/usp-aero/platform/latest/reference/gui/configuration/certificates/">Certificates</a></li>
+        
+<li><a href="/usp-aero/platform/latest/reference/gui/configuration/log/">Log</a></li>
+    </ul>
+  </details>
+</li>
+        <li class="usp-nav__section">
+  <details>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>Configuration Deployment</span>
+    </summary>
+    <ul>
+        
+<li><a href="/usp-aero/platform/latest/reference/gui/deployment/deploy/">Deploying a configuration</a></li>
+        
+<li><a href="/usp-aero/platform/latest/reference/gui/deployment/revisions/">Configuration revisions</a></li>
+        
+<li><a href="/usp-aero/platform/latest/reference/gui/deployment/history-and-rollback/">History and rollback</a></li>
+    </ul>
+  </details>
+</li>
+        <li class="usp-nav__section">
+  <details>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>System Management</span>
+    </summary>
+    <ul>
+        
+<li><a href="/usp-aero/platform/latest/reference/gui/system-management/operating-system/">Operating System</a></li>
+    </ul>
+  </details>
+</li>
+        
+<li><a href="/usp-aero/platform/latest/reference/gui/components/">Components</a></li>
+        <li class="usp-nav__section">
+  <details>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>User Management</span>
+    </summary>
+    <ul>
+        
+<li><a href="/usp-aero/platform/latest/reference/gui/user-management/local-users/">Local Users</a></li>
+        
+<li><a href="/usp-aero/platform/latest/reference/gui/user-management/user-profile/">User profile and password</a></li>
+    </ul>
+  </details>
+</li>
+        <li class="usp-nav__section">
+  <details>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>Backup</span>
+    </summary>
+    <ul>
+        
+<li><a href="/usp-aero/platform/latest/reference/gui/backup/backup-jobs/">Backup jobs</a></li>
+        
+<li><a href="/usp-aero/platform/latest/reference/gui/backup/backup-targets/">Backup targets</a></li>
+        
+<li><a href="/usp-aero/platform/latest/reference/gui/backup/local-backups-and-restore/">Local backups and restore</a></li>
+    </ul>
+  </details>
+</li>
+    </ul>
+  </details>
+</li>
+        
+<li><a href="/usp-aero/platform/latest/reference/console/">Console menu</a></li>
+        
+<li><a href="/usp-aero/platform/latest/reference/value-types/">Value types</a></li>
+        
+<li><a href="/usp-aero/platform/latest/reference/validation-errors/">Configuration validation errors</a></li>
+        
+<li><a href="/usp-aero/platform/latest/reference/glossary/">Glossary</a></li>
+    </ul>
+  </details>
+</li>
+  </ul>
+</nav>
+
+      </div>
+      <nav class="usp-toc usp-sidebar" aria-label="Table of contents">
+  <div class="usp-toc__title">Table of contents</div>
+  <ul>
+      <li>
+  <a href="#before-you-start">Before you start</a>
+</li>
+
+      <li>
+  <a href="#how-to-start-the-uncluster">How to start the uncluster</a>
+</li>
+
+      <li>
+  <a href="#what-happens-during-an-uncluster">What happens during an uncluster</a>
+</li>
+
+      <li>
+  <a href="#new-revisions-on-the-leader-and-the-followers">New revisions on the leader and the followers</a>
+</li>
+
+      <li>
+  <a href="#on-the-leader-it-takes-over-the-virtual-external-ips">On the leader: it takes over the virtual external IPs</a>
+</li>
+
+      <li>
+  <a href="#on-each-follower">On each follower</a>
+  <ul>
+      <li>
+  <a href="#why-the-followers-configuration-becomes-dirty">Why the follower's configuration becomes &quot;dirty&quot;</a>
+</li>
+
+      <li>
+  <a href="#bringing-a-follower-back-online">Bringing a follower back online</a>
+</li>
+
+  </ul>
+</li>
+
+      <li>
+  <a href="#if-something-goes-wrong">If something goes wrong</a>
+</li>
+
+  </ul>
+</nav>
+      <main class="usp-content">
+        
+<nav class="usp-breadcrumb" aria-label="Breadcrumb">
+  <ol>
+    <li><a href="/usp-aero/">USP Aero Suite documentation</a></li>
+    <li>Aero Platform</li>
+    <li><a href="/usp-aero/platform/latest/">latest</a></li>
+    <li><a href="/usp-aero/platform/latest/operations/">Operations</a></li>
+    <li>High Availability</li>
+  </ol>
+</nav>
+<article class="usp-prose" data-pagefind-filter="docset:platform/latest">
+  <h1 id="dissolving-a-ha-cluster-uncluster">Dissolving a HA Cluster (Uncluster)</h1>
+<p>This guide explains how to dissolve a High Availability (HA) cluster so that every node runs as a standalone Aero
+instance again, and what happens on each node while that runs.</p>
+<h2 id="before-you-start">Before you start</h2>
+<ul>
+<li><strong>Start on the leader node.</strong> The uncluster is driven by the leader. The <em>High Availability</em> page
+(<em>System Management &gt; High Availability</em>) shows which node is the leader. Disabling HA on a follower removes only
+that follower from the cluster (see <a href="/usp-aero/platform/latest/operations/ha/add-remove-nodes/">Adding and Removing Cluster Nodes</a>
+).</li>
+<li><strong>Bring every node online and out of standby.</strong> The leader tells the followers to leave the cluster. A node that is
+offline or in standby at that moment does not act on it and stays configured as a cluster member.</li>
+<li><strong>Finish or discard pending platform changes on all nodes.</strong> The uncluster stores the platform configuration as a
+new revision. Unsaved draft changes to the platform configuration on a node become part of that revision.</li>
+<li><strong>Plan new external IP addresses for the followers.</strong> After the uncluster, every follower needs its own external IP
+address before it can serve traffic again (see <a href="#on-each-follower">On each follower</a>
+).</li>
+<li><strong>Expect a service interruption on the followers.</strong> The leader keeps serving traffic. The followers do not, until
+you have reconfigured them.</li>
+</ul>
+<h2 id="how-to-start-the-uncluster">How to start the uncluster</h2>
+<ol>
+<li>Sign in to the management UI <strong>of the leader node</strong>.</li>
+<li>Open <em>Configuration &gt; High Availability</em>.</li>
+<li>Switch off <strong>Enabled</strong>.</li>
+<li>Click <strong>Save</strong> and confirm the <em>Disable High Availability</em> dialog.</li>
+</ol>
+<p>The dialog closes right away. The uncluster keeps running in the background and can take several minutes. You can
+follow its progress in the infrastructure operation status, as you would for any other activation.</p>
+<h2 id="what-happens-during-an-uncluster">What happens during an uncluster</h2>
+<div class="usp-table">
+  <table>
+  <thead>
+    <tr>
+      <th>Step</th>
+      <th>Leader</th>
+      <th>Follower(s)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>Signal the followers to leave</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>New revision without HA settings (external IPs kept)</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Leave the cluster, keep the virtual external IPs as own IPs / revision becomes active</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td></td>
+      <td>Pick up the signal</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td></td>
+      <td>New revision without HA settings and without external IPs</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td></td>
+      <td>Leave the cluster, release the virtual external IPs &gt; revision stays inactive (&quot;dirty&quot;)</td>
+    </tr>
+  </tbody>
+</table>
+  <button type="button" class="usp-table__expand" popovertarget="usp-zoom-table-0" aria-label="Expand table">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 4h6v2H6v4H4V4zm10 0h6v6h-2V6h-4V4zM4 14h2v4h4v2H4v-6zm16 0v6h-6v-2h4v-4h2z"/></svg>
+  </button>
+  <div id="usp-zoom-table-0" class="usp-lightbox" popover data-pagefind-ignore>
+    <button type="button" class="usp-lightbox__close" popovertarget="usp-zoom-table-0" popovertargetaction="hide" aria-label="Close">&times;</button>
+    <table>
+  <thead>
+    <tr>
+      <th>Step</th>
+      <th>Leader</th>
+      <th>Follower(s)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>Signal the followers to leave</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>New revision without HA settings (external IPs kept)</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Leave the cluster, keep the virtual external IPs as own IPs / revision becomes active</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td></td>
+      <td>Pick up the signal</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td></td>
+      <td>New revision without HA settings and without external IPs</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td></td>
+      <td>Leave the cluster, release the virtual external IPs &gt; revision stays inactive (&quot;dirty&quot;)</td>
+    </tr>
+  </tbody>
+</table>
+  </div>
+</div><ol>
+<li><strong>Signal the followers.</strong> Before it changes anything on itself, the leader tells all followers through the cluster
+that the cluster is being dissolved.</li>
+<li><strong>Create a new revision on the leader.</strong> The leader removes the HA settings from its platform configuration and
+saves the result as a new revision with the comment <code>UNCLUSTER</code>.</li>
+<li><strong>Leader leaves the cluster.</strong> The leader stops the cluster services and removes its cluster membership. Then it
+activates the new revision. It keeps the virtual external IP addresses (see below).</li>
+<li><strong>Followers pick up the signal.</strong> Each follower notices the signal on its own, usually within a few seconds.</li>
+<li><strong>Create a new revision on each follower.</strong> Each follower removes the HA settings <strong>and</strong> the address
+configuration of its external network interface, then saves the result as a new <code>UNCLUSTER</code> revision.</li>
+<li><strong>Followers leave the cluster.</strong> Each follower stops its cluster services, removes its cluster membership and
+releases the virtual external IP addresses. Its new revision is <strong>not</strong> activated (see below).</li>
+</ol>
+<p>Each node removes only itself from the cluster. The leader and each follower carry out their own part independently.</p>
+<h2 id="new-revisions-on-the-leader-and-the-followers">New revisions on the leader and the followers</h2>
+<p>Every node that takes part in the uncluster gets <strong>one new revision</strong> of its platform configuration with the comment
+<code>UNCLUSTER</code>. You find it in the platform configuration's revision history.</p>
+<div class="usp-table">
+  <table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>Leader</th>
+      <th>Follower</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>HA settings</td>
+      <td>removed</td>
+      <td>removed</td>
+    </tr>
+    <tr>
+      <td>External interface</td>
+      <td>unchanged</td>
+      <td>address configuration removed</td>
+    </tr>
+    <tr>
+      <td>Revision state</td>
+      <td><strong>active</strong></td>
+      <td><strong>not active</strong>: incomplete (&quot;dirty&quot;)</td>
+    </tr>
+    <tr>
+      <td>Node serves traffic</td>
+      <td>yes, on the former virtual IPs</td>
+      <td>no, until you assign a new external IP</td>
+    </tr>
+  </tbody>
+</table>
+  <button type="button" class="usp-table__expand" popovertarget="usp-zoom-table-1" aria-label="Expand table">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 4h6v2H6v4H4V4zm10 0h6v6h-2V6h-4V4zM4 14h2v4h4v2H4v-6zm16 0v6h-6v-2h4v-4h2z"/></svg>
+  </button>
+  <div id="usp-zoom-table-1" class="usp-lightbox" popover data-pagefind-ignore>
+    <button type="button" class="usp-lightbox__close" popovertarget="usp-zoom-table-1" popovertargetaction="hide" aria-label="Close">&times;</button>
+    <table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>Leader</th>
+      <th>Follower</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>HA settings</td>
+      <td>removed</td>
+      <td>removed</td>
+    </tr>
+    <tr>
+      <td>External interface</td>
+      <td>unchanged</td>
+      <td>address configuration removed</td>
+    </tr>
+    <tr>
+      <td>Revision state</td>
+      <td><strong>active</strong></td>
+      <td><strong>not active</strong>: incomplete (&quot;dirty&quot;)</td>
+    </tr>
+    <tr>
+      <td>Node serves traffic</td>
+      <td>yes, on the former virtual IPs</td>
+      <td>no, until you assign a new external IP</td>
+    </tr>
+  </tbody>
+</table>
+  </div>
+</div><p>Feature component configurations (for example WAAP) are not changed on any node.</p>
+<h2 id="on-the-leader-it-takes-over-the-virtual-external-ips">On the leader: it takes over the virtual external IPs</h2>
+<p>While the cluster was running, the external IP addresses were <strong>virtual IPs</strong>. The cluster managed them and moved
+them to whichever node was active.</p>
+<p>When the cluster is dissolved, the leader <strong>keeps these addresses as its own, fixed IP addresses</strong>. The services
+running on the leader continue without interruption, so clients still reach the same addresses as before.</p>
+<p>From now on, the leader is a standalone Aero instance. Its new revision is complete and active, and you configure it
+as you would any standalone node.</p>
+<h2 id="on-each-follower">On each follower</h2>
+<h3 id="why-the-followers-configuration-becomes-dirty">Why the follower's configuration becomes &quot;dirty&quot;</h3>
+<p>A follower must not keep the virtual external IPs: the leader now owns them, and the same address on two machines
+causes an IP conflict. The follower therefore <strong>releases the virtual IPs and removes the address configuration of
+its external network interface</strong>.</p>
+<p>The new <code>UNCLUSTER</code> revision reflects this, so it is <strong>incomplete</strong>. An Aero instance needs a valid external
+interface, and this revision does not have one. It would fail validation, so it is <strong>not activated</strong>. Such a revision
+is called <em>dirty</em>: it describes the actual state of the node, but it is not a valid configuration you can activate.</p>
+<p>Until you fix this, the follower:</p>
+<ul>
+<li>is no longer part of a cluster,</li>
+<li>has no external IP address and does not serve traffic,</li>
+<li>can still be reached through its management interface, which is not affected by the uncluster.</li>
+</ul>
+<h3 id="bringing-a-follower-back-online">Bringing a follower back online</h3>
+<ol>
+<li>Sign in to the management UI <strong>of the follower</strong> through its management IP address.</li>
+<li>Open <em>Configuration &gt; Network</em> and configure the external network interface with a <strong>new IP address</strong> that is not
+used anywhere else (in particular, not one of the former virtual IPs that the leader now holds).</li>
+<li>Save, then activate the new revision of the platform configuration on the <em>Deployment</em> page.</li>
+</ol>
+<p>After the activation succeeds, the follower runs as a standalone Aero instance with its own external IP address.</p>
+<h2 id="if-something-goes-wrong">If something goes wrong</h2>
+<ul>
+<li><strong>A step fails or times out on a node</strong> (the default limit is 10 minutes): the <code>UNCLUSTER</code> revision has already
+been created, but the node may still be partly configured as a cluster member. There is no automatic rollback.
+Contact support to complete the uncluster on that node.</li>
+<li><strong>A node was offline or in standby during the uncluster:</strong> that node did not leave the cluster and still holds its
+old cluster configuration. It cannot follow the signal later on its own. Contact support to remove it from the
+cluster manually.</li>
+</ul>
+
+
+        </article>
+      </main>
+    </div>
+    <footer class="usp-footer">
+  <div class="usp-footer__inner">
+    <div class="usp-footer__copyright">&copy; 2026 United Security Providers AG. All Rights Reserved.</div>
+    <div class="usp-social">
+      <a href="https://www.linkedin.com/company/united-security-providers/" target="_blank" rel="noopener" title="United Security Providers on Linkedin" aria-label="United Security Providers on Linkedin">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zM102.2 96a38.5 38.5 0 1 1 0 77 38.5 38.5 0 1 1 0-77m282.1 320h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+
+      </a>
+      <a href="https://www.youtube.com/@United-security-providersCh" target="_blank" rel="noopener" title="United Security Providers on Youtube" aria-label="United Security Providers on Youtube">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M549.7 124.1c-6.2-23.7-24.8-42.3-48.3-48.6C458.9 64 288.1 64 288.1 64S117.3 64 74.7 75.5c-23.5 6.3-42 24.9-48.3 48.6C15 167 15 256.4 15 256.4s0 89.4 11.4 132.3c6.3 23.6 24.8 41.5 48.3 47.8C117.3 448 288.1 448 288.1 448s170.8 0 213.4-11.5c23.5-6.3 42-24.2 48.3-47.8 11.4-42.9 11.4-132.3 11.4-132.3s0-89.4-11.4-132.3zM232.2 337.6V175.2l142.7 81.2z"/></svg>
+
+      </a>
+    </div>
+  </div>
+</footer>
+
+    <script src="/usp-aero/javascripts/usp-docs.420438fc4f902397b8dba3a2d330491e6b18d703b3126e7f9c5c7dd0d21ca200.js"></script>
+  </body>
+</html>
