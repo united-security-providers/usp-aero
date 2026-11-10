@@ -58,7 +58,7 @@ especially if components have to be installed or updated on the followers.
 | 6    |                                 | Import the configuration as new revisions                |
 | 7    |                                 | Activate the new revisions                               |
 | 8    |                                 | Report the result to the cluster                         |
-| 9    | Shown as "synchronized"         |                                                          |
+| 9    | Shown as `synchronized`         |                                                          |
 
 1. **Check for changes.** The leader checks whether any component's active configuration changed since the last
    synchronization. If nothing changed, it stops here and the followers are left alone.
@@ -80,7 +80,7 @@ especially if components have to be installed or updated on the followers.
    yourself.
 8. **Report.** The follower records the result (the configuration it now runs, and any error) where the whole cluster
    can see it.
-9. **Done.** When a follower activates the configuration, the leader is shown as *synchronized*.
+9. **Done.** When a follower activates the configuration, the leader's status changes to `synchronized`.
 
 Each follower runs steps 4 to 8 on its own. A follower that fails does not affect the leader or the other followers.
 
@@ -150,10 +150,11 @@ On the leader, open *System Management > High Availability*:
 
 - **Sync Status** lists the configuration IDs that each node currently runs, per component. Values that differ from
   the leader's are highlighted, and so is any component a node has not received yet.
-- **Deployment Status** shows the progress of each node, for example *transfer started*, *component deploy started*,
-  *import started*, *activation started* and finally *activated*. On the leader, it changes to *synchronized* when a
-  follower has finished.
-- If a follower fails, its status changes to *sync failed* and an error message explains the cause.
+- **Deployment Status** shows the progress of each node, for example `transfer_started`, `component_deploy_started`,
+  `import_started`, `activation_started` and finally `activated`. On the leader, it changes to `synchronized` when a
+  follower has finished. The values are shown exactly as written here; see
+  [Status values](../cluster-status#status-values) for the complete list.
+- If a follower fails, its status changes to `sync_failed` and an error message explains the cause.
 
 ## Good to know
 
