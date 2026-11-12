@@ -30,7 +30,6 @@ screen involved, in order. For what an individual setting means, see the
 * [Set up an HA Cluster](ha/set-up-an-ha-cluster)
 * [Adding and Removing Cluster Nodes](ha/add-remove-nodes)
 * [Synchronizing Configuration in an HA Cluster](ha/config-synchronization)
-* [HA Cluster Status](ha/cluster-status)
 * [Dissolve an HA Cluster](ha/uncluster)
 
 ## Maintenance

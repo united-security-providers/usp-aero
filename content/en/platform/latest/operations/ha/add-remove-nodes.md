@@ -42,7 +42,6 @@ The *High Availability* page (*System Management > High Availability*) shows whi
 - **Prepare the new node.** It must be set up with the [First time wizard](../../install/firsttimewizard.md), and it
   must run the same platform version as the cluster nodes. A synchronization installs and updates feature components,
   but never the platform itself.
-- **Use static addresses.** HA cannot be enabled on a node whose interfaces get their address via DHCP.
 - **Check the network.** The new node must be in the same management network as the cluster nodes, and all nodes
   must reach each other on `TCP/2224`, `TCP/3121`, `TCP/21064`, `TCP/22` and `UDP/5405` (see
   [Set up an HA Cluster](set-up-an-ha-cluster)).
@@ -156,5 +155,8 @@ outdated / wrong cluster configuration settings.
 - **The activation on the leader fails with a message that too many nodes would be removed:** the leader's list is
   missing more than one node of the running cluster. Check the list. If you really want to remove several nodes,
   remove them one after another, activating once per node.
-- **The node you disabled HA on is still part of the cluster:** it was in standby at that moment. Use **UnStandby** on
-  it, then switch off **Enabled** on it again.
+- **The node you disabled HA on is still part of the cluster:** it was in standby at that moment. A node in standby
+  cannot leave the cluster: nothing is changed on it, no `UNCLUSTER` revision is created, and it keeps its HA settings
+  and external interface configuration. Do not remove its entry on the leader or the other followers yet. Use
+  **UnStandby** on it, wait until it shows as an online follower, then switch off **Enabled** on it again and continue
+  with step 2 above.
