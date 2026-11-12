@@ -18,10 +18,22 @@ synchronization got. It also offers the actions you need to operate the cluster.
 
 The page updates by itself whenever the cluster state changes. You do not need to reload it.
 
+![High Availability page on the leader, with one node in standby](../../../assets/images-ha/leader-view_node-standby_wapp-unsynced_state-error.png)
+{#leader-view}
+
+The example above shows the page on the leader `aero01` while node `aero03` is in standby:
+
+1. The HA indicator in the top bar shows a yellow badge, because some areas need attention.
+2. In *Node Status*, `aero03` is `standby` (yellow).
+3. In *Sync Status*, `aero03` has not received the `waap` component yet (`waap=-`, yellow). Every *Config ID* that matches the *Active Configuration ID* is considered synchronized (green).
+4. In *Deployment Status*, the last synchronization has not completed on `aero03` because it is in `standby` (`transfer_started`, yellow).
+
 > [!TIP]
 > Open this page on the **leader node**. The *Active Configuration ID* and the *Sync Status* and
 > *Deployment Status* sections are only shown there, because only the leader knows which configuration the
 > cluster should be running. On a follower, the page shows only *Node Status* and *Leader Status*.
+
+![High Availability page on a follower](../../../assets/images-ha/follower-view_node-standby.png)
 
 In read-only mode, the page shows no action buttons.
 
@@ -179,6 +191,14 @@ Each status is colored: `sync_failed` is **red**, `activated` and `synchronized`
 value, including *Unknown*, is **yellow** (still in progress). The top bar indicator uses the same rule: this area is
 **red** if any node reports `sync_failed`, **green** if every node reports `activated` or `synchronized`, and
 **yellow** otherwise.
+
+When a follower reports `activated`, the synchronized configuration appears as a new revision on that follower's
+*Deployment* page. Its author is `system`, and its message names the leader it was imported from and the
+synchronized configuration IDs:
+
+![New revision on a follower after a successful synchronization](../../../assets/images-ha/follower_synchronized-activated_deplopyment.png)
+
+1. The *Config ID* synchronized by the leader. See *Active Configuration ID* in *Leader Status* on the *[leader view](#leader-view)*.
 
 ## Typical situations
 
