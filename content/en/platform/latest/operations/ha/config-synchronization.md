@@ -40,7 +40,10 @@ the *High Availability* page.
    synchronized. Drafts and revisions that are not yet activated stay on the leader.
 3. Start the synchronization in one of these places:
     - *Deployment* page: **Synchronize HA**
-    - *System Management > High Availability*, in the *Sync Status* section: **Trigger Sync** (asks you to confirm)
+    - *System Management > High Availability*, in the *Sync Status* section: **Trigger Sync**
+
+   Both buttons ask you to confirm only if nothing has changed since the last synchronization, because the
+   synchronization then creates and activates a new revision on every follower anyway.
 4. Watch the progress on the *High Availability* page (see [Monitoring the result](#monitoring-the-result)).
 
 The button returns right away. The synchronization keeps running in the background and can take several minutes,
@@ -153,7 +156,7 @@ On the leader, open *System Management > High Availability*:
 - **Deployment Status** shows the progress of each node, for example `transfer_started`, `component_deploy_started`,
   `import_started`, `activation_started` and finally `activated`. On the leader, it changes to `synchronized` when a
   follower has finished. The values are shown exactly as written here; see
-  [Status values](../cluster-status#status-values) for the complete list.
+  [Status values](../../reference/gui/system-management/high-availability#status-values) for the complete list.
 - If a follower fails, its status changes to `sync_failed` and an error message explains the cause.
 
 ## Good to know
