@@ -188,8 +188,6 @@
         
 <li><a href="/usp-aero/platform/latest/operations/ha/config-synchronization/">Synchronizing Configuration in a HA Cluster</a></li>
         
-<li><a href="/usp-aero/platform/latest/operations/ha/cluster-status/">HA Cluster Status</a></li>
-        
 <li><a href="/usp-aero/platform/latest/operations/ha/uncluster/">Dissolving a HA Cluster</a></li>
     </ul>
   </details>
@@ -269,6 +267,8 @@
     <ul>
         
 <li><a href="/usp-aero/platform/latest/reference/gui/system-management/operating-system/">Operating System</a></li>
+        
+<li><a href="/usp-aero/platform/latest/reference/gui/system-management/high-availability/">High Availability status</a></li>
     </ul>
   </details>
 </li>
@@ -362,10 +362,11 @@ the nodes while the cluster forms.</p>
 <li>Management Network configured within the same network</li>
 <li>All nodes being able to connect to each other using <code>TCP/2224</code>, <code>TCP/3121</code>, <code>TCP/21064</code>, <code>TCP/22</code> and <code>UDP/5405</code></li>
 </ul>
-<div class="usp-admonition usp-admonition--note">
-    <p class="usp-admonition__title">Important</p>
-    <p>Use at least three nodes. Two nodes work, but they can't form a reliable quorum.</p>
-<p>The cluster makes decisions, such as which node is the leader, only when a majority of its nodes (the quorum) agree.
+<div class="usp-admonition usp-admonition--hint">
+    <p class="usp-admonition__title">Hint</p>
+    <p>A two-node cluster works perfectly fine, but it comes with the risk of a <em>split brain</em>. If you want to avoid this
+risk, set up a cluster with three nodes.</p>
+  </div><p>The cluster makes decisions, such as which node is the leader, only when a majority of its nodes (the quorum) agree.
 In a two-node cluster, a broken connection between the nodes leaves each node alone with half of the votes, so
 neither has a majority. Each node can assume that the other has failed and act as the leader on its own. This is
 called a <em>split brain</em>: both nodes serve traffic and change their configuration independently, and the cluster ends
@@ -373,14 +374,13 @@ up in an inconsistent state.</p>
 <p>With three nodes, the two nodes that can still reach each other keep the majority and continue to run the cluster.
 The isolated node knows it is in the minority and does not act on its own. For the same reason, prefer an odd number
 of nodes when you add more.</p>
-  </div><h2 id="cluster-creation">Cluster creation</h2>
+<h2 id="cluster-creation">Cluster creation</h2>
 <div class="usp-admonition usp-admonition--note">
     <p class="usp-admonition__title">Important</p>
     <p>Cluster communication is fixed to the Management network interface. This can't be changed. Use each node's
 Management network IP address when you add it as a cluster node.</p>
   </div><ol>
-<li>On the node that will be the first cluster member, open
-<a href="/usp-aero/platform/latest/reference/gui/configuration/high-availability">High Availability</a>
+<li>On the node that will be the first cluster member, open <a href="/usp-aero/platform/latest/reference/gui/configuration/high-availability">High Availability</a>
  and press the key icon to generate a
 <code>Shared Secret</code> or set a secure password yourself.</li>
 <li>Copy that same <code>Shared Secret</code> to every other node that will join the cluster.</li>
@@ -388,10 +388,12 @@ Management network IP address when you add it as a cluster node.</p>
 Key (copy from the other node UI).</li>
 <li>Choose the cluster Mode, <code>ACTIVE/PASSIVE</code> or <code>ACTIVE/ACTIVE</code> depending on feature availability.</li>
 <li><a href="/usp-aero/platform/latest/concepts/configuration-lifecycle/">Create a revision and deploy it</a>
- to apply the cluster
-configuration on each node.</li>
-<li>Once the cluster is running, check its state on
-<a href="/usp-aero/platform/latest/reference/gui/system-management/high-availability">High Availability status</a>
+ to apply the cluster configuration on each node.
+The <code>setup-coordinator</code> (the node with the lowest last octet of its Management network IP) waits until all
+other members have finished their deployment run before it forms the cluster. It times out after 15 minutes, so
+deploy on all nodes within that time (see <a href="#cluster-initialization-process">Cluster initialization process</a>
+).</li>
+<li>Once the cluster is running, check its state on <a href="/usp-aero/platform/latest/reference/gui/system-management/high-availability/">High Availability status</a>
 .</li>
 </ol>
 <h2 id="cluster-initialization-process">Cluster initialization process</h2>
@@ -404,7 +406,7 @@ to form the cluster</li>
 <li>Once all members are pre-configured (deployment run finished) which the <code>setup-coordinator</code> waits for (timing out
 after 15min) cluster</li>
 <li>creation will be finished and status can be observed via
-<a href="/usp-aero/platform/latest/reference/gui/system-management/high-availability">High Availability status</a>
+<a href="/usp-aero/platform/latest/reference/gui/system-management/high-availability/">High Availability status</a>
  screen</li>
 </ol>
 <div class="usp-admonition usp-admonition--note">

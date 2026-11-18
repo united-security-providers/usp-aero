@@ -188,8 +188,6 @@
         
 <li><a href="/usp-aero/platform/latest/operations/ha/config-synchronization/">Synchronizing Configuration in a HA Cluster</a></li>
         
-<li><a href="/usp-aero/platform/latest/operations/ha/cluster-status/">HA Cluster Status</a></li>
-        
 <li><a href="/usp-aero/platform/latest/operations/ha/uncluster/">Dissolving a HA Cluster</a></li>
     </ul>
   </details>
@@ -269,6 +267,8 @@
     <ul>
         
 <li><a href="/usp-aero/platform/latest/reference/gui/system-management/operating-system/">Operating System</a></li>
+        
+<li><a href="/usp-aero/platform/latest/reference/gui/system-management/high-availability/">High Availability status</a></li>
     </ul>
   </details>
 </li>
@@ -417,7 +417,6 @@ recommended, so that you can confirm each node has joined before you add the nex
 , and it
 must run the same platform version as the cluster nodes. A synchronization installs and updates feature components,
 but never the platform itself.</li>
-<li><strong>Use static addresses.</strong> HA cannot be enabled on a node whose interfaces get their address via DHCP.</li>
 <li><strong>Check the network.</strong> The new node must be in the same management network as the cluster nodes, and all nodes
 must reach each other on <code>TCP/2224</code>, <code>TCP/3121</code>, <code>TCP/21064</code>, <code>TCP/22</code> and <code>UDP/5405</code> (see
 <a href="/usp-aero/platform/latest/operations/ha/set-up-an-ha-cluster/">Set up an HA Cluster</a>
@@ -456,7 +455,7 @@ from the new node), save, and activate the new revision. The leader adds the new
 </li>
 <li>
 <p><strong>Check the result</strong> on the leader's
-<a href="/usp-aero/platform/latest/reference/gui/system-management/high-availability">High Availability status</a>
+<a href="/usp-aero/platform/latest/reference/gui/system-management/high-availability/">High Availability status</a>
  page: the new node is listed
 in <em>Node Status</em> and is <code>online</code>. While it joins, it can briefly show <code>pending</code>.</p>
 </li>
@@ -599,8 +598,11 @@ cluster nodes online and activate again.</li>
 <li><strong>The activation on the leader fails with a message that too many nodes would be removed:</strong> the leader's list is
 missing more than one node of the running cluster. Check the list. If you really want to remove several nodes,
 remove them one after another, activating once per node.</li>
-<li><strong>The node you disabled HA on is still part of the cluster:</strong> it was in standby at that moment. Use <strong>UnStandby</strong> on
-it, then switch off <strong>Enabled</strong> on it again.</li>
+<li><strong>The node you disabled HA on is still part of the cluster:</strong> it was in standby at that moment. A node in standby
+cannot leave the cluster: nothing is changed on it, no <code>UNCLUSTER</code> revision is created, and it keeps its HA settings
+and external interface configuration. Do not remove its entry on the leader or the other followers yet. Use
+<strong>UnStandby</strong> on it, wait until it shows as an online follower, then switch off <strong>Enabled</strong> on it again and continue
+with step 2 above.</li>
 </ul>
 
 

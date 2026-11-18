@@ -26,6 +26,7 @@ task, see the [Operations guides](../operations/).
 - [Configuration revisions](https://docs.united-security-providers.ch/usp-aero/platform/latest/reference/gui/deployment/revisions/index.md)
 - [History and rollback](https://docs.united-security-providers.ch/usp-aero/platform/latest/reference/gui/deployment/history-and-rollback/index.md)
 - [Operating System](https://docs.united-security-providers.ch/usp-aero/platform/latest/reference/gui/system-management/operating-system/index.md)
+- [High Availability status](https://docs.united-security-providers.ch/usp-aero/platform/latest/reference/gui/system-management/high-availability/index.md)
 - [Components](https://docs.united-security-providers.ch/usp-aero/platform/latest/reference/gui/components/index.md)
 - [Local Users](https://docs.united-security-providers.ch/usp-aero/platform/latest/reference/gui/user-management/local-users/index.md)
 - [User profile and password](https://docs.united-security-providers.ch/usp-aero/platform/latest/reference/gui/user-management/user-profile/index.md)

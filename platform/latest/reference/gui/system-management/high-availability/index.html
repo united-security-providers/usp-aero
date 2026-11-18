@@ -3,21 +3,21 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link rel="canonical" href="https://docs.united-security-providers.ch/usp-aero/platform/latest/operations/ha/cluster-status/">
+    <link rel="canonical" href="https://docs.united-security-providers.ch/usp-aero/platform/latest/reference/gui/system-management/high-availability/">
     <meta name="description" content="Installation, configuration and release notes for the USP Aero Suite: the Aero Platform and Aero WAAP.">
     <link rel="icon" href="/usp-aero/favicon.ico">
-    <title>HA Cluster Status - USP Aero Platform documentation</title>
+    <title>High Availability status - USP Aero Platform documentation</title>
     <link rel="stylesheet" href="/usp-aero/stylesheets/usp-docs.65ec41a132b70ffc2bd4b17a4dea8dd262f9ca31a22c29647c0b47711492f6ef.css">
     <link rel="stylesheet" href="/usp-aero/stylesheets/highlight.8ffd1f6914fb6b60dcf36f5b43cb54b0b569b46920e0f6c9223866c1132784f5.css">
     <link rel="stylesheet" href="/usp-aero/stylesheets/fonts.a423719d8c6b857f394a6c70f0289dc8e250e5ad1e3a465fd9930ea27ac05946.css">
-    <link rel="alternate" type="text/markdown" href="/usp-aero/platform/latest/operations/ha/cluster-status/index.md">
+    <link rel="alternate" type="text/markdown" href="/usp-aero/platform/latest/reference/gui/system-management/high-availability/index.md">
   </head>
   <body>
     <p class="usp-agent-note">For AI agents: this documentation is indexed at https://docs.united-security-providers.ch/usp-aero/llms.txt, and every page is available as markdown at its own address plus index.md.</p>
 
     <input type="checkbox" id="__drawer" autocomplete="off" hidden>
     <label class="usp-overlay" for="__drawer" aria-hidden="true"></label>
-    <a href="#ha-cluster-status" class="usp-skip">Skip to content</a>
+    <a href="#high-availability-status" class="usp-skip">Skip to content</a>
     <header class="usp-header">
   <div class="usp-header__inner">
     <label class="usp-header__drawer" for="__drawer" aria-label="Navigation">
@@ -48,7 +48,7 @@
     <svg class="usp-picker__caret" viewBox="7 10 10 5"><path d="M7 10l5 5 5-5z"/></svg>
   </button>
   <ul class="usp-picker__list">
-    <li><a href="/usp-aero/platform/latest/operations/ha/cluster-status/" aria-current="true">latest</a></li>
+    <li><a href="/usp-aero/platform/latest/reference/gui/system-management/high-availability/" aria-current="true">latest</a></li>
     <li><a href="/usp-aero/platform/1.0.x/">1.0.x</a></li>
   </ul>
 </div>
@@ -123,7 +123,7 @@
   </details>
 </li>
       <li class="usp-nav__section">
-  <details open>
+  <details>
     <summary class="usp-nav__label">
       <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
       <span>Operations</span>
@@ -175,7 +175,7 @@
   </details>
 </li>
         <li class="usp-nav__section">
-  <details open>
+  <details>
     <summary class="usp-nav__label">
       <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
       <span>High Availability</span>
@@ -187,8 +187,6 @@
 <li><a href="/usp-aero/platform/latest/operations/ha/add-remove-nodes/">Adding and Removing Cluster Nodes</a></li>
         
 <li><a href="/usp-aero/platform/latest/operations/ha/config-synchronization/">Synchronizing Configuration in a HA Cluster</a></li>
-        
-<li><a href="/usp-aero/platform/latest/operations/ha/cluster-status/" aria-current="page">HA Cluster Status</a></li>
         
 <li><a href="/usp-aero/platform/latest/operations/ha/uncluster/">Dissolving a HA Cluster</a></li>
     </ul>
@@ -210,7 +208,7 @@
   </details>
 </li>
       <li class="usp-nav__section">
-  <details>
+  <details open>
     <summary class="usp-nav__label">
       <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
       <span>Reference</span>
@@ -218,7 +216,7 @@
     <ul>
         <li><a href="/usp-aero/platform/latest/reference/">Overview</a></li>
         <li class="usp-nav__section">
-  <details>
+  <details open>
     <summary class="usp-nav__label">
       <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
       <span>GUI</span>
@@ -261,7 +259,7 @@
   </details>
 </li>
         <li class="usp-nav__section">
-  <details>
+  <details open>
     <summary class="usp-nav__label">
       <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
       <span>System Management</span>
@@ -269,6 +267,8 @@
     <ul>
         
 <li><a href="/usp-aero/platform/latest/reference/gui/system-management/operating-system/">Operating System</a></li>
+        
+<li><a href="/usp-aero/platform/latest/reference/gui/system-management/high-availability/" aria-current="page">High Availability status</a></li>
     </ul>
   </details>
 </li>
@@ -390,22 +390,50 @@
     <li><a href="/usp-aero/">USP Aero Suite documentation</a></li>
     <li>Aero Platform</li>
     <li><a href="/usp-aero/platform/latest/">latest</a></li>
-    <li><a href="/usp-aero/platform/latest/operations/">Operations</a></li>
-    <li>High Availability</li>
+    <li><a href="/usp-aero/platform/latest/reference/">Reference</a></li>
+    <li>GUI</li>
+    <li>System Management</li>
   </ol>
 </nav>
 <article class="usp-prose" data-pagefind-filter="docset:platform/latest">
-  <h1 id="ha-cluster-status">HA Cluster Status</h1>
+  <h1 id="high-availability-status">High Availability status</h1>
+<div class="usp-admonition usp-admonition--note">
+    <p class="usp-admonition__title">Note</p>
+    <p>This feature is planned to be available from version 1.1 onwards.</p>
+  </div><p>This screen shows the operational status of an HA cluster set up on the
+<a href="/usp-aero/platform/latest/reference/gui/configuration/high-availability">High Availability</a>
+ configuration screen. It is only available on
+an HA-capable deployment.</p>
 <p>The <em>High Availability</em> page (<em>System Management &gt; High Availability</em>) shows the current state of your HA cluster:
 which nodes are online, which node is the leader, which configuration each node runs, and how far the last
 synchronization got. It also offers the actions you need to operate the cluster.</p>
 <p>The page updates by itself whenever the cluster state changes. You do not need to reload it.</p>
+<p id="leader-view"><button type="button" class="usp-zoomable" popovertarget="usp-zoom-image-0" aria-label="Expand image"><img src="/usp-aero/platform/latest/assets/images-ha/leader-view_node-standby_wapp-unsynced_state-error.png" alt="High Availability page on the leader, with one node in standby"></button>
+<span id="usp-zoom-image-0" class="usp-lightbox" popover data-pagefind-ignore>
+  <button type="button" class="usp-lightbox__close" popovertarget="usp-zoom-image-0" popovertargetaction="hide" aria-label="Close">&times;</button>
+  <img class="usp-lightbox__image" src="/usp-aero/platform/latest/assets/images-ha/leader-view_node-standby_wapp-unsynced_state-error.png" alt="High Availability page on the leader, with one node in standby" loading="lazy">
+</span>
+</p>
+<p>The example above shows the page on the leader <code>aero01</code> while node <code>aero03</code> is in standby:</p>
+<ol>
+<li>The HA indicator in the top bar shows a yellow badge, because some areas need attention.</li>
+<li>In <em>Node Status</em>, <code>aero03</code> is <code>standby</code> (yellow).</li>
+<li>In <em>Sync Status</em>, <code>aero03</code> has not received the <code>waap</code> component yet (<code>waap=-</code>, yellow). Every <em>Config ID</em> that matches the <em>Active Configuration ID</em> is considered synchronized (green).</li>
+<li>In <em>Deployment Status</em>, the last synchronization has not completed on <code>aero03</code> because it is in <code>standby</code> (<code>transfer_started</code>, yellow).</li>
+</ol>
 <div class="usp-admonition usp-admonition--hint">
     <p class="usp-admonition__title">Hint</p>
-    <p>Open this page on the <strong>leader node</strong>. Some information (the <em>Active Configuration ID</em> and the comparison
-of configuration IDs) is only available there, because only the leader knows which configuration the cluster
-should be running.</p>
-  </div><h2 id="colours-at-a-glance">Colours at a glance</h2>
+    <p>Open this page on the <strong>leader node</strong>. The <em>Active Configuration ID</em> and the <em>Sync Status</em> and
+<em>Deployment Status</em> sections are only shown there, because only the leader knows which configuration the
+cluster should be running. On a follower, the page shows only <em>Node Status</em> and <em>Leader Status</em>.</p>
+  </div><p><button type="button" class="usp-zoomable" popovertarget="usp-zoom-image-1" aria-label="Expand image"><img src="/usp-aero/platform/latest/assets/images-ha/follower-view_node-standby.png" alt="High Availability page on a follower"></button>
+<span id="usp-zoom-image-1" class="usp-lightbox" popover data-pagefind-ignore>
+  <button type="button" class="usp-lightbox__close" popovertarget="usp-zoom-image-1" popovertargetaction="hide" aria-label="Close">&times;</button>
+  <img class="usp-lightbox__image" src="/usp-aero/platform/latest/assets/images-ha/follower-view_node-standby.png" alt="High Availability page on a follower" loading="lazy">
+</span>
+</p>
+<p>In read-only mode, the page shows no action buttons.</p>
+<h2 id="colours-at-a-glance">Colours at a glance</h2>
 <p>The page and the HA indicator in the top bar use the same three colors:</p>
 <div class="usp-table">
   <table>
@@ -459,7 +487,7 @@ should be running.</p>
 </table>
   </div>
 </div><h3 id="the-ha-indicator-in-the-top-bar">The HA indicator in the top bar</h3>
-<p>The heart-shaped icon in the top bar summarizes the whole page. It evaluates four areas, one for each section of
+<p>The indicator is shown once the HA cluster has members. The heart-shaped icon in the top bar summarizes the whole page. It evaluates four areas, one for each section of
 this page: nodes, leader, synchronization and deployment.</p>
 <ul>
 <li><strong>No badge:</strong> all four areas are green.</li>
@@ -563,7 +591,7 @@ otherwise it is <strong>yellow</strong>.</li>
     </tr>
     <tr>
       <td><code>unknown</code></td>
-      <td>–</td>
+      <td>Yellow</td>
       <td>The cluster state could not be read.</td>
     </tr>
   </tbody>
@@ -614,14 +642,14 @@ otherwise it is <strong>yellow</strong>.</li>
     </tr>
     <tr>
       <td><code>unknown</code></td>
-      <td>–</td>
+      <td>Yellow</td>
       <td>The cluster state could not be read.</td>
     </tr>
   </tbody>
 </table>
   </div>
-</div><p>In the top bar indicator, this area is <strong>red</strong> if any node is <code>offline</code> or <code>unclean</code>, <strong>yellow</strong> if any node is not
-<code>online</code>, and <strong>green</strong> if all nodes are <code>online</code>.</p>
+</div><p>In the top bar indicator, this area is <strong>red</strong> if any node is <code>offline</code> or <code>unclean</code>, <strong>yellow</strong> if any other node is
+not <code>online</code>, and <strong>green</strong> if all nodes are <code>online</code>.</p>
 <h3 id="actions">Actions</h3>
 <ul>
 <li><strong>StandBy</strong> / <strong>UnStandby</strong>: shown only on the row of the node you are signed in to. <em>StandBy</em> takes the node out
@@ -629,6 +657,7 @@ of service: it stops running cluster services, and if it is the leader, another 
 <em>UnStandby</em> brings it back.</li>
 <li><strong>Take Over</strong>: shown on every online node that is not the leader. It makes that node the new leader.</li>
 </ul>
+<p>Each action asks for confirmation first.</p>
 <h2 id="leader-status">Leader Status</h2>
 <p>Shows which node is currently the leader. The leader is the node where you change the configuration and start
 synchronizations.</p>
@@ -651,7 +680,7 @@ synchronizations.</p>
     </tr>
     <tr>
       <td><strong>Active Configuration ID</strong></td>
-      <td>Only shown on the leader. The configuration revision that is <strong>currently active on the leader</strong>, per component, for example <code>aero-mgmt-core-host=12, feature-waap=7</code>.</td>
+      <td>Only shown on the leader. The configuration revision that is <strong>currently active on the leader</strong>, per component, for example <code>aero-mgmt-core-host=12, feature-waap=7</code>. <code>-</code> if none is known yet.</td>
     </tr>
   </tbody>
 </table>
@@ -678,16 +707,16 @@ synchronizations.</p>
     </tr>
     <tr>
       <td><strong>Active Configuration ID</strong></td>
-      <td>Only shown on the leader. The configuration revision that is <strong>currently active on the leader</strong>, per component, for example <code>aero-mgmt-core-host=12, feature-waap=7</code>.</td>
+      <td>Only shown on the leader. The configuration revision that is <strong>currently active on the leader</strong>, per component, for example <code>aero-mgmt-core-host=12, feature-waap=7</code>. <code>-</code> if none is known yet.</td>
     </tr>
   </tbody>
 </table>
   </div>
 </div><p>A leader that is <code>offline</code> usually means the cluster is switching over (for example right after <em>Take Over</em>), or
-every node is in standby. If it stays <code>offline</code>, use <strong>Restart Config Leader Resource</strong>. Leadership may briefly move
-to another node while it restarts.</p>
+every node is in standby. If it stays <code>offline</code>, use <strong>Restart Config Leader Resource</strong> (next to the section
+title). Leadership may briefly move to another node while it restarts.</p>
 <h2 id="sync-status">Sync Status</h2>
-<p>Shows which configuration each node has received through HA synchronization.</p>
+<p>Only shown on the leader. Shows which configuration each node has received through HA synchronization.</p>
 <div class="usp-table">
   <table>
   <thead>
@@ -731,8 +760,9 @@ to another node while it restarts.</p>
   </tbody>
 </table>
   </div>
-</div><p>On the leader, the column header also has the <strong>Trigger Sync</strong> button, which starts a synchronization to all
-followers.</p>
+</div><p>The <strong>Trigger Sync</strong> button next to the section title starts a synchronization to all followers. If the followers
+already have the leader's active configuration, it first asks you to confirm, because a forced synchronization
+creates and activates a new revision on every follower.</p>
 <h3 id="active-configuration-id-vs-config-id">Active Configuration ID vs. Config ID</h3>
 <p>The two values look similar, but they answer different questions:</p>
 <div class="usp-table">
@@ -819,7 +849,7 @@ followers.</p>
 revision until you start a synchronization. When the synchronization is complete, every node's <em>Config ID</em> matches
 the <em>Active Configuration ID</em> again.</p>
 <h3 id="colors">Colors</h3>
-<p>On the leader, every <em>Config ID</em> entry is compared with the <em>Active Configuration ID</em> of the same component:</p>
+<p>Every <em>Config ID</em> entry is compared with the <em>Active Configuration ID</em> of the same component:</p>
 <div class="usp-table">
   <table>
   <thead>
@@ -836,9 +866,14 @@ the <em>Active Configuration ID</em> again.</p>
       <td>This component is up to date on this node.</td>
     </tr>
     <tr>
+      <td>Component not part of the active configuration</td>
+      <td>Green</td>
+      <td>There is nothing to compare against.</td>
+    </tr>
+    <tr>
       <td>Different revision</td>
-      <td>Yellow</td>
-      <td>The node runs an older configuration. Synchronize.</td>
+      <td>Red</td>
+      <td>The node runs a different configuration. Synchronize.</td>
     </tr>
     <tr>
       <td><code>component=-</code> (added automatically)</td>
@@ -867,9 +902,14 @@ the <em>Active Configuration ID</em> again.</p>
       <td>This component is up to date on this node.</td>
     </tr>
     <tr>
+      <td>Component not part of the active configuration</td>
+      <td>Green</td>
+      <td>There is nothing to compare against.</td>
+    </tr>
+    <tr>
       <td>Different revision</td>
-      <td>Yellow</td>
-      <td>The node runs an older configuration. Synchronize.</td>
+      <td>Red</td>
+      <td>The node runs a different configuration. Synchronize.</td>
     </tr>
     <tr>
       <td><code>component=-</code> (added automatically)</td>
@@ -879,13 +919,12 @@ the <em>Active Configuration ID</em> again.</p>
   </tbody>
 </table>
   </div>
-</div><p>On a follower, the entries are not compared, because a follower does not know the cluster's reference
-configuration. They are all shown in green, but that does <strong>not</strong> mean the nodes are up to date. To check that, open
-this page on the leader.</p>
-<p>In the top bar indicator, this area is <strong>red</strong> if any node runs a different revision of a component, <strong>yellow</strong> if a
-node has not received a component at all, and <strong>green</strong> if every node matches. On a follower, it is always green.</p>
+</div><p>In the top bar indicator, this area is <strong>red</strong> if any node runs a different revision of a component, <strong>yellow</strong> if a
+node has not received a component at all or the <em>Active Configuration ID</em> is not known yet, and <strong>green</strong> if every
+node matches. On a follower, this area is not evaluated and is always green, so a follower's indicator does
+<strong>not</strong> tell you whether the nodes are up to date. To check that, open this page on the leader.</p>
 <h2 id="deployment-status">Deployment Status</h2>
-<p>Shows the progress and outcome of the last synchronization on each node.</p>
+<p>Only shown on the leader. Shows the progress and outcome of the last synchronization on each node.</p>
 <div class="usp-table">
   <table>
   <thead>
@@ -930,7 +969,7 @@ node has not received a component at all, and <strong>green</strong> if every no
 </table>
   </div>
 </div><h3 id="status-values">Status values</h3>
-<p>On the <strong>leader</strong>:</p>
+<p>Values reported by the <strong>leader</strong> node:</p>
 <div class="usp-table">
   <table>
   <thead>
@@ -990,7 +1029,7 @@ node has not received a component at all, and <strong>green</strong> if every no
   </tbody>
 </table>
   </div>
-</div><p>On a <strong>follower</strong>, in the order they occur:</p>
+</div><p>Values reported by a <strong>follower</strong> node, in the order they occur:</p>
 <div class="usp-table">
   <table>
   <thead>
@@ -1090,9 +1129,23 @@ node has not received a component at all, and <strong>green</strong> if every no
   </tbody>
 </table>
   </div>
-</div><p>The statuses in this table are shown without color. In the top bar indicator, this area is <strong>red</strong> if any node
-reports <code>sync_failed</code>, <strong>green</strong> if every node reports <code>activated</code> or <code>synchronized</code>, and <strong>yellow</strong> otherwise (still
-in progress, or <em>Unknown</em>).</p>
+</div><p>Each status is colored: <code>sync_failed</code> is <strong>red</strong>, <code>activated</code> and <code>synchronized</code> are <strong>green</strong>, and every other
+value, including <em>Unknown</em>, is <strong>yellow</strong> (still in progress). The top bar indicator uses the same rule: this area is
+<strong>red</strong> if any node reports <code>sync_failed</code>, <strong>green</strong> if every node reports <code>activated</code> or <code>synchronized</code>, and
+<strong>yellow</strong> otherwise.</p>
+<p>When a follower reports <code>activated</code>, the synchronized configuration appears as a new revision on that follower's
+<em>Deployment</em> page. Its author is <code>system</code>, and its message names the leader it was imported from and the
+synchronized configuration IDs:</p>
+<p><button type="button" class="usp-zoomable" popovertarget="usp-zoom-image-2" aria-label="Expand image"><img src="/usp-aero/platform/latest/assets/images-ha/follower_synchronized-activated_deplopyment.png" alt="New revision on a follower after a successful synchronization"></button>
+<span id="usp-zoom-image-2" class="usp-lightbox" popover data-pagefind-ignore>
+  <button type="button" class="usp-lightbox__close" popovertarget="usp-zoom-image-2" popovertargetaction="hide" aria-label="Close">&times;</button>
+  <img class="usp-lightbox__image" src="/usp-aero/platform/latest/assets/images-ha/follower_synchronized-activated_deplopyment.png" alt="New revision on a follower after a successful synchronization" loading="lazy">
+</span>
+</p>
+<ol>
+<li>The <em>Config ID</em> synchronized by the leader. See <em>Active Configuration ID</em> in <em>Leader Status</em> on the <em><a href="#leader-view">leader view</a>
+</em>.</li>
+</ol>
 <h2 id="typical-situations">Typical situations</h2>
 <div class="usp-table">
   <table>
@@ -1108,7 +1161,11 @@ in progress, or <em>Unknown</em>).</p>
       <td>The cluster is healthy and every node runs the leader's configuration.</td>
     </tr>
     <tr>
-      <td>Yellow <em>Config ID</em> entries after you activated a change on the leader</td>
+      <td>Red <em>Config ID</em> entries after you activated a change on the leader</td>
+      <td>Expected: the nodes still run the previous revision. Start a synchronization with <strong>Trigger Sync</strong>.</td>
+    </tr>
+    <tr>
+      <td>Yellow <code>component=-</code> entries after you installed a new feature</td>
       <td>Expected. Start a synchronization with <strong>Trigger Sync</strong>.</td>
     </tr>
     <tr>
@@ -1147,7 +1204,11 @@ in progress, or <em>Unknown</em>).</p>
       <td>The cluster is healthy and every node runs the leader's configuration.</td>
     </tr>
     <tr>
-      <td>Yellow <em>Config ID</em> entries after you activated a change on the leader</td>
+      <td>Red <em>Config ID</em> entries after you activated a change on the leader</td>
+      <td>Expected: the nodes still run the previous revision. Start a synchronization with <strong>Trigger Sync</strong>.</td>
+    </tr>
+    <tr>
+      <td>Yellow <code>component=-</code> entries after you installed a new feature</td>
       <td>Expected. Start a synchronization with <strong>Trigger Sync</strong>.</td>
     </tr>
     <tr>
