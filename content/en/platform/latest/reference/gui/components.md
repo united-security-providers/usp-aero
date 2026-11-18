@@ -10,6 +10,9 @@ whether an update is available.
 
 ## Toolbar
 
+On a follower of an HA cluster, both buttons are hidden. Components are installed and updated on the leader
+and reach the followers through [configuration synchronization](../../operations/ha/config-synchronization).
+
 ### Reload inventory {#onFetchInventory}
 
 Reloads the list of installed components and available versions from the component inventory.

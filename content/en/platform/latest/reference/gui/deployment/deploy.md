@@ -13,6 +13,16 @@ Each registered component has its own tab, for example "System" for the base pla
 The same behavior and usage applies on every tab; it only concerns the changes in the
 configuration of that particular component.
 
+A tab is marked when its component needs attention: in red if it has unreviewed changes or its revision has
+validation errors, in yellow if a revision is ready to deploy.
+
+## Toolbar
+
+### Synchronize {#synchronize}
+
+Starts a configuration synchronization from this node to the other nodes of the HA cluster. Only shown on the
+leader of an HA cluster. See [Synchronizing Configuration in a HA Cluster](../../../operations/ha/config-synchronization).
+
 ## Configuration Deployment
 
 Each component's tab shows one of a few states, depending on whether it has unreviewed changes, a
@@ -29,7 +39,9 @@ Shown once a revision is ready to be activated. It takes you to the Deploy scree
 (and any other pending revisions) can be selected for deployment. A **Deploy** button with the same
 effect also appears in the page's toolbar whenever any component has a revision ready to deploy.
 
-If the revision has validation errors it cannot be deployed, and no button is shown.
+If the revision has validation errors it cannot be deployed. Instead of the button, the tab shows the message
+"Configuration revision N has validation errors and cannot be deployed" and lists the errors below it. See
+[Validation errors](../../validation-errors) for their meaning.
 
 ## Deploy {#deploy-screen}
 
@@ -37,6 +49,8 @@ Choose which components' configuration revisions should be deployed, then deploy
 
 Each row can be selected with a checkbox once its revision has no validation errors and has not
 already been activated; the **Deploy** button below is disabled until at least one row is selected.
+A row whose revision has validation errors shows the status *Has validation errors*, and the errors are listed
+above the table.
 
 ### Component {#componentName}
 

@@ -24,6 +24,13 @@ a glance. Both are configured on the [System](../reference/gui/configuration/sys
 
 Switches the language of the GUI.
 
+### HA indicator
+
+Only shown on a node that belongs to an HA cluster, next to the language selector. A badge on the icon shows how
+many areas of the cluster need attention. Clicking it opens the
+[High Availability status](../reference/gui/system-management/high-availability#the-ha-indicator-in-the-top-bar)
+page. It is not part of the screenshot above.
+
 ## Help button (4)
 
 Opens this manual in a new tab, at the page registered for the screen you are currently on.

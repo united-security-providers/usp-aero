@@ -31,6 +31,9 @@ This role may hold more than one IP address (see [IP Address](#ipAddresses) belo
 
 If WAAP component is installed, this role is required!
 
+On a follower of an [HA cluster](high-availability), the "External" interface is read-only. The cluster shares it,
+so change it on the leader.
+
 ## Interface Configuration
 
 Each interface will show its MAC address and the connection state. The fields below apply to
