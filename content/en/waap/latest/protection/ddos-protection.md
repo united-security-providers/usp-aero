@@ -139,10 +139,8 @@ When one of these mechanisms rejects a request, the client receives:
   [Request Headers Received Timeout](../reference/gui/listeners/timeouts-and-limits#requestHeadersReceivedTimeout).
 - **`413`:** a request body larger than the route's
   [Maximum payload size](../reference/gui/vhosts/routes/http#bodySizeLimit).
-- **Configurable, `429` and `403` by default:** a client blocked by Repeat Offender Detection
-  ([Status Code When Blocked](../reference/gui/vhosts/rate-limiting#maximumViolationsLimitExceededStatusCode)),
-  and a request without a client identifier on a virtual host with Repeat Offender Detection
-  ([Status Code If Client Not Identified](../reference/gui/vhosts/rate-limiting#clientIdMissingStatusCode)).
+- **Configurable, `429` by default:** a client blocked by Repeat Offender Detection
+  ([Status Code When Blocked](../reference/gui/vhosts/rate-limiting#maximumViolationsLimitExceededStatusCode)).
 - **`503`:** the backend's [Circuit Breaking](../reference/gui/backends/timeouts-and-limits#circuit-breaking)
   limits.
 - **`504`:** [Stream Idle Timeout](../reference/gui/listeners/timeouts-and-limits#streamIdleTimeout) and
