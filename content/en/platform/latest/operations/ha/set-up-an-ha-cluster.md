@@ -16,18 +16,19 @@ In order to operate an Aero cluster the following requirements are in effect:
 - Management Network configured within the same network
 - All nodes being able to connect to each other using `TCP/2224`, `TCP/3121`, `TCP/21064`, `TCP/22` and `UDP/5405`
 
-> [!IMPORTANT]
-> Use at least three nodes. Two nodes work, but they can't form a reliable quorum.
->
-> The cluster makes decisions, such as which node is the leader, only when a majority of its nodes (the quorum) agree.
-> In a two-node cluster, a broken connection between the nodes leaves each node alone with half of the votes, so
-> neither has a majority. Each node can assume that the other has failed and act as the leader on its own. This is
-> called a *split brain*: both nodes serve traffic and change their configuration independently, and the cluster ends
-> up in an inconsistent state.
->
-> With three nodes, the two nodes that can still reach each other keep the majority and continue to run the cluster.
-> The isolated node knows it is in the minority and does not act on its own. For the same reason, prefer an odd number
-> of nodes when you add more.
+> [!TIP]
+> A two-node cluster works perfectly fine, but it comes with the risk of a *split brain*. If you want to avoid this
+> risk, set up a cluster with three nodes.
+
+The cluster makes decisions, such as which node is the leader, only when a majority of its nodes (the quorum) agree.
+In a two-node cluster, a broken connection between the nodes leaves each node alone with half of the votes, so
+neither has a majority. Each node can assume that the other has failed and act as the leader on its own. This is
+called a *split brain*: both nodes serve traffic and change their configuration independently, and the cluster ends
+up in an inconsistent state.
+
+With three nodes, the two nodes that can still reach each other keep the majority and continue to run the cluster.
+The isolated node knows it is in the minority and does not act on its own. For the same reason, prefer an odd number
+of nodes when you add more.
 
 ## Cluster creation
 
@@ -35,17 +36,17 @@ In order to operate an Aero cluster the following requirements are in effect:
 > Cluster communication is fixed to the Management network interface. This can't be changed. Use each node's
 > Management network IP address when you add it as a cluster node.
 
-1. On the node that will be the first cluster member, open
-   [High Availability](../../reference/gui/configuration/high-availability) and press the key icon to generate a
+1. On the node that will be the first cluster member, open [High Availability](../../reference/gui/configuration/high-availability) and press the key icon to generate a
    `Shared Secret` or set a secure password yourself.
 2. Copy that same `Shared Secret` to every other node that will join the cluster.
 3. For each additional node, add a cluster node entry with its Hostname, IP Address and SSH Public
    Key (copy from the other node UI).
 4. Choose the cluster Mode, `ACTIVE/PASSIVE` or `ACTIVE/ACTIVE` depending on feature availability.
-5. [Create a revision and deploy it](../../concepts/configuration-lifecycle) to apply the cluster
-   configuration on each node.
-6. Once the cluster is running, check its state on
-   [High Availability status](../../reference/gui/system-management/high-availability).
+5. [Create a revision and deploy it](../../concepts/configuration-lifecycle) to apply the cluster configuration on each node.
+   The `setup-coordinator` (the node with the lowest last octet of its Management network IP) waits until all
+   other members have finished their deployment run before it forms the cluster. It times out after 15 minutes, so
+   deploy on all nodes within that time (see [Cluster initialization process](#cluster-initialization-process)).
+6. Once the cluster is running, check its state on [High Availability status](../../reference/gui/system-management/high-availability).
 
 ## Cluster initialization process
 
