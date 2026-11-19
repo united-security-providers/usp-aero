@@ -14,7 +14,8 @@ The virtual host's "Error Pages & Maintenance Pages" tab has two sections:
 
 ## Error Pages
 
-Configures custom error pages served by this virtual host instead of the backend's own response.
+Configures custom error pages served by this virtual host instead of the backend's own response. See
+[Replace backend error pages](../../../application-integration/local-error-page).
 Click "Add error page" to add an entry.
 
 ### Response Status {#responseStatusCode}
