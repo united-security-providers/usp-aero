@@ -39,3 +39,23 @@ are inactive and will be skipped for this route.
 - **Values:** `on` or `off`
 - **Default:** `off`
 - **Required:** yes
+
+## Response Content Compression {#enabled}
+
+Enables response compression for this route. When enabled, the gateway compresses responses with
+Brotli, gzip or Zstandard — whichever the client requests through its `Accept-Encoding` header — for
+the default set of compressible content types (HTML, CSS, JavaScript, JSON and similar). Responses
+are sent uncompressed when disabled.
+
+- **Values:** `on` or `off`
+- **Default:** `off`
+- **Required:** yes
+
+### Minimum Content Length {#minContentLength}
+
+The minimum response size, in bytes, before compression is applied; smaller responses are sent
+uncompressed. Only shown when compression is enabled.
+
+- **Values:** a whole number of bytes, at least `30`
+- **Default:** `1024`
+- **Required:** yes
