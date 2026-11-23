@@ -34,7 +34,7 @@ through unparsed.
 - **Values:** `on` or `off`
 - **Default:** `off`
 
-### Request Body Processing
+### Response Body Processing
 
 #### Body Access {#bodyAccess}
 
@@ -49,7 +49,7 @@ below.
 The maximum size of the response body that will be inspected. A response with a larger body is not
 delivered and the client receives status code `500` instead.
 
-- **Values:** a number followed by a unit - `B`, `KB`, `MB`, `GB` or `TB` (e.g. `10MB`) - from 1 byte
+- **Values:** a number followed by a unit - `B`, `KB`, `MB`, `GB` or `TB` (e.g. `10MB`) - from 1 KB
   up to 1 GB
 - **Default:** none
 

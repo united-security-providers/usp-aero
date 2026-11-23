@@ -13,10 +13,11 @@ It will not be stored locally on the appliance in contrast to the automated back
 
 ### Type {#type}
 
-- **Values:** `Full (incl. Keys)`, `Full (no Keys)`
-  - **Full (incl. Keys)** - full backup which also contains all private keys.
-  - **Full (no Keys)** - full backup but private keys are excluded.
+- **Values:** `Full (incl. Keys)` - full backup which also contains all private keys.
 - **Default:** `Full (incl. Keys)`
+
+> [!NOTICE]
+> Backups always contain the private keys. Store backup archives securely.
 
 ## Local Backups
 

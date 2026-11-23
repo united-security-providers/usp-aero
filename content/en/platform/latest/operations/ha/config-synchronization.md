@@ -39,8 +39,8 @@ the *High Availability* page.
 2. Activate the configuration you want to distribute. Only the **active** configuration of each component is
    synchronized. Drafts and revisions that are not yet activated stay on the leader.
 3. Start the synchronization in one of these places:
-    - *Deployment* page: **Synchronize HA**
-    - *System Management > High Availability*, in the *Sync Status* section: **Trigger Sync**
+    - *Deployment* page: **Synchronize**
+    - *System Management > High Availability*, in the *Sync Status* section: **Synchronize**
 
    Both buttons ask you to confirm only if nothing has changed since the last synchronization, because the
    synchronization then creates and activates a new revision on every follower anyway.
@@ -53,44 +53,41 @@ especially if components have to be installed or updated on the followers.
 
 | Step | Leader                          | Follower(s)                                              |
 |------|---------------------------------|----------------------------------------------------------|
-| 1    | Check for changes               |                                                          |
-| 2    | Export the active configuration |                                                          |
-| 3    | Signal the followers            |                                                          |
-| 4    |                                 | Copy the configuration from the leader                   |
-| 5    |                                 | Install, update or remove components to match the leader |
-| 6    |                                 | Import the configuration as new revisions                |
-| 7    |                                 | Activate the new revisions                               |
-| 8    |                                 | Report the result to the cluster                         |
-| 9    | Shown as `synchronized`         |                                                          |
+| 1    | Export the active configuration |                                                          |
+| 2    | Signal the followers            |                                                          |
+| 3    |                                 | Copy the configuration from the leader                   |
+| 4    |                                 | Install, update or remove components to match the leader |
+| 5    |                                 | Import the configuration as new revisions                |
+| 6    |                                 | Activate the new revisions                               |
+| 7    |                                 | Report the result to the cluster                         |
+| 8    | Shown as `synchronized`         |                                                          |
 
-1. **Check for changes.** The leader checks whether any component's active configuration changed since the last
-   synchronization. If nothing changed, it stops here and the followers are left alone.
-2. **Export.** The leader exports the active configuration of every installed component, including the platform
+1. **Export.** The leader exports the active configuration of every installed component, including the platform
    (host) configuration. It also records which version of each component is installed.
-3. **Signal the followers.** The leader tells the cluster that new configuration is available.
-4. **Copy.** Each follower copies the exported configuration from the leader over the cluster's internal, encrypted
+2. **Signal the followers.** The leader tells the cluster that new configuration is available.
+3. **Copy.** Each follower copies the exported configuration from the leader over the cluster's internal, encrypted
    connection. Standby nodes skip this step and every step after it.
-5. **Align the installed components.** Each follower compares its components with the leader's:
+4. **Align the installed components.** Each follower compares its components with the leader's:
     - a component the leader has but the follower does not have is **installed**,
     - a component that is older on the follower than on the leader is **updated**,
     - a component that is installed on the follower but was removed from the leader is **removed**.
 
    These operations run one after another. The follower waits until each component is up and running before
    it continues.
-6. **Import.** For each component, the follower stores the leader's configuration as a new revision. Components that
-   already run the leader's configuration are skipped.
-7. **Activate.** The follower activates the imported revisions, just as if you had activated them on that node
+5. **Import.** For each component, the follower stores the leader's configuration as a new revision, even if it
+   already runs that configuration.
+6. **Activate.** The follower activates the imported revisions, just as if you had activated them on that node
    yourself.
-8. **Report.** The follower records the result (the configuration it now runs, and any error) where the whole cluster
+7. **Report.** The follower records the result (the configuration it now runs, and any error) where the whole cluster
    can see it.
-9. **Done.** When a follower activates the configuration, the leader's status changes to `synchronized`.
+8. **Done.** When a follower activates the configuration, the leader's status changes to `synchronized`.
 
-Each follower runs steps 4 to 8 on its own. A follower that fails does not affect the leader or the other followers.
+Each follower runs steps 3 to 7 on its own. A follower that fails does not affect the leader or the other followers.
 
 ## Revisions created on a follower
 
-For each component whose configuration differs from the leader's, the synchronization creates **one new revision** on
-the follower and **activates it immediately**.
+For each component, the synchronization creates **one new revision** on the follower and **activates it
+immediately**.
 
 - **Message.** Every imported revision gets the same comment, which names the leader and the configuration ID imported
   for each component, for example:
@@ -100,8 +97,9 @@ the follower and **activates it immediately**.
   ```
 
   You can use this comment in the revision history to see when a follower was synchronized and what it received.
-- **Unchanged components get no revision.** If a component already runs the leader's configuration, nothing is
-  created for it.
+- **Every synchronization creates revisions.** A component that already runs the leader's configuration also gets a
+  new revision with the same content. This is what makes a repeated synchronization re-apply the configuration, for
+  example after a failed synchronization.
 - **Node-specific settings are kept.** Some platform settings belong to the individual node and are never taken from
   the leader. The follower keeps its own:
     - hostname, label, color scheme, location and contact,
@@ -168,5 +166,6 @@ On the leader, open *System Management > High Availability*:
   on the leader since then are not included until you synchronize again.
 - **One operation at a time per node.** If another installation or activation is still running on a follower, the
   follower waits for it to finish before it continues.
-- **Nothing changed, nothing done.** If the leader's configuration has not changed since the last synchronization,
-  triggering it again has no effect.
+- **Repeating a synchronization re-applies the configuration.** If the leader's configuration has not changed since
+  the last synchronization, **Synchronize** asks you to confirm. If you confirm, every follower imports and activates
+  the configuration again. Use this to recover a follower after a failed synchronization.

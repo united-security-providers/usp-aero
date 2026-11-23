@@ -1,18 +1,14 @@
 ---
 title: "High Availability"
 weight: 30
-draft: true
 ---
 
 # High Availability
 
-> [!NOTICE]
-> This feature is planned to be available from version 1.1 onwards.
-
 These screens appear only on an HA-capable deployment. They allow to enable a cluster setup that
 provides high availability of the configured services between multiple server instances. High
-availability requires this system's interfaces to be statically addressed; it cannot be enabled while
-any of them obtains its address via DHCP.
+availability requires a static IP address on the Management network interface; it cannot be enabled while
+that interface obtains its address via DHCP.
 
 ### Enabled {#enabled}
 
@@ -21,10 +17,20 @@ Turns the cluster setup on or off for this system.
 - **Values:** `on` or `off`
 - **Default:** `off`
 
+Switching it off and saving asks for confirmation, because uncommitted platform configuration changes on this node
+are discarded. What happens next depends on the node:
+
+- **Leader:** the whole cluster is dissolved. The GUI opens the *Deployment* page, where you can follow the
+  progress. See [Dissolving a HA Cluster](../../../operations/ha/uncluster).
+- **Follower:** only this node leaves the cluster. A dialog reminds you to define a new external interface before
+  the node runs standalone, then the GUI opens the *Deployment* page. See
+  [Adding and Removing Cluster Nodes](../../../operations/ha/add-remove-nodes).
+- **No cluster formed yet:** if HA was only saved but never deployed, the HA settings are simply removed.
+
 ### Shared Secret {#sharedSecret}
 
 Press the key icon to generate a secure shared secret. This same string value must be configured on
-all cluster nodes.
+all cluster nodes. Use the copy icon to copy it to the clipboard, and the eye icon to show or hide it.
 
 - **Values:** free text, at most 32 characters
 - **Default:** none
@@ -32,11 +38,16 @@ all cluster nodes.
 
 ## Cluster Nodes
 
-The first cluster node in this view is always this server itself. Its "Hostname" and "IP Address"
-values depend on the configuration defined in the [System](system) and [Network](network) screens.
+The first cluster node in this view is always this server itself and cannot be removed. Its "Hostname" and
+"IP Address" values are read-only and come from the [System](system) and [Network](network) screens. The IP address
+is always the static IP address of the Management network interface, shown as `<interface> - <IP address>`:
+cluster communication is fixed to the Management network interface.
 
 The "SSH Public Key" is pre-generated when the system is set up and can be copied into the clipboard
-here, in order to configure it on the other cluster nodes.
+with the copy icon, in order to configure it on the other cluster nodes.
+
+A cluster has at most 10 nodes, including this one. Use the add and delete icons next to a row to add or remove
+nodes.
 
 For the other nodes, the following values must be configured:
 

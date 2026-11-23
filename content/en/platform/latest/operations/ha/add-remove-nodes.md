@@ -112,6 +112,8 @@ How you remove a node depends on whether it should keep running as a standalone 
   node first.
 - **Plan a new external IP address for the node.** As on any follower that leaves a cluster, the node gives up the
   cluster's external IP addresses, and it needs its own external IP address before it can serve traffic again.
+- **Finish pending platform changes on the node.** The node builds its `UNCLUSTER` revision from its **active**
+  platform configuration. Uncommitted draft changes to the platform configuration on that node are discarded.
 
 #### Steps
 

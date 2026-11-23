@@ -11,8 +11,8 @@ Updating happens in two steps:
 * the appliance downloads and prepares the new image while it keeps everything running
 * a reboot switches to the newly updated base operating system
 
-The appliance does not serve traffic nor is the GUI unavailable while it reboot,
-plan your reboots carefully.
+The appliance does not serve traffic and the GUI is unavailable while it reboots,
+so plan your reboots carefully.
 
 > [!TIP]
 > Take a configuration backup first, as with any maintenance on the appliance: see
@@ -32,7 +32,8 @@ plan your reboots carefully.
 
 4. When the screen reports that the update is ready to be applied, choose "Reboot System" and
    confirm.
-5. Wait for the appliance to come back and sign in again.
+5. Wait for the appliance to come back. The *System is rebooting* page reloads by itself once the
+   appliance is reachable again. Sign in again if asked.
 6. Open [Operating System](../../reference/gui/system-management/operating-system) again and confirm
    that the current release is the new one.
 

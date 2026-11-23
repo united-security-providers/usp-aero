@@ -5,10 +5,68 @@ weight: 30
 
 # Header validation
 
-Aero WAAP checks every request header against its standard, both for its syntax and for its
-maximum length. By default, a request with a header that fails either check is blocked with status
+Aero WAAP checks the request headers it knows against the specification that defines them, both for
+their syntax and for their maximum length. By default, a request with a header that fails either check is blocked with status
 code `403`. If an application legitimately needs such a header, exclude it from validation on the virtual host's
 [Rule Engine](../../reference/gui/vhosts/rule-engine#header-validation) tab.
+
+## Why validate headers
+
+Every standard HTTP header has a defined format: which characters it may contain, how its value is structured, and
+how long it reasonably gets. Browsers and regular clients follow these formats, so a malformed header is rarely a
+typo. It usually comes from an attack tool, a scanner or a broken client.
+
+Malformed and unexpected header values are a common way to attack a web application. Header validation rejects them
+before they reach the backend, and prevents in particular:
+
+- **Request smuggling and header injection.** Control characters and line folding inside a header value can make a
+  backend split one header into several, or read a second request hidden inside the first one.
+- **Abuse of client identity headers.** Headers such as `X-Forwarded-For`, `X-Real-IP`, `True-Client-IP` or
+  `CF-Connecting-IP` are trusted by many applications, logging and access-control systems to identify the client,
+  but any client can send them. Only values in the form of IP addresses are accepted, so these headers cannot carry
+  an injection payload into the systems that trust them.
+- **Bypassing security rules and routing.** Some frameworks honour headers such as `X-Original-URL` or
+  `X-Rewrite-URL` and process the path given there instead of the real request path. Only an absolute URI or a path
+  starting with `/` is accepted; empty or malformed overrides are rejected.
+- **Method override.** Headers such as `X-HTTP-Method-Override` let a client change the HTTP method seen by the
+  application. Only a valid method name is accepted.
+- **Injection into the application.** Applications often process header values, for example to log them, to build
+  links from `Host` or `X-Forwarded-Host`, or to store `User-Agent` and `Referer`. Characters that do not belong in a
+  header can lead to log forging, cross-site scripting or SQL injection in the backend.
+- **Oversized values.** Every validated header has a maximum length. Very long values can exhaust memory or buffers
+  in the backend, trigger errors that reveal internal information, or hide an attack payload behind padding.
+
+This is useful because:
+
+- **It protects backends that handle malformed headers badly.** Older or third-party applications are often not
+  hardened against unexpected header values. Header validation ensures that they receive the validated headers only
+  in their standard format.
+- **It complements the Core Rule Set.** The [Core Rule Set](handle-a-crs-false-positive) looks for known attack
+  patterns, which means an unknown attack can slip through. Header validation works the other way round: it accepts
+  only what the specification allows and rejects everything else, without needing to know the attack.
+- **It reports every failing header at once.** All headers of a request are checked before the decision is made, so
+  the log lists every header that failed, not just the first one. This makes it easier to find all the exceptions an
+  application needs.
+- **It reduces noise.** Requests from scanners and attack tools are rejected early, before the request body is read
+  and before they reach the backend and its logs.
+
+## What is checked
+
+- **Known headers only.** Header validation covers a defined set of headers: the standard HTTP headers, widely used
+  de facto headers such as the `X-Forwarded-*` family, and the headers sent by modern browsers. Headers that are not
+  in this set are passed through unchanged. To block or remove unknown headers, use
+  [Header filtering](../header-filtering).
+- **Syntax, not meaning.** A value is accepted if it has the structure the specification defines, even if it makes
+  no sense. For example, `Accept-Encoding: foozip` is accepted because any token is a valid content coding, while
+  `Accept: text/` is rejected because the subtype is missing. Likewise, a well-formed `X-Forwarded-For` or
+  `X-Original-URL` passes even if its value is spoofed. If the application must not receive such headers at all,
+  remove them with [Header filtering](../header-filtering).
+- **Two checks per header.** The length check and the syntax check can be excepted separately (see
+  [Allow a header that fails validation](#allow-a-header-that-fails-validation)).
+- **Absent headers are fine.** Not sending a header is never a validation failure.
+
+> [!IMPORTANT]
+> Header validation checks the **format** of a header. To decide **which** headers may reach the backend at all, use [Header filtering](../header-filtering).
 
 ## Find the headers that fail validation
 
