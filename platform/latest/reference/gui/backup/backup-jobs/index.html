@@ -234,6 +234,8 @@
         
 <li><a href="/usp-aero/platform/latest/reference/gui/configuration/network/">Network</a></li>
         
+<li><a href="/usp-aero/platform/latest/reference/gui/configuration/high-availability/">High Availability</a></li>
+        
 <li><a href="/usp-aero/platform/latest/reference/gui/configuration/container/">Container</a></li>
         
 <li><a href="/usp-aero/platform/latest/reference/gui/configuration/certificates/">Certificates</a></li>
@@ -455,13 +457,16 @@ key icon only appears once a remote target is selected.</p>
 <li><strong>Required:</strong> yes</li>
 </ul>
 <h3 id="type">Type</h3>
-<p>Defines if the backup data should contain all the private key files or not.</p>
+<p>Defines the content of the backup data.</p>
 <ul>
-<li><strong>Values:</strong> <code>Full (incl. Keys)</code>, <code>Full (no Keys)</code></li>
+<li><strong>Values:</strong> <code>Full (incl. Keys)</code> - full backup which also contains all private keys.</li>
 <li><strong>Default:</strong> <code>Full (incl. Keys)</code></li>
 <li><strong>Required:</strong> yes</li>
 </ul>
-
+<div class="usp-admonition usp-admonition--note">
+    <p class="usp-admonition__title">Note</p>
+    <p>Backups always contain the private keys. Store backup archives securely.</p>
+  </div>
 
         </article>
       </main>

@@ -12,8 +12,9 @@ instance again, and what happens on each node while that runs.
   that follower from the cluster (see [Adding and Removing Cluster Nodes](add-remove-nodes)).
 - **Bring every node online and out of standby.** The leader tells the followers to leave the cluster. A node that is
   offline or in standby at that moment does not act on it and stays configured as a cluster member.
-- **Finish or discard pending platform changes on all nodes.** The uncluster stores the platform configuration as a
-  new revision. Unsaved draft changes to the platform configuration on a node become part of that revision.
+- **Finish pending platform changes on all nodes.** The uncluster builds a new platform revision from each node's
+  **active** platform configuration. Uncommitted draft changes to the platform configuration on a node are
+  discarded, and committed revisions that were never activated are not part of the new revision.
 - **Plan new external IP addresses for the followers.** After the uncluster, every follower needs its own external IP
   address before it can serve traffic again (see [On each follower](#on-each-follower)).
 - **Expect a service interruption on the followers.** The leader keeps serving traffic. The followers do not, until

@@ -15,23 +15,15 @@ Switching it off discards all settings below.
 
 ## Client Identification
 
-Clients are tracked by a client identifier. If a request carries no client identifier, the
-configured status code is sent to the client instead.
-
-### Status Code If Client Not Identified {#clientIdMissingStatusCode}
-
-Sent when a request carries no client identifier.
-
-- **Values:** a number from `100` to `599`
-- **Default:** `403`
-- **Required:** yes
+Clients are tracked by a client identifier; see
+[How a client is identified](../../../protection/repeat-offender#how-a-client-is-identified).
 
 ### Client IPs Excluded From Detection {#excludedClientIPs}
 
 Client IP addresses that are never subject to repeat-offender blocking. Each entry is compared with
 the client IP address, not with the client identifier.
 
-- **Values:** a list of IPv4 addresses
+- **Values:** a list of IPv4 or IPv6 addresses or [CIDR ranges](../../value-types#cidr)
 - **Default:** none
 
 ## Violations

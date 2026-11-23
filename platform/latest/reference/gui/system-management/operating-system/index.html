@@ -234,6 +234,8 @@
         
 <li><a href="/usp-aero/platform/latest/reference/gui/configuration/network/">Network</a></li>
         
+<li><a href="/usp-aero/platform/latest/reference/gui/configuration/high-availability/">High Availability</a></li>
+        
 <li><a href="/usp-aero/platform/latest/reference/gui/configuration/container/">Container</a></li>
         
 <li><a href="/usp-aero/platform/latest/reference/gui/configuration/certificates/">Certificates</a></li>
@@ -391,8 +393,13 @@ release is available. Once preparation has finished, reboot the system (see belo
 update.</p>
 <h3 id="systemReboot">Reboot System</h3>
 <p>Reboots the entire Aero appliance. Required to finalize OS update.</p>
+<p>After you confirm, the GUI shows a <em>System is rebooting</em> page. The page checks the appliance every few seconds and
+reloads by itself once the appliance is reachable again. You may need to sign in again.</p>
 <h3 id="systemShutdown">Shutdown System</h3>
 <p>Performs a controlled shutdown of the Aero appliance.</p>
+<p>After you confirm, the GUI shows a <em>System is shutting down</em> page. The appliance is then no longer reachable and can
+be powered off safely.</p>
+<p>Both buttons are disabled while an infrastructure operation is in progress, and hidden in read-only mode.</p>
 
 
         </article>

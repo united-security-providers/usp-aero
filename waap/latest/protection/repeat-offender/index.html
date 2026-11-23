@@ -141,6 +141,10 @@
 <li><a href="/usp-aero/waap/latest/application-integration/translation/">Rewrite the request path</a></li>
         
 <li><a href="/usp-aero/waap/latest/application-integration/redirect/">Redirect requests</a></li>
+        
+<li><a href="/usp-aero/waap/latest/application-integration/local-error-page/">Replace backend error pages</a></li>
+        
+<li><a href="/usp-aero/waap/latest/application-integration/maintenance-page/">Show a maintenance page</a></li>
     </ul>
   </details>
 </li>
@@ -230,6 +234,8 @@
         
 <li><a href="/usp-aero/waap/latest/reference/gui/vhosts/rule-engine/">Rule Engine</a></li>
         
+<li><a href="/usp-aero/waap/latest/reference/gui/vhosts/error-pages/">Error Pages &amp; Maintenance Pages</a></li>
+        
 <li><a href="/usp-aero/waap/latest/reference/gui/vhosts/rate-limiting/">Rate Limiting</a></li>
         <li class="usp-nav__section">
   <details>
@@ -301,6 +307,10 @@
     <ul>
         
 <li><a href="/usp-aero/waap/latest/reference/gui/local-files/static-content/">Static Content</a></li>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/local-files/error-pages/">Local Error Pages</a></li>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/local-files/maintenance-pages/">Maintenance Pages</a></li>
     </ul>
   </details>
 </li>
@@ -387,15 +397,12 @@ within that period, it is blocked immediately. Every further request is answered
 as well. Afterwards the client is served normally again.</li>
 </ul>
 <h2 id="how-a-client-is-identified">How a client is identified</h2>
-<p>Violations are counted per client identifier. When the
+<p>Violations are counted per client identifier and per virtual host: violations a client collects on
+one virtual host do not count towards another, even if both share a listener. When the
 <a href="/usp-aero/waap/latest/reference/gui/listeners/listeners/#clientIpDetectionMode">listener</a>
  uses a custom header for
 client IP detection, the value of that header is the client identifier. Otherwise the client IP
 address is used.</p>
-<p>A request without a client identifier is rejected with
-<a href="/usp-aero/waap/latest/reference/gui/vhosts/rate-limiting/#clientIdMissingStatusCode">Status Code If Client Not Identified</a>
-
-on every virtual host that has Repeat Offender Detection enabled.</p>
 <div class="usp-admonition usp-admonition--warning">
     <p class="usp-admonition__title">Warning</p>
     <p>The protection is only as reliable as the client identifier. A client that can change its
@@ -418,9 +425,7 @@ identifier with every request never collects enough violations to be blocked.</p
 <a href="/usp-aero/waap/latest/reference/gui/vhosts/rate-limiting/#maximumViolationsLimitExceededStatusCode">Status Code When Blocked</a>
 .</li>
 <li>Under <a href="/usp-aero/waap/latest/reference/gui/vhosts/rate-limiting/#client-identification">Client Identification</a>
-, set the
-<a href="/usp-aero/waap/latest/reference/gui/vhosts/rate-limiting/#clientIdMissingStatusCode">Status Code If Client Not Identified</a>
-, and list any
+, list any
 <a href="/usp-aero/waap/latest/reference/gui/vhosts/rate-limiting/#excludedClientIPs">Client IPs Excluded From Detection</a>
 . For example your own monitoring or
 a load balancer's health-check address.</li>

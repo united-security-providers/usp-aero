@@ -234,6 +234,8 @@
         
 <li><a href="/usp-aero/platform/latest/reference/gui/configuration/network/">Network</a></li>
         
+<li><a href="/usp-aero/platform/latest/reference/gui/configuration/high-availability/">High Availability</a></li>
+        
 <li><a href="/usp-aero/platform/latest/reference/gui/configuration/container/">Container</a></li>
         
 <li><a href="/usp-aero/platform/latest/reference/gui/configuration/certificates/">Certificates</a></li>
@@ -435,8 +437,9 @@ added by other means are left alone.</li>
 <li>Press Enter without input to return to the menu.</li>
 </ul>
 <h3 id="option-c">C - Change password for user 'core'</h3>
-<p>Changes the password of the user <code>core</code>. The new password is asked for twice, the two entries must
-match, and it is rejected if the system's complexity check fails.</p>
+<p>Changes the password of the user <code>core</code>. The current password is asked for first. The new password is then asked
+for twice, the two entries must match, and it is rejected if the system's complexity check fails or if it is too
+similar to the current one.</p>
 <h3 id="option-p">P - Define proxy server for internet access</h3>
 <p>Sets the proxy used for outbound access, in particular for fetching the base image.</p>
 <ul>
@@ -449,6 +452,69 @@ https://myuser:mypassword@proxy.example.com:1234</code></pre>
 .
 As a consequence the user name cannot contain a <code>:</code> and the password cannot contain an <code>@</code>.</p>
 <p>Press Enter to keep the current setting, or enter <code>-</code> to remove the proxy configuration again.</p>
+<p>After the URL, a proxy bypass list is asked for. It names the hosts that are reached directly instead of through
+the proxy, for example a container registry on the local network. Entries are comma-separated:</p>
+<div class="usp-table">
+  <table>
+  <thead>
+    <tr>
+      <th>Entry</th>
+      <th>Matches</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>host.example.com</code></td>
+      <td>a single host</td>
+    </tr>
+    <tr>
+      <td><code>.example.com</code></td>
+      <td>the domain and all of its subdomains</td>
+    </tr>
+    <tr>
+      <td><code>10.0.0.0/8</code></td>
+      <td>an address range</td>
+    </tr>
+    <tr>
+      <td><code>host.example.com:443</code></td>
+      <td>a single host on one port only</td>
+    </tr>
+  </tbody>
+</table>
+  <button type="button" class="usp-table__expand" popovertarget="usp-zoom-table-0" aria-label="Expand table">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 4h6v2H6v4H4V4zm10 0h6v6h-2V6h-4V4zM4 14h2v4h4v2H4v-6zm16 0v6h-6v-2h4v-4h2z"/></svg>
+  </button>
+  <div id="usp-zoom-table-0" class="usp-lightbox" popover data-pagefind-ignore>
+    <button type="button" class="usp-lightbox__close" popovertarget="usp-zoom-table-0" popovertargetaction="hide" aria-label="Close">&times;</button>
+    <table>
+  <thead>
+    <tr>
+      <th>Entry</th>
+      <th>Matches</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>host.example.com</code></td>
+      <td>a single host</td>
+    </tr>
+    <tr>
+      <td><code>.example.com</code></td>
+      <td>the domain and all of its subdomains</td>
+    </tr>
+    <tr>
+      <td><code>10.0.0.0/8</code></td>
+      <td>an address range</td>
+    </tr>
+    <tr>
+      <td><code>host.example.com:443</code></td>
+      <td>a single host on one port only</td>
+    </tr>
+  </tbody>
+</table>
+  </div>
+</div><p>A <code>*</code> wildcard does not work and is rejected: write <code>.example.com</code> instead of <code>*.example.com</code>. Loopback addresses
+always bypass the proxy and need not be listed. Press Enter to keep the current list, or enter <code>-</code> to clear it.</p>
 <h3 id="option-e">E - Enter container registry details</h3>
 <p>Asks for everything needed to reach the registry that holds the platform image. The answers are
 stored on the node and are used by &quot;Show repository tags&quot; and &quot;Bootstrap container image&quot;.</p>
@@ -491,11 +557,11 @@ stored on the node and are used by &quot;Show repository tags&quot; and &quot;Bo
     </tr>
   </tbody>
 </table>
-  <button type="button" class="usp-table__expand" popovertarget="usp-zoom-table-0" aria-label="Expand table">
+  <button type="button" class="usp-table__expand" popovertarget="usp-zoom-table-1" aria-label="Expand table">
     <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 4h6v2H6v4H4V4zm10 0h6v6h-2V6h-4V4zM4 14h2v4h4v2H4v-6zm16 0v6h-6v-2h4v-4h2z"/></svg>
   </button>
-  <div id="usp-zoom-table-0" class="usp-lightbox" popover data-pagefind-ignore>
-    <button type="button" class="usp-lightbox__close" popovertarget="usp-zoom-table-0" popovertargetaction="hide" aria-label="Close">&times;</button>
+  <div id="usp-zoom-table-1" class="usp-lightbox" popover data-pagefind-ignore>
+    <button type="button" class="usp-lightbox__close" popovertarget="usp-zoom-table-1" popovertargetaction="hide" aria-label="Close">&times;</button>
     <table>
   <thead>
     <tr>

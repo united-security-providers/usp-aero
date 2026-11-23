@@ -1,0 +1,655 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="canonical" href="https://docs.united-security-providers.ch/usp-aero/waap/latest/application-integration/local-error-page/">
+    <meta name="description" content="Installation, configuration and release notes for the USP Aero Suite: the Aero Platform and Aero WAAP.">
+    <link rel="icon" href="/usp-aero/favicon.ico">
+    <title>Replace backend error pages - USP Aero WAAP documentation</title>
+    <link rel="stylesheet" href="/usp-aero/stylesheets/usp-docs.65ec41a132b70ffc2bd4b17a4dea8dd262f9ca31a22c29647c0b47711492f6ef.css">
+    <link rel="stylesheet" href="/usp-aero/stylesheets/highlight.8ffd1f6914fb6b60dcf36f5b43cb54b0b569b46920e0f6c9223866c1132784f5.css">
+    <link rel="stylesheet" href="/usp-aero/stylesheets/fonts.a423719d8c6b857f394a6c70f0289dc8e250e5ad1e3a465fd9930ea27ac05946.css">
+    <link rel="alternate" type="text/markdown" href="/usp-aero/waap/latest/application-integration/local-error-page/index.md">
+  </head>
+  <body>
+    <p class="usp-agent-note">For AI agents: this documentation is indexed at https://docs.united-security-providers.ch/usp-aero/llms.txt, and every page is available as markdown at its own address plus index.md.</p>
+
+    <input type="checkbox" id="__drawer" autocomplete="off" hidden>
+    <label class="usp-overlay" for="__drawer" aria-hidden="true"></label>
+    <a href="#replace-backend-error-pages" class="usp-skip">Skip to content</a>
+    <header class="usp-header">
+  <div class="usp-header__inner">
+    <label class="usp-header__drawer" for="__drawer" aria-label="Navigation">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+
+    </label>
+    <a class="usp-header__logo" href="/usp-aero/" aria-label="USP Aero WAAP documentation">
+      <img src="/usp-aero/images/USP-Logo-2023-ohne-claim-lang-white1.webp" alt="USP Aero Suite documentation">
+    </a>
+    
+<div class="usp-picker usp-picker--product">
+  <button class="usp-picker__current" aria-label="Select product">
+    <span class="usp-picker__label">Aero WAAP</span>
+    <svg class="usp-picker__caret" viewBox="7 10 10 5"><path d="M7 10l5 5 5-5z"/></svg>
+  </button>
+  <ul class="usp-picker__list">
+    <li><a href="/usp-aero/">All products</a></li>
+    <li><a href="/usp-aero/platform/1.0.x/">Aero Platform</a></li>
+    <li><a href="/usp-aero/waap/1.0.x/" aria-current="true">Aero WAAP</a></li>
+  </ul>
+</div>
+
+
+    
+<div class="usp-picker usp-picker--version">
+  <button class="usp-picker__current" aria-label="Select version">
+    <span class="usp-picker__label">latest</span>
+    <svg class="usp-picker__caret" viewBox="7 10 10 5"><path d="M7 10l5 5 5-5z"/></svg>
+  </button>
+  <ul class="usp-picker__list">
+    <li><a href="/usp-aero/waap/latest/application-integration/local-error-page/" aria-current="true">latest</a></li>
+    <li><a href="/usp-aero/waap/1.0.x/">1.0.x</a></li>
+  </ul>
+</div>
+
+
+    <div class="usp-header__tools">
+      <link rel="stylesheet" href="/usp-aero/pagefind/pagefind-component-ui.css" data-usp-search-bundle>
+<pagefind-config data-usp-search-config></pagefind-config>
+<script>
+  document.querySelector("[data-usp-search-config]").setAttribute("bundle-path",
+    new URL(".", document.querySelector("[data-usp-search-bundle]").href).href);
+</script>
+<script type="module" src="/usp-aero/pagefind/pagefind-component-ui.js"></script><script type="module">
+  window.PagefindComponents.getInstanceManager().getInstance("default")
+    .searchFilters = {"docset":{"any":["waap/latest"]}};
+</script>
+<div class="usp-search">
+  <pagefind-searchbox placeholder="Search" shortcut="/"></pagefind-searchbox>
+</div>
+<div class="usp-search-compact">
+  <pagefind-modal-trigger></pagefind-modal-trigger>
+  <pagefind-modal></pagefind-modal>
+</div>
+
+    </div>
+  </div>
+</header>
+
+    <aside class="usp-banner">
+      You are viewing the documentation under development. It is not a release and can change at any time.
+      <a href="/usp-aero/waap/1.0.x/">Go to the 1.0.x release.</a>
+    </aside>
+    <div class="usp-layout">
+      <div class="usp-nav-wrapper usp-sidebar">
+        <nav class="usp-nav" aria-label="Navigation">
+  <div class="usp-nav__title">USP Aero WAAP documentation</div>
+  <ul>
+    
+<li><a href="/usp-aero/waap/latest/">Welcome</a></li>
+      
+<li><a href="/usp-aero/waap/latest/aero-waap-releasenotes/">Release Notes</a></li>
+      <li class="usp-nav__section">
+  <details>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>Concepts</span>
+    </summary>
+    <ul>
+        
+<li><a href="/usp-aero/waap/latest/concepts/request-flow/">How a request is processed</a></li>
+        
+<li><a href="/usp-aero/waap/latest/concepts/detect-only-mode/">Detect-only mode</a></li>
+        
+<li><a href="/usp-aero/waap/latest/concepts/notes/">Notes</a></li>
+    </ul>
+  </details>
+</li>
+      
+<li><a href="/usp-aero/waap/latest/getting-started/">Getting started</a></li>
+      <li class="usp-nav__section">
+  <details open>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>Application integration</span>
+    </summary>
+    <ul>
+        <li class="usp-nav__section">
+  <details>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>TLS</span>
+    </summary>
+    <ul>
+        
+<li><a href="/usp-aero/waap/latest/application-integration/tls/replace-a-certificate/">Replace a certificate</a></li>
+        
+<li><a href="/usp-aero/waap/latest/application-integration/tls/acme/">Automated certificate renewal (ACME)</a></li>
+        
+<li><a href="/usp-aero/waap/latest/application-integration/tls/mtls/">Client Certificate Validation (mTLS)</a></li>
+        
+<li><a href="/usp-aero/waap/latest/application-integration/tls/backend-tls/">Backend TLS connections</a></li>
+    </ul>
+  </details>
+</li>
+        
+<li><a href="/usp-aero/waap/latest/application-integration/header-manipulation/">Header manipulation</a></li>
+        
+<li><a href="/usp-aero/waap/latest/application-integration/cookie-manipulation/">Cookie manipulation</a></li>
+        
+<li><a href="/usp-aero/waap/latest/application-integration/translation/">Rewrite the request path</a></li>
+        
+<li><a href="/usp-aero/waap/latest/application-integration/redirect/">Redirect requests</a></li>
+        
+<li><a href="/usp-aero/waap/latest/application-integration/local-error-page/" aria-current="page">Replace backend error pages</a></li>
+        
+<li><a href="/usp-aero/waap/latest/application-integration/maintenance-page/">Show a maintenance page</a></li>
+    </ul>
+  </details>
+</li>
+      <li class="usp-nav__section">
+  <details>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>Protection</span>
+    </summary>
+    <ul>
+        <li class="usp-nav__section">
+  <details>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>Rule Engine</span>
+    </summary>
+    <ul>
+        
+<li><a href="/usp-aero/waap/latest/protection/rule-engine/owasp-top-10/">OWASP Top 10</a></li>
+        
+<li><a href="/usp-aero/waap/latest/protection/rule-engine/virtual-patch/">Virtual patching</a></li>
+        
+<li><a href="/usp-aero/waap/latest/protection/rule-engine/handle-a-crs-false-positive/">Handle a CRS false positive</a></li>
+        
+<li><a href="/usp-aero/waap/latest/protection/rule-engine/header-validation/">Header validation</a></li>
+    </ul>
+  </details>
+</li>
+        
+<li><a href="/usp-aero/waap/latest/protection/ddos-protection/">(D)DoS protection</a></li>
+        
+<li><a href="/usp-aero/waap/latest/protection/header-filtering/">Header filtering</a></li>
+        
+<li><a href="/usp-aero/waap/latest/protection/ip-restrictions/">IP restriction</a></li>
+        
+<li><a href="/usp-aero/waap/latest/protection/request-size-limit/">Limit request size</a></li>
+        
+<li><a href="/usp-aero/waap/latest/protection/repeat-offender/">Repeat offender</a></li>
+        
+<li><a href="/usp-aero/waap/latest/protection/limit-http-methods/">Restrict HTTP Methods</a></li>
+        
+<li><a href="/usp-aero/waap/latest/protection/security-headers/">Security Headers</a></li>
+    </ul>
+  </details>
+</li>
+      <li class="usp-nav__section">
+  <details>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>Reference</span>
+    </summary>
+    <ul>
+        <li><a href="/usp-aero/waap/latest/reference/">Overview</a></li>
+        <li class="usp-nav__section">
+  <details>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>GUI</span>
+    </summary>
+    <ul>
+        <li><a href="/usp-aero/waap/latest/reference/gui/">Overview</a></li>
+        <li class="usp-nav__section">
+  <details>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>Listeners</span>
+    </summary>
+    <ul>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/listeners/listeners/">Listeners</a></li>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/listeners/tls/">TLS</a></li>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/listeners/timeouts-and-limits/">Timeouts &amp; Limits</a></li>
+    </ul>
+  </details>
+</li>
+        <li class="usp-nav__section">
+  <details>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>Virtual Hosts</span>
+    </summary>
+    <ul>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/vhosts/virtual-hosts/">Virtual Hosts</a></li>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/vhosts/rule-engine/">Rule Engine</a></li>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/vhosts/error-pages/">Error Pages &amp; Maintenance Pages</a></li>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/vhosts/rate-limiting/">Rate Limiting</a></li>
+        <li class="usp-nav__section">
+  <details>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>Routes</span>
+    </summary>
+    <ul>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/vhosts/routes/routes/">Routes</a></li>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/vhosts/routes/http/">HTTP</a></li>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/vhosts/routes/headers/">Headers</a></li>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/vhosts/routes/cookies/">Cookies</a></li>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/vhosts/routes/access-control/">Access Control</a></li>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/vhosts/routes/translation-and-redirect/">Translation &amp; Redirect</a></li>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/vhosts/routes/timeouts/">Timeouts</a></li>
+    </ul>
+  </details>
+</li>
+    </ul>
+  </details>
+</li>
+        <li class="usp-nav__section">
+  <details>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>Backends</span>
+    </summary>
+    <ul>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/backends/backends/">Backends</a></li>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/backends/health-check/">Health Check</a></li>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/backends/tls/">TLS</a></li>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/backends/timeouts-and-limits/">Timeouts &amp; Limits</a></li>
+    </ul>
+  </details>
+</li>
+        <li class="usp-nav__section">
+  <details>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>Certificates</span>
+    </summary>
+    <ul>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/certificates/certificates-and-keys/">Certificates &amp; Keys</a></li>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/certificates/ca-certificates/">CA Certificates</a></li>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/certificates/acme/">ACME providers</a></li>
+    </ul>
+  </details>
+</li>
+        <li class="usp-nav__section">
+  <details>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>Local Files</span>
+    </summary>
+    <ul>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/local-files/static-content/">Static Content</a></li>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/local-files/error-pages/">Local Error Pages</a></li>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/local-files/maintenance-pages/">Maintenance Pages</a></li>
+    </ul>
+  </details>
+</li>
+    </ul>
+  </details>
+</li>
+        
+<li><a href="/usp-aero/waap/latest/reference/header-filtering-classes/">Header Filtering Classes</a></li>
+        
+<li><a href="/usp-aero/waap/latest/reference/tls-settings/">TLS versions, ciphers and algorithms</a></li>
+        
+<li><a href="/usp-aero/waap/latest/reference/value-types/">Value types</a></li>
+        
+<li><a href="/usp-aero/waap/latest/reference/glossary/">Glossary</a></li>
+    </ul>
+  </details>
+</li>
+  </ul>
+</nav>
+
+      </div>
+      <nav class="usp-toc usp-sidebar" aria-label="Table of contents">
+  <div class="usp-toc__title">Table of contents</div>
+  <ul>
+      <li>
+  <a href="#why-replace-backend-error-pages">Why replace backend error pages</a>
+</li>
+
+      <li>
+  <a href="#replace-the-backends-error-pages-on-a-virtual-host">Replace the backend's error pages on a virtual host</a>
+</li>
+
+      <li>
+  <a href="#when-to-overwrite-the-status-code">When to overwrite the status code</a>
+</li>
+
+      <li>
+  <a href="#examples">Examples</a>
+  <ul>
+      <li>
+  <a href="#replace-all-server-errors-with-a-generic-page">Replace all server errors with a generic page</a>
+</li>
+
+      <li>
+  <a href="#replace-html-error-pages-only-keep-api-errors">Replace HTML error pages only, keep API errors</a>
+</li>
+
+  </ul>
+</li>
+
+      <li>
+  <a href="#good-to-know">Good to know</a>
+</li>
+
+      <li>
+  <a href="#related">Related</a>
+</li>
+
+  </ul>
+</nav>
+      <main class="usp-content">
+        
+<nav class="usp-breadcrumb" aria-label="Breadcrumb">
+  <ol>
+    <li><a href="/usp-aero/">USP Aero Suite documentation</a></li>
+    <li>Aero WAAP</li>
+    <li><a href="/usp-aero/waap/latest/">latest</a></li>
+    <li>Application integration</li>
+  </ol>
+</nav>
+<article class="usp-prose" data-pagefind-filter="docset:waap/latest">
+  <h1 id="replace-backend-error-pages">Replace backend error pages</h1>
+<p>Aero WAAP can replace the error response of a backend with a local error page stored on the appliance. The client
+then receives your page instead of the one the backend application generated. Optionally, the status code sent to the
+client can be overwritten as well.</p>
+<h2 id="why-replace-backend-error-pages">Why replace backend error pages</h2>
+<p>Error pages generated by application servers and frameworks are written for developers, not for the public. They
+often reveal more than they should:</p>
+<ul>
+<li><strong>Stack traces and exception messages</strong> that expose class names, file paths, source code lines or SQL statements.</li>
+<li><strong>Product names and versions</strong> of the application server, framework or libraries, which help an attacker find
+known vulnerabilities.</li>
+<li><strong>Internal details</strong> such as hostnames, IP addresses, database names or the layout of the backend infrastructure.</li>
+</ul>
+<p>An attacker can provoke such errors on purpose, for example with malformed input, and use what they reveal to plan
+further attacks. This is known as information disclosure through error messages
+(<a href="https://cwe.mitre.org/data/definitions/209.html" target="_blank" rel="noopener">CWE-209</a>
+).</p>
+<p>Replacing these responses with a local error page:</p>
+<ul>
+<li><strong>prevents information disclosure</strong>, because the backend's error content never reaches the client,</li>
+<li><strong>makes fingerprinting harder</strong>, because every backend behind Aero WAAP answers errors with the same page,
+whatever product it runs on,</li>
+<li><strong>gives a consistent user experience</strong>, with one branded error page across all applications of a virtual host,
+instead of a different default page per backend,</li>
+<li><strong>covers errors you do not control</strong>, for example the default pages of a third-party product or of a backend that
+is temporarily misconfigured.</li>
+</ul>
+<p>Overwriting the status code goes one step further: it hides which kind of error happened (see
+<a href="#when-to-overwrite-the-status-code">When to overwrite the status code</a>
+).</p>
+<h2 id="replace-the-backends-error-pages-on-a-virtual-host">Replace the backend's error pages on a virtual host</h2>
+<ol>
+<li>Under <em>Local Files &gt; <a href="/usp-aero/waap/latest/reference/gui/local-files/error-pages/">Error Pages</a>
+</em>, create or upload the error page.
+Choose the <a href="/usp-aero/waap/latest/reference/gui/local-files/error-pages/#contentType">Content Type</a>
+ that matches the content, for
+example <code>text/html</code> for a browser application or <code>application/json</code> for an API.</li>
+<li>Open the <a href="/usp-aero/waap/latest/reference/gui/vhosts/virtual-hosts/">virtual host</a>
+ and go to the
+<a href="/usp-aero/waap/latest/reference/gui/vhosts/error-pages/">Error Pages &amp; Maintenance Pages</a>
+ tab.</li>
+<li>In the <em>Error Pages</em> section, click &quot;Add error page&quot;.</li>
+<li>Select the <a href="/usp-aero/waap/latest/reference/gui/vhosts/error-pages/#responseStatusCode">Response Status</a>
+ to replace, for example
+<code>5xx</code> for every server error.</li>
+<li>Select the <a href="/usp-aero/waap/latest/reference/gui/vhosts/error-pages/#localErrorPageId">Local Error Page</a>
+ created in step 1.</li>
+<li>Optionally set an <a href="/usp-aero/waap/latest/reference/gui/vhosts/error-pages/#overwriteStatusCode">Overwrite Status Code</a>
+.</li>
+<li>Optionally restrict the entry with an
+<a href="/usp-aero/waap/latest/reference/gui/vhosts/error-pages/#headerConditionEnabled">Additional Header Condition</a>
+, for example to replace
+only HTML responses.</li>
+<li>Save, then <a href="/usp-aero/platform/latest/concepts/configuration-lifecycle/">create a revision and deploy it</a>
+ to apply
+the change.</li>
+</ol>
+<div class="usp-admonition usp-admonition--hint">
+    <p class="usp-admonition__title">Hint</p>
+    <p>Start with an entry for <code>5xx</code>. Server errors are the most likely to contain stack traces and internal details.</p>
+  </div><h2 id="when-to-overwrite-the-status-code">When to overwrite the status code</h2>
+<p>If <strong>Overwrite Status Code</strong> is not set, the client receives the backend's original status code together with your
+page. Setting it hides the real status, for example:</p>
+<ul>
+<li><strong>Answer all server errors with the same code.</strong> Replace <code>5xx</code> with <code>500</code> so that a client cannot tell a failing
+backend (<code>502</code>), an overloaded one (<code>503</code>) or a timeout (<code>504</code>) apart.</li>
+<li><strong>Hide whether a resource exists.</strong> Replace <code>403</code> with <code>404</code> so that a client cannot tell a protected resource from
+a missing one. This makes it harder to enumerate resources such as admin pages or user accounts.</li>
+</ul>
+<div class="usp-admonition usp-admonition--warning">
+    <p class="usp-admonition__title">Warning</p>
+    <p>Clients, monitoring and caches rely on status codes. Overwrite them only where you know the effect:</p>
+<ul>
+<li>Do not overwrite <code>401</code> on routes that use HTTP authentication. Browsers and API clients need the <code>401</code> to ask for
+credentials.</li>
+<li>API clients may handle status codes differently, for example retry on <code>503</code> but not on <code>500</code>.</li>
+<li>Monitoring and alerting that counts status codes sees the overwritten code, not the original one.</li>
+</ul>
+  </div><h2 id="examples">Examples</h2>
+<h3 id="replace-all-server-errors-with-a-generic-page">Replace all server errors with a generic page</h3>
+<div class="usp-table">
+  <table>
+  <thead>
+    <tr>
+      <th>Field</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Response Status</td>
+      <td><code>5xx</code></td>
+    </tr>
+    <tr>
+      <td>Local Error Page</td>
+      <td>a page such as <code>error.html</code></td>
+    </tr>
+    <tr>
+      <td>Overwrite Status Code</td>
+      <td><code>500</code></td>
+    </tr>
+  </tbody>
+</table>
+  <button type="button" class="usp-table__expand" popovertarget="usp-zoom-table-0" aria-label="Expand table">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 4h6v2H6v4H4V4zm10 0h6v6h-2V6h-4V4zM4 14h2v4h4v2H4v-6zm16 0v6h-6v-2h4v-4h2z"/></svg>
+  </button>
+  <div id="usp-zoom-table-0" class="usp-lightbox" popover data-pagefind-ignore>
+    <button type="button" class="usp-lightbox__close" popovertarget="usp-zoom-table-0" popovertargetaction="hide" aria-label="Close">&times;</button>
+    <table>
+  <thead>
+    <tr>
+      <th>Field</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Response Status</td>
+      <td><code>5xx</code></td>
+    </tr>
+    <tr>
+      <td>Local Error Page</td>
+      <td>a page such as <code>error.html</code></td>
+    </tr>
+    <tr>
+      <td>Overwrite Status Code</td>
+      <td><code>500</code></td>
+    </tr>
+  </tbody>
+</table>
+  </div>
+</div><p>To help users report a problem without exposing details, include the request ID through a
+<a href="/usp-aero/waap/latest/reference/gui/local-files/error-pages/#response-variables">response variable</a>
+:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Something went wrong<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Please try again later. If the problem persists, contact support with this reference:
+</span></span><span class="line"><span class="cl">%REQ(X-REQUEST-ID)%<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span></span></span></code></pre></div>
+<h3 id="replace-html-error-pages-only-keep-api-errors">Replace HTML error pages only, keep API errors</h3>
+<p>An application that serves both a website and a JSON API may return structured error responses that its API clients
+need. Add a header condition so that only HTML responses are replaced:</p>
+<div class="usp-table">
+  <table>
+  <thead>
+    <tr>
+      <th>Field</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Response Status</td>
+      <td><code>5xx</code></td>
+    </tr>
+    <tr>
+      <td>Local Error Page</td>
+      <td><code>error.html</code></td>
+    </tr>
+    <tr>
+      <td>Additional Header Condition</td>
+      <td>on</td>
+    </tr>
+    <tr>
+      <td>Type</td>
+      <td><code>Response</code></td>
+    </tr>
+    <tr>
+      <td>Name</td>
+      <td><code>Content-Type</code></td>
+    </tr>
+    <tr>
+      <td>Match Type</td>
+      <td><code>Contains</code></td>
+    </tr>
+    <tr>
+      <td>Value</td>
+      <td><code>text/html</code></td>
+    </tr>
+  </tbody>
+</table>
+  <button type="button" class="usp-table__expand" popovertarget="usp-zoom-table-1" aria-label="Expand table">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 4h6v2H6v4H4V4zm10 0h6v6h-2V6h-4V4zM4 14h2v4h4v2H4v-6zm16 0v6h-6v-2h4v-4h2z"/></svg>
+  </button>
+  <div id="usp-zoom-table-1" class="usp-lightbox" popover data-pagefind-ignore>
+    <button type="button" class="usp-lightbox__close" popovertarget="usp-zoom-table-1" popovertargetaction="hide" aria-label="Close">&times;</button>
+    <table>
+  <thead>
+    <tr>
+      <th>Field</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Response Status</td>
+      <td><code>5xx</code></td>
+    </tr>
+    <tr>
+      <td>Local Error Page</td>
+      <td><code>error.html</code></td>
+    </tr>
+    <tr>
+      <td>Additional Header Condition</td>
+      <td>on</td>
+    </tr>
+    <tr>
+      <td>Type</td>
+      <td><code>Response</code></td>
+    </tr>
+    <tr>
+      <td>Name</td>
+      <td><code>Content-Type</code></td>
+    </tr>
+    <tr>
+      <td>Match Type</td>
+      <td><code>Contains</code></td>
+    </tr>
+    <tr>
+      <td>Value</td>
+      <td><code>text/html</code></td>
+    </tr>
+  </tbody>
+</table>
+  </div>
+</div><p>Entries with header conditions are checked first, so you can add a second <code>5xx</code> entry without a condition, with a
+JSON page, for all other responses. See <a href="/usp-aero/waap/latest/reference/gui/vhosts/error-pages/#which-entry-applies">Which entry applies</a>
+.</p>
+<h2 id="good-to-know">Good to know</h2>
+<ul>
+<li><strong>Only the listed status codes are replaced.</strong> Error pages can be configured for <code>400</code>, <code>401</code>, <code>403</code>, <code>404</code>, <code>405</code>,
+<code>500</code> to <code>505</code>, and the classes <code>4xx</code> and <code>5xx</code>. Responses with other status codes are passed through unchanged.</li>
+<li><strong>Maintenance pages take precedence.</strong> On routes with an active <a href="/usp-aero/waap/latest/application-integration/maintenance-page/">maintenance page</a>
+, no error page
+is served.</li>
+<li><strong>An error page in use cannot be deleted.</strong> Remove it from every virtual host first.</li>
+<li><strong>Combine with other protections.</strong> Error pages replace the response body. To keep response headers from revealing
+the backend's software, see <a href="/usp-aero/waap/latest/protection/security-headers/">Security headers</a>
+ and
+<a href="/usp-aero/waap/latest/application-integration/header-manipulation/">Header manipulation</a>
+.</li>
+</ul>
+<h2 id="related">Related</h2>
+<ul>
+<li><a href="/usp-aero/waap/latest/reference/gui/vhosts/error-pages/">Error Pages &amp; Maintenance Pages</a>
+: all fields of the tab</li>
+<li><a href="/usp-aero/waap/latest/reference/gui/local-files/error-pages/">Local Error Pages</a>
+: managing the page files and response variables</li>
+</ul>
+
+
+        </article>
+      </main>
+    </div>
+    <footer class="usp-footer">
+  <div class="usp-footer__inner">
+    <div class="usp-footer__copyright">&copy; 2026 United Security Providers AG. All Rights Reserved.</div>
+    <div class="usp-social">
+      <a href="https://www.linkedin.com/company/united-security-providers/" target="_blank" rel="noopener" title="United Security Providers on Linkedin" aria-label="United Security Providers on Linkedin">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zM102.2 96a38.5 38.5 0 1 1 0 77 38.5 38.5 0 1 1 0-77m282.1 320h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+
+      </a>
+      <a href="https://www.youtube.com/@United-security-providersCh" target="_blank" rel="noopener" title="United Security Providers on Youtube" aria-label="United Security Providers on Youtube">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M549.7 124.1c-6.2-23.7-24.8-42.3-48.3-48.6C458.9 64 288.1 64 288.1 64S117.3 64 74.7 75.5c-23.5 6.3-42 24.9-48.3 48.6C15 167 15 256.4 15 256.4s0 89.4 11.4 132.3c6.3 23.6 24.8 41.5 48.3 47.8C117.3 448 288.1 448 288.1 448s170.8 0 213.4-11.5c23.5-6.3 42-24.2 48.3-47.8 11.4-42.9 11.4-132.3 11.4-132.3s0-89.4-11.4-132.3zM232.2 337.6V175.2l142.7 81.2z"/></svg>
+
+      </a>
+    </div>
+  </div>
+</footer>
+
+    <script src="/usp-aero/javascripts/usp-docs.420438fc4f902397b8dba3a2d330491e6b18d703b3126e7f9c5c7dd0d21ca200.js"></script>
+  </body>
+</html>

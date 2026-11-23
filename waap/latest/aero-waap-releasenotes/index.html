@@ -141,6 +141,10 @@
 <li><a href="/usp-aero/waap/latest/application-integration/translation/">Rewrite the request path</a></li>
         
 <li><a href="/usp-aero/waap/latest/application-integration/redirect/">Redirect requests</a></li>
+        
+<li><a href="/usp-aero/waap/latest/application-integration/local-error-page/">Replace backend error pages</a></li>
+        
+<li><a href="/usp-aero/waap/latest/application-integration/maintenance-page/">Show a maintenance page</a></li>
     </ul>
   </details>
 </li>
@@ -230,6 +234,8 @@
         
 <li><a href="/usp-aero/waap/latest/reference/gui/vhosts/rule-engine/">Rule Engine</a></li>
         
+<li><a href="/usp-aero/waap/latest/reference/gui/vhosts/error-pages/">Error Pages &amp; Maintenance Pages</a></li>
+        
 <li><a href="/usp-aero/waap/latest/reference/gui/vhosts/rate-limiting/">Rate Limiting</a></li>
         <li class="usp-nav__section">
   <details>
@@ -301,6 +307,10 @@
     <ul>
         
 <li><a href="/usp-aero/waap/latest/reference/gui/local-files/static-content/">Static Content</a></li>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/local-files/error-pages/">Local Error Pages</a></li>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/local-files/maintenance-pages/">Maintenance Pages</a></li>
     </ul>
   </details>
 </li>
@@ -326,13 +336,10 @@
   <div class="usp-toc__title">Table of contents</div>
   <ul>
       <li>
-  <a href="#110---202x-xx-xx">1.1.0 - 202x-xx-xx</a>
+  <a href="#110---2026-11-20">1.1.0 - 2026-11-20</a>
   <ul>
       <li>
   <a href="#contents">Contents</a>
-</li>
-
-  </ul>
 </li>
 
       <li>
@@ -355,14 +362,14 @@
   <a href="#known-issues">Known Issues</a>
 </li>
 
+  </ul>
+</li>
+
       <li>
   <a href="#100---2026-09-01">1.0.0 - 2026-09-01</a>
   <ul>
       <li>
   <a href="#contents-1">Contents</a>
-</li>
-
-  </ul>
 </li>
 
       <li>
@@ -381,6 +388,9 @@
   <a href="#known-issues-1">Known Issues</a>
 </li>
 
+  </ul>
+</li>
+
       <li>
   <a href="#050---2026-06-03">0.5.0 - 2026-06-03</a>
   <ul>
@@ -388,11 +398,11 @@
   <a href="#contents-2">Contents</a>
 </li>
 
-  </ul>
-</li>
-
       <li>
   <a href="#new-features-and-improvements-2">New features and improvements</a>
+</li>
+
+  </ul>
 </li>
 
   </ul>
@@ -408,31 +418,50 @@
 </nav>
 <article class="usp-prose" data-pagefind-filter="docset:waap/latest">
   <h1 id="aero-waap-release-notes">Aero WAAP Release Notes</h1>
-<h2 id="110---202x-xx-xx">1.1.0 - 202x-xx-xx</h2>
+<h2 id="110---2026-11-20">1.1.0 - 2026-11-20</h2>
 <h3 id="contents">Contents</h3>
 <ul>
-<li>Aero Management Feature WAAP UI: x.x.x</li>
-<li>Aero WAAP Gateway: x.x.x</li>
-<li>WAAP Extension Server for Gateway: x.x.x</li>
-<li>Aero WAAP Acme: x.x.x</li>
+<li>Aero Management Feature WAAP UI: 1.1.4</li>
+<li>Aero WAAP Gateway: 0.7.3</li>
+<li>WAAP Extension Server for Gateway: 0.9.3</li>
+<li>Aero WAAP Acme: 1.0.1</li>
 </ul>
-<h2 id="new-features-and-improvements">New features and improvements</h2>
+<h3 id="new-features-and-improvements">New features and improvements</h3>
 <ul>
-<li></li>
+<li>Local error pages: serve a custom page when the backend responds with a given status code or status class,
+optionally narrowed by response header conditions and with an overwritten status code</li>
+<li>Maintenance pages: serve a local page with a configurable status code on selected or all routes of a virtual host,
+without contacting the backend</li>
+<li>Error and maintenance page content supports response variables such as <code>%RESPONSE_CODE%</code>; single files or all files
+can be uploaded and downloaded as an archive</li>
+<li>Header validation with <code>Detect</code> and <code>Block</code> modes and exceptions</li>
+<li>Cookie manipulation offers the known cookie attributes, including the valueless attributes <code>Secure</code>, <code>HttpOnly</code> and
+<code>Partitioned</code>, and checks their values</li>
+<li>Repeat offender: IP exclusions accept IPv4 and IPv6 addresses and CIDR ranges, violations are counted per virtual host</li>
+<li>Request body size limits above 1 GB are possible when the Rule Engine does not inspect the request body</li>
+<li>Hint when an ACME provider is used on a listener without the standard ports 80 or 443</li>
+<li>Updated the rule list of the Rule Engine to OWASP Core Rule Set 4.25.2</li>
 </ul>
-<h2 id="bug-fixes">Bug fixes</h2>
+<h3 id="bug-fixes">Bug fixes</h3>
 <ul>
-<li></li>
+<li>Virtual hosts sharing a hostname no longer silently receive the same certificate; such configurations are now rejected
+(see Incompatible behavior changes)</li>
+<li>Duplicate route names are reported in the virtual host editor</li>
+<li>Saving an unchanged route no longer reorders its allowed HTTP methods and shows a change in the revision diff</li>
+<li>The repeat offender status codes counted as violation can no longer be empty</li>
 </ul>
-<h2 id="incompatible-behavior-changes">Incompatible behavior changes</h2>
+<h3 id="incompatible-behavior-changes">Incompatible behavior changes</h3>
 <ul>
-<li></li>
+<li>Request and response body size limits must be at least 1 KB</li>
+<li>Virtual hosts on the same listener must use distinct hostnames, and virtual hosts sharing a hostname must use the same
+certificate or ACME provider</li>
+<li>A <code>%</code> in error page content must start a known response variable or be written as <code>%%</code></li>
 </ul>
-<h2 id="removed-config-or-runtime">Removed config or runtime</h2>
+<h3 id="removed-config-or-runtime">Removed config or runtime</h3>
 <ul>
-<li></li>
+<li>Removed the repeat offender setting &quot;Status Code If Client Not Identified&quot;</li>
 </ul>
-<h2 id="known-issues">Known Issues</h2>
+<h3 id="known-issues">Known Issues</h3>
 <ul>
 <li>The configured request body size limit may be enforced one byte differently than specified.
 This affects only requests whose body size is exactly at the limit.</li>
@@ -446,7 +475,7 @@ This affects only requests whose body size is exactly at the limit.</li>
 <li>Aero WAAP Acme: 1.0.0</li>
 </ul>
 <p>This is the first official release allowing to get familiar with how the platform works.</p>
-<h2 id="new-features-and-improvements-1">New features and improvements</h2>
+<h3 id="new-features-and-improvements-1">New features and improvements</h3>
 <ul>
 <li>Repeat offender blocking feature added</li>
 <li>Added additional timeout and limit settings for better resource control an (D)DoS prevention</li>
@@ -457,7 +486,7 @@ This affects only requests whose body size is exactly at the limit.</li>
 <li>New header filter class <code>EXTENDED</code></li>
 <li>Updated to Envoy Gateway v1.9.1</li>
 </ul>
-<h2 id="bug-fixes-1">Bug fixes</h2>
+<h3 id="bug-fixes-1">Bug fixes</h3>
 <ul>
 <li>Various validation fixes to ensure configuration compatibility to the Gateway API.</li>
 <li>Fixed read-only viewer role access enforcement.</li>
@@ -466,11 +495,11 @@ This affects only requests whose body size is exactly at the limit.</li>
 <li>Fixed ACME client error recovery/retry, when certificate order did not succeed</li>
 <li>Fixed Coraza logging for phase 3-5</li>
 </ul>
-<h2 id="removed-config-or-runtime-1">Removed config or runtime</h2>
+<h3 id="removed-config-or-runtime-1">Removed config or runtime</h3>
 <ul>
 <li>Removed header filter class <code>MINIMAL</code></li>
 </ul>
-<h2 id="known-issues-1">Known Issues</h2>
+<h3 id="known-issues-1">Known Issues</h3>
 <ul>
 <li>ACME <code>key type</code> is ignored</li>
 <li>Backend load-balancing <code>Consisten Hash</code> doesn't work as expected</li>
@@ -484,7 +513,7 @@ This affects only requests whose body size is exactly at the limit.</li>
 <li>Aero WAAP Acme: 0.6.0</li>
 </ul>
 <p>This is the first unofficial release allowing to get familiar with how the platform works.</p>
-<h2 id="new-features-and-improvements-2">New features and improvements</h2>
+<h3 id="new-features-and-improvements-2">New features and improvements</h3>
 <ul>
 <li>Basic Revere Proxy capabilities Backend routing, Request redirect and translation</li>
 <li>TLS Termination with quantum-safe cipher support, mTLS with clients and backends</li>

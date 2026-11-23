@@ -234,6 +234,8 @@
         
 <li><a href="/usp-aero/platform/latest/reference/gui/configuration/network/" aria-current="page">Network</a></li>
         
+<li><a href="/usp-aero/platform/latest/reference/gui/configuration/high-availability/">High Availability</a></li>
+        
 <li><a href="/usp-aero/platform/latest/reference/gui/configuration/container/">Container</a></li>
         
 <li><a href="/usp-aero/platform/latest/reference/gui/configuration/certificates/">Certificates</a></li>
@@ -453,6 +455,9 @@ offered service.</p>
 <p>This role may hold more than one IP address (see <a href="#ipAddresses">IP Address</a>
  below).</p>
 <p>If WAAP component is installed, this role is required!</p>
+<p>On a follower of an <a href="/usp-aero/platform/latest/reference/gui/configuration/high-availability/">HA cluster</a>
+, the &quot;External&quot; interface is read-only. The cluster shares it,
+so change it on the leader.</p>
 <h2 id="interface-configuration">Interface Configuration</h2>
 <p>Each interface will show its MAC address and the connection state. The fields below apply to
 whichever interface tab is open above; the Internal interface additionally offers a choice between a

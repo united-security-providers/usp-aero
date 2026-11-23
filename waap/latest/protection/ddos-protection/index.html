@@ -141,6 +141,10 @@
 <li><a href="/usp-aero/waap/latest/application-integration/translation/">Rewrite the request path</a></li>
         
 <li><a href="/usp-aero/waap/latest/application-integration/redirect/">Redirect requests</a></li>
+        
+<li><a href="/usp-aero/waap/latest/application-integration/local-error-page/">Replace backend error pages</a></li>
+        
+<li><a href="/usp-aero/waap/latest/application-integration/maintenance-page/">Show a maintenance page</a></li>
     </ul>
   </details>
 </li>
@@ -230,6 +234,8 @@
         
 <li><a href="/usp-aero/waap/latest/reference/gui/vhosts/rule-engine/">Rule Engine</a></li>
         
+<li><a href="/usp-aero/waap/latest/reference/gui/vhosts/error-pages/">Error Pages &amp; Maintenance Pages</a></li>
+        
 <li><a href="/usp-aero/waap/latest/reference/gui/vhosts/rate-limiting/">Rate Limiting</a></li>
         <li class="usp-nav__section">
   <details>
@@ -301,6 +307,10 @@
     <ul>
         
 <li><a href="/usp-aero/waap/latest/reference/gui/local-files/static-content/">Static Content</a></li>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/local-files/error-pages/">Local Error Pages</a></li>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/local-files/maintenance-pages/">Maintenance Pages</a></li>
     </ul>
   </details>
 </li>
@@ -509,11 +519,8 @@ connections beyond
 <li><strong><code>413</code>:</strong> a request body larger than the route's
 <a href="/usp-aero/waap/latest/reference/gui/vhosts/routes/http/#bodySizeLimit">Maximum payload size</a>
 .</li>
-<li><strong>Configurable, <code>429</code> and <code>403</code> by default:</strong> a client blocked by Repeat Offender Detection
+<li><strong>Configurable, <code>429</code> by default:</strong> a client blocked by Repeat Offender Detection
 (<a href="/usp-aero/waap/latest/reference/gui/vhosts/rate-limiting/#maximumViolationsLimitExceededStatusCode">Status Code When Blocked</a>
-),
-and a request without a client identifier on a virtual host with Repeat Offender Detection
-(<a href="/usp-aero/waap/latest/reference/gui/vhosts/rate-limiting/#clientIdMissingStatusCode">Status Code If Client Not Identified</a>
 ).</li>
 <li><strong><code>503</code>:</strong> the backend's <a href="/usp-aero/waap/latest/reference/gui/backends/timeouts-and-limits/#circuit-breaking">Circuit Breaking</a>
 

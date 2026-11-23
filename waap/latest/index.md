@@ -39,6 +39,8 @@ revision.
 - [Cookie manipulation](https://docs.united-security-providers.ch/usp-aero/waap/latest/application-integration/cookie-manipulation/index.md)
 - [Rewrite the request path](https://docs.united-security-providers.ch/usp-aero/waap/latest/application-integration/translation/index.md)
 - [Redirect requests](https://docs.united-security-providers.ch/usp-aero/waap/latest/application-integration/redirect/index.md)
+- [Replace backend error pages](https://docs.united-security-providers.ch/usp-aero/waap/latest/application-integration/local-error-page/index.md)
+- [Show a maintenance page](https://docs.united-security-providers.ch/usp-aero/waap/latest/application-integration/maintenance-page/index.md)
 - [OWASP Top 10](https://docs.united-security-providers.ch/usp-aero/waap/latest/protection/rule-engine/owasp-top-10/index.md)
 - [Virtual patching](https://docs.united-security-providers.ch/usp-aero/waap/latest/protection/rule-engine/virtual-patch/index.md)
 - [Handle a CRS false positive](https://docs.united-security-providers.ch/usp-aero/waap/latest/protection/rule-engine/handle-a-crs-false-positive/index.md)

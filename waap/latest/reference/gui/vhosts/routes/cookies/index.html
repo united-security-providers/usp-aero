@@ -141,6 +141,10 @@
 <li><a href="/usp-aero/waap/latest/application-integration/translation/">Rewrite the request path</a></li>
         
 <li><a href="/usp-aero/waap/latest/application-integration/redirect/">Redirect requests</a></li>
+        
+<li><a href="/usp-aero/waap/latest/application-integration/local-error-page/">Replace backend error pages</a></li>
+        
+<li><a href="/usp-aero/waap/latest/application-integration/maintenance-page/">Show a maintenance page</a></li>
     </ul>
   </details>
 </li>
@@ -230,6 +234,8 @@
         
 <li><a href="/usp-aero/waap/latest/reference/gui/vhosts/rule-engine/">Rule Engine</a></li>
         
+<li><a href="/usp-aero/waap/latest/reference/gui/vhosts/error-pages/">Error Pages &amp; Maintenance Pages</a></li>
+        
 <li><a href="/usp-aero/waap/latest/reference/gui/vhosts/rate-limiting/">Rate Limiting</a></li>
         <li class="usp-nav__section">
   <details open>
@@ -301,6 +307,10 @@
     <ul>
         
 <li><a href="/usp-aero/waap/latest/reference/gui/local-files/static-content/">Static Content</a></li>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/local-files/error-pages/">Local Error Pages</a></li>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/local-files/maintenance-pages/">Maintenance Pages</a></li>
     </ul>
   </details>
 </li>
@@ -351,7 +361,7 @@
 </li>
 
       <li>
-  <a href="#name-attribute">Attribute Name</a>
+  <a href="#name-attribute">Attribute</a>
 </li>
 
       <li>
@@ -438,16 +448,78 @@ required for that action. Attribute names must be unique within an entry (case-i
 <li><strong>Default:</strong> none</li>
 <li><strong>Required:</strong> yes</li>
 </ul>
-<h3 id="name-attribute">Attribute Name</h3>
-<p>The name of the attribute.</p>
+<h3 id="name-attribute">Attribute</h3>
+<p>The name of the attribute. Pick one of the known attributes from the list, or type the name of any
+other attribute.</p>
 <ul>
 <li><strong>Values:</strong> letters, digits and the characters <code>!#$%&amp;'*+.^_</code>|~-`, at most 256 characters</li>
 <li><strong>Default:</strong> none</li>
 <li><strong>Required:</strong> yes</li>
 </ul>
 <h3 id="value-attribute">Value</h3>
-<p>The value to set. Not shown, and not required, when the action is <code>Remove</code>.</p>
-<ul>
+<p>The value to set. Not shown, and must not be set, when the action is <code>Remove</code>.</p>
+<p>For the known attributes, the value is checked as follows. A custom attribute takes any value within
+the limits below.</p>
+<div class="usp-table">
+  <table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>Secure</code>, <code>HttpOnly</code>, <code>Partitioned</code></td>
+      <td>none; the field is not shown</td>
+    </tr>
+    <tr>
+      <td><code>SameSite</code></td>
+      <td>one of <code>Strict</code>, <code>Lax</code>, <code>None</code></td>
+    </tr>
+    <tr>
+      <td><code>Max-Age</code></td>
+      <td>a whole number of seconds</td>
+    </tr>
+    <tr>
+      <td><code>Domain</code>, <code>Path</code>, <code>Expires</code></td>
+      <td>required, free text</td>
+    </tr>
+  </tbody>
+</table>
+  <button type="button" class="usp-table__expand" popovertarget="usp-zoom-table-0" aria-label="Expand table">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 4h6v2H6v4H4V4zm10 0h6v6h-2V6h-4V4zM4 14h2v4h4v2H4v-6zm16 0v6h-6v-2h4v-4h2z"/></svg>
+  </button>
+  <div id="usp-zoom-table-0" class="usp-lightbox" popover data-pagefind-ignore>
+    <button type="button" class="usp-lightbox__close" popovertarget="usp-zoom-table-0" popovertargetaction="hide" aria-label="Close">&times;</button>
+    <table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>Secure</code>, <code>HttpOnly</code>, <code>Partitioned</code></td>
+      <td>none; the field is not shown</td>
+    </tr>
+    <tr>
+      <td><code>SameSite</code></td>
+      <td>one of <code>Strict</code>, <code>Lax</code>, <code>None</code></td>
+    </tr>
+    <tr>
+      <td><code>Max-Age</code></td>
+      <td>a whole number of seconds</td>
+    </tr>
+    <tr>
+      <td><code>Domain</code>, <code>Path</code>, <code>Expires</code></td>
+      <td>required, free text</td>
+    </tr>
+  </tbody>
+</table>
+  </div>
+</div><ul>
 <li><strong>Values:</strong> free text; quotes, semicolons and backslashes are not allowed, at most 4096 characters</li>
 <li><strong>Default:</strong> none</li>
 </ul>

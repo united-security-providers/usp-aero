@@ -27,14 +27,11 @@ blocked, however fast it sends.
 
 ## How a client is identified
 
-Violations are counted per client identifier. When the
+Violations are counted per client identifier and per virtual host: violations a client collects on
+one virtual host do not count towards another, even if both share a listener. When the
 [listener](../reference/gui/listeners/listeners#clientIpDetectionMode) uses a custom header for
 client IP detection, the value of that header is the client identifier. Otherwise the client IP
 address is used.
-
-A request without a client identifier is rejected with
-[Status Code If Client Not Identified](../reference/gui/vhosts/rate-limiting#clientIdMissingStatusCode)
-on every virtual host that has Repeat Offender Detection enabled.
 
 > [!WARNING]
 > The protection is only as reliable as the client identifier. A client that can change its
@@ -50,8 +47,7 @@ on every virtual host that has Repeat Offender Detection enabled.
    [Counting Period](../reference/gui/vhosts/rate-limiting#violationsCounterResetDuration), and the
    [Allowed Violations](../reference/gui/vhosts/rate-limiting#maximumAllowedViolations) a client gets before it is blocked. Set the
    [Status Code When Blocked](../reference/gui/vhosts/rate-limiting#maximumViolationsLimitExceededStatusCode).
-3. Under [Client Identification](../reference/gui/vhosts/rate-limiting#client-identification), set the
-   [Status Code If Client Not Identified](../reference/gui/vhosts/rate-limiting#clientIdMissingStatusCode), and list any
+3. Under [Client Identification](../reference/gui/vhosts/rate-limiting#client-identification), list any
    [Client IPs Excluded From Detection](../reference/gui/vhosts/rate-limiting#excludedClientIPs). For example your own monitoring or
    a load balancer's health-check address.
 4. [Create a revision and deploy it](../../../platform/latest/concepts/configuration-lifecycle).

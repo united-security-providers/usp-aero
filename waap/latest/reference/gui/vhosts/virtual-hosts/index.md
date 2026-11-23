@@ -75,6 +75,12 @@ HTTP settings of the selected listener.
 Allows to configure one or multiple hostnames for a virtual host. At least one hostname must be
 configured, up to 16. Click the "+" icon to add a hostname.
 
+Hostnames are compared case-insensitively with those of the other virtual hosts:
+
+- Virtual hosts on the same listener must use distinct hostnames.
+- Virtual hosts on different listeners may share a hostname, but must then use the same
+  [Certificate](#certificateOrProviderId).
+
 - **Values:** a [hostname](../../value-types#hostname), optionally prefixed with `*.` for a wildcard
   label; must not be an IP address
 - **Default:** none
@@ -83,7 +89,14 @@ configured, up to 16. Click the "+" icon to add a hostname.
 ### Certificate {#certificateOrProviderId}
 
 Select the server certificate to use for this virtual host, from the certificates managed on
-[Certificates & Keys](../certificates/certificates-and-keys).
+[Certificates & Keys](../certificates/certificates-and-keys). ACME providers are listed with the
+suffix "(ACME)".
+
+All virtual hosts that share a hostname must use the same certificate or ACME provider.
+
+If an ACME provider is selected and the listener uses neither HTTP port 80 nor HTTPS port 443, a hint
+warns that the certificate issuance may fail, because ACME validation usually requires the standard
+ports.
 
 - **Values:** one of the configured certificates or ACME providers
 - **Required:** yes

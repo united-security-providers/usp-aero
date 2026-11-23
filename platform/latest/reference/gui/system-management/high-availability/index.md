@@ -2,9 +2,6 @@
 
 # High Availability status
 
-> [!NOTICE]
-> This feature is planned to be available from version 1.1 onwards.
-
 This screen shows the operational status of an HA cluster set up on the
 [High Availability](../configuration/high-availability) configuration screen. It is only available on
 an HA-capable deployment.
@@ -113,7 +110,7 @@ Only shown on the leader. Shows which configuration each node has received throu
 | **Member**    | The node's hostname.                                                                                      |
 | **Config ID** | Per component, the configuration revision the node last synchronized, for example `feature-waap=7`. `-` if the node has never been synchronized. |
 
-The **Trigger Sync** button next to the section title starts a synchronization to all followers. If the followers
+The **Synchronize** button next to the section title starts a synchronization to all followers. If the followers
 already have the leader's active configuration, it first asks you to confirm, because a forced synchronization
 creates and activates a new revision on every follower.
 
@@ -202,8 +199,8 @@ synchronized configuration IDs:
 | What you see                                                                 | What it means / what to do                                       |
 |------------------------------------------------------------------------------|------------------------------------------------------------------|
 | All green, no badge in the top bar                                           | The cluster is healthy and every node runs the leader's configuration. |
-| Red *Config ID* entries after you activated a change on the leader            | Expected: the nodes still run the previous revision. Start a synchronization with **Trigger Sync**. |
-| Yellow `component=-` entries after you installed a new feature                | Expected. Start a synchronization with **Trigger Sync**.         |
+| Red *Config ID* entries after you activated a change on the leader            | Expected: the nodes still run the previous revision. Start a synchronization with **Synchronize**. |
+| Yellow `component=-` entries after you installed a new feature                | Expected. Start a synchronization with **Synchronize**.         |
 | A node `standby` (yellow)                                                    | The node does not take over on failure. Use **UnStandby** on that node, then synchronize it. |
 | A node `offline` (red)                                                       | Check the node and its network connection. Until it is back, the cluster has less or no failover protection. |
 | Leader `offline` (red) for more than a few moments                           | Use **Restart Config Leader Resource**, or **Take Over** on a healthy node. |

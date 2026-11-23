@@ -234,6 +234,8 @@
         
 <li><a href="/usp-aero/platform/latest/reference/gui/configuration/network/">Network</a></li>
         
+<li><a href="/usp-aero/platform/latest/reference/gui/configuration/high-availability/">High Availability</a></li>
+        
 <li><a href="/usp-aero/platform/latest/reference/gui/configuration/container/">Container</a></li>
         
 <li><a href="/usp-aero/platform/latest/reference/gui/configuration/certificates/">Certificates</a></li>
@@ -397,11 +399,8 @@
 </nav>
 <article class="usp-prose" data-pagefind-filter="docset:platform/latest">
   <h1 id="high-availability-status">High Availability status</h1>
-<div class="usp-admonition usp-admonition--note">
-    <p class="usp-admonition__title">Note</p>
-    <p>This feature is planned to be available from version 1.1 onwards.</p>
-  </div><p>This screen shows the operational status of an HA cluster set up on the
-<a href="/usp-aero/platform/latest/reference/gui/configuration/high-availability">High Availability</a>
+<p>This screen shows the operational status of an HA cluster set up on the
+<a href="/usp-aero/platform/latest/reference/gui/configuration/high-availability/">High Availability</a>
  configuration screen. It is only available on
 an HA-capable deployment.</p>
 <p>The <em>High Availability</em> page (<em>System Management &gt; High Availability</em>) shows the current state of your HA cluster:
@@ -760,7 +759,7 @@ title). Leadership may briefly move to another node while it restarts.</p>
   </tbody>
 </table>
   </div>
-</div><p>The <strong>Trigger Sync</strong> button next to the section title starts a synchronization to all followers. If the followers
+</div><p>The <strong>Synchronize</strong> button next to the section title starts a synchronization to all followers. If the followers
 already have the leader's active configuration, it first asks you to confirm, because a forced synchronization
 creates and activates a new revision on every follower.</p>
 <h3 id="active-configuration-id-vs-config-id">Active Configuration ID vs. Config ID</h3>
@@ -1162,11 +1161,11 @@ synchronized configuration IDs:</p>
     </tr>
     <tr>
       <td>Red <em>Config ID</em> entries after you activated a change on the leader</td>
-      <td>Expected: the nodes still run the previous revision. Start a synchronization with <strong>Trigger Sync</strong>.</td>
+      <td>Expected: the nodes still run the previous revision. Start a synchronization with <strong>Synchronize</strong>.</td>
     </tr>
     <tr>
       <td>Yellow <code>component=-</code> entries after you installed a new feature</td>
-      <td>Expected. Start a synchronization with <strong>Trigger Sync</strong>.</td>
+      <td>Expected. Start a synchronization with <strong>Synchronize</strong>.</td>
     </tr>
     <tr>
       <td>A node <code>standby</code> (yellow)</td>
@@ -1205,11 +1204,11 @@ synchronized configuration IDs:</p>
     </tr>
     <tr>
       <td>Red <em>Config ID</em> entries after you activated a change on the leader</td>
-      <td>Expected: the nodes still run the previous revision. Start a synchronization with <strong>Trigger Sync</strong>.</td>
+      <td>Expected: the nodes still run the previous revision. Start a synchronization with <strong>Synchronize</strong>.</td>
     </tr>
     <tr>
       <td>Yellow <code>component=-</code> entries after you installed a new feature</td>
-      <td>Expected. Start a synchronization with <strong>Trigger Sync</strong>.</td>
+      <td>Expected. Start a synchronization with <strong>Synchronize</strong>.</td>
     </tr>
     <tr>
       <td>A node <code>standby</code> (yellow)</td>

@@ -234,6 +234,8 @@
         
 <li><a href="/usp-aero/platform/latest/reference/gui/configuration/network/">Network</a></li>
         
+<li><a href="/usp-aero/platform/latest/reference/gui/configuration/high-availability/">High Availability</a></li>
+        
 <li><a href="/usp-aero/platform/latest/reference/gui/configuration/container/">Container</a></li>
         
 <li><a href="/usp-aero/platform/latest/reference/gui/configuration/certificates/">Certificates</a></li>
@@ -358,8 +360,8 @@ Updating happens in two steps:</p>
 <li>the appliance downloads and prepares the new image while it keeps everything running</li>
 <li>a reboot switches to the newly updated base operating system</li>
 </ul>
-<p>The appliance does not serve traffic nor is the GUI unavailable while it reboot,
-plan your reboots carefully.</p>
+<p>The appliance does not serve traffic and the GUI is unavailable while it reboots,
+so plan your reboots carefully.</p>
 <div class="usp-admonition usp-admonition--hint">
     <p class="usp-admonition__title">Hint</p>
     <p>Take a configuration backup first, as with any maintenance on the appliance: see
@@ -381,7 +383,8 @@ its progress and the appliance stays fully in service throughout.</li>
 <ol start="4">
 <li>When the screen reports that the update is ready to be applied, choose &quot;Reboot System&quot; and
 confirm.</li>
-<li>Wait for the appliance to come back and sign in again.</li>
+<li>Wait for the appliance to come back. The <em>System is rebooting</em> page reloads by itself once the
+appliance is reachable again. Sign in again if asked.</li>
 <li>Open <a href="/usp-aero/platform/latest/reference/gui/system-management/operating-system/">Operating System</a>
  again and confirm
 that the current release is the new one.</li>

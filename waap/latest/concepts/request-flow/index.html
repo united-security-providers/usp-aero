@@ -141,6 +141,10 @@
 <li><a href="/usp-aero/waap/latest/application-integration/translation/">Rewrite the request path</a></li>
         
 <li><a href="/usp-aero/waap/latest/application-integration/redirect/">Redirect requests</a></li>
+        
+<li><a href="/usp-aero/waap/latest/application-integration/local-error-page/">Replace backend error pages</a></li>
+        
+<li><a href="/usp-aero/waap/latest/application-integration/maintenance-page/">Show a maintenance page</a></li>
     </ul>
   </details>
 </li>
@@ -230,6 +234,8 @@
         
 <li><a href="/usp-aero/waap/latest/reference/gui/vhosts/rule-engine/">Rule Engine</a></li>
         
+<li><a href="/usp-aero/waap/latest/reference/gui/vhosts/error-pages/">Error Pages &amp; Maintenance Pages</a></li>
+        
 <li><a href="/usp-aero/waap/latest/reference/gui/vhosts/rate-limiting/">Rate Limiting</a></li>
         <li class="usp-nav__section">
   <details>
@@ -301,6 +307,10 @@
     <ul>
         
 <li><a href="/usp-aero/waap/latest/reference/gui/local-files/static-content/">Static Content</a></li>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/local-files/error-pages/">Local Error Pages</a></li>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/local-files/maintenance-pages/">Maintenance Pages</a></li>
     </ul>
   </details>
 </li>
@@ -378,9 +388,16 @@ health-check settings.</li>
 </ol>
 <h2 id="local-files">Local files</h2>
 <p><a href="/usp-aero/waap/latest/reference/gui/local-files/static-content/">Static Content</a>
- 
-are files stored on the appliance itself rather than on an upstream backend. 
-request to a backend.</p>
+,
+<a href="/usp-aero/waap/latest/reference/gui/local-files/error-pages/">Local Error Pages</a>
+ and
+<a href="/usp-aero/waap/latest/reference/gui/local-files/maintenance-pages/">Maintenance Pages</a>
+ are files stored on the appliance
+itself rather than on an upstream backend. On a virtual host's
+<a href="/usp-aero/waap/latest/reference/gui/vhosts/error-pages/">Error Pages &amp; Maintenance Pages</a>
+ tab, you can serve a local
+error page instead of the backend's response for selected status codes, and a maintenance page on
+selected routes without forwarding the request to the backend.</p>
 <h2 id="where-tls-material-comes-from">Where TLS material comes from</h2>
 <p>Certificates and CA certificates used by listeners, virtual hosts and backends are all managed
 centrally under <a href="/usp-aero/waap/latest/reference/gui/certificates/certificates-and-keys/">Certificates</a>

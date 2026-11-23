@@ -75,8 +75,11 @@ Defines the scheduling for this backup job in common cron syntax.
 
 ### Type {#type}
 
-Defines if the backup data should contain all the private key files or not.
+Defines the content of the backup data.
 
-- **Values:** `Full (incl. Keys)`, `Full (no Keys)`
+- **Values:** `Full (incl. Keys)` - full backup which also contains all private keys.
 - **Default:** `Full (incl. Keys)`
 - **Required:** yes
+
+> [!NOTICE]
+> Backups always contain the private keys. Store backup archives securely.

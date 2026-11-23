@@ -234,6 +234,8 @@
         
 <li><a href="/usp-aero/platform/latest/reference/gui/configuration/network/">Network</a></li>
         
+<li><a href="/usp-aero/platform/latest/reference/gui/configuration/high-availability/">High Availability</a></li>
+        
 <li><a href="/usp-aero/platform/latest/reference/gui/configuration/container/">Container</a></li>
         
 <li><a href="/usp-aero/platform/latest/reference/gui/configuration/certificates/">Certificates</a></li>
@@ -467,8 +469,8 @@ synchronized. Drafts and revisions that are not yet activated stay on the leader
 <li>
 <p>Start the synchronization in one of these places:</p>
 <ul>
-<li><em>Deployment</em> page: <strong>Synchronize HA</strong></li>
-<li><em>System Management &gt; High Availability</em>, in the <em>Sync Status</em> section: <strong>Trigger Sync</strong></li>
+<li><em>Deployment</em> page: <strong>Synchronize</strong></li>
+<li><em>System Management &gt; High Availability</em>, in the <em>Sync Status</em> section: <strong>Synchronize</strong></li>
 </ul>
 <p>Both buttons ask you to confirm only if nothing has changed since the last synchronization, because the
 synchronization then creates and activates a new revision on every follower anyway.</p>
@@ -493,46 +495,41 @@ especially if components have to be installed or updated on the followers.</p>
   <tbody>
     <tr>
       <td>1</td>
-      <td>Check for changes</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>2</td>
       <td>Export the active configuration</td>
       <td></td>
     </tr>
     <tr>
-      <td>3</td>
+      <td>2</td>
       <td>Signal the followers</td>
       <td></td>
     </tr>
     <tr>
-      <td>4</td>
+      <td>3</td>
       <td></td>
       <td>Copy the configuration from the leader</td>
     </tr>
     <tr>
-      <td>5</td>
+      <td>4</td>
       <td></td>
       <td>Install, update or remove components to match the leader</td>
     </tr>
     <tr>
-      <td>6</td>
+      <td>5</td>
       <td></td>
       <td>Import the configuration as new revisions</td>
     </tr>
     <tr>
-      <td>7</td>
+      <td>6</td>
       <td></td>
       <td>Activate the new revisions</td>
     </tr>
     <tr>
-      <td>8</td>
+      <td>7</td>
       <td></td>
       <td>Report the result to the cluster</td>
     </tr>
     <tr>
-      <td>9</td>
+      <td>8</td>
       <td>Shown as <code>synchronized</code></td>
       <td></td>
     </tr>
@@ -554,46 +551,41 @@ especially if components have to be installed or updated on the followers.</p>
   <tbody>
     <tr>
       <td>1</td>
-      <td>Check for changes</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>2</td>
       <td>Export the active configuration</td>
       <td></td>
     </tr>
     <tr>
-      <td>3</td>
+      <td>2</td>
       <td>Signal the followers</td>
       <td></td>
     </tr>
     <tr>
-      <td>4</td>
+      <td>3</td>
       <td></td>
       <td>Copy the configuration from the leader</td>
     </tr>
     <tr>
-      <td>5</td>
+      <td>4</td>
       <td></td>
       <td>Install, update or remove components to match the leader</td>
     </tr>
     <tr>
-      <td>6</td>
+      <td>5</td>
       <td></td>
       <td>Import the configuration as new revisions</td>
     </tr>
     <tr>
-      <td>7</td>
+      <td>6</td>
       <td></td>
       <td>Activate the new revisions</td>
     </tr>
     <tr>
-      <td>8</td>
+      <td>7</td>
       <td></td>
       <td>Report the result to the cluster</td>
     </tr>
     <tr>
-      <td>9</td>
+      <td>8</td>
       <td>Shown as <code>synchronized</code></td>
       <td></td>
     </tr>
@@ -601,10 +593,6 @@ especially if components have to be installed or updated on the followers.</p>
 </table>
   </div>
 </div><ol>
-<li>
-<p><strong>Check for changes.</strong> The leader checks whether any component's active configuration changed since the last
-synchronization. If nothing changed, it stops here and the followers are left alone.</p>
-</li>
 <li>
 <p><strong>Export.</strong> The leader exports the active configuration of every installed component, including the platform
 (host) configuration. It also records which version of each component is installed.</p>
@@ -627,8 +615,8 @@ connection. Standby nodes skip this step and every step after it.</p>
 it continues.</p>
 </li>
 <li>
-<p><strong>Import.</strong> For each component, the follower stores the leader's configuration as a new revision. Components that
-already run the leader's configuration are skipped.</p>
+<p><strong>Import.</strong> For each component, the follower stores the leader's configuration as a new revision, even if it
+already runs that configuration.</p>
 </li>
 <li>
 <p><strong>Activate.</strong> The follower activates the imported revisions, just as if you had activated them on that node
@@ -642,10 +630,10 @@ can see it.</p>
 <p><strong>Done.</strong> When a follower activates the configuration, the leader's status changes to <code>synchronized</code>.</p>
 </li>
 </ol>
-<p>Each follower runs steps 4 to 8 on its own. A follower that fails does not affect the leader or the other followers.</p>
+<p>Each follower runs steps 3 to 7 on its own. A follower that fails does not affect the leader or the other followers.</p>
 <h2 id="revisions-created-on-a-follower">Revisions created on a follower</h2>
-<p>For each component whose configuration differs from the leader's, the synchronization creates <strong>one new revision</strong> on
-the follower and <strong>activates it immediately</strong>.</p>
+<p>For each component, the synchronization creates <strong>one new revision</strong> on the follower and <strong>activates it
+immediately</strong>.</p>
 <ul>
 <li>
 <p><strong>Message.</strong> Every imported revision gets the same comment, which names the leader and the configuration ID imported
@@ -654,8 +642,9 @@ for each component, for example:</p>
 <p>You can use this comment in the revision history to see when a follower was synchronized and what it received.</p>
 </li>
 <li>
-<p><strong>Unchanged components get no revision.</strong> If a component already runs the leader's configuration, nothing is
-created for it.</p>
+<p><strong>Every synchronization creates revisions.</strong> A component that already runs the leader's configuration also gets a
+new revision with the same content. This is what makes a repeated synchronization re-apply the configuration, for
+example after a failed synchronization.</p>
 </li>
 <li>
 <p><strong>Node-specific settings are kept.</strong> Some platform settings belong to the individual node and are never taken from
@@ -719,8 +708,9 @@ synchronizes from the current leader, using the configuration of the last synchr
 on the leader since then are not included until you synchronize again.</li>
 <li><strong>One operation at a time per node.</strong> If another installation or activation is still running on a follower, the
 follower waits for it to finish before it continues.</li>
-<li><strong>Nothing changed, nothing done.</strong> If the leader's configuration has not changed since the last synchronization,
-triggering it again has no effect.</li>
+<li><strong>Repeating a synchronization re-applies the configuration.</strong> If the leader's configuration has not changed since
+the last synchronization, <strong>Synchronize</strong> asks you to confirm. If you confirm, every follower imports and activates
+the configuration again. Use this to recover a follower after a failed synchronization.</li>
 </ul>
 
 

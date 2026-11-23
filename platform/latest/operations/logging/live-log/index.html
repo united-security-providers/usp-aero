@@ -234,6 +234,8 @@
         
 <li><a href="/usp-aero/platform/latest/reference/gui/configuration/network/">Network</a></li>
         
+<li><a href="/usp-aero/platform/latest/reference/gui/configuration/high-availability/">High Availability</a></li>
+        
 <li><a href="/usp-aero/platform/latest/reference/gui/configuration/container/">Container</a></li>
         
 <li><a href="/usp-aero/platform/latest/reference/gui/configuration/certificates/">Certificates</a></li>
@@ -345,7 +347,88 @@ instead. See <a href="/usp-aero/platform/latest/operations/logging/remote-log/">
  for more details.</p>
 <p>The container logs are logically grouped by component. It's possible to view the whole group or each
 container individually.</p>
-<p>Log-Search, -filter and -download options are revealed in the menu located behind the red and blue dots.</p>
+<div class="usp-table">
+  <table>
+  <thead>
+    <tr>
+      <th>Group</th>
+      <th>View</th>
+      <th>Shows</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Platform</td>
+      <td>System</td>
+      <td>The system log of the appliance.</td>
+    </tr>
+    <tr>
+      <td>Platform</td>
+      <td>Deployment Run</td>
+      <td>The output of the last deployment run. It is not forwarded to remote log targets.</td>
+    </tr>
+    <tr>
+      <td>Platform</td>
+      <td>Remote Log</td>
+      <td>The log forwarder. Only shown when at least one <a href="/usp-aero/platform/latest/operations/logging/remote-log/">remote log target</a>
+ is set up.</td>
+    </tr>
+    <tr>
+      <td>WAAP</td>
+      <td>WAAP-Proxy</td>
+      <td>The WAAP gateway. The WAAP group is only shown when WAAP has listeners configured.</td>
+    </tr>
+    <tr>
+      <td>WAAP</td>
+      <td>WAAP-Ext-Server</td>
+      <td>The WAAP extension server.</td>
+    </tr>
+  </tbody>
+</table>
+  <button type="button" class="usp-table__expand" popovertarget="usp-zoom-table-0" aria-label="Expand table">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 4h6v2H6v4H4V4zm10 0h6v6h-2V6h-4V4zM4 14h2v4h4v2H4v-6zm16 0v6h-6v-2h4v-4h2z"/></svg>
+  </button>
+  <div id="usp-zoom-table-0" class="usp-lightbox" popover data-pagefind-ignore>
+    <button type="button" class="usp-lightbox__close" popovertarget="usp-zoom-table-0" popovertargetaction="hide" aria-label="Close">&times;</button>
+    <table>
+  <thead>
+    <tr>
+      <th>Group</th>
+      <th>View</th>
+      <th>Shows</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Platform</td>
+      <td>System</td>
+      <td>The system log of the appliance.</td>
+    </tr>
+    <tr>
+      <td>Platform</td>
+      <td>Deployment Run</td>
+      <td>The output of the last deployment run. It is not forwarded to remote log targets.</td>
+    </tr>
+    <tr>
+      <td>Platform</td>
+      <td>Remote Log</td>
+      <td>The log forwarder. Only shown when at least one <a href="/usp-aero/platform/latest/operations/logging/remote-log/">remote log target</a>
+ is set up.</td>
+    </tr>
+    <tr>
+      <td>WAAP</td>
+      <td>WAAP-Proxy</td>
+      <td>The WAAP gateway. The WAAP group is only shown when WAAP has listeners configured.</td>
+    </tr>
+    <tr>
+      <td>WAAP</td>
+      <td>WAAP-Ext-Server</td>
+      <td>The WAAP extension server.</td>
+    </tr>
+  </tbody>
+</table>
+  </div>
+</div><p>Log-Search, -filter and -download options are revealed in the menu located behind the red and blue dots.</p>
 
 
         </article>

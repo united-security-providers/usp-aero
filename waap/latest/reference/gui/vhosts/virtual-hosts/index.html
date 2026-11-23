@@ -141,6 +141,10 @@
 <li><a href="/usp-aero/waap/latest/application-integration/translation/">Rewrite the request path</a></li>
         
 <li><a href="/usp-aero/waap/latest/application-integration/redirect/">Redirect requests</a></li>
+        
+<li><a href="/usp-aero/waap/latest/application-integration/local-error-page/">Replace backend error pages</a></li>
+        
+<li><a href="/usp-aero/waap/latest/application-integration/maintenance-page/">Show a maintenance page</a></li>
     </ul>
   </details>
 </li>
@@ -230,6 +234,8 @@
         
 <li><a href="/usp-aero/waap/latest/reference/gui/vhosts/rule-engine/">Rule Engine</a></li>
         
+<li><a href="/usp-aero/waap/latest/reference/gui/vhosts/error-pages/">Error Pages &amp; Maintenance Pages</a></li>
+        
 <li><a href="/usp-aero/waap/latest/reference/gui/vhosts/rate-limiting/">Rate Limiting</a></li>
         <li class="usp-nav__section">
   <details>
@@ -301,6 +307,10 @@
     <ul>
         
 <li><a href="/usp-aero/waap/latest/reference/gui/local-files/static-content/">Static Content</a></li>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/local-files/error-pages/">Local Error Pages</a></li>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/local-files/maintenance-pages/">Maintenance Pages</a></li>
     </ul>
   </details>
 </li>
@@ -482,17 +492,37 @@ HTTP settings of the selected listener.</p>
 <h3 id="hostnames">Hostnames</h3>
 <p>Allows to configure one or multiple hostnames for a virtual host. At least one hostname must be
 configured, up to 16. Click the &quot;+&quot; icon to add a hostname.</p>
+<p>Hostnames are compared case-insensitively with those of the other virtual hosts:</p>
 <ul>
-<li><strong>Values:</strong> a <a href="/usp-aero/waap/latest/reference/value-types/#hostname">hostname</a>
+<li>
+<p>Virtual hosts on the same listener must use distinct hostnames.</p>
+</li>
+<li>
+<p>Virtual hosts on different listeners may share a hostname, but must then use the same
+<a href="#certificateOrProviderId">Certificate</a>
+.</p>
+</li>
+<li>
+<p><strong>Values:</strong> a <a href="/usp-aero/waap/latest/reference/value-types/#hostname">hostname</a>
 , optionally prefixed with <code>*.</code> for a wildcard
-label; must not be an IP address</li>
-<li><strong>Default:</strong> none</li>
-<li><strong>Required:</strong> yes</li>
+label; must not be an IP address</p>
+</li>
+<li>
+<p><strong>Default:</strong> none</p>
+</li>
+<li>
+<p><strong>Required:</strong> yes</p>
+</li>
 </ul>
 <h3 id="certificateOrProviderId">Certificate</h3>
 <p>Select the server certificate to use for this virtual host, from the certificates managed on
 <a href="/usp-aero/waap/latest/reference/gui/certificates/certificates-and-keys/">Certificates &amp; Keys</a>
-.</p>
+. ACME providers are listed with the
+suffix &quot;(ACME)&quot;.</p>
+<p>All virtual hosts that share a hostname must use the same certificate or ACME provider.</p>
+<p>If an ACME provider is selected and the listener uses neither HTTP port 80 nor HTTPS port 443, a hint
+warns that the certificate issuance may fail, because ACME validation usually requires the standard
+ports.</p>
 <ul>
 <li><strong>Values:</strong> one of the configured certificates or ACME providers</li>
 <li><strong>Required:</strong> yes</li>

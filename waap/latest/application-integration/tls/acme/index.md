@@ -18,7 +18,8 @@ authority.
 6. Save the provider.
 7. On the [virtual host](../../reference/gui/vhosts/virtual-hosts)'s Settings tab, open the Certificate
    list and select the provider you just created. It is listed alongside the uploaded certificates and
-   suffixed with "(ACME)".
+   suffixed with "(ACME)". ACME validation usually requires the standard ports, so use a listener
+   with HTTP port 80 or HTTPS port 443; otherwise the GUI shows a hint that the issuance may fail.
 8. [Create a revision and deploy it](../../../../platform/latest/concepts/configuration-lifecycle)
 
 After deployment, the virtual host requests and renews its certificate from the provider automatically from then on.

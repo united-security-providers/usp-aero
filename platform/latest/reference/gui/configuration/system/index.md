@@ -50,6 +50,9 @@ just a name, or an email address).
 Configure the time-server settings here to ensure that the server always runs with the correct time
 and date.
 
+On a follower of an [HA cluster](high-availability), *Timezone* and *NTP Server* are read-only. They are
+taken from the leader.
+
 ### Timezone {#timezone}
 
 Select the geographical timezone of the location of this server.

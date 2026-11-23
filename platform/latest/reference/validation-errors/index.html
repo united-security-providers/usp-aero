@@ -234,6 +234,8 @@
         
 <li><a href="/usp-aero/platform/latest/reference/gui/configuration/network/">Network</a></li>
         
+<li><a href="/usp-aero/platform/latest/reference/gui/configuration/high-availability/">High Availability</a></li>
+        
 <li><a href="/usp-aero/platform/latest/reference/gui/configuration/container/">Container</a></li>
         
 <li><a href="/usp-aero/platform/latest/reference/gui/configuration/certificates/">Certificates</a></li>
@@ -337,6 +339,18 @@
 </li>
 
       <li>
+  <a href="#HOST_HA_UNAVAILABLE_FOR_DHCP">HOST_HA_UNAVAILABLE_FOR_DHCP</a>
+</li>
+
+      <li>
+  <a href="#HOST_SYSTEM_HOSTNAME_NOT_IN_HA_CONFIG">HOST_SYSTEM_HOSTNAME_NOT_IN_HA_CONFIG</a>
+</li>
+
+      <li>
+  <a href="#HOST_SYSTEM_IP_NOT_IN_HA_CONFIG">HOST_SYSTEM_IP_NOT_IN_HA_CONFIG</a>
+</li>
+
+      <li>
   <a href="#INCOMPATIBLE_COMPONENT_VERSION">INCOMPATIBLE_COMPONENT_VERSION</a>
 </li>
 
@@ -372,6 +386,14 @@
 <p>At least two network interfaces need to be configured.</p>
 <h3 id="HOST_NON_EXISTING_CONFIGURED_INTERFACE">HOST_NON_EXISTING_CONFIGURED_INTERFACE</h3>
 <p>Configured network interface <code>{{arg0}}</code> does not exist.</p>
+<h3 id="HOST_HA_UNAVAILABLE_FOR_DHCP">HOST_HA_UNAVAILABLE_FOR_DHCP</h3>
+<p>High Availability configuration could be enabled for static IP addresses of the Management network
+interface only.</p>
+<h3 id="HOST_SYSTEM_HOSTNAME_NOT_IN_HA_CONFIG">HOST_SYSTEM_HOSTNAME_NOT_IN_HA_CONFIG</h3>
+<p>First cluster node in High Availability settings must reference System hostname.</p>
+<h3 id="HOST_SYSTEM_IP_NOT_IN_HA_CONFIG">HOST_SYSTEM_IP_NOT_IN_HA_CONFIG</h3>
+<p>First cluster node in High Availability settings must reference static IP address of the Management
+network interface.</p>
 <h3 id="INCOMPATIBLE_COMPONENT_VERSION">INCOMPATIBLE_COMPONENT_VERSION</h3>
 <p>Configuration was created for a different <code>{{arg0}}</code> component version <code>{{arg1}}</code> and is not
 compatible with the installed version. The component's version update is required.</p>

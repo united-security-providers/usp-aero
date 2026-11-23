@@ -141,6 +141,10 @@
 <li><a href="/usp-aero/waap/latest/application-integration/translation/">Rewrite the request path</a></li>
         
 <li><a href="/usp-aero/waap/latest/application-integration/redirect/">Redirect requests</a></li>
+        
+<li><a href="/usp-aero/waap/latest/application-integration/local-error-page/">Replace backend error pages</a></li>
+        
+<li><a href="/usp-aero/waap/latest/application-integration/maintenance-page/">Show a maintenance page</a></li>
     </ul>
   </details>
 </li>
@@ -230,6 +234,8 @@
         
 <li><a href="/usp-aero/waap/latest/reference/gui/vhosts/rule-engine/">Rule Engine</a></li>
         
+<li><a href="/usp-aero/waap/latest/reference/gui/vhosts/error-pages/">Error Pages &amp; Maintenance Pages</a></li>
+        
 <li><a href="/usp-aero/waap/latest/reference/gui/vhosts/rate-limiting/">Rate Limiting</a></li>
         <li class="usp-nav__section">
   <details>
@@ -301,6 +307,10 @@
     <ul>
         
 <li><a href="/usp-aero/waap/latest/reference/gui/local-files/static-content/">Static Content</a></li>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/local-files/error-pages/">Local Error Pages</a></li>
+        
+<li><a href="/usp-aero/waap/latest/reference/gui/local-files/maintenance-pages/">Maintenance Pages</a></li>
     </ul>
   </details>
 </li>
@@ -358,8 +368,12 @@ cookie, its Value.</li>
 . <strong>Remove</strong>, <strong>Add if absent</strong>, <strong>Overwrite
 if exists</strong> and <strong>Overwrite if exists or add</strong> work on both tabs. <strong>Modify attributes if cookie present</strong>
 is only available on the Response tab, because a request cookie carries no attributes.</li>
-<li>For <strong>Modify attributes if cookie present</strong>, add at least one attribute with its own name and
-value. This changes the cookie's attributes without touching its value.</li>
+<li>For <strong>Modify attributes if cookie present</strong>, add at least one attribute. Pick a known attribute
+such as <code>Secure</code>, <code>HttpOnly</code> or <code>SameSite</code> from the list, or type the name of a custom one, and
+enter its <a href="/usp-aero/waap/latest/reference/gui/vhosts/routes/cookies/#value-attribute">value</a>
+ if it takes one.
+<code>Secure</code>, <code>HttpOnly</code> and <code>Partitioned</code> take no value. This changes the cookie's attributes without
+touching its value.</li>
 <li><a href="/usp-aero/platform/latest/concepts/configuration-lifecycle/">Create a revision and deploy it</a>
  to apply the change.</li>
 </ol>

@@ -234,6 +234,8 @@
         
 <li><a href="/usp-aero/platform/latest/reference/gui/configuration/network/">Network</a></li>
         
+<li><a href="/usp-aero/platform/latest/reference/gui/configuration/high-availability/">High Availability</a></li>
+        
 <li><a href="/usp-aero/platform/latest/reference/gui/configuration/container/">Container</a></li>
         
 <li><a href="/usp-aero/platform/latest/reference/gui/configuration/certificates/">Certificates</a></li>
@@ -400,15 +402,13 @@
 <p>It will not be stored locally on the appliance in contrast to the automated backup jobs!</p>
 <h3 id="type">Type</h3>
 <ul>
-<li><strong>Values:</strong> <code>Full (incl. Keys)</code>, <code>Full (no Keys)</code>
-<ul>
-<li><strong>Full (incl. Keys)</strong> - full backup which also contains all private keys.</li>
-<li><strong>Full (no Keys)</strong> - full backup but private keys are excluded.</li>
-</ul>
-</li>
+<li><strong>Values:</strong> <code>Full (incl. Keys)</code> - full backup which also contains all private keys.</li>
 <li><strong>Default:</strong> <code>Full (incl. Keys)</code></li>
 </ul>
-<h2 id="local-backups">Local Backups</h2>
+<div class="usp-admonition usp-admonition--note">
+    <p class="usp-admonition__title">Note</p>
+    <p>Backups always contain the private keys. Store backup archives securely.</p>
+  </div><h2 id="local-backups">Local Backups</h2>
 <p>Lists the local backups produced by a backup job whose target is &quot;Local&quot; (see
 <a href="/usp-aero/platform/latest/reference/gui/backup/backup-targets/">Backup targets</a>
 ). A local backup can be restored, downloaded or deleted from here.</p>

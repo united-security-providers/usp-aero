@@ -55,8 +55,9 @@ the network resolves - a container registry reachable only by name, for instance
 
 ### C - Change password for user 'core' {#option-c}
 
-Changes the password of the user `core`. The new password is asked for twice, the two entries must
-match, and it is rejected if the system's complexity check fails.
+Changes the password of the user `core`. The current password is asked for first. The new password is then asked
+for twice, the two entries must match, and it is rejected if the system's complexity check fails or if it is too
+similar to the current one.
 
 ### P - Define proxy server for internet access {#option-p}
 
@@ -74,6 +75,19 @@ User name and password must be [percent-encoded](https://en.wikipedia.org/wiki/P
 As a consequence the user name cannot contain a `:` and the password cannot contain an `@`.
 
 Press Enter to keep the current setting, or enter `-` to remove the proxy configuration again.
+
+After the URL, a proxy bypass list is asked for. It names the hosts that are reached directly instead of through
+the proxy, for example a container registry on the local network. Entries are comma-separated:
+
+| Entry                  | Matches                                |
+|------------------------|----------------------------------------|
+| `host.example.com`     | a single host                          |
+| `.example.com`         | the domain and all of its subdomains   |
+| `10.0.0.0/8`           | an address range                       |
+| `host.example.com:443` | a single host on one port only         |
+
+A `*` wildcard does not work and is rejected: write `.example.com` instead of `*.example.com`. Loopback addresses
+always bypass the proxy and need not be listed. Press Enter to keep the current list, or enter `-` to clear it.
 
 ### E - Enter container registry details {#option-e}
 

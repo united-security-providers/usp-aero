@@ -15,8 +15,11 @@ sets.
 4. Choose an [Action](../reference/gui/vhosts/routes/cookies#action). **Remove**, **Add if absent**, **Overwrite
    if exists** and **Overwrite if exists or add** work on both tabs. **Modify attributes if cookie present**
    is only available on the Response tab, because a request cookie carries no attributes.
-5. For **Modify attributes if cookie present**, add at least one attribute with its own name and
-   value. This changes the cookie's attributes without touching its value.
+5. For **Modify attributes if cookie present**, add at least one attribute. Pick a known attribute
+   such as `Secure`, `HttpOnly` or `SameSite` from the list, or type the name of a custom one, and
+   enter its [value](../reference/gui/vhosts/routes/cookies#value-attribute) if it takes one.
+   `Secure`, `HttpOnly` and `Partitioned` take no value. This changes the cookie's attributes without
+   touching its value.
 6. [Create a revision and deploy it](../../../platform/latest/concepts/configuration-lifecycle) to apply the change.
 
 ## Related

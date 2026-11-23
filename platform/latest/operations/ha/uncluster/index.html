@@ -234,6 +234,8 @@
         
 <li><a href="/usp-aero/platform/latest/reference/gui/configuration/network/">Network</a></li>
         
+<li><a href="/usp-aero/platform/latest/reference/gui/configuration/high-availability/">High Availability</a></li>
+        
 <li><a href="/usp-aero/platform/latest/reference/gui/configuration/container/">Container</a></li>
         
 <li><a href="/usp-aero/platform/latest/reference/gui/configuration/certificates/">Certificates</a></li>
@@ -388,8 +390,9 @@ that follower from the cluster (see <a href="/usp-aero/platform/latest/operation
 ).</li>
 <li><strong>Bring every node online and out of standby.</strong> The leader tells the followers to leave the cluster. A node that is
 offline or in standby at that moment does not act on it and stays configured as a cluster member.</li>
-<li><strong>Finish or discard pending platform changes on all nodes.</strong> The uncluster stores the platform configuration as a
-new revision. Unsaved draft changes to the platform configuration on a node become part of that revision.</li>
+<li><strong>Finish pending platform changes on all nodes.</strong> The uncluster builds a new platform revision from each node's
+<strong>active</strong> platform configuration. Uncommitted draft changes to the platform configuration on a node are
+discarded, and committed revisions that were never activated are not part of the new revision.</li>
 <li><strong>Plan new external IP addresses for the followers.</strong> After the uncluster, every follower needs its own external IP
 address before it can serve traffic again (see <a href="#on-each-follower">On each follower</a>
 ).</li>

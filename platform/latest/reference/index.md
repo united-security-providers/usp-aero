@@ -19,6 +19,7 @@ task, see the [Operations guides](../operations/).
 
 - [System](https://docs.united-security-providers.ch/usp-aero/platform/latest/reference/gui/configuration/system/index.md)
 - [Network](https://docs.united-security-providers.ch/usp-aero/platform/latest/reference/gui/configuration/network/index.md)
+- [High Availability](https://docs.united-security-providers.ch/usp-aero/platform/latest/reference/gui/configuration/high-availability/index.md)
 - [Container](https://docs.united-security-providers.ch/usp-aero/platform/latest/reference/gui/configuration/container/index.md)
 - [Certificates](https://docs.united-security-providers.ch/usp-aero/platform/latest/reference/gui/configuration/certificates/index.md)
 - [Log](https://docs.united-security-providers.ch/usp-aero/platform/latest/reference/gui/configuration/log/index.md)

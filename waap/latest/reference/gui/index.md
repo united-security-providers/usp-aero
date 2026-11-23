@@ -9,7 +9,7 @@ its own section; the help icon next to a setting in the GUI opens it directly.
 * [Virtual Hosts](vhosts/): the hostnames it serves, their routes and their protection settings
 * [Backends](backends/): the application servers it forwards requests to
 * [Certificates](certificates/): server certificates, CA certificates and ACME providers
-* [Local Files](local-files/): static content and error pages served by Aero WAAP itself
+* [Local Files](local-files/): static content, error pages and maintenance pages served by Aero WAAP itself
 
 ## Pages
 
@@ -18,6 +18,7 @@ its own section; the help icon next to a setting in the GUI opens it directly.
 - [Timeouts &amp; Limits](https://docs.united-security-providers.ch/usp-aero/waap/latest/reference/gui/listeners/timeouts-and-limits/index.md)
 - [Virtual Hosts](https://docs.united-security-providers.ch/usp-aero/waap/latest/reference/gui/vhosts/virtual-hosts/index.md)
 - [Rule Engine](https://docs.united-security-providers.ch/usp-aero/waap/latest/reference/gui/vhosts/rule-engine/index.md)
+- [Error Pages &amp; Maintenance Pages](https://docs.united-security-providers.ch/usp-aero/waap/latest/reference/gui/vhosts/error-pages/index.md)
 - [Rate Limiting](https://docs.united-security-providers.ch/usp-aero/waap/latest/reference/gui/vhosts/rate-limiting/index.md)
 - [Routes](https://docs.united-security-providers.ch/usp-aero/waap/latest/reference/gui/vhosts/routes/routes/index.md)
 - [HTTP](https://docs.united-security-providers.ch/usp-aero/waap/latest/reference/gui/vhosts/routes/http/index.md)
@@ -34,3 +35,5 @@ its own section; the help icon next to a setting in the GUI opens it directly.
 - [CA Certificates](https://docs.united-security-providers.ch/usp-aero/waap/latest/reference/gui/certificates/ca-certificates/index.md)
 - [ACME providers](https://docs.united-security-providers.ch/usp-aero/waap/latest/reference/gui/certificates/acme/index.md)
 - [Static Content](https://docs.united-security-providers.ch/usp-aero/waap/latest/reference/gui/local-files/static-content/index.md)
+- [Local Error Pages](https://docs.united-security-providers.ch/usp-aero/waap/latest/reference/gui/local-files/error-pages/index.md)
+- [Maintenance Pages](https://docs.united-security-providers.ch/usp-aero/waap/latest/reference/gui/local-files/maintenance-pages/index.md)

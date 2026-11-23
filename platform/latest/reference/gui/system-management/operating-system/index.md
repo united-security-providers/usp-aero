@@ -31,6 +31,14 @@ update.
 
 Reboots the entire Aero appliance. Required to finalize OS update.
 
+After you confirm, the GUI shows a *System is rebooting* page. The page checks the appliance every few seconds and
+reloads by itself once the appliance is reachable again. You may need to sign in again.
+
 ### Shutdown System {#systemShutdown}
 
 Performs a controlled shutdown of the Aero appliance.
+
+After you confirm, the GUI shows a *System is shutting down* page. The appliance is then no longer reachable and can
+be powered off safely.
+
+Both buttons are disabled while an infrastructure operation is in progress, and hidden in read-only mode.

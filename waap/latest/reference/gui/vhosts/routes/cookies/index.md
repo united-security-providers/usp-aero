@@ -55,9 +55,10 @@ The change to make to the attribute.
 - **Default:** none
 - **Required:** yes
 
-### Attribute Name {#name-attribute}
+### Attribute {#name-attribute}
 
-The name of the attribute.
+The name of the attribute. Pick one of the known attributes from the list, or type the name of any
+other attribute.
 
 - **Values:** letters, digits and the characters `!#$%&'*+.^_`|~-`, at most 256 characters
 - **Default:** none
@@ -65,7 +66,17 @@ The name of the attribute.
 
 ### Value {#value-attribute}
 
-The value to set. Not shown, and not required, when the action is `Remove`.
+The value to set. Not shown, and must not be set, when the action is `Remove`.
+
+For the known attributes, the value is checked as follows. A custom attribute takes any value within
+the limits below.
+
+| Attribute                            | Value                                           |
+|--------------------------------------|-------------------------------------------------|
+| `Secure`, `HttpOnly`, `Partitioned`  | none; the field is not shown                    |
+| `SameSite`                           | one of `Strict`, `Lax`, `None`                  |
+| `Max-Age`                            | a whole number of seconds                       |
+| `Domain`, `Path`, `Expires`          | required, free text                             |
 
 - **Values:** free text; quotes, semicolons and backslashes are not allowed, at most 4096 characters
 - **Default:** none
