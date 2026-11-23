@@ -4,10 +4,16 @@
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.0.x/reference/gui/backends/backends/</loc>
   </url>
   <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.1.x/reference/gui/backends/backends/</loc>
+  </url>
+  <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/latest/reference/gui/backends/backends/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.0.x/reference/gui/backup/backup-jobs/</loc>
+  </url>
+  <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.1.x/reference/gui/backup/backup-jobs/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/latest/reference/gui/backup/backup-jobs/</loc>
@@ -16,10 +22,16 @@
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.0.x/reference/gui/certificates/certificates-and-keys/</loc>
   </url>
   <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.1.x/reference/gui/certificates/certificates-and-keys/</loc>
+  </url>
+  <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/latest/reference/gui/certificates/certificates-and-keys/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.0.x/reference/gui/deployment/deploy/</loc>
+  </url>
+  <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.1.x/reference/gui/deployment/deploy/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/latest/reference/gui/deployment/deploy/</loc>
@@ -28,10 +40,16 @@
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.0.x/reference/gui/</loc>
   </url>
   <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.1.x/reference/gui/</loc>
+  </url>
+  <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/latest/reference/gui/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.0.x/concepts/gui-overview/</loc>
+  </url>
+  <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.1.x/concepts/gui-overview/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/latest/concepts/gui-overview/</loc>
@@ -40,10 +58,16 @@
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.0.x/concepts/request-flow/</loc>
   </url>
   <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.1.x/concepts/request-flow/</loc>
+  </url>
+  <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/latest/concepts/request-flow/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.0.x/operations/components/install-a-component/</loc>
+  </url>
+  <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.1.x/operations/components/install-a-component/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/latest/operations/components/install-a-component/</loc>
@@ -52,10 +76,16 @@
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.0.x/reference/gui/listeners/listeners/</loc>
   </url>
   <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.1.x/reference/gui/listeners/listeners/</loc>
+  </url>
+  <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/latest/reference/gui/listeners/listeners/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.0.x/operations/logging/live-log/</loc>
+  </url>
+  <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.1.x/operations/logging/live-log/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/latest/operations/logging/live-log/</loc>
@@ -64,10 +94,16 @@
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.0.x/reference/gui/user-management/local-users/</loc>
   </url>
   <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.1.x/reference/gui/user-management/local-users/</loc>
+  </url>
+  <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/latest/reference/gui/user-management/local-users/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.0.x/reference/gui/system-management/operating-system/</loc>
+  </url>
+  <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.1.x/reference/gui/system-management/operating-system/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/latest/reference/gui/system-management/operating-system/</loc>
@@ -76,10 +112,16 @@
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.0.x/protection/rule-engine/owasp-top-10/</loc>
   </url>
   <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.1.x/protection/rule-engine/owasp-top-10/</loc>
+  </url>
+  <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/latest/protection/rule-engine/owasp-top-10/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.0.x/aero-platform-releasenotes/</loc>
+  </url>
+  <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.1.x/aero-platform-releasenotes/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/latest/aero-platform-releasenotes/</loc>
@@ -88,7 +130,13 @@
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.0.x/reference/gui/vhosts/routes/routes/</loc>
   </url>
   <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.1.x/reference/gui/vhosts/routes/routes/</loc>
+  </url>
+  <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/latest/reference/gui/vhosts/routes/routes/</loc>
+  </url>
+  <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.1.x/operations/ha/set-up-an-ha-cluster/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/latest/operations/ha/set-up-an-ha-cluster/</loc>
@@ -97,10 +145,16 @@
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.0.x/operations/backup/automated-backups/</loc>
   </url>
   <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.1.x/operations/backup/automated-backups/</loc>
+  </url>
+  <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/latest/operations/backup/automated-backups/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.0.x/reference/gui/local-files/static-content/</loc>
+  </url>
+  <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.1.x/reference/gui/local-files/static-content/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/latest/reference/gui/local-files/static-content/</loc>
@@ -109,10 +163,16 @@
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.0.x/reference/gui/configuration/system/</loc>
   </url>
   <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.1.x/reference/gui/configuration/system/</loc>
+  </url>
+  <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/latest/reference/gui/configuration/system/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.0.x/operations/maintenance/update-the-os/</loc>
+  </url>
+  <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.1.x/operations/maintenance/update-the-os/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/latest/operations/maintenance/update-the-os/</loc>
@@ -121,7 +181,13 @@
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.0.x/reference/gui/vhosts/virtual-hosts/</loc>
   </url>
   <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.1.x/reference/gui/vhosts/virtual-hosts/</loc>
+  </url>
+  <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/latest/reference/gui/vhosts/virtual-hosts/</loc>
+  </url>
+  <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.1.x/operations/ha/add-remove-nodes/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/latest/operations/ha/add-remove-nodes/</loc>
@@ -130,10 +196,16 @@
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.0.x/reference/gui/backup/backup-targets/</loc>
   </url>
   <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.1.x/reference/gui/backup/backup-targets/</loc>
+  </url>
+  <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/latest/reference/gui/backup/backup-targets/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.0.x/reference/gui/certificates/ca-certificates/</loc>
+  </url>
+  <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.1.x/reference/gui/certificates/ca-certificates/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/latest/reference/gui/certificates/ca-certificates/</loc>
@@ -142,10 +214,16 @@
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.0.x/concepts/configuration-lifecycle/</loc>
   </url>
   <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.1.x/concepts/configuration-lifecycle/</loc>
+  </url>
+  <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/latest/concepts/configuration-lifecycle/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.0.x/reference/gui/deployment/revisions/</loc>
+  </url>
+  <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.1.x/reference/gui/deployment/revisions/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/latest/reference/gui/deployment/revisions/</loc>
@@ -154,13 +232,22 @@
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.0.x/concepts/detect-only-mode/</loc>
   </url>
   <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.1.x/concepts/detect-only-mode/</loc>
+  </url>
+  <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/latest/concepts/detect-only-mode/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.0.x/reference/gui/backends/health-check/</loc>
   </url>
   <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.1.x/reference/gui/backends/health-check/</loc>
+  </url>
+  <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/latest/reference/gui/backends/health-check/</loc>
+  </url>
+  <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.1.x/reference/gui/system-management/high-availability/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/latest/reference/gui/system-management/high-availability/</loc>
@@ -169,7 +256,13 @@
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.0.x/reference/gui/vhosts/routes/http/</loc>
   </url>
   <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.1.x/reference/gui/vhosts/routes/http/</loc>
+  </url>
+  <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/latest/reference/gui/vhosts/routes/http/</loc>
+  </url>
+  <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.1.x/reference/gui/local-files/error-pages/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/latest/reference/gui/local-files/error-pages/</loc>
@@ -178,10 +271,16 @@
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.0.x/operations/logging/remote-log/</loc>
   </url>
   <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.1.x/operations/logging/remote-log/</loc>
+  </url>
+  <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/latest/operations/logging/remote-log/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.0.x/reference/gui/configuration/network/</loc>
+  </url>
+  <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.1.x/reference/gui/configuration/network/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/latest/reference/gui/configuration/network/</loc>
@@ -190,10 +289,16 @@
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.0.x/aero-waap-releasenotes/</loc>
   </url>
   <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.1.x/aero-waap-releasenotes/</loc>
+  </url>
+  <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/latest/aero-waap-releasenotes/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.0.x/application-integration/tls/replace-a-certificate/</loc>
+  </url>
+  <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.1.x/application-integration/tls/replace-a-certificate/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/latest/application-integration/tls/replace-a-certificate/</loc>
@@ -202,10 +307,16 @@
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.0.x/operations/backup/restore-from-backup/</loc>
   </url>
   <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.1.x/operations/backup/restore-from-backup/</loc>
+  </url>
+  <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/latest/operations/backup/restore-from-backup/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.0.x/install/requirements/</loc>
+  </url>
+  <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.1.x/install/requirements/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/latest/install/requirements/</loc>
@@ -214,10 +325,16 @@
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.0.x/reference/gui/listeners/tls/</loc>
   </url>
   <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.1.x/reference/gui/listeners/tls/</loc>
+  </url>
+  <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/latest/reference/gui/listeners/tls/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.0.x/operations/components/update-a-component/</loc>
+  </url>
+  <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.1.x/operations/components/update-a-component/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/latest/operations/components/update-a-component/</loc>
@@ -226,10 +343,16 @@
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.0.x/reference/gui/user-management/user-profile/</loc>
   </url>
   <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.1.x/reference/gui/user-management/user-profile/</loc>
+  </url>
+  <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/latest/reference/gui/user-management/user-profile/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.0.x/protection/rule-engine/virtual-patch/</loc>
+  </url>
+  <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.1.x/protection/rule-engine/virtual-patch/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/latest/protection/rule-engine/virtual-patch/</loc>
@@ -238,10 +361,16 @@
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.0.x/protection/ddos-protection/</loc>
   </url>
   <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.1.x/protection/ddos-protection/</loc>
+  </url>
+  <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/latest/protection/ddos-protection/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.0.x/reference/gui/certificates/acme/</loc>
+  </url>
+  <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.1.x/reference/gui/certificates/acme/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/latest/reference/gui/certificates/acme/</loc>
@@ -250,10 +379,16 @@
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.0.x/application-integration/tls/acme/</loc>
   </url>
   <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.1.x/application-integration/tls/acme/</loc>
+  </url>
+  <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/latest/application-integration/tls/acme/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.0.x/reference/console/</loc>
+  </url>
+  <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.1.x/reference/console/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/latest/reference/console/</loc>
@@ -262,10 +397,16 @@
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.0.x/protection/rule-engine/handle-a-crs-false-positive/</loc>
   </url>
   <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.1.x/protection/rule-engine/handle-a-crs-false-positive/</loc>
+  </url>
+  <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/latest/protection/rule-engine/handle-a-crs-false-positive/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.0.x/protection/header-filtering/</loc>
+  </url>
+  <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.1.x/protection/header-filtering/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/latest/protection/header-filtering/</loc>
@@ -274,7 +415,13 @@
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.0.x/application-integration/header-manipulation/</loc>
   </url>
   <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.1.x/application-integration/header-manipulation/</loc>
+  </url>
+  <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/latest/application-integration/header-manipulation/</loc>
+  </url>
+  <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.1.x/protection/rule-engine/header-validation/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/latest/protection/rule-engine/header-validation/</loc>
@@ -283,7 +430,13 @@
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.0.x/reference/gui/vhosts/routes/headers/</loc>
   </url>
   <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.1.x/reference/gui/vhosts/routes/headers/</loc>
+  </url>
+  <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/latest/reference/gui/vhosts/routes/headers/</loc>
+  </url>
+  <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.1.x/reference/gui/configuration/high-availability/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/latest/reference/gui/configuration/high-availability/</loc>
@@ -292,10 +445,16 @@
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.0.x/reference/gui/deployment/history-and-rollback/</loc>
   </url>
   <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.1.x/reference/gui/deployment/history-and-rollback/</loc>
+  </url>
+  <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/latest/reference/gui/deployment/history-and-rollback/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.0.x/protection/ip-restrictions/</loc>
+  </url>
+  <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.1.x/protection/ip-restrictions/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/latest/protection/ip-restrictions/</loc>
@@ -304,13 +463,22 @@
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.0.x/protection/request-size-limit/</loc>
   </url>
   <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.1.x/protection/request-size-limit/</loc>
+  </url>
+  <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/latest/protection/request-size-limit/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.0.x/reference/gui/backup/local-backups-and-restore/</loc>
   </url>
   <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.1.x/reference/gui/backup/local-backups-and-restore/</loc>
+  </url>
+  <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/latest/reference/gui/backup/local-backups-and-restore/</loc>
+  </url>
+  <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.1.x/reference/gui/local-files/maintenance-pages/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/latest/reference/gui/local-files/maintenance-pages/</loc>
@@ -319,10 +487,16 @@
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.0.x/operations/components/remove-a-component/</loc>
   </url>
   <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.1.x/operations/components/remove-a-component/</loc>
+  </url>
+  <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/latest/operations/components/remove-a-component/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.0.x/protection/repeat-offender/</loc>
+  </url>
+  <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.1.x/protection/repeat-offender/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/latest/protection/repeat-offender/</loc>
@@ -331,10 +505,16 @@
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.0.x/protection/limit-http-methods/</loc>
   </url>
   <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.1.x/protection/limit-http-methods/</loc>
+  </url>
+  <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/latest/protection/limit-http-methods/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.0.x/concepts/roles-and-permissions/</loc>
+  </url>
+  <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.1.x/concepts/roles-and-permissions/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/latest/concepts/roles-and-permissions/</loc>
@@ -343,13 +523,22 @@
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.0.x/reference/gui/vhosts/rule-engine/</loc>
   </url>
   <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.1.x/reference/gui/vhosts/rule-engine/</loc>
+  </url>
+  <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/latest/reference/gui/vhosts/rule-engine/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.0.x/protection/security-headers/</loc>
   </url>
   <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.1.x/protection/security-headers/</loc>
+  </url>
+  <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/latest/protection/security-headers/</loc>
+  </url>
+  <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.1.x/operations/ha/config-synchronization/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/latest/operations/ha/config-synchronization/</loc>
@@ -358,10 +547,16 @@
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.0.x/reference/gui/listeners/timeouts-and-limits/</loc>
   </url>
   <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.1.x/reference/gui/listeners/timeouts-and-limits/</loc>
+  </url>
+  <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/latest/reference/gui/listeners/timeouts-and-limits/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.0.x/reference/gui/backends/tls/</loc>
+  </url>
+  <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.1.x/reference/gui/backends/tls/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/latest/reference/gui/backends/tls/</loc>
@@ -370,10 +565,16 @@
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.0.x/reference/gui/components/</loc>
   </url>
   <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.1.x/reference/gui/components/</loc>
+  </url>
+  <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/latest/reference/gui/components/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.0.x/reference/gui/configuration/container/</loc>
+  </url>
+  <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.1.x/reference/gui/configuration/container/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/latest/reference/gui/configuration/container/</loc>
@@ -382,10 +583,16 @@
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.0.x/application-integration/cookie-manipulation/</loc>
   </url>
   <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.1.x/application-integration/cookie-manipulation/</loc>
+  </url>
+  <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/latest/application-integration/cookie-manipulation/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.0.x/reference/gui/vhosts/routes/cookies/</loc>
+  </url>
+  <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.1.x/reference/gui/vhosts/routes/cookies/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/latest/reference/gui/vhosts/routes/cookies/</loc>
@@ -394,16 +601,25 @@
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.0.x/getting-started/</loc>
   </url>
   <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.1.x/getting-started/</loc>
+  </url>
+  <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/latest/getting-started/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.0.x/install/installation/</loc>
   </url>
   <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.1.x/install/installation/</loc>
+  </url>
+  <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/latest/install/installation/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.0.x/operations/</loc>
+  </url>
+  <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.1.x/operations/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/latest/operations/</loc>
@@ -415,10 +631,16 @@
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.0.x/reference/gui/backends/timeouts-and-limits/</loc>
   </url>
   <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.1.x/reference/gui/backends/timeouts-and-limits/</loc>
+  </url>
+  <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/latest/reference/gui/backends/timeouts-and-limits/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.0.x/reference/gui/vhosts/routes/access-control/</loc>
+  </url>
+  <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.1.x/reference/gui/vhosts/routes/access-control/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/latest/reference/gui/vhosts/routes/access-control/</loc>
@@ -427,16 +649,28 @@
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.0.x/reference/gui/configuration/certificates/</loc>
   </url>
   <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.1.x/reference/gui/configuration/certificates/</loc>
+  </url>
+  <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/latest/reference/gui/configuration/certificates/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.0.x/application-integration/tls/mtls/</loc>
   </url>
   <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.1.x/application-integration/tls/mtls/</loc>
+  </url>
+  <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/latest/application-integration/tls/mtls/</loc>
   </url>
   <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.1.x/operations/ha/uncluster/</loc>
+  </url>
+  <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/latest/operations/ha/uncluster/</loc>
+  </url>
+  <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.1.x/reference/gui/vhosts/error-pages/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/latest/reference/gui/vhosts/error-pages/</loc>
@@ -445,10 +679,16 @@
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.0.x/reference/header-filtering-classes/</loc>
   </url>
   <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.1.x/reference/header-filtering-classes/</loc>
+  </url>
+  <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/latest/reference/header-filtering-classes/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.0.x/concepts/notes/</loc>
+  </url>
+  <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.1.x/concepts/notes/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/latest/concepts/notes/</loc>
@@ -457,10 +697,16 @@
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.0.x/reference/</loc>
   </url>
   <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.1.x/reference/</loc>
+  </url>
+  <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/latest/reference/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.0.x/application-integration/translation/</loc>
+  </url>
+  <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.1.x/application-integration/translation/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/latest/application-integration/translation/</loc>
@@ -469,10 +715,16 @@
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.0.x/application-integration/tls/backend-tls/</loc>
   </url>
   <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.1.x/application-integration/tls/backend-tls/</loc>
+  </url>
+  <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/latest/application-integration/tls/backend-tls/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.0.x/install/firsttimewizard/</loc>
+  </url>
+  <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.1.x/install/firsttimewizard/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/latest/install/firsttimewizard/</loc>
@@ -481,10 +733,16 @@
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.0.x/reference/gui/configuration/log/</loc>
   </url>
   <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.1.x/reference/gui/configuration/log/</loc>
+  </url>
+  <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/latest/reference/gui/configuration/log/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.0.x/application-integration/redirect/</loc>
+  </url>
+  <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.1.x/application-integration/redirect/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/latest/application-integration/redirect/</loc>
@@ -493,10 +751,16 @@
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.0.x/reference/tls-settings/</loc>
   </url>
   <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.1.x/reference/tls-settings/</loc>
+  </url>
+  <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/latest/reference/tls-settings/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.0.x/reference/gui/vhosts/routes/translation-and-redirect/</loc>
+  </url>
+  <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.1.x/reference/gui/vhosts/routes/translation-and-redirect/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/latest/reference/gui/vhosts/routes/translation-and-redirect/</loc>
@@ -505,7 +769,13 @@
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.0.x/reference/value-types/</loc>
   </url>
   <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.1.x/reference/value-types/</loc>
+  </url>
+  <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/latest/reference/value-types/</loc>
+  </url>
+  <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.1.x/application-integration/local-error-page/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/latest/application-integration/local-error-page/</loc>
@@ -514,10 +784,19 @@
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.0.x/reference/glossary/</loc>
   </url>
   <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.1.x/reference/glossary/</loc>
+  </url>
+  <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/latest/reference/glossary/</loc>
   </url>
   <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.1.x/reference/gui/vhosts/rate-limiting/</loc>
+  </url>
+  <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/latest/reference/gui/vhosts/rate-limiting/</loc>
+  </url>
+  <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.1.x/application-integration/maintenance-page/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/latest/application-integration/maintenance-page/</loc>
@@ -526,10 +805,16 @@
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.0.x/reference/gui/vhosts/routes/timeouts/</loc>
   </url>
   <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.1.x/reference/gui/vhosts/routes/timeouts/</loc>
+  </url>
+  <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/latest/reference/gui/vhosts/routes/timeouts/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.0.x/reference/value-types/</loc>
+  </url>
+  <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.1.x/reference/value-types/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/latest/reference/value-types/</loc>
@@ -538,16 +823,25 @@
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.0.x/reference/validation-errors/</loc>
   </url>
   <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.1.x/reference/validation-errors/</loc>
+  </url>
+  <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/latest/reference/validation-errors/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.0.x/reference/glossary/</loc>
   </url>
   <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.1.x/reference/glossary/</loc>
+  </url>
+  <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/latest/reference/glossary/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.0.x/reference/</loc>
+  </url>
+  <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.1.x/reference/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/latest/reference/</loc>
@@ -559,10 +853,16 @@
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.0.x/</loc>
   </url>
   <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/platform/1.1.x/</loc>
+  </url>
+  <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/platform/latest/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.0.x/</loc>
+  </url>
+  <url>
+    <loc>https://docs.united-security-providers.ch/usp-aero/waap/1.1.x/</loc>
   </url>
   <url>
     <loc>https://docs.united-security-providers.ch/usp-aero/waap/latest/</loc>

@@ -1,0 +1,493 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="canonical" href="https://docs.united-security-providers.ch/usp-aero/platform/1.1.x/reference/gui/configuration/high-availability/">
+    <meta name="description" content="Installation, configuration and release notes for the USP Aero Suite: the Aero Platform and Aero WAAP.">
+    <link rel="icon" href="/usp-aero/favicon.ico">
+    <title>High Availability - USP Aero Platform documentation</title>
+    <link rel="stylesheet" href="/usp-aero/stylesheets/usp-docs.65ec41a132b70ffc2bd4b17a4dea8dd262f9ca31a22c29647c0b47711492f6ef.css">
+    <link rel="stylesheet" href="/usp-aero/stylesheets/highlight.8ffd1f6914fb6b60dcf36f5b43cb54b0b569b46920e0f6c9223866c1132784f5.css">
+    <link rel="stylesheet" href="/usp-aero/stylesheets/fonts.a423719d8c6b857f394a6c70f0289dc8e250e5ad1e3a465fd9930ea27ac05946.css">
+    <link rel="alternate" type="text/markdown" href="/usp-aero/platform/1.1.x/reference/gui/configuration/high-availability/index.md">
+  </head>
+  <body>
+    <p class="usp-agent-note">For AI agents: this documentation is indexed at https://docs.united-security-providers.ch/usp-aero/llms.txt, and every page is available as markdown at its own address plus index.md.</p>
+
+    <input type="checkbox" id="__drawer" autocomplete="off" hidden>
+    <label class="usp-overlay" for="__drawer" aria-hidden="true"></label>
+    <a href="#high-availability" class="usp-skip">Skip to content</a>
+    <header class="usp-header">
+  <div class="usp-header__inner">
+    <label class="usp-header__drawer" for="__drawer" aria-label="Navigation">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+
+    </label>
+    <a class="usp-header__logo" href="/usp-aero/" aria-label="USP Aero Platform documentation">
+      <img src="/usp-aero/images/USP-Logo-2023-ohne-claim-lang-white1.webp" alt="USP Aero Suite documentation">
+    </a>
+    
+<div class="usp-picker usp-picker--product">
+  <button class="usp-picker__current" aria-label="Select product">
+    <span class="usp-picker__label">Aero Platform</span>
+    <svg class="usp-picker__caret" viewBox="7 10 10 5"><path d="M7 10l5 5 5-5z"/></svg>
+  </button>
+  <ul class="usp-picker__list">
+    <li><a href="/usp-aero/">All products</a></li>
+    <li><a href="/usp-aero/platform/1.1.x/" aria-current="true">Aero Platform</a></li>
+    <li><a href="/usp-aero/waap/1.1.x/">Aero WAAP</a></li>
+  </ul>
+</div>
+
+
+    
+<div class="usp-picker usp-picker--version">
+  <button class="usp-picker__current" aria-label="Select version">
+    <span class="usp-picker__label">1.1.x</span>
+    <svg class="usp-picker__caret" viewBox="7 10 10 5"><path d="M7 10l5 5 5-5z"/></svg>
+  </button>
+  <ul class="usp-picker__list">
+    <li><a href="/usp-aero/platform/latest/reference/gui/configuration/high-availability/">latest</a></li>
+    <li><a href="/usp-aero/platform/1.1.x/reference/gui/configuration/high-availability/" aria-current="true">1.1.x</a></li>
+    <li><a href="/usp-aero/platform/1.0.x/">1.0.x</a></li>
+  </ul>
+</div>
+
+
+    <div class="usp-header__tools">
+      <link rel="stylesheet" href="/usp-aero/pagefind/pagefind-component-ui.css" data-usp-search-bundle>
+<pagefind-config data-usp-search-config></pagefind-config>
+<script>
+  document.querySelector("[data-usp-search-config]").setAttribute("bundle-path",
+    new URL(".", document.querySelector("[data-usp-search-bundle]").href).href);
+</script>
+<script type="module" src="/usp-aero/pagefind/pagefind-component-ui.js"></script><script type="module">
+  window.PagefindComponents.getInstanceManager().getInstance("default")
+    .searchFilters = {"docset":{"any":["platform/1.1.x"]}};
+</script>
+<div class="usp-search">
+  <pagefind-searchbox placeholder="Search" shortcut="/"></pagefind-searchbox>
+</div>
+<div class="usp-search-compact">
+  <pagefind-modal-trigger></pagefind-modal-trigger>
+  <pagefind-modal></pagefind-modal>
+</div>
+
+    </div>
+  </div>
+</header>
+
+    
+    <div class="usp-layout">
+      <div class="usp-nav-wrapper usp-sidebar">
+        <nav class="usp-nav" aria-label="Navigation">
+  <div class="usp-nav__title">USP Aero Platform documentation</div>
+  <ul>
+    
+<li><a href="/usp-aero/platform/1.1.x/">Welcome</a></li>
+      
+<li><a href="/usp-aero/platform/1.1.x/aero-platform-releasenotes/">Release Notes</a></li>
+      <li class="usp-nav__section">
+  <details>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>Installation</span>
+    </summary>
+    <ul>
+        
+<li><a href="/usp-aero/platform/1.1.x/install/requirements/">System Requirements</a></li>
+        
+<li><a href="/usp-aero/platform/1.1.x/install/installation/">Installing from ISO</a></li>
+        
+<li><a href="/usp-aero/platform/1.1.x/install/firsttimewizard/">First-time setup wizard</a></li>
+    </ul>
+  </details>
+</li>
+      <li class="usp-nav__section">
+  <details>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>Concepts</span>
+    </summary>
+    <ul>
+        
+<li><a href="/usp-aero/platform/1.1.x/concepts/gui-overview/">GUI overview</a></li>
+        
+<li><a href="/usp-aero/platform/1.1.x/concepts/configuration-lifecycle/">Configuration lifecycle</a></li>
+        
+<li><a href="/usp-aero/platform/1.1.x/concepts/roles-and-permissions/">Roles and permissions</a></li>
+    </ul>
+  </details>
+</li>
+      <li class="usp-nav__section">
+  <details>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>Operations</span>
+    </summary>
+    <ul>
+        <li><a href="/usp-aero/platform/1.1.x/operations/">Overview</a></li>
+        <li class="usp-nav__section">
+  <details>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>Component Management</span>
+    </summary>
+    <ul>
+        
+<li><a href="/usp-aero/platform/1.1.x/operations/components/install-a-component/">Install a component</a></li>
+        
+<li><a href="/usp-aero/platform/1.1.x/operations/components/update-a-component/">Update a component</a></li>
+        
+<li><a href="/usp-aero/platform/1.1.x/operations/components/remove-a-component/">Remove a component</a></li>
+    </ul>
+  </details>
+</li>
+        <li class="usp-nav__section">
+  <details>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>Configuration Backup</span>
+    </summary>
+    <ul>
+        
+<li><a href="/usp-aero/platform/1.1.x/operations/backup/automated-backups/">Set up automated backups</a></li>
+        
+<li><a href="/usp-aero/platform/1.1.x/operations/backup/restore-from-backup/">Restore from backup</a></li>
+    </ul>
+  </details>
+</li>
+        <li class="usp-nav__section">
+  <details>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>Logging</span>
+    </summary>
+    <ul>
+        
+<li><a href="/usp-aero/platform/1.1.x/operations/logging/live-log/">Live Log</a></li>
+        
+<li><a href="/usp-aero/platform/1.1.x/operations/logging/remote-log/">Log Forwarding</a></li>
+    </ul>
+  </details>
+</li>
+        <li class="usp-nav__section">
+  <details>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>High Availability</span>
+    </summary>
+    <ul>
+        
+<li><a href="/usp-aero/platform/1.1.x/operations/ha/set-up-an-ha-cluster/">Set up an HA Cluster</a></li>
+        
+<li><a href="/usp-aero/platform/1.1.x/operations/ha/add-remove-nodes/">Adding and Removing Cluster Nodes</a></li>
+        
+<li><a href="/usp-aero/platform/1.1.x/operations/ha/config-synchronization/">Synchronizing Configuration in a HA Cluster</a></li>
+        
+<li><a href="/usp-aero/platform/1.1.x/operations/ha/uncluster/">Dissolving a HA Cluster</a></li>
+    </ul>
+  </details>
+</li>
+        <li class="usp-nav__section">
+  <details>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>Maintenance</span>
+    </summary>
+    <ul>
+        
+<li><a href="/usp-aero/platform/1.1.x/operations/maintenance/update-the-os/">Update Aero OS</a></li>
+    </ul>
+  </details>
+</li>
+    </ul>
+  </details>
+</li>
+      <li class="usp-nav__section">
+  <details open>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>Reference</span>
+    </summary>
+    <ul>
+        <li><a href="/usp-aero/platform/1.1.x/reference/">Overview</a></li>
+        <li class="usp-nav__section">
+  <details open>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>GUI</span>
+    </summary>
+    <ul>
+        <li class="usp-nav__section">
+  <details open>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>Configuration</span>
+    </summary>
+    <ul>
+        
+<li><a href="/usp-aero/platform/1.1.x/reference/gui/configuration/system/">System</a></li>
+        
+<li><a href="/usp-aero/platform/1.1.x/reference/gui/configuration/network/">Network</a></li>
+        
+<li><a href="/usp-aero/platform/1.1.x/reference/gui/configuration/high-availability/" aria-current="page">High Availability</a></li>
+        
+<li><a href="/usp-aero/platform/1.1.x/reference/gui/configuration/container/">Container</a></li>
+        
+<li><a href="/usp-aero/platform/1.1.x/reference/gui/configuration/certificates/">Certificates</a></li>
+        
+<li><a href="/usp-aero/platform/1.1.x/reference/gui/configuration/log/">Log</a></li>
+    </ul>
+  </details>
+</li>
+        <li class="usp-nav__section">
+  <details>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>Configuration Deployment</span>
+    </summary>
+    <ul>
+        
+<li><a href="/usp-aero/platform/1.1.x/reference/gui/deployment/deploy/">Deploying a configuration</a></li>
+        
+<li><a href="/usp-aero/platform/1.1.x/reference/gui/deployment/revisions/">Configuration revisions</a></li>
+        
+<li><a href="/usp-aero/platform/1.1.x/reference/gui/deployment/history-and-rollback/">History and rollback</a></li>
+    </ul>
+  </details>
+</li>
+        <li class="usp-nav__section">
+  <details>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>System Management</span>
+    </summary>
+    <ul>
+        
+<li><a href="/usp-aero/platform/1.1.x/reference/gui/system-management/operating-system/">Operating System</a></li>
+        
+<li><a href="/usp-aero/platform/1.1.x/reference/gui/system-management/high-availability/">High Availability status</a></li>
+    </ul>
+  </details>
+</li>
+        
+<li><a href="/usp-aero/platform/1.1.x/reference/gui/components/">Components</a></li>
+        <li class="usp-nav__section">
+  <details>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>User Management</span>
+    </summary>
+    <ul>
+        
+<li><a href="/usp-aero/platform/1.1.x/reference/gui/user-management/local-users/">Local Users</a></li>
+        
+<li><a href="/usp-aero/platform/1.1.x/reference/gui/user-management/user-profile/">User profile and password</a></li>
+    </ul>
+  </details>
+</li>
+        <li class="usp-nav__section">
+  <details>
+    <summary class="usp-nav__label">
+      <svg class="usp-nav__caret" viewBox="7 10 10 5" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+      <span>Backup</span>
+    </summary>
+    <ul>
+        
+<li><a href="/usp-aero/platform/1.1.x/reference/gui/backup/backup-jobs/">Backup jobs</a></li>
+        
+<li><a href="/usp-aero/platform/1.1.x/reference/gui/backup/backup-targets/">Backup targets</a></li>
+        
+<li><a href="/usp-aero/platform/1.1.x/reference/gui/backup/local-backups-and-restore/">Local backups and restore</a></li>
+    </ul>
+  </details>
+</li>
+    </ul>
+  </details>
+</li>
+        
+<li><a href="/usp-aero/platform/1.1.x/reference/console/">Console menu</a></li>
+        
+<li><a href="/usp-aero/platform/1.1.x/reference/value-types/">Value types</a></li>
+        
+<li><a href="/usp-aero/platform/1.1.x/reference/validation-errors/">Configuration validation errors</a></li>
+        
+<li><a href="/usp-aero/platform/1.1.x/reference/glossary/">Glossary</a></li>
+    </ul>
+  </details>
+</li>
+  </ul>
+</nav>
+
+      </div>
+      <nav class="usp-toc usp-sidebar" aria-label="Table of contents">
+  <div class="usp-toc__title">Table of contents</div>
+  <ul>
+      <li>
+  <a href="#"></a>
+  <ul>
+      <li>
+  <a href="#enabled">Enabled</a>
+</li>
+
+      <li>
+  <a href="#sharedSecret">Shared Secret</a>
+</li>
+
+  </ul>
+</li>
+
+      <li>
+  <a href="#cluster-nodes">Cluster Nodes</a>
+  <ul>
+      <li>
+  <a href="#hostname">Hostname</a>
+</li>
+
+      <li>
+  <a href="#ipAddress">IP Address</a>
+</li>
+
+      <li>
+  <a href="#sshPublicKey">SSH Public Key</a>
+</li>
+
+      <li>
+  <a href="#mode">Mode</a>
+</li>
+
+  </ul>
+</li>
+
+  </ul>
+</nav>
+      <main class="usp-content">
+        
+<nav class="usp-breadcrumb" aria-label="Breadcrumb">
+  <ol>
+    <li><a href="/usp-aero/">USP Aero Suite documentation</a></li>
+    <li>Aero Platform</li>
+    <li><a href="/usp-aero/platform/1.1.x/">1.1.x</a></li>
+    <li><a href="/usp-aero/platform/1.1.x/reference/">Reference</a></li>
+    <li>GUI</li>
+    <li>Configuration</li>
+  </ol>
+</nav>
+<article class="usp-prose" data-pagefind-filter="docset:platform/1.1.x">
+  <h1 id="high-availability">High Availability</h1>
+<p>These screens appear only on an HA-capable deployment. They allow to enable a cluster setup that
+provides high availability of the configured services between multiple server instances. High
+availability requires a static IP address on the Management network interface; it cannot be enabled while
+that interface obtains its address via DHCP.</p>
+<h3 id="enabled">Enabled</h3>
+<p>Turns the cluster setup on or off for this system.</p>
+<ul>
+<li><strong>Values:</strong> <code>on</code> or <code>off</code></li>
+<li><strong>Default:</strong> <code>off</code></li>
+</ul>
+<p>Switching it off and saving asks for confirmation, because uncommitted platform configuration changes on this node
+are discarded. What happens next depends on the node:</p>
+<ul>
+<li><strong>Leader:</strong> the whole cluster is dissolved. The GUI opens the <em>Deployment</em> page, where you can follow the
+progress. See <a href="/usp-aero/platform/1.1.x/operations/ha/uncluster/">Dissolving a HA Cluster</a>
+.</li>
+<li><strong>Follower:</strong> only this node leaves the cluster. A dialog reminds you to define a new external interface before
+the node runs standalone, then the GUI opens the <em>Deployment</em> page. See
+<a href="/usp-aero/platform/1.1.x/operations/ha/add-remove-nodes/">Adding and Removing Cluster Nodes</a>
+.</li>
+<li><strong>No cluster formed yet:</strong> if HA was only saved but never deployed, the HA settings are simply removed.</li>
+</ul>
+<h3 id="sharedSecret">Shared Secret</h3>
+<p>Press the key icon to generate a secure shared secret. This same string value must be configured on
+all cluster nodes. Use the copy icon to copy it to the clipboard, and the eye icon to show or hide it.</p>
+<ul>
+<li><strong>Values:</strong> free text, at most 32 characters</li>
+<li><strong>Default:</strong> none</li>
+<li><strong>Required:</strong> yes</li>
+</ul>
+<h2 id="cluster-nodes">Cluster Nodes</h2>
+<p>The first cluster node in this view is always this server itself and cannot be removed. Its &quot;Hostname&quot; and
+&quot;IP Address&quot; values are read-only and come from the <a href="/usp-aero/platform/1.1.x/reference/gui/configuration/system/">System</a>
+ and <a href="/usp-aero/platform/1.1.x/reference/gui/configuration/network/">Network</a>
+ screens. The IP address
+is always the static IP address of the Management network interface, shown as <code>&lt;interface&gt; - &lt;IP address&gt;</code>:
+cluster communication is fixed to the Management network interface.</p>
+<p>The &quot;SSH Public Key&quot; is pre-generated when the system is set up and can be copied into the clipboard
+with the copy icon, in order to configure it on the other cluster nodes.</p>
+<p>A cluster has at most 10 nodes, including this one. Use the add and delete icons next to a row to add or remove
+nodes.</p>
+<p>For the other nodes, the following values must be configured:</p>
+<h3 id="hostname">Hostname</h3>
+<p>The DNS hostname of the participating cluster node.</p>
+<ul>
+<li><strong>Values:</strong> <a href="/usp-aero/platform/1.1.x/reference/value-types/#hostname">hostname</a>
+</li>
+<li><strong>Default:</strong> none</li>
+<li><strong>Required:</strong> yes</li>
+</ul>
+<h3 id="ipAddress">IP Address</h3>
+<p>The IPv4 or IPv6 address of the participating cluster node.</p>
+<ul>
+<li><strong>Values:</strong> <a href="/usp-aero/platform/1.1.x/reference/value-types/#ip-address">IP address</a>
+</li>
+<li><strong>Default:</strong> none</li>
+<li><strong>Required:</strong> yes</li>
+</ul>
+<h3 id="sshPublicKey">SSH Public Key</h3>
+<p>The SSH public key of the participating cluster node.</p>
+<ul>
+<li><strong>Values:</strong> free text (the public key value); no format is validated</li>
+<li><strong>Default:</strong> none</li>
+<li><strong>Required:</strong> yes</li>
+</ul>
+<h3 id="mode">Mode</h3>
+<p>Defines the high availability mode to be used by this cluster:</p>
+<ul>
+<li>
+<p>ACTIVE/PASSIVE: Only one node is active at any given time, the other(s) are on standby and will
+either take over automatically if the current active node goes offline, or if a take-over is
+triggered manually.</p>
+</li>
+<li>
+<p>ACTIVE/ACTIVE: All nodes are active at all times, and usually this means that traffic will be
+distributed between them.</p>
+</li>
+<li>
+<p><strong>Values:</strong> <code>Active/Passive</code>, <code>Active/Active</code> (currently disabled in the GUI and cannot be selected)</p>
+</li>
+<li>
+<p><strong>Default:</strong> <code>Active/Passive</code></p>
+</li>
+<li>
+<p><strong>Required:</strong> yes</p>
+</li>
+</ul>
+<p>Once a cluster is running, its operational status (which node is leader, whether nodes are in sync,
+deployment status) is shown on <a href="/usp-aero/platform/1.1.x/reference/gui/system-management/high-availability/">High Availability status</a>
+.</p>
+
+
+        </article>
+      </main>
+    </div>
+    <footer class="usp-footer">
+  <div class="usp-footer__inner">
+    <div class="usp-footer__copyright">&copy; 2026 United Security Providers AG. All Rights Reserved.</div>
+    <div class="usp-social">
+      <a href="https://www.linkedin.com/company/united-security-providers/" target="_blank" rel="noopener" title="United Security Providers on Linkedin" aria-label="United Security Providers on Linkedin">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zM102.2 96a38.5 38.5 0 1 1 0 77 38.5 38.5 0 1 1 0-77m282.1 320h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+
+      </a>
+      <a href="https://www.youtube.com/@United-security-providersCh" target="_blank" rel="noopener" title="United Security Providers on Youtube" aria-label="United Security Providers on Youtube">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M549.7 124.1c-6.2-23.7-24.8-42.3-48.3-48.6C458.9 64 288.1 64 288.1 64S117.3 64 74.7 75.5c-23.5 6.3-42 24.9-48.3 48.6C15 167 15 256.4 15 256.4s0 89.4 11.4 132.3c6.3 23.6 24.8 41.5 48.3 47.8C117.3 448 288.1 448 288.1 448s170.8 0 213.4-11.5c23.5-6.3 42-24.2 48.3-47.8 11.4-42.9 11.4-132.3 11.4-132.3s0-89.4-11.4-132.3zM232.2 337.6V175.2l142.7 81.2z"/></svg>
+
+      </a>
+    </div>
+  </div>
+</footer>
+
+    <script src="/usp-aero/javascripts/usp-docs.420438fc4f902397b8dba3a2d330491e6b18d703b3126e7f9c5c7dd0d21ca200.js"></script>
+  </body>
+</html>
