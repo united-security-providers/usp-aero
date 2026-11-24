@@ -93,12 +93,49 @@ There are several different types of load-balancing available:
 - **Values:** `Least Request`, `Random`, `Round Robin` or `Consistent Hash`
 - **Default:** `Least Request`
 
-### Backend Stickiness {#backendStickiness}
+### Backend Stickiness {#stickinessEnabled}
 
-If enabled, all requests coming from one client will be sent to the same backend endpoint.
+If enabled, requests from one client keep going to the same backend endpoint. Aero WAAP adds a
+cookie to the response holding the endpoint that served the client, with the path `/`. While a
+request carries that cookie, it goes to that endpoint instead of the one the
+[Load Balancer](#loadBalancer) would pick. If that endpoint is no longer configured or not healthy, the
+Load Balancer picks another one and the cookie is replaced.
+
+Stickiness is set up separately for every route that uses the backend. See
+[Keep a client on one backend endpoint](../../../application-integration/backend-stickiness) for when
+to use it.
 
 - **Values:** `on` or `off`
 - **Default:** `off`
+
+### Cookie Name {#cookieName}
+
+The name of the stickiness cookie. If left empty, a name is generated for each route that uses the
+backend, so each route keeps its own stickiness. If set, every route that uses the backend uses the
+same cookie.
+
+- **Values:** letters, digits and the characters `` !#$%&'*+.^_`|~- ``, at most 128 characters
+- **Default:** none, a name is generated
+
+### Session Timeout {#absoluteTimeout}
+
+How long the cookie is kept by the browser when the lifetime is `Permanent`. With `Session`, this
+value has no effect.
+
+- **Values:** [duration](../../value-types#duration)
+- **Default:** none
+- **Required:** yes, when the lifetime is `Permanent`
+
+### Session / Permanent {#lifetimeType}
+
+The lifetime of the cookie.
+
+- **Session** - the cookie has no expiry and is discarded when the browser is closed.
+- **Permanent** - the cookie expires after the [Session Timeout](#absoluteTimeout), also across browser
+  restarts.
+
+- **Values:** `Session` or `Permanent`
+- **Default:** `Session`
 
 ### Used in {#used-in}
 
