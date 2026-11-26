@@ -5,6 +5,11 @@ weight: 100
 
 # Glossary
 
+### API client
+
+A script, CI pipeline or other machine that calls the management API with its own client ID and
+secret instead of a person's login. See [API Clients](gui/user-management/api-clients).
+
 ### Component
 
 A software component installed on the appliance, such as the core host itself ("System") or a
