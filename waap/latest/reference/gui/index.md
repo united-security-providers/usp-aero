@@ -37,3 +37,4 @@ its own section; the help icon next to a setting in the GUI opens it directly.
 - [Static Content](https://docs.united-security-providers.ch/usp-aero/waap/latest/reference/gui/local-files/static-content/index.md)
 - [Local Error Pages](https://docs.united-security-providers.ch/usp-aero/waap/latest/reference/gui/local-files/error-pages/index.md)
 - [Maintenance Pages](https://docs.united-security-providers.ch/usp-aero/waap/latest/reference/gui/local-files/maintenance-pages/index.md)
+- [Lua Scripts](https://docs.united-security-providers.ch/usp-aero/waap/latest/reference/gui/local-files/lua-scripts/index.md)

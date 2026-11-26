@@ -195,6 +195,7 @@ Every link below points to the markdown source of a page. The page itself is at 
 - [Static Content](https://docs.united-security-providers.ch/usp-aero/waap/latest/reference/gui/local-files/static-content/index.md)
 - [Local Error Pages](https://docs.united-security-providers.ch/usp-aero/waap/latest/reference/gui/local-files/error-pages/index.md)
 - [Maintenance Pages](https://docs.united-security-providers.ch/usp-aero/waap/latest/reference/gui/local-files/maintenance-pages/index.md)
+- [Lua Scripts](https://docs.united-security-providers.ch/usp-aero/waap/latest/reference/gui/local-files/lua-scripts/index.md)
 - [Header Filtering Classes](https://docs.united-security-providers.ch/usp-aero/waap/latest/reference/header-filtering-classes/index.md)
 - [TLS versions, ciphers and algorithms](https://docs.united-security-providers.ch/usp-aero/waap/latest/reference/tls-settings/index.md)
 - [Value types](https://docs.united-security-providers.ch/usp-aero/waap/latest/reference/value-types/index.md)
