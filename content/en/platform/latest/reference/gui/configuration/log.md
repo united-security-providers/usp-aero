@@ -5,8 +5,9 @@ weight: 60
 
 # Log
 
-Should the [logs be forwarded](../../../operations/logging/remote-log) to a central log server such as a SIEM, it can be configured here.
-Logs are always available on the appliance itself through [Live Log](../../../operations/logging/live-log).
+Configures [forwarding the logs](../../../operations/logging/remote-log) to a central log server such
+as a SIEM. Logs are always available on the appliance itself through
+[Live Log](../../../operations/logging/live-log).
 
 ## Remote Log
 
@@ -34,14 +35,14 @@ The port the log server listens on.
 
 The protocol used to send the log data. Choose the one your log server expects.
 
-- **Values:** `Syslog`, `OpenTelemetry`
+- **Values:** `Syslog` or `OpenTelemetry`
 - **Default:** `Syslog`
 - **Required:** yes
 
-## TLS
+## TLS {#tlsEnabled}
 
-A switch that encrypts the connection to the log server. Leave it on unless the log server does not
-support TLS; without it, log data crosses the network in the clear.
+A switch that encrypts the connection to the log server. Turn it on unless the log server does not
+support TLS. Without it, log data crosses the network in the clear.
 
 - **Values:** `on` or `off`
 - **Default:** `off`

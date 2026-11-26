@@ -29,7 +29,7 @@ The address stored for the user. See [E-Mail](#email) below.
 
 The role assigned to the user. See [Role](#role) below.
 
-- **Values:** `Administrator`, `Viewer` (shown as `-` if no role could be determined)
+- **Values:** `Administrator` or `Viewer`, shown as `-` if no role could be determined
 
 ### Edit {#edit-user}
 
@@ -42,19 +42,20 @@ Click the "trashcan" icon to delete a user.
 ## Create or update a user
 
 When adding a new user, the following fields must be filled in. The same dialog is used to edit an
-existing user; when editing, the username cannot be changed and the password is optional — leave it
+existing user. When editing, the username cannot be changed and the password is optional. Leave it
 blank to keep the current password.
 
 ### Username {#username}
 
 The user account name used for the login.
 
-- **Values:** free text, at most 32 characters; letters and digits only. Cannot be changed once the user has been created
+- **Values:** letters and digits only, at most 32 characters. It cannot be changed once the user has
+  been created.
 - **Required:** yes
 
 ### Display name {#displayname}
 
-The display name for the user (e.g. the real name and surname).
+The display name for the user, for example the real name and surname.
 
 - **Values:** free text, at most 32 characters
 - **Required:** yes
@@ -69,9 +70,10 @@ The e-mail address of the user.
 ### Role {#role}
 
 Select the role that the user should have. See
-[Roles and permissions](../../../concepts/roles-and-permissions) for what each role can do.
+[Roles and permissions](../../../concepts/roles-and-permissions) for what each role can do. The role
+of the built-in `admin` user cannot be changed.
 
-- **Values:** `Administrator`, `Viewer`.
+- **Values:** `Administrator` or `Viewer`
 - **Required:** yes
 
 ### Password {#password}
@@ -79,4 +81,5 @@ Select the role that the user should have. See
 The password used by this user account for the login.
 
 - **Values:** free text, at least 8 characters
-- **Required:** yes when creating a new user; optional when editing — leave blank to keep the current password
+- **Required:** yes, when creating a new user. When editing, leave it blank to keep the current
+  password.

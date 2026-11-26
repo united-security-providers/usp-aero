@@ -5,8 +5,8 @@ weight: 10
 
 # Listeners
 
-Configure the HTTP listeners. A listener accepts incoming connections on an IP address and port;
-see [How a request is processed](../../../concepts/request-flow) for how it relates to virtual hosts,
+Configure the HTTP listeners. A listener accepts incoming connections on an IP address and port. See
+[How a request is processed](../../../concepts/request-flow) for how it relates to virtual hosts,
 routes and backends.
 
 ## List of listeners
@@ -25,7 +25,7 @@ The listener's IPv4 address.
 
 ### IPv6 Address {#ipv6-column}
 
-The listener's IPv6 address.
+The listener's IPv6 address. Only shown when IPv6 support is enabled.
 
 - **Values:** [IP address](../../value-types#ip-address)
 
@@ -52,7 +52,7 @@ listener is not possible while it still has virtual hosts assigned to it.
 
 ### Add Listener {#addListenerButton}
 
-Creates a new listener.
+Creates a new listener. Up to 32 listeners can be configured.
 
 ## Tab "Settings"
 
@@ -106,18 +106,18 @@ must be unique among listeners.
 
 ### Overwrite Server header {#overwriteServerHeader}
 
-Allows to set or overwrite the value of the HTTP `Server` response header sent by this listener.
+Sets or overwrites the HTTP `Server` response header sent by this listener.
 
 - **Values:** `on` or `off`
 - **Default:** `off`
 
 ### Custom Server header {#customServerHeader}
 
-The value sent as the `Server` HTTP response header. When "Overwrite Server header" is switched on,
-this defaults to `AeroWAAP`.
+The value sent as the `Server` HTTP response header. Only shown while "Overwrite Server header" is
+on.
 
 - **Values:** text of at most 4096 characters
-- **Default:** none
+- **Default:** `AeroWAAP`
 
 ### Header based Client IP detection {#headerBasedClientIpDetection}
 
@@ -127,10 +127,11 @@ trusted proxy chain, using either the `X-Forwarded-For` header or a custom heade
 - **Values:** `on` or `off`
 - **Default:** `off`
 
-### Client IP Detection Mode {#clientIpDetectionMode}
+### X-Forwarded For / Custom Header {#clientIpDetectionMode}
 
-Chooses which HTTP header carries the client's real IP address: the standard `X-Forwarded-For`
-header, using the configured number of trusted hops, or a custom header name.
+Chooses which HTTP header carries the client's real IP address. "X-Forwarded For" uses the standard
+`X-Forwarded-For` header with the configured number of trusted hops. "Custom Header" uses a header
+of your choice.
 
 - **Values:** `X-Forwarded For` or `Custom Header`
 - **Default:** `X-Forwarded For`
@@ -155,5 +156,12 @@ The name of the HTTP header that carries the client's real IP address.
 ### Assigned virtual hosts {#assigned-vhosts}
 
 Shows the virtual hosts currently assigned to this listener, and lets you add another one. Virtual
-hosts can only be added once the listener itself has been created; see
+hosts can only be added once the listener itself has been created. See
 [Virtual Hosts](../vhosts/virtual-hosts).
+
+## Comment {#comments}
+
+Free text about the listener. It is only shown in the configuration.
+
+- **Values:** text
+- **Default:** none

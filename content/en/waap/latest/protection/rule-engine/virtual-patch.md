@@ -23,7 +23,7 @@ already under way - and actually fixing the code, or waiting for a Core Rule Set
 
 
 > [!IMPORTANT]
-> A custom rule is evaluated independently of the Core Rule Set's Mode: it still blocks matching
+> A custom rule is evaluated independently of the Core Rule Set's Mode. It still blocks matching
 >  traffic even while the Core Rule Set itself is set to `Disabled` or `Detect`.
 
 > [!TIP]

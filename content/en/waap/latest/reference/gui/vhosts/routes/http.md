@@ -8,10 +8,9 @@ weight: 20
 ## Allowed Methods {#allowedMethods}
 
 Defines the HTTP methods to allow. Requests with other HTTP methods are rejected with status code
-`405 Method Not Allowed`. The list of available methods on the left shows all
-[IANA HTTP Methods](https://www.iana.org/assignments/http-methods/http-methods.xhtml). By default
-`GET`, `HEAD`, `OPTIONS` and `POST` are allowed, as shown in the list of selected methods on the
-right. Move methods left and right as desired and save.
+`405 Method Not Allowed`. The "Blocked Methods" list on the left holds the remaining
+[IANA HTTP Methods](https://www.iana.org/assignments/http-methods/http-methods.xhtml). The "Allowed
+Methods" list on the right holds the allowed ones. Move methods between the lists and save.
 
 - **Values:** any of the IANA HTTP methods (e.g. `GET`, `HEAD`, `POST`, `PUT`, `PATCH`, `DELETE`,
   `OPTIONS`, `CONNECT`, `TRACE`, and the WebDAV/versioning methods)
@@ -25,10 +24,10 @@ right. Move methods left and right as desired and save.
 The maximum size of the request body this route accepts. A request with a larger body is rejected
 with status code `413`.
 
-- **Values:** a number followed by a unit `B`, `KB`, `MB`, `GB` or `TB` (e.g. `10KB`), from 1 KB
-  up to 1 GB. Units are multiples of 1024, so `1KB` is 1024 bytes. The 1 GB maximum only applies
-  while the rule engine inspects the body.
-- **Default:** `10kb`
+- **Values:** a [quantity](../../../value-types#quantity) of at least 1 byte, for example `10Ki`. The
+  maximum is `1Gi` while the rule engine inspects the body. With
+  [Disable rule engine for body payload](#bodyAccess) on, larger values are accepted.
+- **Default:** `10Ki`
 - **Required:** yes
 
 ### Disable rule engine for body payload {#bodyAccess}
@@ -38,4 +37,10 @@ are inactive and will be skipped for this route.
 
 - **Values:** `on` or `off`
 - **Default:** `off`
-- **Required:** yes
+
+## Comments {#comments}
+
+Free text about the route's HTTP settings. It is only shown in the configuration.
+
+- **Values:** text
+- **Default:** none

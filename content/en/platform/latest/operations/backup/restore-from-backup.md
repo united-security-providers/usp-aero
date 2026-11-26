@@ -5,11 +5,13 @@ weight: 20
 
 # Restore from backup
 
-To restore this appliance from a downloaded backup archive:
+To restore this appliance from a downloaded backup archive, follow these steps.
 
 1. Open [Local backups and restore](../../reference/gui/backup/local-backups-and-restore) and choose "Restore Backup".
 2. Drag and drop the backup file into the predefined field, or choose it manually.
-3. Confirm the restore.
+3. Confirm the restore. If the backup does not match the installed components, the dialog lists the
+   differences. Install, update or remove components on the
+   [Components](../../reference/gui/components) screen first, or choose "Restore Anyway".
 
 To restore from a backup that is already stored locally on this appliance (produced by a backup job
 with a "Local" target), use "Restore" on the corresponding entry in the Local Backups list instead.

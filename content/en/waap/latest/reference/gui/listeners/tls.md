@@ -7,18 +7,18 @@ weight: 20
 
 The TLS tab lets you define TLS-related settings for the listener. Server certificates themselves
 are managed on [Certificates & Keys](../certificates/certificates-and-keys) and selected per virtual
-host; see [Virtual Hosts](../vhosts/virtual-hosts).
+host. See [Virtual Hosts](../vhosts/virtual-hosts).
 
 ## TLS Versions
 
-Select which TLS versions this listener accepts; see
+Select which TLS versions this listener accepts. A new listener accepts only TLS 1.3. See
 [TLS versions, ciphers and algorithms](../../tls-settings).
 
 ## Client Certificate Validation (mTLS)
 
 ### Client Certificate Validation (mTLS) {#clientCertificateValidationEnabled}
 
-Enables mutual TLS: the listener validates the client certificate presented during the TLS
+Enables mutual TLS. The listener validates the client certificate presented during the TLS
 handshake.
 
 - **Values:** `on` or `off`
@@ -28,8 +28,7 @@ handshake.
 
 The CA certificate used to validate client certificates presented during the TLS handshake.
 
-- **Values:** one of the uploaded CA certificates (see
-  [Certificates & Keys](../certificates/certificates-and-keys)), or not defined
+- **Values:** one of the uploaded [CA certificates](../certificates/ca-certificates), or not defined
 - **Default:** none
 
 ### Optional validation {#optionalValidation}
@@ -88,5 +87,12 @@ If enabled, details of the validated client certificate are forwarded to the bac
 
 ## Customize supported Ciphers and Algorithms
 
-Overrides the default cipher suites, ECDH curves and signature algorithms for this listener; see
+Overrides the default cipher suites, ECDH curves and signature algorithms for this listener. See
 [TLS versions, ciphers and algorithms](../../tls-settings).
+
+## Comment {#comments}
+
+Free text about the listener's TLS settings. It is only shown in the configuration.
+
+- **Values:** text
+- **Default:** none

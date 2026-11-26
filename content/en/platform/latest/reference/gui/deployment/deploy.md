@@ -5,16 +5,15 @@ weight: 10
 
 # Deploying a configuration
 
-This screen allows to deploy the configuration for the core system and / or any of the registered
-services (e.g. "WAAP"). See [Configuration lifecycle](../../../concepts/configuration-lifecycle) for how this
+This screen deploys the configuration of the core system and of the registered services, such as
+"WAAP". See [Configuration lifecycle](../../../concepts/configuration-lifecycle) for how this
 fits into the overall flow of editing, revising and deploying a configuration.
 
 Each registered component has its own tab, for example "System" for the base platform and "WAAP".
-The same behavior and usage applies on every tab; it only concerns the changes in the
-configuration of that particular component.
+Every tab works the same way and only concerns the configuration of its component.
 
-A tab is marked when its component needs attention: in red if it has unreviewed changes or its revision has
-validation errors, in yellow if a revision is ready to deploy.
+A tab is marked when its component needs attention. It is red if the component has unreviewed changes or
+its revision has validation errors, and yellow if a revision is ready to deploy.
 
 ## Toolbar
 
@@ -48,7 +47,7 @@ If the revision has validation errors it cannot be deployed. Instead of the butt
 Choose which components' configuration revisions should be deployed, then deploy them.
 
 Each row can be selected with a checkbox once its revision has no validation errors and has not
-already been activated; the **Deploy** button below is disabled until at least one row is selected.
+already been activated. The **Deploy** button below is disabled until at least one row is selected.
 A row whose revision has validation errors shows the status *Has validation errors*, and the errors are listed
 above the table.
 
@@ -71,5 +70,5 @@ The deployment status of the component's selected revision.
 ### Deploy {#deploy}
 
 Activates the configuration revisions selected in the table above, restarting the corresponding
-services if necessary. While a deployment is running its status is shown as in progress; it
+services if necessary. While a deployment is running, its status is shown as in progress. It
 completes as either successful or failed. A revision that has validation errors cannot be deployed.

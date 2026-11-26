@@ -29,7 +29,7 @@ These limits apply across every virtual host carried by the listener.
 
 > [!WARNING]
 > A Maximum Concurrent Connections value set too low turns a legitimate traffic spike into an
-> outage; size it from expected peak load.
+> outage. Size it from expected peak load.
 
 ## Block clients that keep failing
 
@@ -86,7 +86,7 @@ stay incomplete and how many may exist at once:
   **Connection Acceptance Timeout** and **TLS Handshake Timeout** bound both phases.
 - **Connection exhaustion from a limited number of sources**: **Maximum Concurrent Connections** caps
   how many connections exist at once, so the appliance stays responsive instead of running out of
-  resources. It does not distinguish attacker from user: once the cap is reached, further
+  resources. It does not distinguish attacker from user. Once the cap is reached, further
   connections are refused regardless of who opens them.
 - **HTTP/2 stream flooding**: a single connection opens a very large number of concurrent streams to
   multiply its cost. **Maximum Concurrent HTTP/2 Streams** caps concurrent streams per connection. Note

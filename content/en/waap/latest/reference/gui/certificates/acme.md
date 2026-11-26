@@ -5,10 +5,38 @@ weight: 30
 
 # ACME providers
 
-Here one or multiple ACME providers can be configured. Each configured provider can then be used /
-referenced in the setup of a virtual host, which lets that virtual host's certificate be issued and
-renewed automatically instead of being uploaded by hand. Click the "+" icon to add a new ACME
-provider to the list.
+This tab lists the configured ACME providers. A virtual host can use a provider instead of an
+uploaded certificate. Its certificate is then issued and renewed automatically.
+
+## List of ACME providers
+
+### Name {#name-column}
+
+The provider's name.
+
+### CA URL {#caUrl-column}
+
+The provider's [Certificate Authority URL](#certificateAuthorityUrl).
+
+### Email {#email-column}
+
+The provider's [Email address](#emailAddress).
+
+### EAB {#eab-column}
+
+Whether [External Account Binding](#eabKeyId) credentials are set.
+
+### Key Type {#keyType-column}
+
+The provider's [Key Type](#keyType).
+
+### Actions {#actions}
+
+Open a provider ("Edit" or, in read-only mode, "Details"), or delete it.
+
+### Create ACME Provider {#create-provider}
+
+The "+" icon opens the dialog to add a provider.
 
 ## Create ACME Provider
 
@@ -48,7 +76,7 @@ against a forged endpoint, so use it only against a test server.
 ### Email address {#emailAddress}
 
 The address the provider sends notices to, such as warnings about a renewal that is not working. Use
-an address that is monitored - an expired certificate usually announces itself here first.
+an address that is monitored. An expired certificate usually announces itself here first.
 
 - **Values:** an e-mail address
 - **Default:** none
@@ -58,9 +86,8 @@ an address that is monitored - an expired certificate usually announces itself h
 
 The key type requested for the issued certificate.
 
-- **Values:** one of the key types offered by the system
-- **Default:** none
-- **Required:** yes
+- **Values:** `ECDSA P-256`, `ECDSA P-384`, `RSA 2048` or `RSA 4096`
+- **Default:** `ECDSA P-256`
 
 ## External Account Binding (EAB)
 
@@ -75,7 +102,7 @@ The account identifier issued by the provider.
 - **Values:** free text
 - **Default:** none
 
-### HMAC key {#eabHmacKey}
+### HMAC Key {#eabHmacKey}
 
 The key used to authenticate this client against the ACME server.
 

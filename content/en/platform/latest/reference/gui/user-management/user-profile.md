@@ -5,8 +5,9 @@ weight: 20
 
 # User profile and password
 
-Opened from the user profile menu in the top navigation bar. (see
-[Management GUI overview](../../../concepts/gui-overview)). Here the user can change his own password.
+Opened from the user profile menu in the top navigation bar. See
+[Management GUI overview](../../../concepts/gui-overview). Here you edit your own profile and change
+your own password.
 
 ## User Profile
 

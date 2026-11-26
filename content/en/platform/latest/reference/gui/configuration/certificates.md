@@ -18,8 +18,8 @@ section below.
 
 ### Automatic Certificate renewal (ACME) {#acmeEnabled}
 
-Use this option to instead have the server certificate be generated and renewed automatically using
-the ACME protocol. The fields below appear once this is turned on.
+Has the server certificate issued and renewed automatically using the ACME protocol, instead of
+using the Active Certificate. The fields below appear once this is turned on.
 
 - **Values:** `on` or `off`
 - **Default:** `off`
@@ -29,7 +29,6 @@ the ACME protocol. The fields below appear once this is turned on.
 The additional SANs the certificate should hold.
 
 - **Values:** free text
-- **Required:** no
 
 ### Certificate Authority URL {#certificateAuthorityUrl}
 
@@ -48,15 +47,15 @@ The CA certificate used to validate the ACME server's own certificate. Add CA ce
 ### Skip Certificate Validation {#skipCertificateValidation}
 
 Skips validation of the ACME server's certificate. This is turned on automatically whenever no
-[Trusted CA Certificate](#trustedCaCertificateId) is selected.
+[Trusted CA Certificate](#trustedCaCertificateId) is selected, and off when one is selected.
 
 - **Values:** `on` or `off`
-- **Default:** `off`
+- **Default:** `on`, since no Trusted CA Certificate is selected
 
 ### Contact Email Address {#contactEmailAddress}
 
-The email address the ACME server uses to contact you about the certificate (e.g. renewal or
-revocation notices).
+The email address the ACME server uses to contact you about the certificate, for example for renewal
+or revocation notices.
 
 - **Values:** an email address
 - **Required:** yes
@@ -65,34 +64,31 @@ revocation notices).
 
 The key algorithm and size to generate the certificate with.
 
-- **Values:** one of the key types supported by this system
+- **Values:** `ECDSA P-256`, `ECDSA P-384`, `RSA 2048` or `RSA 4096`
+- **Default:** none
 - **Required:** yes
 
-### External Account Binding (EAB)
-
 The following two fields are only needed when the ACME server requires an external account to be
-linked to the request (External Account Binding, EAB):
+linked to the request (External Account Binding, EAB).
 
 ### Key ID {#eabKeyId}
 
 The ID provided by the ACME CA.
 
 - **Values:** free text
-- **Required:** no
 
 ### HMAC Key {#eabHmacKey}
 
 The matching token for the ID provided by the ACME CA.
 
 - **Values:** free text
-- **Required:** no
 
 ### Available Certificates {#certificates}
 
 Click the "+" icon to either upload a certificate or create a self-signed one. Click the "trashcan"
-icon in order to delete a certificate.
+icon to delete a certificate.
 
-Uploading a certificate asks for the following:
+Uploading a certificate asks for the following.
 
 ### Alias {#alias}
 
@@ -100,14 +96,12 @@ A freely defined text label for the certificate, shown wherever it can be select
 to the alias of an uploaded CA certificate (see [Tab "CA Certificates"](#tab-ca-certificates) below).
 
 - **Values:** free text
-- **Required:** no
 
 ### Password {#password}
 
 The password protecting the uploaded PKCS#12 certificate file, if any.
 
 - **Values:** free text
-- **Required:** no
 
 ## Tab "CA Certificates"
 

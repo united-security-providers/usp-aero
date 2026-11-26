@@ -18,4 +18,11 @@ listener's Stream Idle Timeout.
 
 - **Values:** [duration](../../../value-types#duration)
 - **Default:** `60s`
+- **Required:** yes
 
+## Comments {#comments}
+
+Free text about the route's timeouts. It is only shown in the configuration.
+
+- **Values:** text
+- **Default:** none

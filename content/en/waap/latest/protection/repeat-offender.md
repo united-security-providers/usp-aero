@@ -30,7 +30,7 @@ blocked, however fast it sends.
 
 ## How a client is identified
 
-Violations are counted per client identifier and per virtual host: violations a client collects on
+Violations are counted per client identifier and per virtual host. Violations a client collects on
 one virtual host do not count towards another, even if both share a listener. When the
 [listener](../reference/gui/listeners/listeners#clientIpDetectionMode) uses a custom header for
 client IP detection, the value of that header is the client identifier. Otherwise the client IP

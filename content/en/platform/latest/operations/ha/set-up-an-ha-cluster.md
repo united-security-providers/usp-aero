@@ -23,7 +23,7 @@ In order to operate an Aero cluster the following requirements are in effect:
 The cluster makes decisions, such as which node is the leader, only when a majority of its nodes (the quorum) agree.
 In a two-node cluster, a broken connection between the nodes leaves each node alone with half of the votes, so
 neither has a majority. Each node can assume that the other has failed and act as the leader on its own. This is
-called a *split brain*: both nodes serve traffic and change their configuration independently, and the cluster ends
+called a *split brain*. Both nodes serve traffic and change their configuration independently, and the cluster ends
 up in an inconsistent state.
 
 With three nodes, the two nodes that can still reach each other keep the majority and continue to run the cluster.

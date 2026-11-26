@@ -5,16 +5,16 @@ weight: 20
 
 # Backup targets
 
-A backup job stores its data at a target. Several kinds of target are available:
+A backup job stores its data at a target. Several kinds of target are available.
 
-- **Local** - Stores the backup locally, as a downloadable local backup — see
+- **Local** - Stores the backup locally, as a downloadable local backup. See
   [Local backups and restore](local-backups-and-restore).
 - **SCP** - Stores the backup on a remote system by use of Secure Copy (SCP).
 - **SFTP** - Stores the backup on a remote system by use of Secure File Transfer (SFTP).
 
 ## Add Backup Target
 
-For "SCP" and "SFTP", a number of settings must be specified:
+For "SCP" and "SFTP", the following settings must be specified.
 
 ### Name {#name}
 
@@ -54,12 +54,10 @@ The directory path in the filesystem of the target host where to store the backu
 
 ### Type {#type}
 
-The protocol used to connect to the target host — see above for the difference between SCP and
-SFTP.
+The protocol used to connect to the target host. See above for the difference between SCP and SFTP.
 
-- **Values:** `SCP`, `SFTP`
+- **Values:** `SCP` or `SFTP`
 - **Default:** `SCP`
-- **Required:** yes
 
 Deleting a target (trash icon) is only possible while no backup job uses it.
 
@@ -73,4 +71,4 @@ Opened from the key icon next to a remote target on the
 Each target's SSH public key can be copied to the clipboard, so it can be added to the authorized
 keys of the target host's account.
 
-- **Values:** read-only; generated automatically for the target
+- **Values:** read-only, generated automatically for the target

@@ -33,8 +33,8 @@ Replacing these responses with a local error page:
 - **covers errors you do not control**, for example the default pages of a third-party product or of a backend that
   is temporarily misconfigured.
 
-Overwriting the status code goes one step further: it hides which kind of error happened (see
-[When to overwrite the status code](#when-to-overwrite-the-status-code)).
+Overwriting the status code goes one step further. It hides which kind of error happened. See
+[When to overwrite the status code](#when-to-overwrite-the-status-code).
 
 ## Replace the backend's error pages on a virtual host
 

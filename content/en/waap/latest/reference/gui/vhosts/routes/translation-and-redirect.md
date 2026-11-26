@@ -41,7 +41,7 @@ Request Path Translation.
 
 The scheme to redirect to. Leave unset to keep the original request's scheme.
 
-- **Values:** `-` (keep original), `HTTP`, `HTTPS`
+- **Values:** `-` (keep original), `HTTP` or `HTTPS`
 - **Default:** `-`
 - **Required:** yes
 
@@ -61,11 +61,13 @@ The target port to which to redirect to.
 
 ### Replace Type {#replaceType}
 
+How the Replacement Path is applied to the request path.
+
 - **Full Path** - Replaces the entire request path with the Replacement Path.
 - **Prefix** - Replaces only the matched prefix of the request path with the Replacement Path.
   Only offered when the route has exactly one path-prefix matching rule.
 
-- **Values:** `Full Path`, `Prefix`
+- **Values:** `Full Path` or `Prefix`
 - **Default:** `Full Path`
 - **Required:** yes
 
@@ -74,4 +76,11 @@ The target port to which to redirect to.
 The path to which to redirect the client.
 
 - **Values:** free text, at most 1024 characters
+- **Default:** none
+
+## Comments {#comments}
+
+Free text about the route's translation and redirect settings. It is only shown in the configuration.
+
+- **Values:** text
 - **Default:** none

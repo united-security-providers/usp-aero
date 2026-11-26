@@ -6,8 +6,7 @@ weight: 40
 # Timeouts & Limits
 
 Timeout and circuit-breaking settings for the connection between Aero WAAP and the endpoints of this
-backend. All of them are mandatory: a backend always has a value for each, and creating a backend
-starts from the defaults given below.
+backend. All of them are mandatory. A new backend starts with the defaults given below.
 
 ## Timeouts
 
@@ -18,15 +17,17 @@ is used, the TLS handshake. An attempt that is not complete when this expires is
 
 - **Values:** [duration](../../value-types#duration)
 - **Default:** `10s`
+- **Required:** yes
 
 ### Connection Idle Timeout {#connectionIdleTimeout}
 
 The idle timeout for an established connection to a backend endpoint. Idle time is a period in which
-there are no active requests on the connection; once it expires, the connection is closed. Because no
-request is in flight at that moment, this is not visible to a client.
+there are no active requests on the connection. Once it expires, the connection is closed. No request
+is in flight at that moment, so a client does not notice it.
 
 - **Values:** [duration](../../value-types#duration)
 - **Default:** `60s`
+- **Required:** yes
 
 ## Circuit Breaking
 
@@ -35,7 +36,7 @@ tie up unlimited resources on the appliance. A request that exceeds any of them 
 `503 Service Unavailable` without reaching the backend.
 
 Each limit is counted across all endpoints of the backend together, not per endpoint. The limits are
-applied separately for every route that uses this backend: two routes pointing at the same backend
+applied separately for every route that uses this backend. Two routes pointing at the same backend
 each get these values in full, rather than sharing them.
 
 ### Maximum Connections {#maxConnections}
@@ -44,6 +45,7 @@ The maximum number of connections established to this backend at the same time.
 
 - **Values:** a whole number of 1 or more
 - **Default:** `10240`
+- **Required:** yes
 
 ### Maximum HTTP Pending Requests {#maxPendingRequests}
 
@@ -52,11 +54,20 @@ available. Once the queue is full, further requests are rejected instead of bein
 
 - **Values:** a whole number of 1 or more
 - **Default:** `10240`
+- **Required:** yes
 
 ### Maximum Parallel Requests {#maxParallelRequests}
 
-The maximum number of requests in flight to this backend at the same time - requests that have been
-sent and are waiting for a response.
+The maximum number of requests in flight to this backend at the same time. These are requests that
+have been sent and are waiting for a response.
 
 - **Values:** a whole number of 1 or more
 - **Default:** `10240`
+- **Required:** yes
+
+## Comments {#comments}
+
+Free text about the backend's timeouts and limits. It is only shown in the configuration.
+
+- **Values:** text
+- **Default:** none

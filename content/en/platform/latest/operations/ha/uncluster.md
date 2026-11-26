@@ -87,13 +87,13 @@ as you would any standalone node.
 
 ### Why the follower's configuration becomes "dirty"
 
-A follower must not keep the virtual external IPs: the leader now owns them, and the same address on two machines
+A follower must not keep the virtual external IPs. The leader now owns them, and the same address on two machines
 causes an IP conflict. The follower therefore **releases the virtual IPs and removes the address configuration of
 its external network interface**.
 
 The new `UNCLUSTER` revision reflects this, so it is **incomplete**. An Aero instance needs a valid external
 interface, and this revision does not have one. It would fail validation, so it is **not activated**. Such a revision
-is called *dirty*: it describes the actual state of the node, but it is not a valid configuration you can activate.
+is called *dirty*. It describes the actual state of the node, but it is not a valid configuration you can activate.
 
 Until you fix this, the follower:
 
@@ -112,7 +112,7 @@ After the activation succeeds, the follower runs as a standalone Aero instance w
 
 ## If something goes wrong
 
-- **A step fails or times out on a node** (the default limit is 10 minutes): the `UNCLUSTER` revision has already
+- **A step fails or times out on a node** (the default limit is 10 minutes). The `UNCLUSTER` revision has already
   been created, but the node may still be partly configured as a cluster member. There is no automatic rollback.
   Contact support to complete the uncluster on that node.
 - **A node was offline or in standby during the uncluster:** that node did not leave the cluster and still holds its

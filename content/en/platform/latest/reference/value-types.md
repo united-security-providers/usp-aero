@@ -61,7 +61,7 @@ Either a [hostname](#hostname) or an [IP address](#ip-address).
 
 ## Network in CIDR notation {#cidr}
 
-A network address followed by a prefix length: `/1` to `/32` for IPv4, `/1` to `/128` for IPv6. The
+A network address followed by a prefix length, `/1` to `/32` for IPv4 and `/1` to `/128` for IPv6. The
 default routes `0.0.0.0/0` and `::/0` are accepted as well.
 
 Examples: `10.0.0.0/8`, `192.168.10.0/24`, `2001:db8::/32`.

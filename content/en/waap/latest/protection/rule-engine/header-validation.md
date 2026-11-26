@@ -12,8 +12,8 @@ code `403`. If an application legitimately needs such a header, exclude it from 
 
 ## Why validate headers
 
-Every standard HTTP header has a defined format: which characters it may contain, how its value is structured, and
-how long it reasonably gets. Browsers and regular clients follow these formats, so a malformed header is rarely a
+Every standard HTTP header has a defined format. It defines which characters the header may contain, how its value
+is structured, and how long it reasonably gets. Browsers and regular clients follow these formats, so a malformed header is rarely a
 typo. It usually comes from an attack tool, a scanner or a broken client.
 
 Malformed and unexpected header values are a common way to attack a web application. Header validation rejects them
@@ -27,7 +27,7 @@ before they reach the backend, and prevents in particular:
   an injection payload into the systems that trust them.
 - **Bypassing security rules and routing.** Some frameworks honour headers such as `X-Original-URL` or
   `X-Rewrite-URL` and process the path given there instead of the real request path. Only an absolute URI or a path
-  starting with `/` is accepted; empty or malformed overrides are rejected.
+  starting with `/` is accepted. Empty or malformed overrides are rejected.
 - **Method override.** Headers such as `X-HTTP-Method-Override` let a client change the HTTP method seen by the
   application. Only a valid method name is accepted.
 - **Injection into the application.** Applications often process header values, for example to log them, to build
@@ -42,7 +42,7 @@ This is useful because:
   hardened against unexpected header values. Header validation ensures that they receive the validated headers only
   in their standard format.
 - **It complements the Core Rule Set.** The [Core Rule Set](handle-a-crs-false-positive) looks for known attack
-  patterns, which means an unknown attack can slip through. Header validation works the other way round: it accepts
+  patterns, which means an unknown attack can slip through. Header validation works the other way round. It accepts
   only what the specification allows and rejects everything else, without needing to know the attack.
 - **It reports every failing header at once.** All headers of a request are checked before the decision is made, so
   the log lists every header that failed, not just the first one. This makes it easier to find all the exceptions an
@@ -52,7 +52,7 @@ This is useful because:
 
 ## What is checked
 
-- **Known headers only.** Header validation covers a defined set of headers: the standard HTTP headers, widely used
+- **Known headers only.** Header validation covers a defined set of headers. These are the standard HTTP headers, widely used
   de facto headers such as the `X-Forwarded-*` family, and the headers sent by modern browsers. Headers that are not
   in this set are passed through unchanged. To block or remove unknown headers, use
   [Header filtering](../header-filtering).

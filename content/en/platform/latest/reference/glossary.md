@@ -18,10 +18,10 @@ A saved, numbered snapshot of a component's configuration. See
 ### Deployment
 
 The activation of a configuration revision. See [Deploying a configuration](gui/deployment/deploy).
-<!--
+
 ### HA
 
-High Availability: a cluster setup providing continued operation across multiple server instances.
+High Availability, a cluster setup providing continued operation across multiple server instances.
 See [High Availability](gui/configuration/high-availability).
 
 ### Leader
@@ -37,4 +37,3 @@ In an HA cluster, a node that synchronizes its configuration from the leader.
 
 A cluster node state in which the node takes no part in cluster events, such as taking over as
 leader.
--->

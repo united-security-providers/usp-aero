@@ -21,7 +21,7 @@ An HA cluster has three kinds of nodes:
 The **High Availability** page (*System Management > High Availability*) shows which node is the leader.
 
 Synchronization is **never automatic**. Activating a configuration on the leader changes only the leader. The followers
-keep running their previous configuration until you synchronize them. This is deliberate: you can upgrade or
+keep running their previous configuration until you synchronize them. This is deliberate. You can upgrade or
 reconfigure one node and still fall back to an unchanged follower (with **Take Over**) if something goes wrong.
 
 ## You can only synchronize from the leader
@@ -153,7 +153,7 @@ On the leader, open *System Management > High Availability*:
   the leader's are highlighted, and so is any component a node has not received yet.
 - **Deployment Status** shows the progress of each node, for example `transfer_started`, `component_deploy_started`,
   `import_started`, `activation_started` and finally `activated`. On the leader, it changes to `synchronized` when a
-  follower has finished. The values are shown exactly as written here; see
+  follower has finished. The values are shown exactly as written here. See
   [Status values](../../reference/gui/system-management/high-availability#status-values) for the complete list.
 - If a follower fails, its status changes to `sync_failed` and an error message explains the cause.
 

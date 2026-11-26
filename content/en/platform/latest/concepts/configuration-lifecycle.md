@@ -62,7 +62,7 @@ the resulting configuration is functional and works together.
 <!--
 ## High Availability
 
-On an HA-capable deployment, a revision only needs to be deployed on the leader node; deployed
+On an HA-capable deployment, a revision only needs to be deployed on the leader node. Deployed
 configuration is then synchronized to the other cluster nodes. See
 [High Availability status](../reference/gui/system-management/high-availability).
 -->

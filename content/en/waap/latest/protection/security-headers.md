@@ -5,7 +5,7 @@ weight: 30
 
 # Security Headers
 
-Security headers tell the browser how to treat a site's responses: where the page may be framed,
+Security headers tell the browser how to treat a site's responses. They decide where the page may be framed,
 which origins may read it, where it may load resources from, and whether the browser should even
 try HTTP again. Aero WAAP sets them at two levels: [response security headers on the route](../reference/gui/vhosts/routes/headers#security-headers)
 , and [Strict Transport Security (HSTS) on the virtual host](../reference/gui/vhosts/virtual-hosts#hstsEnabled).
@@ -38,7 +38,7 @@ leakage about the application server. It is possible to overwrite the default va
 ### Strict-Transport-Security (HSTS)
 
 **What it does.** After a first successful HTTPS response, the browser refuses to talk to this host
-over plain HTTP for the whole Max Age period: it rewrites `http://` links to `https://` itself, and a
+over plain HTTP for the whole Max Age period. It rewrites `http://` links to `https://` itself, and a
 certificate error becomes a hard failure the user cannot click through. This closes the gap that
 downgrade and TLS-stripping attacks rely on, where the very first request travels unencrypted.
 
@@ -56,7 +56,7 @@ is publicly trusted and reliably renewed.
   tools, test hosts and appliance UIs that may use a self-signed certificate or no TLS at all.
   Check every name under the domain before turning this on.
 - Preload adds the `preload` token so the host can be submitted to the browsers' built-in preload
-  list. That list is compiled into browser releases; removal takes months and is not in your hands.
+  list. That list is compiled into browser releases. Removal takes months and is not in your hands.
   Submission is a separate step at the browser vendors.
 
 > [!TIP]
@@ -73,13 +73,13 @@ clicking a button in it.
 **When to enable.** On any route that serves an authenticated interface, a form, or a button that
 changes state.
 
-**What can break.** Legitimate embedding: your own application shown in an intranet portal, a CMS
-preview pane, an SSO or payment dialog rendered in an iframe. `SAMEORIGIN` compares the full origin,
+**What can break.** Legitimate embedding, such as your own application shown in an intranet portal, a
+CMS preview pane, or an SSO or payment dialog rendered in an iframe. `SAMEORIGIN` compares the full origin,
 so a page embedded from a different hostname of your own is blocked as well.
 
 > [!NOTE]
 > The modern equivalent is the CSP directive `frame-ancestors`, which can name a list of allowed
-> origins instead of just "same origin". Browsers that see both prefer `frame-ancestors`; keep
+> origins instead of just "same origin". Browsers that see both prefer `frame-ancestors`. Keep
 > X-Frame-Options for older clients and make sure the two agree.
 
 ### X-Content-Type-Options
@@ -105,7 +105,7 @@ anything else the page happens to load.
 the full URL to the same origin, only the origin to other HTTPS sites, and nothing when going to an
 insecure one - which is what current browsers already do on their own.
 
-**What can break.** Anything that relies on receiving a referrer: analytics and affiliate tracking,
+**What can break.** Anything that relies on receiving a referrer, such as analytics and affiliate tracking,
 partner integrations, and backends that use the `Referer` header for hotlink protection or as a
 supplementary CSRF check. `no-referrer` removes it entirely and breaks all of these.
 
@@ -117,7 +117,7 @@ supplementary CSRF check. `no-referrer` removes it entirely and breaks all of th
 
 **What it does.** Declares which sources the browser may load scripts, styles, images, fonts, frames
 and connections from, and whether inline script is allowed at all. It is the strongest defense-in-depth
-measure against cross-site scripting: even if an injection succeeds, the injected code is not from an
+measure against cross-site scripting. Even if an injection succeeds, the injected code is not from an
 allowed source and does not run. The same header also carries `frame-ancestors` (clickjacking) and
 `form-action` (where forms may post to).
 
@@ -149,8 +149,8 @@ font embedded by another page. `same-origin` restricts it to your own origin, `s
 registrable domain, `cross-origin` to everyone. It keeps other sites from pulling your resources into
 their pages and from using them in side-channel attacks such as Spectre-style leaks.
 
-**When to enable.** On resources nobody else should embed: API responses, user documents, images
-behind an authentication check.
+**When to enable.** On resources nobody else should embed, such as API responses, user documents, or
+images behind an authentication check.
 
 **What can break.** Shared assets. If a route serves fonts, images or scripts used by another
 hostname - a separate frontend, a documentation site, a CDN in front of it - `same-origin` blocks
@@ -158,14 +158,14 @@ them. Use `same-site` for another host in the same domain, `cross-origin` for ge
 
 ### Cross-Origin-Opener-Policy (COOP)
 
-**What it does.** With `same-origin`, this page is put in its own browsing context group: a
+**What it does.** With `same-origin`, this page is put in its own browsing context group. A
 cross-origin document that opens it, or that it opens, gets no reference to its window. This blocks
 tabnabbing and the cross-window side channels used in XS-Leak attacks, and it is one half of what is
 needed for cross-origin isolation.
 
 **When to enable.** On authenticated application pages, and when cross-origin isolation is required.
 
-**What can break.** Any flow that talks between windows of different origins: OAuth and SSO login
+**What can break.** Any flow that talks between windows of different origins, such as OAuth and SSO login
 popups that report back to the opener, payment windows, social sharing dialogs.
 `same-origin-allow-popups` keeps popups that this page opens able to communicate back, while still
 isolating it from documents that opened it.
@@ -182,7 +182,7 @@ enabler, not a general hardening step.
 
 **What can break.** Essentially every third-party resource on the page - images, fonts, scripts,
 iframes, analytics - unless each one sends a suitable CORP or CORS header. `credentialless` is the
-gentler variant: cross-origin resources still load, but without cookies and other credentials.
+gentler variant. Cross-origin resources still load, but without cookies and other credentials.
 
 ### Cross-Origin Resource Sharing (CORS)
 
@@ -202,7 +202,7 @@ the route is called only from its own origin or only by non-browser clients.
 - Allow credentials makes the browser send cookies, authorization headers and TLS client certificates
   on these requests. Combine it only with an explicit, short list of origins - never with `*`, which
   browsers reject in that combination anyway.
-- Preflight cache duration is a trade-off: too short and every request pays for an extra `OPTIONS`
+- Preflight cache duration is a trade-off. Too short, and every request pays for an extra `OPTIONS`
   round trip, too long and a change to the allowed methods or headers takes that long to reach
   browsers that already cached the old answer.
 - A preflight is an `OPTIONS` request, so `OPTIONS` must be among the route's

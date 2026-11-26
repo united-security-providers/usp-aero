@@ -5,13 +5,18 @@ weight: 20
 
 # CA Certificates
 
-The certificate chains of the Certificate Authorities this Aero WAAP trusts. They are referenced wherever
-a certificate presented by someone else has to be validated - the certificate a
+The certificate chains of the Certificate Authorities this Aero WAAP trusts. They are used wherever a
+certificate presented by someone else has to be validated. That is the certificate a
 [backend](../backends/tls) presents, and the certificate a client presents to a
 [listener](../listeners/tls).
 
-Uploading or removing a CA certificate here does not change anything by itself; it becomes effective
+Uploading or removing a CA certificate here does not change anything by itself. It only takes effect
 where it is selected.
+
+## List of CA certificates
+
+The list shows the same columns as the [Certificates](certificates-and-keys#alias-column) tab,
+without the Key column. The first column is called "Alias" here.
 
 ## Upload Certificate {#upload-certificate}
 

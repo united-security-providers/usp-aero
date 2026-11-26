@@ -5,8 +5,7 @@ weight: 10
 
 # Certificates & Keys
 
-Allows to configure the certificates and CA chains required for virtual hosts or to protect TLS
-connections.
+The certificates and keys used by virtual hosts and for TLS connections.
 
 ## Tab "Certificates"
 
@@ -59,8 +58,8 @@ use.
 ## Upload Key/Certificate
 
 Drag and drop the certificate and/or key file (PKCS#12, PEM/DER format) into the predefined field or
-choose the file manually. The certificate must set the following keyUsage flags: "Digital Signature",
-"Non Repudiation" and "Key Encipherment".
+choose the file manually. The certificate must have the key usage flags "Digital Signature" and "Key
+Encipherment", and it must not be expired.
 
 ### Name {#name}
 

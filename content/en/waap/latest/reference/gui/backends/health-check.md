@@ -16,28 +16,29 @@ When enabled, backend endpoints are periodically checked for availability.
 
 ### Check Interval {#checkIntervalSec}
 
-How often the check is performed.
+How often the check is performed. If empty, the check runs every 3 seconds.
 
 - **Values:** a whole number of seconds, `0`–`99999`
 - **Default:** none
 
 ### Request Timeout {#requestTimeoutSec}
 
-How long to wait for a check to complete.
+How long to wait for a check to complete. If empty, the check times out after 1 second.
 
 - **Values:** a whole number of seconds, `0`–`99999`
 - **Default:** none
 
 ### Unhealthy Threshold {#unhealthyThreshold}
 
-How many failed checks in a row mark an endpoint unhealthy.
+How many failed checks in a row mark an endpoint unhealthy. If empty, 3 failed checks are needed.
 
 - **Values:** a whole number of 1 or more
 - **Default:** none
 
 ### Healthy Threshold {#healthyThreshold}
 
-How many successful checks in a row mark an endpoint healthy again.
+How many successful checks in a row mark an endpoint healthy again. If empty, 1 successful check is
+enough.
 
 - **Values:** a whole number of 1 or more
 - **Default:** none
@@ -59,7 +60,8 @@ Shown when the health check type above is set to "HTTP".
 
 ### Hostname {#hostname}
 
-The HTTP host requested during health checking. Uses the endpoint's address if not specified.
+The HTTP host requested during health checking. If empty, the endpoint's
+[Host Header](backends#hostHeader) is used, or else the hostname of the route that uses the backend.
 
 - **Values:** [IP address](../../value-types#ip-address) or [hostname](../../value-types#hostname)
 - **Default:** none
@@ -85,3 +87,10 @@ The HTTP response status considered healthy.
 
 - **Values:** a whole number, `100`–`599`
 - **Default:** `200`
+
+## Comments {#comments}
+
+Free text about the health check. It is only shown in the configuration.
+
+- **Values:** text
+- **Default:** none

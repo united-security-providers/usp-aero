@@ -5,8 +5,7 @@ weight: 40
 
 # Container
 
-Configure the settings for the container registry to be used by this Aero system when pulling docker
-images.
+The container registry this Aero system pulls its container images from.
 
 ## Container Registry
 
@@ -26,24 +25,24 @@ The listener port of the container registry.
 
 ### TLS {#tlsEnabled}
 
-Use this to enable TLS for the connection to the container registry.
+Enables TLS for the connection to the container registry. The two settings below are only shown
+while it is on.
 
 - **Values:** `on` or `off`
 - **Default:** `off`
 
 ### Disable Server Certificate validation {#disableServerCertificateValidation}
 
-If enabled, the server certificate of the container registry will NOT be validated. Use this for
-special cases when the registry may be using a self-signed or test certificate.
+If enabled, the server certificate of the container registry is not validated. Use this only when
+the registry uses a self-signed or test certificate.
 
 - **Values:** `on` or `off`
 - **Default:** `off`
 
 ### Trusted CA Certificate {#trustedCaCertificateId}
 
-Unless server certificate validation has been disabled, a CA certificate must be selected here which
-will be used to validate the container registry server certificate. Add CA certificates on the
-[Certificates](certificates) screen.
+The CA certificate used to validate the container registry's server certificate. Only shown while
+server certificate validation is on. Add CA certificates on the [Certificates](certificates) screen.
 
 - **Values:** one of the CA certificates uploaded on the [Certificates](certificates) screen
 
@@ -52,14 +51,12 @@ will be used to validate the container registry server certificate. Add CA certi
 The username to use to authenticate against the container registry.
 
 - **Values:** free text, at most 255 characters
-- **Required:** no
 
 ### Password {#password}
 
-The password to use to authenticate against the container registry.
+The password to use to authenticate against the container registry. Not shown in read-only mode.
 
 - **Values:** free text, at most 255 characters
-- **Required:** no
 
 ### Image Namespace prefix {#imageNamespacePrefix}
 
@@ -67,4 +64,3 @@ The namespace prefix to use when pulling a particular docker image.
 Typically only required when using your own mirror registry.
 
 - **Values:** free text, at most 255 characters
-- **Required:** no
