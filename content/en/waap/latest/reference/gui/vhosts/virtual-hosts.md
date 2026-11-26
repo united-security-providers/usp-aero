@@ -5,9 +5,8 @@ weight: 10
 
 # Virtual Hosts
 
-Here you can configure the virtual hosts. This screen shows the virtual servers which have been
-configured for this Aero WAAP instance. Each virtual host represents a single domain name. You may add
-new hosts in order to represent additional sites.
+This screen lists the virtual hosts configured on this Aero WAAP. A virtual host represents a site
+with one or more hostnames. Add a virtual host for each additional site.
 
 ## Virtual Hosts list
 
@@ -41,19 +40,13 @@ The HTTPS port of the virtual host's listener.
 
 Creates a new virtual host and opens its Settings tab.
 
-- **Values:** button
-
 ### Edit / Details {#edit-vhost}
 
 Opens the virtual host for editing (or viewing, in read-only mode).
 
-- **Values:** button
-
 ### Delete {#delete-vhost}
 
 Deletes the virtual host, after confirmation.
-
-- **Values:** button
 
 ## Tab "Settings"
 
@@ -61,8 +54,8 @@ Deletes the virtual host, after confirmation.
 
 The name is a label for the virtual host, just visible in the configuration.
 
-- **Values:** free text. Use only letters, digits, hyphens, dots (`.`) and spaces; must start and
-  end with a letter or digit, at most 253 characters.
+- **Values:** text of at most 253 characters, written as one or more dot-separated labels of letters,
+  digits, spaces and hyphens
 - **Required:** yes
 
 ### Listener {#listenerId}
@@ -75,17 +68,17 @@ HTTP settings of the selected listener.
 
 ### Hostnames {#hostnames}
 
-Allows to configure one or multiple hostnames for a virtual host. At least one hostname must be
-configured, up to 16. Click the "+" icon to add a hostname.
+The hostnames the virtual host answers to. At least one hostname must be configured, up to 16. Click
+the "+" icon to add a hostname.
 
-Hostnames are compared case-insensitively with those of the other virtual hosts:
+Hostnames are compared case-insensitively with those of the other virtual hosts.
 
 - Virtual hosts on the same listener must use distinct hostnames.
 - Virtual hosts on different listeners may share a hostname, but must then use the same
   [Certificate](#certificateOrProviderId).
 
 - **Values:** a [hostname](../../value-types#hostname), optionally prefixed with `*.` for a wildcard
-  label; must not be an IP address
+  label, but not an IP address
 - **Default:** none
 - **Required:** yes
 
@@ -145,5 +138,12 @@ Whether the site should be included in browser HSTS preload lists.
 
 ## Routes
 
-Allows to configure routes (URL locations) for this virtual host. Click the "+" icon to add a new
-route. See [Routes](routes/routes).
+The routes (URL locations) of this virtual host, up to 16. Click the "+" icon to add a new route.
+See [Routes](routes/routes).
+
+## Comments {#comments}
+
+Free text about the virtual host. It is only shown in the configuration.
+
+- **Values:** text
+- **Default:** none

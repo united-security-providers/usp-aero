@@ -7,7 +7,7 @@ weight: 10
 
 The Core Rule Set (CRS) is Aero WAAP's signature-based defense against common web application
 attacks, built on the [Coraza engine](https://www.coraza.io). Its attack categories cover the kind of attacks the OWASP Top
-10 web application risks describe: injection, cross-site scripting, remote code execution, and
+10 web application risks describe. These are injection, cross-site scripting, remote code execution, and
 several categories of data leakage and application-specific attacks.
 
 ## OWASP Core Rule Set (CRS)
@@ -18,7 +18,7 @@ Besides the rule categories the OWASP CRS has two important concepts:
 
 The two settings on the Rule Engine tab act on these concepts from opposite ends. The Paranoia Level
 decides how many rules are evaluated at all, and so how much can be found. The Security Level decides
-how much a request or response may accumulate before it is blocked: every matching rule adds points
+how much a request or response may accumulate before it is blocked. Every matching rule adds points
 to an anomaly score, and the level sets the score at which the request or response is rejected. The
 score belonging to each level is listed under
 [Security Level](../../reference/gui/vhosts/rule-engine#securityLevel).

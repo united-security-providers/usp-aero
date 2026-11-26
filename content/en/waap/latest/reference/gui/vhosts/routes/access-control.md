@@ -28,13 +28,12 @@ What happens to a request whose address matches none of the rules.
 Selecting `Allow only listed IPs` and leaving the rules empty blocks every request to the route.
 The screen requires at least one rule while access control is on.
 
-- **Values:** `Allow only listed IPs`, `Block listed IPs`
-- **Default:** none
-- **Required:** yes
+- **Values:** `Allow only listed IPs` or `Block listed IPs`
+- **Default:** `Allow only listed IPs`
 
 ## Rules {#rules}
 
-The addresses the access mode applies to. Add one with the **+** button; at least one is required.
+The addresses the access mode applies to. Add one with the **+** button. At least one is required.
 
 ### Type {#type}
 
@@ -47,7 +46,7 @@ Whether the rule matches one address or a whole network.
 
 The address the rule matches.
 
-- **Values:** an [IP address](../../../value-types#ip-address) for `Single IP`, a
+- **Values:** an [IP address](../../../value-types#ip-address) for `Single IP`, or a
   [CIDR range](../../../value-types#cidr) such as `10.0.0.0/8` for `CIDR Range`
 - **Required:** yes
 
@@ -56,4 +55,11 @@ The address the rule matches.
 A short name identifying the rule in the list.
 
 - **Values:** free text
-- **Required:** yes
+- **Default:** none
+
+## Comments {#comments}
+
+Free text about the route's access control. It is only shown in the configuration.
+
+- **Values:** text
+- **Default:** none

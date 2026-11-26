@@ -12,8 +12,8 @@ serves. If you instead want the client to be sent to a different URL, use [Redir
 
 1. Open the route and go to the [Translation & Redirect](../reference/gui/vhosts/routes/translation-and-redirect) tab.
 2. Turn on "Request Path Translation".
-3. Set the [Pattern](../reference/gui/vhosts/routes/translation-and-redirect#pattern): a regular expression matched against the request URI.
-4. Set the [Substitution](../reference/gui/vhosts/routes/translation-and-redirect#substitution): the text that replaces the matched part.
+3. Set the [Pattern](../reference/gui/vhosts/routes/translation-and-redirect#pattern), a regular expression matched against the request URI.
+4. Set the [Substitution](../reference/gui/vhosts/routes/translation-and-redirect#substitution), the text that replaces the matched part.
    You can reference a group captured by the pattern with `\1`, `\2`, and so on.
 
     > [!IMPORTANT]
@@ -21,9 +21,9 @@ serves. If you instead want the client to be sent to a different URL, use [Redir
     > route can only use one at a time.
 
     Test the pattern against real request paths. A pattern that matches more broadly than intended
-    rewrites paths silently; the client gets no error, but the backend receives a path it does not recognize.
+    rewrites paths silently. The client gets no error, but the backend receives a path it does not recognize.
 
-6. [Create a revision and deploy it](../../../platform/latest/concepts/configuration-lifecycle) to
+5. [Create a revision and deploy it](../../../platform/latest/concepts/configuration-lifecycle) to
 apply the change.
 
 ## Related

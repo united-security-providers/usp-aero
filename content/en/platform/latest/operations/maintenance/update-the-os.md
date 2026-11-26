@@ -15,7 +15,7 @@ The appliance does not serve traffic and the GUI is unavailable while it reboots
 so plan your reboots carefully.
 
 > [!TIP]
-> Take a configuration backup first, as with any maintenance on the appliance: see
+> Take a configuration backup first, as with any maintenance on the appliance. See
 > [Set up automated backups](../backup/automated-backups) or create a single backup from
 > [Local backups and restore](../../reference/gui/backup/local-backups-and-restore).
 

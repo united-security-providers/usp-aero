@@ -19,17 +19,17 @@ Reloads the list of installed components and available versions from the compone
 
 ### Add Component {#onAddComponent}
 
-Deploys a new component onto this appliance. Opens the "Add component" dialog, that shows a list
-of available, additional components, if any.
+Deploys a new component onto this appliance. Opens the "Add Component" dialog, which lists the
+additional components available, if any.
 
 ## Component list
 
 ### Name {#componentName}
 
-The display name of the component:
+The display name of the component.
 
-- **Aero Management**: the Aero Platform Management UI itself.
-- **WAAP**: USP Aero WAAP - the Envoy-based Web Application and API Protection suite.
+- **Aero Management** - the Aero Platform Management UI itself.
+- **WAAP** - USP Aero WAAP, the Envoy-based Web Application and API Protection suite.
 
 ### Version {#componentVersion}
 

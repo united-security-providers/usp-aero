@@ -6,7 +6,7 @@ weight: 20
 # Configuration revisions
 
 A configuration revision is a saved, numbered snapshot of a component's configuration. Editing a
-setting changes the draft configuration; it is only captured as a revision when you click
+setting changes the draft configuration. It is only captured as a revision when you click
 **Create Revision** below (reached via **Review changes** on [Deploying a configuration](deploy)).
 
 This screen also shows, for any revision, what changed in the configuration compared with the
@@ -14,8 +14,8 @@ previous one.
 
 ## Revision details
 
-While reviewing unreleased draft changes, only the changes themselves are shown (see
-[Configuration changes](#configuration-changes)) — the fields below only apply once the changes
+While reviewing unreleased draft changes, only the changes themselves are shown. See
+[Configuration changes](#configuration-changes). The fields below only apply once the changes
 have been captured as a numbered revision.
 
 ### Created {#updatedAt}
@@ -37,7 +37,7 @@ The user who created the revision.
 ### Message {#comment}
 
 The message describing the change. When a revision is created through **Create Revision** below (or
-through [Rollback revision](history-and-rollback#rollback)) a message is required; revisions
+through [Rollback revision](history-and-rollback#rollback)), a message is required. Revisions
 created another way may show no message.
 
 ## Configuration changes
@@ -53,7 +53,7 @@ compared against the previous revision (or, for the very first revision, shown o
 
 **Create Revision** and **Reset Changes** are only available while reviewing unreleased draft
 changes. When viewing a previously deployed revision that is not the latest one, a
-**Rollback revision** button is available instead — see
+**Rollback revision** button is available instead. See
 [History and rollback](history-and-rollback#rollback).
 
 ### Create Revision {#createRevision}
@@ -68,5 +68,5 @@ A message describing the change, entered when creating the revision.
 
 ### Reset Changes {#resetChanges}
 
-Opens a confirmation dialog; confirming discards the current draft changes and reverts the
+Opens a confirmation dialog. Confirming discards the current draft changes and reverts the
 configuration back to its last revision.

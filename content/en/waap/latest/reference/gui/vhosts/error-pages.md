@@ -5,11 +5,11 @@ weight: 50
 
 # Error Pages & Maintenance Pages
 
-The virtual host's "Error Pages & Maintenance Pages" tab has two sections:
+The virtual host's "Error Pages & Maintenance Pages" tab has two sections.
 
-- [Error Pages](#error-pages): serve a local error page instead of the backend's response when the
+- [Error Pages](#error-pages) serve a local error page instead of the backend's response when the
   response has a given status code.
-- [Maintenance Pages](#maintenance-pages): serve a local maintenance page on selected routes without
+- [Maintenance Pages](#maintenance-pages) serve a local maintenance page on selected routes without
   forwarding the request to the backend.
 
 ## Error Pages
@@ -44,20 +44,16 @@ original status code.
 - **Values:** a number between `400` and `599`
 - **Default:** none
 
-### Additional Header Condition
+### Additional Header Condition {#headerConditionEnabled}
 
-Optionally restricts an entry to responses matching one or more response headers, using an Equals,
-Contains, Starts With, Ends With or Regex match. Add up to 16 conditions per entry with the
-"Add condition" button. An entry only applies if all of its conditions match.
-
-#### Additional Header Condition {#headerConditionEnabled}
-
-Turns the header condition on for this entry. Turning it off clears the conditions you have entered.
+Restricts the entry to responses matching one or more response headers. Add up to 16 conditions per
+entry with the "Add condition" button. An entry only applies if all of its conditions match. Turning
+it off clears the conditions you have entered.
 
 - **Values:** `on` or `off`
 - **Default:** `off`
 
-#### Type {#type}
+### Type {#type}
 
 The source of the header to match.
 
@@ -65,7 +61,7 @@ The source of the header to match.
 - **Default:** `Response`
 - **Required:** yes
 
-#### Name {#name}
+### Name {#name}
 
 The name of the header to match, case-insensitive.
 
@@ -73,7 +69,7 @@ The name of the header to match, case-insensitive.
 - **Default:** none
 - **Required:** yes
 
-#### Match Type {#matchType}
+### Match Type {#matchType}
 
 How the header value is compared.
 
@@ -81,16 +77,16 @@ How the header value is compared.
 - **Default:** `Contains`
 - **Required:** yes
 
-#### Value {#value}
+### Value {#value}
 
-The value the header is compared against. Must not contain control characters (e.g. CR or LF). When
-**Match Type** is `Regex`, must be a valid regular expression.
+The value the header is compared against. It must not contain control characters such as CR or LF.
+When **Match Type** is `Regex`, it must be a valid regular expression.
 
 - **Values:** free text, at most 4096 characters
 - **Default:** none
 - **Required:** yes
 
-### Which entry applies
+## Which entry applies
 
 - Two entries whose statuses overlap must have different header conditions. Statuses overlap if they
   are equal, or if one is a status class and the other a code of the same class (for example `5xx` and
@@ -102,14 +98,17 @@ The value the header is compared against. Must not contain control characters (e
 
 ## Maintenance Pages
 
-Serves a [local maintenance page](../local-files/maintenance-pages) on selected routes of this
+Serves [local maintenance pages](../local-files/maintenance-pages) on selected routes of this
 virtual host. Requests to these routes are answered directly by Aero WAAP and are not forwarded to the
 backend. See [Show a maintenance page](../../../application-integration/maintenance-page).
 
-### Active {#maintenancePageEnabled}
+Click "Add maintenance page" to add an entry. Several entries can be configured, but two active
+entries cannot serve the same route. While an active entry uses **All routes**, no other entry can be
+active.
 
-Turns the maintenance page on or off for this virtual host. The other settings are kept while it is
-off.
+### Active {#enabled}
+
+Turns the entry on or off. The other settings of the entry are kept while it is off.
 
 - **Values:** `on` (Active) or `off` (Inactive)
 - **Default:** `off`
@@ -121,16 +120,16 @@ from "Manage Maintenance Pages".
 
 - **Values:** one of the configured local maintenance pages
 - **Default:** none
-- **Required:** yes, if **Active** is on
+- **Required:** yes
 
 ### Routes {#routeIds}
 
 The routes of this virtual host on which the maintenance page is served. Not available while
-**All routes** is on. Deleting a route removes it from this list.
+**All routes** is on. Deleting a route removes it from this list. Without routes, the entry has no
+effect.
 
 - **Values:** one or more routes of this virtual host
 - **Default:** none
-- **Required:** yes, if **Active** is on and **All routes** is off
 
 ### All routes {#allRoutes}
 

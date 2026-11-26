@@ -49,8 +49,7 @@ below.
 The maximum size of the response body that will be inspected. A response with a larger body is not
 delivered and the client receives status code `500` instead.
 
-- **Values:** a number followed by a unit - `B`, `KB`, `MB`, `GB` or `TB` (e.g. `10MB`) - from 1 KB
-  up to 1 GB
+- **Values:** a [quantity](../../value-types#quantity) from 1 byte up to `1Gi`, for example `10Mi`
 - **Default:** none
 
 ### Debug Log Level {#debugLogLevel}
@@ -64,7 +63,7 @@ Sets the debug log level for the rule engine.
 
 ### Mode {#coreRuleSetMode}
 
-Configures the behavior of the CRS rules:
+Configures the behavior of the CRS rules.
 
 - `Disabled` - the CRS rules are disabled entirely.
 - `Detect` - the request or response content is scanned and detected issues are logged, but nothing
@@ -72,7 +71,7 @@ Configures the behavior of the CRS rules:
 - `Block` - the request or response content is scanned and, in case of detected issues, the request
   or response will be blocked.
 
-- **Values:** `Disabled`, `Detect`, `Block`
+- **Values:** `Disabled`, `Detect` or `Block`
 - **Default:** `Block`
 
 ### Paranoia Level {#paranoiaLevel}
@@ -84,7 +83,7 @@ in a higher tuning effort!
 | Paranoia Level | Description                                                                                |
 |----------------|--------------------------------------------------------------------------------------------|
 | `1`(default)   | Baseline applicable to all services                                                        |
-| `2`            | Extended baseline for application handling a lot of user inputs. Tuneing will be required. |
+| `2`            | Extended baseline for application handling a lot of user inputs. Tuning will be required.  |
 | `3`            | High security requirement, similar to Online banking. Expect many false positives!         |
 | `4`            | Highest security requirement for the cost of tuning a tremendous amount of false positive  |
 
@@ -98,7 +97,7 @@ The Core Rule Set paranoia level applied while in `Block` mode.
 #### Detecting {#paranoiaLevelDetecting}
 
 The Core Rule Set paranoia level applied but not counted towards the block anomaly score.
-This allows to increase the paranoia level in production operation without risking blocks due
+This lets you increase the paranoia level in production operation without risking blocks due
 to false positives and without the need to lower the security level.
 
 - **Values:** `1`, `2`, `3`, `4`
@@ -110,7 +109,7 @@ Configures the rule engine's security level on a sliding scale from Loose to Tig
 
 Every Core Rule Set rule that matches adds points to the request's or response's
 [anomaly score](https://coreruleset.org/docs/2-how-crs-works/2-1-anomaly_scoring/). The security level
-sets the score at which that request or response is blocked: reaching the threshold is enough, the
+sets the score at which that request or response is blocked. Reaching the threshold is enough, the
 score does not have to exceed it. A lower level tolerates more findings before it acts.
 
 | Security Level | Request threshold | Response threshold | Critical rule match |
@@ -126,7 +125,7 @@ the last column is the number of critical findings a request or response may col
 blocked. Rules of lower severity contribute fewer points, and several of them can add up to the same
 threshold.
 
-The thresholds do not change with the Mode: in `Detect` mode the score is still counted against them
+The thresholds do not change with the Mode. In `Detect` mode the score is still counted against them
 and a crossing is logged, but nothing is blocked.
 
 - **Values:** a whole number from `1` (Loose) to `5` (Tight)
@@ -232,8 +231,8 @@ Detects attacks specific to Java applications.
 ### Request Rule Exceptions
 
 Exceptions for Core Rule Set rules can be defined to mitigate false
-positives, i.e. valid, legitimate requests being blocked because they get flagged as malicious (which
-is more likely to happen the higher the selected paranoia level is). To create a rule exception,
+positives. These are valid, legitimate requests that are blocked because they get flagged as
+malicious, which is more likely the higher the selected paranoia level is. To create a rule exception,
 click the "+" icon.
 
 #### Rules {#ruleId}
@@ -403,7 +402,7 @@ Free-text notes stored with the custom rule. They have no effect on request proc
 
 ### Last Edited {#lastEdited-column}
 
-When the rule was last saved. Set automatically; not editable.
+When the rule was last saved. It is set automatically and cannot be edited.
 
 ## Header Validation
 
@@ -434,7 +433,7 @@ Click the "+" icon to add one.
 The header to exclude, in one of three notations: `Accept-Charset` excludes the header from both
 checks, `Accept-Charset/length` excludes only the length check and `Accept-Charset/syntax` only the
 syntax check. Header names are case-insensitive, so the same header cannot be excepted twice in a
-different case; the suffix is case-sensitive and must be written in lower case.
+different case. The suffix is case-sensitive and must be written in lower case.
 
 - **Values:** text of at most 263 characters, a header name optionally followed by `/length` or
   `/syntax`. A header name consists of letters, digits and the characters `` !#$%&'*+.^_`|~- ``
@@ -449,4 +448,11 @@ Free-text notes stored with the exception. They have no effect on request proces
 
 #### Last Edited {#lastEdited-header-validation}
 
-When the exception was last saved. Set automatically; not editable.
+When the exception was last saved. It is set automatically and cannot be edited.
+
+## Comment {#comments}
+
+Free text about the virtual host's rule engine settings. It is only shown in the configuration.
+
+- **Values:** text
+- **Default:** none

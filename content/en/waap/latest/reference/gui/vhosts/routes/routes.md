@@ -5,8 +5,8 @@ weight: 10
 
 # Routes
 
-A route matches part of the virtual host's incoming traffic - by URI path and, optionally, request
-headers - and sends it to a backend.
+A route matches part of the virtual host's incoming traffic by URI path and, optionally, request
+headers. It sends the matching requests to a backend.
 
 ## Routes list
 
@@ -22,22 +22,16 @@ The backend the route forwards matching requests to.
 
 ### Add Route {#add-route}
 
-Creates a new route and opens its Settings tab.
-
-- **Values:** button
+Creates a new route and opens its Settings tab. A virtual host has up to 16 routes.
 
 ### Edit {#edit-route}
 
 Opens the route for editing (or viewing, in read-only mode). Clicking anywhere in the row does the
 same.
 
-- **Values:** button
-
 ### Delete {#delete-route}
 
 Deletes the route, after confirmation.
-
-- **Values:** button
 
 ## Tab "Settings"
 
@@ -46,19 +40,19 @@ Deletes the route, after confirmation.
 Configure a name for the route. This is a label used to reference this route in other configuration
 screens.
 
-- **Values:** free text. Use only letters, digits, hyphens, dots (`.`) and spaces; must start and
-  end with a letter or digit, at most 253 characters. Must be unique among the virtual host's routes.
+- **Values:** text of at most 253 characters, written as one or more dot-separated labels of letters,
+  digits, spaces and hyphens. Must be unique among the virtual host's routes.
 - **Default:** none
 - **Required:** yes
 
 ## Route Matching Rules
 
 Configure the rules that define when this route is used for an incoming request. Add a rule with the
-**+** button; at least one is required, up to 16 per route and up to 128 across all routes of the
+**+** button. At least one is required, up to 16 per route and up to 128 across all routes of the
 virtual host.
 
 Each rule always starts with one Path matcher, which cannot be removed. Header matchers can be added
-to a rule with the "Add Header matcher" button, up to 16 per rule; header names must be unique within
+to a rule with the "Add Header matcher" button, up to 16 per rule. Header names must be unique within
 a rule.
 
 ### Type {#type}
@@ -77,7 +71,7 @@ How the value below is compared against the request. A Path matcher offers `Path
 - `Exact` - the URI path, or the header value, must equal the matcher value exactly.
 - `Regex` - the URI path, or the header value, is matched with a regular expression.
 
-- **Values:** `Path Prefix`, `Exact`, `Regex` for a Path matcher; `Exact`, `Regex` for a Header
+- **Values:** `Path Prefix`, `Exact` or `Regex` for a Path matcher, `Exact` or `Regex` for a Header
   matcher
 - **Default:** `Path Prefix` for a rule's Path matcher, `Exact` for a newly added Header matcher
 - **Required:** yes
@@ -112,3 +106,9 @@ both redirect and forward to a backend.
 - **Values:** one of the configured backends
 - **Default:** none
 
+## Comments {#comments}
+
+Free text about the route. It is only shown in the configuration.
+
+- **Values:** text
+- **Default:** none

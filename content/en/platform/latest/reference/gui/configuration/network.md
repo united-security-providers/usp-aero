@@ -10,22 +10,15 @@ and typically at least one more.
 
 ## Interface Roles Tabs
 
-### Management
+Each interface role has its own tab.
 
-The "Management" role is used for the interface through which the
-administration UI should be accessed.
+**Management** is the interface through which the administration UI is accessed.
 
-### Internal
+**Internal** is used in architectures that separate management access from access to internal
+backend systems. This interface may use a DHCP-assigned address, and it may also be left unassigned
+("disabled").
 
-The "Internal" role is used for architectures, which separates management access from access
-internal backend systems.
-
-This role allow to use DHCP assigned IP-address and may also be left unassigned ("disabled").
-
-### External
-
-The "External" role is used for the interface through which external clients will access
-offered service.
+**External** is the interface through which external clients access the offered services.
 
 This role may hold more than one IP address (see [IP Address](#ipAddresses) below).
 
@@ -51,11 +44,25 @@ for the settings below; the interface is otherwise left unassigned ("disabled").
 ### IP Address {#ipType}
 
 Whether this interface gets its address(es) statically configured below, or obtained automatically
-via DHCP. DHCP is only offered on the Internal interface; the Management and External interfaces are always
-statically configured.
+via DHCP. DHCP is only offered on the Internal interface. The Management and External interfaces are
+always statically configured.
 
-- **Values:** `Static`, `DHCP`
+- **Values:** `Static` or `DHCP`
 - **Required:** yes - once the interface is assigned
+
+### IPv4 {#ipv4Enabled}
+
+Turns the static IPv4 configuration of this interface on or off. Only shown when IPv6 support is
+enabled. Otherwise IPv4 is always configured. At least one IP version must be on.
+
+- **Values:** `on` or `off`
+
+### IPv6 {#ipv6Enabled}
+
+Turns the static IPv6 configuration of this interface on or off. Only shown when IPv6 support is
+enabled.
+
+- **Values:** `on` or `off`
 
 ### IP Address {#ipAddresses}
 
@@ -81,7 +88,6 @@ Configure the IP address of the default gateway here.
 
 - **Values:** [IP address](../../value-types#ip-address), matching the IP version of the section
   (IPv4 or IPv6).
-- **Required:** no
 
 ### Don't use as default route {#dontUseGatewayAsDefaultRoute}
 
@@ -92,36 +98,34 @@ The gateway entered above is not installed as the system's default route.
 
 ### DNS Server {#dnsServers}
 
-Add IP addresses for DNS servers used for name resolution. At least one DNS server MUST be configured
-if hostnames are used in the configuration of this system. This also applies to the DNS servers used
+The DNS servers used for name resolution. At least one DNS server must be configured if hostnames
+are used in the configuration of this system. This also applies to the DNS servers used
 to override those obtained via DHCP (see [Ignore DNS obtained via DHCP](#ignoreDhcpDns)).
 
 - **Values:** [hostname or IP address](../../value-types#host), matching the IP version of the
-  section (IPv4, IPv6, or either, for DHCP). Up to 3 servers; each must be unique.
-- **Required:** no
+  section (IPv4, IPv6, or either, for DHCP). Up to 3 servers, each unique.
 
 ### DNS Search Query {#dnsSearchQueries}
 
-Allows to configure an optional search query for DNS resolution. This also applies to the search
-queries used to override those obtained via DHCP.
+Optional search queries for DNS resolution. This also applies to the search queries used to override
+those obtained via DHCP.
 
-- **Values:** free text (a DNS suffix); no particular format is enforced. Each entry must be unique
-- **Required:** no
+- **Values:** free text (a DNS suffix) without a particular format. Each entry must be unique
 
 ### Routes {#routes}
 
-Allows to add custom network routes. This also applies to the routes used to override those obtained
-via DHCP (see [Ignore Routes obtained via DHCP](#ignoreDhcpRoutes)).
+Custom network routes. This also applies to the routes used to override those obtained via DHCP. See
+[Ignore Routes obtained via DHCP](#ignoreDhcpRoutes).
 
-Each route has a network and a next hop:
+Each route has a network and a next hop.
 
-#### Network {#networkCidr}
+### Network {#networkCidr}
 
 - **Values:** [network in CIDR notation](../../value-types#cidr), matching the IP version of the
   section. Each network must be unique among this interface's routes.
 - **Required:** yes
 
-#### Next Hop {#nextHopIpAddress}
+### Next Hop {#nextHopIpAddress}
 
 - **Values:** [IP address](../../value-types#ip-address), matching the IP version of the section
 - **Required:** yes
@@ -130,8 +134,7 @@ Each route has a network and a next hop:
 
 The client identifier this interface sends with its DHCP requests.
 
-- **Values:** free text; no format is enforced
-- **Required:** no
+- **Values:** free text without a particular format
 
 ### Ignore DNS obtained via DHCP {#ignoreDhcpDns}
 
@@ -150,12 +153,12 @@ Overrides the routes offered by DHCP with the ones configured under [Routes](#ro
 
 ## Tab "Manual Host entries"
 
-Allows to add custom entries for the local hosts configuration file. Enter the IP address of the host
-and its DNS name.
+Custom entries for the local hosts configuration file. Enter the IP address of the host and its DNS
+name.
 
 ### IP Address {#ipAddress}
 
-The address of the host entry.
+The address of the host entry. IPv6 addresses are only accepted when IPv6 support is enabled.
 
 - **Values:** [IP address](../../value-types#ip-address)
 - **Required:** yes

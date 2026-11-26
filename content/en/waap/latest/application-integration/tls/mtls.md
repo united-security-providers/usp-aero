@@ -6,7 +6,7 @@ weight: 50
 # Client Certificate Validation (mTLS)
 
 Normally only Aero WAAP proves its identity to the client, by presenting the virtual host's server certificate.
-With client certificate validation the connecting client has to prove its identity too: Aero WAAP asks for a
+With client certificate validation, the connecting client has to prove its identity too. Aero WAAP asks for a
 certificate and rejects the connection unless it was issued by a CA you trust.
 
 This is the client leg of the connection. For the certificate Aero WAAP presents when it connects onwards
@@ -38,9 +38,9 @@ Trusting a CA means accepting every certificate that CA has issued. Where that i
 SAN Match to narrow it to particular identities:
 
 1. On the same tab, add a SAN Match.
-2. Choose the Type: `Email` matches the certificate's email SAN, `Other Names` matches another SAN
+2. Choose the Type. `Email` matches the certificate's email SAN. `Other Names` matches another SAN
    entry and additionally needs an OID identifying which one.
-3. Choose the Matcher: `Exact`, `Prefix`, `Suffix` or `Regex` and enter the Value to compare
+3. Choose the Matcher (`Exact`, `Prefix`, `Suffix` or `Regex`) and enter the Value to compare
    against.
 
 > [!TIP]

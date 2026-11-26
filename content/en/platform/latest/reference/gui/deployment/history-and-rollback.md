@@ -38,8 +38,8 @@ Opens the [Configuration revisions](revisions) screen for that revision.
 ## Rollback revision
 
 An earlier revision can be rolled back. Rolling back a revision does not simply reactivate the old
-one: it creates a new revision with the old revision's content, which is then deployed like any
-other revision (see [Deploy](deploy)). Rolling back also discards any unreleased draft changes for
+one. It creates a new revision with the old revision's content, which is then deployed like any
+other revision. See [Deploy](deploy). Rolling back also discards any unreleased draft changes for
 the component.
 
 ### Rollback revision {#rollback}
@@ -50,5 +50,5 @@ creates the new revision.
 
 ### Message {#message}
 
-A message describing why the rollback was initiated, used for the new revision message created by the rollback.
+A message describing why the rollback was initiated. It becomes the message of the new revision.
 

@@ -69,7 +69,7 @@ The *High Availability* page (*System Management > High Availability*) shows whi
    from the new node), save, and activate the new revision. The leader adds the new node to the cluster.
 3. **On every other existing follower**, add the same entry for the new node, save and activate the new revision.
 4. **Check the result** on the leader's
-   [High Availability status](../../reference/gui/system-management/high-availability) page: the new node is listed
+   [High Availability status](../../reference/gui/system-management/high-availability) page. The new node is listed
    in *Node Status* and is `online`. While it joins, it can briefly show `pending`.
 5. **Synchronize.** On the leader, start a [synchronization](config-synchronization). The new node installs the
    feature components that run on the leader and receives the leader's configuration, including the cluster-shared
@@ -106,7 +106,7 @@ How you remove a node depends on whether it should keep running as a standalone 
 #### Before you start
 
 - **The node must not be the leader.** Disabling HA on the leader dissolves the **whole** cluster. If the node you
-  want to remove is the leader, first make another node the leader: sign in to that node and use **Take Over** on
+  want to remove is the leader, first make another node the leader. Sign in to that node and use **Take Over** on
   its *High Availability* page.
 - **The node must be online, not in standby.** A node in standby cannot leave the cluster. Use **UnStandby** on that
   node first.
@@ -122,11 +122,11 @@ How you remove a node depends on whether it should keep running as a standalone 
 
    The dialog closes right away. In the background, the node removes its HA settings and the address configuration of
    its external interface, saves the result as a new `UNCLUSTER` revision and leaves the cluster. Only this node is
-   affected: the leader and the other followers stay in the cluster. On the leader's *High Availability* page, the
+   affected. The leader and the other followers stay in the cluster. On the leader's *High Availability* page, the
    node now shows as `offline`.
 2. **Remove the node on the leader.** Sign in to the leader, delete the node's entry from the list of cluster nodes,
    save, and activate the new revision. The leader removes the node from the cluster.
-3. **Remove the node on every other follower** in the same way: delete its entry, save, and activate the new revision.
+3. **Remove the node on every other follower** in the same way. Delete its entry, save, and activate the new revision.
 4. **Give the removed node a new external IP address.** Its `UNCLUSTER` revision is incomplete ("dirty") and was not
    activated. Configure its external interface and activate it, as described in
    [Bringing a follower back online](uncluster#bringing-a-follower-back-online).
@@ -141,7 +141,7 @@ Use this procedure for a node that has already been shut down, has failed for go
 1. **On the leader**, delete the node's entry from the list of cluster nodes, save, and activate the new revision. The
    leader removes the node from the cluster even though it cannot reach it.
 2. **On every other follower**, delete the same entry, save, and activate the new revision.
-3. **Check the result** on the leader's *High Availability* page: the node is no longer listed in *Node Status*.
+3. **Check the result** on the leader's *High Availability* page. The node is no longer listed in *Node Status*.
 
 If the removed node is ever switched on again, it still has its old cluster configuration. Reinstall it as it holds
 outdated / wrong cluster configuration settings.
@@ -158,7 +158,7 @@ outdated / wrong cluster configuration settings.
   missing more than one node of the running cluster. Check the list. If you really want to remove several nodes,
   remove them one after another, activating once per node.
 - **The node you disabled HA on is still part of the cluster:** it was in standby at that moment. A node in standby
-  cannot leave the cluster: nothing is changed on it, no `UNCLUSTER` revision is created, and it keeps its HA settings
+  cannot leave the cluster. Nothing is changed on it, no `UNCLUSTER` revision is created, and it keeps its HA settings
   and external interface configuration. Do not remove its entry on the leader or the other followers yet. Use
   **UnStandby** on it, wait until it shows as an online follower, then switch off **Enabled** on it again and continue
   with step 2 above.

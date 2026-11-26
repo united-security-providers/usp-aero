@@ -10,7 +10,8 @@ client. Use this to inject a cookie the backend expects, to strip a cookie befor
 backend, or to add or change attributes such as `Secure` or `SameSite` on a cookie the application
 sets.
 
-1. Open the route and go to the [Cookies](../reference/gui/vhosts/routes/cookies) tab.
+1. Open the route, go to the Headers tab and scroll to the
+   [Cookie Manipulation](../reference/gui/vhosts/routes/cookies) section.
 2. Choose the "Request" or "Response" tab, depending on whether you want to change the `Cookie`
    header sent to the backend or the `Set-Cookie` header sent back to the client.
 3. Under "Cookie Manipulation", add an entry, enter the Cookie Name and, unless you are removing the

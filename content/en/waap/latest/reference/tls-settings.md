@@ -31,7 +31,7 @@ custom selection.
 - **Values:** `on` or `off`
 - **Default:** `off`
 
-In all three fields below, write one entry per line, and put the most preferred entry first - the
+In all three fields below, write one entry per line, and put the most preferred entry first. The
 order of the lines is the order in which they are offered.
 
 ### Cipher Suites for TLS 1.2 and older {#cipherSuites}
@@ -40,8 +40,8 @@ The list of cipher suites allowed for TLS 1.2 and earlier connections, one entry
 is not shown when only TLS 1.3 is selected above, since TLS 1.3 uses its own fixed cipher suites.
 
 - **Values:** one cipher suite per line, from the list below. Suites can be given equal rank by
-  combining them in square brackets, separated by `|`, as in the default value: they then count as
-  equally preferred and the client's own order decides between them.
+  combining them in square brackets, separated by `|`, as in the default value. They then count as
+  equally preferred, and the client's own order decides between them.
 - **Default:** when switched on, pre-filled with:
   ```
   [ECDHE-ECDSA-AES128-GCM-SHA256|ECDHE-ECDSA-CHACHA20-POLY1305]

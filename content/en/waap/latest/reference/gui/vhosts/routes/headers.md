@@ -5,7 +5,8 @@ weight: 30
 
 # Headers
 
-Configure request and response header filtering and manipulation here.
+The Headers tab configures header filtering, header manipulation, cookie manipulation and security
+headers for the route.
 
 ## Filtering {#enabled}
 
@@ -29,7 +30,7 @@ the "Request" tab.
 Headers to always be allowed and passed through, regardless of the filter class.
 
 - **Values:** a list of HTTP header names - letters, digits and the characters
-  `!#$%&'*+.^_`|~-`, at most 256 characters each
+  `` !#$%&'*+.^_`|~- ``, at most 256 characters each
 - **Default:** none
 
 ### Explicitly Denied Headers {#deniedHeaders}
@@ -37,7 +38,7 @@ Headers to always be allowed and passed through, regardless of the filter class.
 Headers to always be blocked and removed, regardless of the filter class.
 
 - **Values:** a list of HTTP header names - letters, digits and the characters
-  `!#$%&'*+.^_`|~-`, at most 256 characters each
+  `` !#$%&'*+.^_`|~- ``, at most 256 characters each
 - **Default:** none
 
 ### Deny Headers by value {#denyPatterns}
@@ -45,7 +46,7 @@ Headers to always be blocked and removed, regardless of the filter class.
 Blocks a header based on its value rather than its name. Add a row with the **+** button.
 
 - **Header Name** - the header the pattern is matched against.
-  - **Values:** an HTTP header name - letters, digits and the characters `!#$%&'*+.^_`|~-`,
+  - **Values:** an HTTP header name - letters, digits and the characters `` !#$%&'*+.^_`|~- ``,
     at most 256 characters
   - **Required:** yes
 - **Value Pattern**
@@ -54,7 +55,7 @@ Blocks a header based on its value rather than its name. Add a row with the **+*
 
 ### Log Only {#logOnly}
 
-If enabled, denied headers are not actually blocked; the match is only logged.
+If enabled, denied headers are not actually blocked. The match is only logged.
 
 - **Values:** `on` or `off`
 - **Default:** `off`
@@ -62,8 +63,8 @@ If enabled, denied headers are not actually blocked; the match is only logged.
 ## Manipulation
 
 Changes the value of request or response headers on the fly. Configured separately for the
-"Request" and "Response" tabs. Add a row with the **+** button; at most 64 manipulations are
-allowed per direction, and at most 16 per action.
+"Request" and "Response" tabs. Add a row with the **+** button. At most 64 manipulations are allowed
+per direction, and at most 16 per action.
 
 ### Action {#action}
 
@@ -83,7 +84,7 @@ allowed per direction, and at most 16 per action.
 
 The name of the header to which the action refers.
 
-- **Values:** an HTTP header name - letters, digits and the characters `!#$%&'*+.^_`|~-`,
+- **Values:** an HTTP header name - letters, digits and the characters `` !#$%&'*+.^_`|~- ``,
   at most 256 characters
 - **Required:** yes
 
@@ -93,6 +94,10 @@ The value to be used in the action. Not shown, and not sent, when the action is 
 
 - **Values:** free text, at most 4096 characters
 - **Required:** yes, unless the action is `Remove`
+
+## Cookie Manipulation
+
+Adds, overwrites or removes cookies, and changes cookie attributes. See [Cookies](cookies).
 
 ## Security Headers
 
@@ -163,21 +168,21 @@ Isolates this page's browsing context group from cross-origin documents.
 - **Values:** `same-origin`, `same-origin-allow-popups`, `unsafe-none`
 - **Default:** `same-origin` (set when the header is turned on)
 
-### Cross-Origin Resource Sharing (CORS) {#crossOriginResourceSharing}
+## Cross-Origin Resource Sharing (CORS) {#crossOriginResourceSharing}
 
 Allows scripts on other origins to make requests to this route and read the response.
 
-#### Allowed Origin {#allowOrigins}
+### Allowed Origin {#allowOrigins}
 
-The origins allowed to make cross-origin requests. Add one with the **+** button; at least one is
+The origins allowed to make cross-origin requests. Add one with the **+** button. At least one is
 required while CORS is enabled, and at most 256 are allowed.
 
-- **Values:** an origin such as `https://example.com`, `*`, or a scheme with a wildcard host; at
-  most 253 characters; must be unique in the list
+- **Values:** an origin such as `https://example.com`, `*`, or a scheme with a wildcard host, at
+  most 253 characters, unique in the list
 - **Default:** none
 - **Required:** yes
 
-#### Allowed Methods {#allowMethods}
+### Allowed Methods {#allowMethods}
 
 The HTTP methods allowed for cross-origin requests. Press Enter to add a value.
 
@@ -185,23 +190,23 @@ The HTTP methods allowed for cross-origin requests. Press Enter to add a value.
   `OPTIONS`, `TRACE`), at most 16 entries
 - **Default:** none
 
-#### Allowed Headers {#allowHeaders}
+### Allowed Headers {#allowHeaders}
 
 The request headers the browser is allowed to send. Press Enter to add a value.
 
 - **Values:** a list of HTTP header names - letters, digits and the characters
-  `!#$%&'*+.^_`|~-`, at most 256 characters each, up to 256 entries
+  `` !#$%&'*+.^_`|~- ``, at most 256 characters each, up to 256 entries
 - **Default:** none
 
-#### Expose Headers {#exposeHeaders}
+### Expose Headers {#exposeHeaders}
 
 The response headers made readable to browser scripts. Press Enter to add a value.
 
 - **Values:** a list of HTTP header names - letters, digits and the characters
-  `!#$%&'*+.^_`|~-`, at most 256 characters each, up to 256 entries
+  `` !#$%&'*+.^_`|~- ``, at most 256 characters each, up to 256 entries
 - **Default:** none
 
-#### Allow credentials {#allowCredentials}
+### Allow credentials {#allowCredentials}
 
 Whether cookies, authorization headers or TLS client certificates are allowed on cross-origin
 requests.
@@ -209,7 +214,7 @@ requests.
 - **Values:** `on` or `off`
 - **Default:** `off`
 
-#### Preflight cache duration (seconds) {#maxAgeSeconds}
+### Preflight cache duration (seconds) {#maxAgeSeconds}
 
 How long the browser may cache the result of a preflight request.
 
@@ -217,3 +222,9 @@ How long the browser may cache the result of a preflight request.
 - **Default:** none
 - **Required:** yes, while CORS is enabled
 
+## Comments {#comments}
+
+Free text about the route's header settings. It is only shown in the configuration.
+
+- **Values:** text
+- **Default:** none

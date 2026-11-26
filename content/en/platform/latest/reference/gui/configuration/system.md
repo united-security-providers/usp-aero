@@ -5,8 +5,7 @@ weight: 10
 
 # System
 
-The core system settings that are required to provide everything the platform needs for running
-various services on top, such as networking, monitoring, backup etc.
+The core settings of the system, such as its hostname, its label and the system time.
 
 ## System settings
 
@@ -25,28 +24,24 @@ A freely defined text label for this system, helpful to differentiate it from ot
 
 ### Color Schema {#colorSchema}
 
-A color theme for the UI. This allows to more easily differentiate between systems from different
-environments, or with different roles (e.g. "Default" scheme for test environments and "Orange" for
-production systems etc.).
+A color theme for the UI. It makes it easier to tell systems of different environments or roles
+apart, for example "Default" for test systems and "Orange" for production systems.
 
-- **Values:** `Default`, `Orange`, `Red`
+- **Values:** `Default`, `Orange` or `Red`
 - **Default:** `Default`
-- **Required:** yes
 
 ### Location {#location}
 
 A freely defined text string that describes the physical location of the server.
 
 - **Values:** free text, at most 50 characters
-- **Required:** no
 
 ### Contact {#contact}
 
-A freely defined text string that names the administrative contact for this system (may be either
-just a name, or an email address).
+A freely defined text string that names the administrative contact for this system. It may be a
+name or an email address.
 
 - **Values:** free text, at most 50 characters
-- **Required:** no
 
 ## System Time
 
@@ -65,8 +60,8 @@ Select the geographical timezone of the location of this server.
 
 ### NTP Server {#ntpServers}
 
-You may add one or multiple NTP servers that will be used to synchronize the system clock with. Add
-either a valid IPv4 or IPv6 address or a DNS hostname. Multiple time-servers can be added; they will
-be queried for the current time in the configured order.
+The NTP servers the system clock is synchronized with. Add an IP address or a DNS hostname. IPv6
+addresses are only accepted when IPv6 support is enabled. Several servers are queried for the
+current time in the configured order.
 
-- **Values:** [hostname or IP address](../../value-types#host). Up to 3 servers; each must be unique
+- **Values:** [hostname or IP address](../../value-types#host). Up to 3 servers, each unique

@@ -16,8 +16,8 @@ addresses, or to block a known-bad set of addresses while leaving the route open
 2. Turn on IP Access Control.
 3. Choose the Access Mode: **Allow only listed IPs** blocks everything except the rules you add.
    **Block listed IPs** allows everything except the rules you add.
-4. Add a rule for each address or range: pick Type `ip` for a single address or `cidr` for a range,
-   enter the Value, and give it a Label.
+4. Add a rule for each address or range. Pick Type `Single IP` for a single address or `CIDR Range`
+   for a range, enter the Value, and give it a Label.
 5. [Create a revision and deploy it](../../../platform/latest/concepts/configuration-lifecycle).
 
 > [!CAUTION]

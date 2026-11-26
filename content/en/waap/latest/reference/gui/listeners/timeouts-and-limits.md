@@ -5,20 +5,21 @@ weight: 30
 
 # Timeouts & Limits
 
-Timeout and limit settings of a listener. All of them are mandatory: a listener always has a value
-for each, and creating a listener starts from the defaults given below.
+Timeout and limit settings of a listener. All of them are mandatory. A new listener starts with the
+defaults given below.
 
 ## Timeouts
 
 ### Connection Acceptance Timeout {#connectionAcceptanceTimeout}
 
-How long the initial inspection of an incoming connection on the listener socket may take - TLS/SNI
-and protocol detection, or HTTP protocol parsing. A connection that is not inspected in time is
+How long the initial inspection of an incoming connection on the listener socket may take. This
+covers TLS/SNI and protocol detection, or HTTP protocol parsing. A connection that is not inspected in time is
 dropped. This happens before a virtual host has been selected, so the client receives no HTTP
 response.
 
 - **Values:** [duration](../../value-types#duration)
 - **Default:** `2s`
+- **Required:** yes
 
 ### TLS Handshake Timeout {#tlsHandshakeTimeout}
 
@@ -27,6 +28,7 @@ handshake is not complete when this expires is closed, again without an HTTP res
 
 - **Values:** [duration](../../value-types#duration)
 - **Default:** `2s`
+- **Required:** yes
 
 ### Connection Maximum Duration {#maxConnectionDuration}
 
@@ -35,6 +37,7 @@ packets) before being drained and closed.
 
 - **Values:** [duration](../../value-types#duration)
 - **Default:** `600s`
+- **Required:** yes
 
 ### Connection Idle Timeout {#httpConnectionIdleTimeout}
 
@@ -43,6 +46,7 @@ on the connection.
 
 - **Values:** [duration](../../value-types#duration)
 - **Default:** `300s`
+- **Required:** yes
 
 ### Stream Idle Timeout {#streamIdleTimeout}
 
@@ -50,6 +54,7 @@ The amount of time a stream can exist without any upstream or downstream activit
 
 - **Values:** [duration](../../value-types#duration)
 - **Default:** `60s`
+- **Required:** yes
 
 ### Request Headers Received Timeout {#requestHeadersReceivedTimeout}
 
@@ -59,6 +64,7 @@ and closes the connection.
 
 - **Values:** [duration](../../value-types#duration)
 - **Default:** `10s`
+- **Required:** yes
 
 ### Request Total Received Timeout {#requestTotalReceivedTimeout}
 
@@ -67,6 +73,7 @@ begins and stops when either the last byte of the request is sent upstream or th
 
 - **Values:** [duration](../../value-types#duration)
 - **Default:** `10s`
+- **Required:** yes
 
 ## Connection Limits
 
@@ -77,6 +84,7 @@ limit are closed. The limit is shared by every virtual host bound to this listen
 
 - **Values:** a whole number of 1 or more
 - **Default:** `4096`
+- **Required:** yes
 
 ### Maximum Concurrent HTTP/2 Streams {#maxConcurrentHttpTwoStreams}
 
@@ -84,6 +92,7 @@ The maximum number of concurrent HTTP/2 streams allowed per connection.
 
 - **Values:** a whole number of 1 or more
 - **Default:** `1024`
+- **Required:** yes
 
 ### Connection Buffer Limit {#connectionBufferLimit}
 
@@ -91,3 +100,11 @@ The maximum buffer size for each incoming connection.
 
 - **Values:** [quantity](../../value-types#quantity)
 - **Default:** `32Ki` (32768 bytes)
+- **Required:** yes
+
+## Comment {#comments}
+
+Free text about the listener's timeouts and limits. It is only shown in the configuration.
+
+- **Values:** text
+- **Default:** none

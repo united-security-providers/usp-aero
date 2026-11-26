@@ -7,9 +7,9 @@ weight: 40
 
 ## Cookie Manipulation
 
-Allows to change cookies on the fly, configured separately for the "Request" and "Response" tabs.
-Cookie names must be unique within a tab. Up to 64 manipulations may be added per tab; click the "+"
-icon to add one.
+The "Cookie Manipulation" section of the route's [Headers](headers) tab changes cookies on the fly.
+It is configured separately for its "Request" and "Response" tabs. Cookie names must be unique
+within a tab. Up to 64 manipulations may be added per tab. Click the "+" icon to add one.
 
 ### Action {#action}
 
@@ -31,7 +31,7 @@ The change to make to the cookie.
 
 The name of the cookie.
 
-- **Values:** letters, digits and the characters `!#$%&'*+.^_`|~-`, at most 256 characters
+- **Values:** letters, digits and the characters `` !#$%&'*+.^_`|~- ``, at most 256 characters
 - **Default:** none
 - **Required:** yes
 
@@ -40,15 +40,15 @@ The name of the cookie.
 The value to set. Not shown, and not required, when the action is `Remove`, or, on the "Response"
 tab, `Modify attributes if cookie present`.
 
-- **Values:** free text; spaces, quotes, commas, semicolons and backslashes are not allowed, at most
-  4096 characters
+- **Values:** free text of at most 4096 characters, without spaces, quotes, commas, semicolons and
+  backslashes
 - **Default:** none
 
 ## Attributes {#attributes}
 
-Used with "Modify attributes if cookie present", on the "Response" tab; at least one attribute is
+Used with "Modify attributes if cookie present", on the "Response" tab. At least one attribute is
 required for that action. Attribute names must be unique within an entry (case-insensitive). Up to
-32 attribute manipulations may be added; click the "+" icon to add one.
+32 attribute manipulations may be added. Click the "+" icon to add one.
 
 ### Action {#action-attribute}
 
@@ -63,7 +63,7 @@ The change to make to the attribute.
 The name of the attribute. Pick one of the known attributes from the list, or type the name of any
 other attribute.
 
-- **Values:** letters, digits and the characters `!#$%&'*+.^_`|~-`, at most 256 characters
+- **Values:** letters, digits and the characters `` !#$%&'*+.^_`|~- ``, at most 256 characters
 - **Default:** none
 - **Required:** yes
 
@@ -76,10 +76,10 @@ the limits below.
 
 | Attribute                            | Value                                           |
 |--------------------------------------|-------------------------------------------------|
-| `Secure`, `HttpOnly`, `Partitioned`  | none; the field is not shown                    |
+| `Secure`, `HttpOnly`, `Partitioned`  | none, the field is not shown                    |
 | `SameSite`                           | one of `Strict`, `Lax`, `None`                  |
 | `Max-Age`                            | a whole number of seconds                       |
 | `Domain`, `Path`, `Expires`          | required, free text                             |
 
-- **Values:** free text; quotes, semicolons and backslashes are not allowed, at most 4096 characters
+- **Values:** free text of at most 4096 characters, without quotes, semicolons and backslashes
 - **Default:** none

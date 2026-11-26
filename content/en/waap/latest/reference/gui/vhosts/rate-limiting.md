@@ -18,7 +18,7 @@ Switching it off discards all settings below.
 
 ## Client Identification
 
-Clients are tracked by a client identifier; see
+Clients are tracked by a client identifier. See
 [How a client is identified](../../../protection/repeat-offender#how-a-client-is-identified).
 
 ### Client IPs Excluded From Detection {#excludedClientIPs}
@@ -44,8 +44,8 @@ The response status codes (or ranges, e.g. `4xx`) that count as a violation for 
 Resets the violation counter after this duration. The same duration is how long a client stays
 blocked.
 
-- **Values:** a number of seconds, at least `1`
-- **Default:** `60`
+- **Values:** a [duration](../../value-types#duration) of at least `1s`
+- **Default:** `60s`
 - **Required:** yes
 
 ### Allowed Violations {#maximumAllowedViolations}
@@ -63,3 +63,10 @@ Sent to the client while it is blocked.
 - **Values:** a number from `100` to `599`
 - **Default:** `429`
 - **Required:** yes
+
+## Comments {#comments}
+
+Free text about the virtual host's rate limiting. It is only shown in the configuration.
+
+- **Values:** text
+- **Default:** none

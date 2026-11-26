@@ -5,14 +5,13 @@ weight: 10
 
 # Backends
 
-This screen offers management of WAF target backend servers. A backend server is a web server
-providing a web application over HTTP(s) or WebSocket. A remote authentication server or an ICAP
-server is also represented as a backend server. Backend servers can be assigned to
+This screen manages the backend servers that Aero WAAP forwards requests to. A backend server is a
+web server providing a web application over HTTP(S) or WebSocket. Backend servers are assigned to
 [routes](../vhosts/routes/routes).
 
-A backend server consists of a name, a list of endpoints and SSL/TLS settings for encryption of data
-which is transported between the Aero WAAP and the backend server. Having multiple endpoints defined
-will activate load-balancing between them.
+A backend consists of a name, a list of endpoints, and TLS settings for the connection between Aero
+WAAP and the backend server. With more than one endpoint, the requests are load-balanced between
+them.
 
 ## List of backends
 
@@ -51,16 +50,17 @@ The name is a label for the backend, just visible in the configuration.
   digits, spaces and hyphens
 - **Required:** yes
 
-### Backend endpoints {#backendEndpoints}
+### Backend Endpoints {#backendEndpoints}
 
-A backend endpoint consists of an IP address and port, as well as an optional host header value.
-IPv4 and IPv6 are supported (given matching network interface configuration). More than one endpoint
-can be added by clicking the "+" icon, up to 256. If multiple endpoints are configured for the
-backend, various types of load-balancing can be enabled for them (see below).
+A backend endpoint consists of an address and a port, and an optional host header value. At least
+one endpoint is required, and up to 256 can be added with the "+" icon. The endpoints of one backend
+are either all IP addresses or all hostnames. With more than one endpoint, the
+[Load Balancer](#loadBalancer) distributes the requests between them.
 
 ### Address {#address}
 
-The backend endpoint's IP address or hostname.
+The backend endpoint's IP address or hostname. IPv6 addresses are only accepted when IPv6 support
+is enabled.
 
 - **Values:** [IP address](../../value-types#ip-address) or [hostname](../../value-types#hostname)
 - **Required:** yes
@@ -82,9 +82,10 @@ The value sent as the `Host` header to this backend endpoint with every request.
 
 ### Load Balancer {#loadBalancer}
 
-There are several different types of load-balancing available:
+How the requests are distributed between the backend's endpoints.
 
-- **Least Request**
+- **Least Request** - Two healthy endpoints are picked at random. The request goes to the one with
+  fewer active requests.
 - **Random** - Requests are distributed to the endpoints in a random fashion.
 - **Round Robin** - Each new request is forwarded to another endpoint until each endpoint was used,
   then it starts again with the first one.
@@ -103,3 +104,10 @@ If enabled, all requests coming from one client will be sent to the same backend
 ### Used in {#used-in}
 
 Shows the virtual hosts and routes that reference this backend.
+
+## Comments {#comments}
+
+Free text about the backend's settings. It is only shown in the configuration.
+
+- **Values:** text
+- **Default:** none

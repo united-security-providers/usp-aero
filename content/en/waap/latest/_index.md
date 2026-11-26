@@ -7,7 +7,7 @@ title: "Welcome"
 USP Aero WAAP (Web Application and API Protection) provides secure access to web-based applications and resources,
 while simplifying the process of configuration and deployment.
 
-It sits in front of the applications you publish and terminates the client connection: it accepts
+It sits in front of the applications you publish and terminates the client connection. It accepts
 the request, decides which application it belongs to, inspects it, applies the limits and restrictions
 you configured, and only then forwards it to the application server. Responses pass back through the
 same path, which is where the response headers a browser relies on are set.

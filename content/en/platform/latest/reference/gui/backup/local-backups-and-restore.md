@@ -9,11 +9,13 @@ weight: 30
 
 Creates a new backup archive of this USP Aero instance that can be downloaded directly.
 
-It will not be stored locally on the appliance in contrast to the automated backup jobs!
+Unlike the automated backup jobs, it is not stored on the appliance.
 
 ### Type {#type}
 
-- **Values:** `Full (incl. Keys)` - full backup which also contains all private keys.
+The content of the backup. It is always a full backup, which also contains all private keys.
+
+- **Values:** `Full (incl. Keys)`
 - **Default:** `Full (incl. Keys)`
 
 > [!NOTICE]
@@ -30,7 +32,9 @@ The date and time this backup was created.
 
 ### Type {#type-column}
 
-- **Values:** `Full (incl. Keys)`, `Full (no Keys)`
+The content of the backup.
+
+- **Values:** `Full (incl. Keys)`
 
 ### File size {#fileSize}
 
@@ -52,6 +56,12 @@ Permanently deletes this local backup.
 
 Restores this USP Aero instance from a backup archive. Drag and drop the backup file into the
 predefined field or choose the file manually, then confirm the restore.
+
+If the backup does not match the installed components, the dialog lists the differences before it
+restores. A component may be installed but missing in the backup, or be backed up in a different
+version than the installed one. The table shows the backup version and the installed version of each
+such component. "Restore Anyway" restores the backup regardless. Otherwise adjust the installed
+components on the [Components](../components) screen first.
 
 ### Backup file {#file}
 

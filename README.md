@@ -122,19 +122,13 @@ The full contract, including how the product resolves language and version, is
 A page with `draft: true` in its front matter is left out of the build entirely, so nothing may link
 to it from a published page - Hugo cannot resolve the link and silently emits a dead one.
 
-The High Availability pages are drafts until the platform's **1.1** release ships. To publish them,
-remove `draft: true` from all four:
+These pages are drafts at the moment.
 
-- `content/en/platform/latest/reference/gui/configuration/high-availability.md`
-- `content/en/platform/latest/reference/gui/system-management/high-availability.md`
-- `content/en/platform/latest/operations/ha/_index.md`
-- `content/en/platform/latest/operations/ha/set-up-an-ha-cluster.md`
-
-then re-list the guide under a "High availability" heading on
-`content/en/platform/latest/operations/_index.md`, and restore the links to the HA reference pages in
-`concepts/configuration-lifecycle.md` and `reference/glossary.md`, where they are currently plain
-text. The management GUI already links to both HA reference pages - those screens appear whenever the
-appliance reports HA support - so publishing them also fixes those help links.
+- `content/en/platform/latest/reference/gui/configuration/monitoring.md` and
+  `content/en/platform/latest/reference/gui/user-management/identity-providers.md`. Their screens are
+  disabled in the management GUI (`app.routes.ts` in `aero-mgmt-app`) until the features are complete.
+  Publish them when the screens are enabled, because the GUI links to both.
+- `content/en/platform/latest/install/overview.md`, which duplicates the installation guide.
 
 ## Making a release
 

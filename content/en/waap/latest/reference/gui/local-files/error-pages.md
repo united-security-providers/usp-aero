@@ -5,22 +5,44 @@ weight: 20
 
 # Local Error Pages
 
-Error pages that a virtual host can serve instead of the backend's response; see
+Error pages that a virtual host can serve instead of the backend's response. See
 [Error Pages](../vhosts/error-pages#error-pages). Create a page in place, upload a single file, or
 upload an archive to add several at once. "Download All" downloads all error pages as an archive.
 
 An error page that a virtual host uses cannot be deleted. Remove it from the virtual host first.
 
+## List of error pages
+
+### Name {#name-column}
+
+The file's [name](#name).
+
+### Content Type {#contentType-column}
+
+The file's [content type](#contentType).
+
+### Size {#size-column}
+
+The size of the file's content.
+
+### Modified {#updatedAt-column}
+
+When the file was last changed.
+
+### Actions {#actions}
+
+Open, download or delete a file.
+
 ## Error Page details
 
-Allows to view/edit a local error page's details.
+Shows and edits a local error page.
 
 ### Name {#name}
 
 A label used to reference this file in other configuration screens. Must be unique among the error
 pages.
 
-- **Values:** free text; the characters `/ \ < > | : & ( ) ; * ?` are not allowed
+- **Values:** free text without the characters `/ \ < > | : & ( ) ; * ?`
 - **Default:** none
 - **Required:** yes
 
@@ -37,7 +59,7 @@ The MIME content type served for this error page.
 The error page's content, edited in place. The content may contain
 [response variables](#response-variables).
 
-- **Values:** text, at most 1 MB; a `%` must start a response variable or be written as `%%`
+- **Values:** text of at most 1 MB. A `%` must start a response variable or be written as `%%`.
 - **Default:** none
 - **Required:** yes
 

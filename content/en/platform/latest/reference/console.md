@@ -89,7 +89,7 @@ the proxy, for example a container registry on the local network. Entries are co
 | `10.0.0.0/8`           | an address range                       |
 | `host.example.com:443` | a single host on one port only         |
 
-A `*` wildcard does not work and is rejected: write `.example.com` instead of `*.example.com`. Loopback addresses
+A `*` wildcard does not work and is rejected. Write `.example.com` instead of `*.example.com`. Loopback addresses
 always bypass the proxy and need not be listed. Press Enter to keep the current list, or enter `-` to clear it.
 
 ### E - Enter container registry details {#option-e}
@@ -114,7 +114,7 @@ At every prompt, press Enter to keep the current value or enter `-` to fall back
 Lists the tags the registry offers for the configured image, after printing the registry, user, TLS
 and insecure settings it used. If registry and image are not set yet, it asks for them first.
 
-This is the quickest check that the registry details and the network are right: if no tag list
+This is the quickest check that the registry details and the network are right. If no tag list
 appears, bootstrapping will not work either. The error output shows the HTTP status and the
 registry's response.
 

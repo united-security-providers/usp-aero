@@ -5,7 +5,7 @@ weight: 40
 
 # Installing from ISO
 
-This installation method allows to set up the USP Aero Platform on hardware or virtualized infrastructure.
+This installation method sets up the USP Aero Platform on hardware or virtualized infrastructure.
 
 ## Download ISO image
 
