@@ -69,7 +69,6 @@
 ### Bug fixes
 
 * Fixed renaming of certificates.
-* Removing the WAAP component now also stops and removes its runtime.
 * Blocked the kernel modules `ah6`, `pppoe` and `sctp`/`sctp_diag` (CVE-2026-80844, CVE-2026-68121, CVE-2026-74469).
 
 ### Incompatible behavior changes
