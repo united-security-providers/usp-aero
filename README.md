@@ -13,6 +13,7 @@ make serve                  # build, then http://localhost:1313/usp-aero/ with l
 make build                  # build into public/, search index included
 make check-links            # build, then check every link, anchor and image
 make update-cross-reference # updates cross component references from latest to a given version 
+make import-api-docs        # copy the generated OpenAPI schemas from aero-mgmt-app into content/
 make clean                  # remove the build output; bin/ stays
 make download-tools         # fetch the toolchain without building
 make clean-tools            # remove the toolchain from bin/
@@ -66,7 +67,8 @@ written. Two main folders are common:
   is a how-to guide that the reference page links to.
   - `gui/` - one page per screen or tab of the management GUI, mirroring its navigation, with one
   section per field. 
-  - `api/` - same for API (not yet prepared)
+  - `api/` - the management API: one page with base URL, authentication and status codes, linking to the
+    generated API reference (see [API reference](#api-reference)).
 
 A field's entry states what the setting does and what may be put in it:
 
@@ -117,6 +119,35 @@ the product from a fixed path layout, not looked up, so a handful of things here
 The full contract, including how the product resolves language and version, is
 `documentation/user-manual-contract.md` in the `aero-mgmt-app` repository.
 
+## API reference
+
+The endpoints of each product's management API are rendered with Swagger UI from the product's OpenAPI schema,
+which is generated from the OpenAPI annotations in [`aero-mgmt-app`](https://github.com/united-security-providers/aero-mgmt-app)
+(concept: `documentation/api-documentation.md` there). The schema is generated, never edited here: a wrong
+description is fixed in the annotations of `aero-mgmt-app`.
+
+| Product | Page | Schema (page resources) |
+|---|---|---|
+| platform | `content/en/platform/<version>/reference/api/_index.md` | `openapi.json`, `openapi.yaml` next to it |
+| waap | `content/en/waap/<version>/reference/api/_index.md` | `openapi.json`, `openapi.yaml` next to it |
+
+The page renders its schema with the shortcode `{{</* api-reference */>}}` (`layouts/_shortcodes/api-reference.html`).
+Swagger UI comes from the Hugo module [`github.com/hugomods/swagger-ui`](https://github.com/hugomods/swagger-ui),
+imported in `hugo.yaml`; `go.mod`/`go.sum` pin it and the Swagger UI version it mounts. The shortcode uses the
+module's files but not its shortcode, which takes no Swagger UI options, nor its CSS partial, which needs Dart Sass.
+It renders Swagger UI into a shadow root, so the theme's styles and Swagger UI's don't affect each other.
+
+To update `latest`, build `aero-mgmt-app` (every build generates the schemas) and import them:
+
+```bash
+# in aero-mgmt-app (or any full build)
+./mvnw process-classes -pl 'quarkus-frontends/core-host,quarkus-frontends/feature-waap,!ui-shared-lib' -am
+# here
+make import-api-docs MGMT_APP=../aero-mgmt-app
+```
+
+`make import-api-docs-platform` or `make import-api-docs-waap` imports only one product.
+
 ## Draft pages
 
 A page with `draft: true` in its front matter is left out of the build entirely, so nothing may link
@@ -143,27 +174,30 @@ release is a frozen copy of it beside it, named after the release. Products
 version independently, and the version selector in the header is built from the
 directories that exist.
 
-1. Freeze the current documentation of the product being released:
+1. Generate the OpenAPI schema from the release tag of the component in `aero-mgmt-app` and import it
+   (see [API reference](#api-reference)), so that `latest` documents the released API.
+
+2. Freeze the current documentation of the product being released, the API schema included:
 
 ```bash
 make prepare-release RELEASE=waap/0.6.x
 ```
 
-2. Point its references to the other product at a release, rather than at the
+3. Point its references to the other product at a release, rather than at the
    `latest` they were copied from:
 
 ```bash
 make update-cross-reference IN=waap/0.6.x TO=platform/1.0.x
 ```
 
-3. Check that the new documentation has no dead references, and
+4. Check that the new documentation has no dead references, and
    fix what it reports:
 
 ```bash
 make check-links VERSION=0.6.x
 ```
 
-4. Review the changes and then commit it to `main`:
+5. Review the changes and then commit it to `main`:
 
 ```bash
 git add content/en/waap/0.6.x

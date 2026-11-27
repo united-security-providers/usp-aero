@@ -1,0 +1,59 @@
+{{- /*
+  Renders the API reference of the current page from its OpenAPI schema, a page resource imported from
+  aero-mgmt-app with `make import-api-docs` (see README, "API reference").
+
+    {{< api-reference >}}                      openapi.json, download links for openapi.json and openapi.yaml
+    {{< api-reference spec="other.json" >}}
+
+  Swagger UI comes from the Hugo module github.com/hugomods/swagger-ui (version pinned in go.sum). Its own
+  shortcode takes no Swagger UI options and its CSS partial needs Dart Sass, so this one only uses the
+  module's assets and its JS partial.
+*/ -}}
+{{- $name := .Get "spec" | default "openapi.json" -}}
+{{- $spec := .Page.Resources.Get $name -}}
+{{- if not $spec -}}
+  {{- errorf "api-reference: %s has no page resource %q, run make import-api-docs" .Page.File.Path $name -}}
+{{- end -}}
+{{- $downloads := slice -}}
+{{- range .Page.Resources.Match "openapi.*" -}}
+  {{- $downloads = $downloads | append (printf `<a href="%s" download>%s</a>` .RelPermalink .Name) -}}
+{{- end -}}
+{{- .Page.Store.Set "hasSwaggerUI" true -}}
+{{- $css := resources.Get "hugomods/swagger-ui/swagger-ui.css" | minify | fingerprint -}}
+<p class="api-reference-downloads">OpenAPI schema for client generators: {{ delimit $downloads ", " | safeHTML }}</p>
+{{- /* Swagger UI renders into a shadow root: the theme's .usp-prose rules (pre, code, table, ...) can't
+       reach it there, and its own stylesheet doesn't leak into the page. */ -}}
+<div class="api-reference" id="api-reference"></div>
+{{ partial "hugomods/swagger-ui/assets/js.html" .Page }}
+<script>
+  window.addEventListener('load', function () {
+    var root = document.getElementById('api-reference').attachShadow({ mode: 'open' });
+    root.innerHTML =
+      '<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">' +
+      '<style>' +
+      /* Only the baseUri input of the single server {baseUri}/<path>: no server selection, computed URL
+         and "Server variables" heading around it. */
+      '.servers-title, .servers > label, .servers .computed-url, .servers h4 { display: none; }' +
+      /* baseUri and "Authorize" in one row, highlighted like a hint admonition of the theme (.usp-admonition):
+         its custom properties inherit into the shadow root, the fallbacks are the theme's values. */
+      '.swagger-ui .scheme-container { box-shadow: none; margin: 0 0 20px; padding: 0.6rem 0.8rem;' +
+      ' border-left: 0.2rem solid var(--usp-hint, #448aff); border-radius: 0.1rem;' +
+      ' background-color: var(--usp-hint-bg, #448aff1a); }' +
+      '.swagger-ui .scheme-container .schemes { padding: 0; }' +
+      '.swagger-ui .scheme-container .schemes { align-items: center; justify-content: flex-start; flex-wrap: nowrap; gap: 1em; }' +
+      '.swagger-ui .servers table td { max-width: none; padding-top: 0; padding-bottom: 0; }' +
+      '.swagger-ui .servers input[data-variable] { width: 22em; max-width: none; }' +
+      '</style>' +
+      '<div></div>';
+    window.ui = SwaggerUIBundle({
+      url: {{ $spec.RelPermalink }},
+      domNode: root.querySelector('div'),
+      layout: 'BaseLayout',
+      deepLinking: true,
+      docExpansion: 'none',
+      defaultModelsExpandDepth: 0,
+      filter: true,
+      validatorUrl: null
+    });
+  });
+</script>

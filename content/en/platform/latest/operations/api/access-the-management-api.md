@@ -70,12 +70,37 @@ curl -s -H "Authorization: Bearer $TOKEN" -H 'Content-Type: application/json' \
   -X POST "$AERO/api/clm/components/activation" -d '["waap"]'
 ```
 
-There is no published API reference yet. Every action in the management GUI is an API call, so the
-network view of the browser's developer tools shows the requests to rebuild for a task.
+Every endpoint is described in the API reference of the
+[Aero Platform](../../reference/api/) and of [Aero WAAP](../../../../waap/latest/reference/api/).
+Every action in the management GUI is an API call, so the network view of the browser's developer
+tools also shows which requests a task takes.
 
 An API client can do what a user with the same role can do, with a few exceptions, see
 [Roles and permissions](../../concepts/roles-and-permissions#api-clients). Every change it makes is
 logged with its ID, for example `ci-pipeline (API client) POST /api/clm/components/activation -> 200`.
+
+## Apply configuration changes
+
+A change made through the API is a draft change, exactly as one saved in the GUI, see
+[Configuration lifecycle](../../concepts/configuration-lifecycle). To make it effective, create a
+revision of the component and deploy it (Administrator only). The example deploys the changes of the
+WAAP component, `GET /api/clm/components` lists the names of all components:
+
+```bash
+# 1. The ID of the component's current draft
+DRAFT=$(curl -s -H "Authorization: Bearer $TOKEN" "$AERO/api/clm/components/waap" | jq -r .draftId)
+
+# 2. Create a revision from it, with a message for the configuration history
+curl -s -H "Authorization: Bearer $TOKEN" -H 'Content-Type: application/json' \
+  -X POST "$AERO/api/clm/components/waap/drafts/$DRAFT/commit" -d '{"message": "Add backend app01"}'
+
+# 3. Deploy the newest revision
+curl -s -H "Authorization: Bearer $TOKEN" -H 'Content-Type: application/json' \
+  -X POST "$AERO/api/clm/components/activation" -d '["waap"]'
+
+# 4. Poll the deployment until status.code is DONE or FAILURE
+curl -s -H "Authorization: Bearer $TOKEN" "$AERO/api/clm/components/activation" | jq .status
+```
 
 ## HA clusters
 

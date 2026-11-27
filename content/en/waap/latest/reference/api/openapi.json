@@ -1,0 +1,6008 @@
+{
+  "openapi" : "3.1.0",
+  "components" : {
+    "schemas" : {
+      "AccessMode" : {
+        "type" : "string",
+        "enum" : [ "block_listed", "allow_listed" ]
+      },
+      "AcmeProviderDto" : {
+        "description" : "Holds the information about Automatic certificate renewal (ACME) provider",
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "description" : "Provider's id"
+          },
+          "name" : {
+            "type" : "string",
+            "description" : "Provider's name",
+            "pattern" : "\\S"
+          },
+          "certificateAuthorityUrl" : {
+            "type" : "string",
+            "description" : "Certificate authority URL",
+            "pattern" : "\\S"
+          },
+          "trustedCaCertificateId" : {
+            "type" : "string",
+            "description" : "Trusted CA Certificate"
+          },
+          "skipCertificateValidation" : {
+            "type" : "boolean",
+            "description" : "Certificate validation will be skipped"
+          },
+          "emailAddress" : {
+            "type" : "string",
+            "description" : "Email address",
+            "pattern" : "\\S"
+          },
+          "keyType" : {
+            "description" : "Key type",
+            "type" : "string",
+            "$ref" : "#/components/schemas/SupportedKeyType"
+          },
+          "eabKeyId" : {
+            "type" : "string",
+            "description" : "External Account Binding (EAB): Key ID"
+          },
+          "eabHmacKey" : {
+            "type" : "string",
+            "description" : "External Account Binding (EAB): HMAC Key"
+          }
+        },
+        "required" : [ "name", "certificateAuthorityUrl", "emailAddress", "keyType" ]
+      },
+      "AllowClass" : {
+        "type" : "string",
+        "enum" : [ "RESTRICTED", "STANDARD", "EXTENDED" ]
+      },
+      "AttributeManipulationDto" : {
+        "type" : "object",
+        "required" : [ "name", "action" ],
+        "properties" : {
+          "name" : {
+            "type" : "string",
+            "description" : "Attribute name",
+            "pattern" : "\\S"
+          },
+          "value" : {
+            "type" : "string",
+            "description" : "Attribute value",
+            "maxLength" : 4096
+          },
+          "action" : {
+            "$ref" : "#/components/schemas/CookieAttributeMutationAction"
+          }
+        }
+      },
+      "BackendDto" : {
+        "description" : "Holds the information about backend",
+        "type" : "object",
+        "required" : [ "id", "timeoutsLimits" ],
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "description" : "Id of the backend",
+            "readOnly" : true
+          },
+          "settings" : {
+            "description" : "General backend settings",
+            "type" : "object",
+            "$ref" : "#/components/schemas/BackendSettingsDto"
+          },
+          "tls" : {
+            "description" : "Backend's TLS settings",
+            "type" : "object",
+            "$ref" : "#/components/schemas/BackendTlsDto"
+          },
+          "healthCheck" : {
+            "description" : "Backend's Health Check settings",
+            "type" : "object",
+            "$ref" : "#/components/schemas/BackendHealthCheckDto"
+          },
+          "references" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/BackendReferenceVhostDto"
+            },
+            "description" : "Backend's references in Virtual Host routes"
+          },
+          "timeoutsLimits" : {
+            "description" : "Backend's timeouts and limits",
+            "type" : "object",
+            "$ref" : "#/components/schemas/BackendTimeoutsLimitsDto"
+          }
+        }
+      },
+      "BackendEndpointDto" : {
+        "type" : "object",
+        "description" : "Backend endpoint",
+        "required" : [ "address", "port" ],
+        "properties" : {
+          "address" : {
+            "type" : "string",
+            "description" : "Backend address (FQDN or IP)",
+            "pattern" : "\\S"
+          },
+          "port" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "Backend port",
+            "maximum" : 65535,
+            "minimum" : 1
+          },
+          "hostHeader" : {
+            "type" : "string",
+            "description" : "Backend host header"
+          }
+        }
+      },
+      "BackendHealthCheckDto" : {
+        "type" : "object",
+        "description" : "Holds the information about backend's Health Check settings",
+        "properties" : {
+          "checkIntervalSec" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "Time between active health checks (in seconds)",
+            "maximum" : 99999,
+            "minimum" : 0
+          },
+          "requestTimeoutSec" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "Time to wait for a health check response (in seconds)",
+            "maximum" : 99999,
+            "minimum" : 0
+          },
+          "unhealthyThreshold" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "Number of unhealthy health checks required before a backend host is marked unhealthy",
+            "minimum" : 0
+          },
+          "healthyThreshold" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "Number of healthy health checks required before a backend host is marked healthy",
+            "minimum" : 0
+          },
+          "type" : {
+            "description" : "Type of health checking",
+            "type" : "string",
+            "$ref" : "#/components/schemas/BackendHealthCheckType"
+          },
+          "httpSettings" : {
+            "description" : "Settings for HTTP health checking. It’s required while the health checker type is HTTP",
+            "type" : "object",
+            "$ref" : "#/components/schemas/BackendHealthCheckHttpSettingsDto"
+          },
+          "comments" : {
+            "type" : "string",
+            "description" : "Comments about backend's Health Check settings"
+          }
+        },
+        "required" : [ "type" ]
+      },
+      "BackendHealthCheckHttpSettingsDto" : {
+        "type" : "object",
+        "description" : "Settings for HTTP health checking",
+        "properties" : {
+          "hostname" : {
+            "type" : "string",
+            "description" : "HTTP host that will be requested during health checking (uses endpoint's address if not specified)"
+          },
+          "path" : {
+            "type" : "string",
+            "description" : "HTTP path that will be requested during health checking",
+            "pattern" : "\\S",
+            "maxLength" : 1024
+          },
+          "method" : {
+            "description" : "HTTP method used for health checking (uses GET if not specified)",
+            "type" : "string",
+            "$ref" : "#/components/schemas/BackendHealthCheckMethod"
+          },
+          "expectedStatusCode" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "HTTP response status considered healthy (uses 200 if not specified)",
+            "maximum" : 599,
+            "minimum" : 100
+          }
+        },
+        "required" : [ "path" ]
+      },
+      "BackendHealthCheckMethod" : {
+        "type" : "string",
+        "enum" : [ "GET", "HEAD", "OPTIONS" ]
+      },
+      "BackendHealthCheckType" : {
+        "type" : "string",
+        "enum" : [ "TCP", "HTTP" ]
+      },
+      "BackendReferenceRouteDto" : {
+        "type" : "object",
+        "description" : "Holds the information about backend reference's route",
+        "properties" : {
+          "vhostId" : {
+            "type" : "string",
+            "description" : "Virtual host id"
+          },
+          "routeId" : {
+            "type" : "string",
+            "description" : "Route id"
+          },
+          "description" : {
+            "type" : "string",
+            "description" : "Route description"
+          }
+        }
+      },
+      "BackendReferenceVhostDto" : {
+        "type" : "object",
+        "description" : "Holds the information about backend reference's vhost",
+        "properties" : {
+          "description" : {
+            "type" : "string",
+            "description" : "Virtual host description"
+          },
+          "routes" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/BackendReferenceRouteDto"
+            },
+            "description" : "Virtual host routes"
+          }
+        }
+      },
+      "BackendSettingsDto" : {
+        "type" : "object",
+        "description" : "Holds the information about general backend settings",
+        "required" : [ "name", "loadBalancer" ],
+        "properties" : {
+          "name" : {
+            "type" : "string",
+            "description" : "Backend name",
+            "pattern" : "\\S"
+          },
+          "endpoints" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/BackendEndpointDto"
+            },
+            "description" : "Type of the Load Balancer for Backend"
+          },
+          "loadBalancer" : {
+            "description" : "Type of the Load Balancer for Backend",
+            "type" : "string",
+            "$ref" : "#/components/schemas/LoadBalancer"
+          },
+          "backendStickiness" : {
+            "type" : "boolean",
+            "description" : "Backend Stickiness"
+          },
+          "comments" : {
+            "type" : "string",
+            "description" : "Comments about general backend settings"
+          }
+        }
+      },
+      "BackendTimeoutsLimitsDto" : {
+        "type" : "object",
+        "description" : "Holds the information about general backend timeouts and limits",
+        "required" : [ "connectionTimeout", "connectionIdleTimeout", "maxConnections", "maxPendingRequests", "maxParallelRequests" ],
+        "properties" : {
+          "connectionTimeout" : {
+            "type" : "string",
+            "description" : "Backend's connection timeout",
+            "pattern" : "\\S"
+          },
+          "connectionIdleTimeout" : {
+            "type" : "string",
+            "description" : "Backend's connection idle timeout",
+            "pattern" : "\\S"
+          },
+          "maxConnections" : {
+            "type" : "integer",
+            "format" : "int64",
+            "description" : "Backend's max connections",
+            "minimum" : 1
+          },
+          "maxPendingRequests" : {
+            "type" : "integer",
+            "format" : "int64",
+            "description" : "Backend's max pending requests",
+            "minimum" : 1
+          },
+          "maxParallelRequests" : {
+            "type" : "integer",
+            "format" : "int64",
+            "description" : "Backend's max parallel requests",
+            "minimum" : 1
+          },
+          "comments" : {
+            "type" : "string",
+            "description" : "Comments about general backend limits and timeouts"
+          }
+        }
+      },
+      "BackendTlsDto" : {
+        "type" : "object",
+        "description" : "Holds the information about backend's TLS settings",
+        "properties" : {
+          "trustedCaCertificateId" : {
+            "type" : "string",
+            "description" : "TLS certificates of the Certificate Authorities that can be used as a trust anchor to validate the certificates presented by the backend"
+          },
+          "skipCertificateValidation" : {
+            "type" : "boolean",
+            "description" : "Trusted CA certificate validation is not mandatory"
+          },
+          "sniHostname" : {
+            "type" : "string",
+            "description" : "SNI Hostname"
+          },
+          "clientAuthenticationCertificateId" : {
+            "type" : "string",
+            "description" : "Id of a certificate used fot Client Authentication or null disable it"
+          },
+          "customTlsVersions" : {
+            "description" : "Custom TLS Versions settings",
+            "type" : "object",
+            "$ref" : "#/components/schemas/CustomTlsVersions"
+          },
+          "customCiphersAndAlgorithms" : {
+            "description" : "Customization of supported Ciphers and Algorithms",
+            "type" : "object",
+            "$ref" : "#/components/schemas/CustomCiphersAndAlgorithmsDto"
+          },
+          "comments" : {
+            "type" : "string",
+            "description" : "Comments about backend's TLS settings"
+          }
+        }
+      },
+      "CaCertificateDetailedInfoDto" : {
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "string"
+          },
+          "alias" : {
+            "type" : "string"
+          },
+          "content" : {
+            "type" : "string"
+          }
+        }
+      },
+      "CaCertificateDownloadFormat" : {
+        "description" : "CA certificate download formats",
+        "type" : "string",
+        "enum" : [ "PEM", "DER", "PKCS7" ]
+      },
+      "CaCertificateInfoDto" : {
+        "description" : "CA certificate info",
+        "type" : "object",
+        "properties" : {
+          "subject" : {
+            "type" : "string"
+          },
+          "issuer" : {
+            "type" : "string"
+          },
+          "subjectElements" : {
+            "type" : "array",
+            "items" : {
+              "type" : "object",
+              "required" : [ "key", "value" ],
+              "properties" : {
+                "key" : {
+                  "type" : "string"
+                },
+                "value" : {
+                  "type" : "string"
+                }
+              }
+            }
+          },
+          "issuerElements" : {
+            "type" : "array",
+            "items" : {
+              "type" : "object",
+              "required" : [ "key", "value" ],
+              "properties" : {
+                "key" : {
+                  "type" : "string"
+                },
+                "value" : {
+                  "type" : "string"
+                }
+              }
+            }
+          },
+          "validFrom" : {
+            "type" : "string",
+            "format" : "date",
+            "examples" : [ "2022-03-10" ]
+          },
+          "validUntil" : {
+            "type" : "string",
+            "format" : "date",
+            "examples" : [ "2022-03-10" ]
+          },
+          "commonNames" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          },
+          "keyUsage" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/KeyUsageName"
+            }
+          },
+          "signatureAlgorithm" : {
+            "type" : "string"
+          },
+          "keySize" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "keyType" : {
+            "$ref" : "#/components/schemas/SupportedKeyType"
+          },
+          "fingerprint" : {
+            "type" : "string"
+          },
+          "serialNumber" : {
+            "type" : "string"
+          },
+          "isCaCertificate" : {
+            "type" : "boolean"
+          },
+          "isSelfSigned" : {
+            "type" : "boolean"
+          },
+          "subjectAlternativeNames" : {
+            "type" : "array",
+            "items" : {
+              "type" : "object",
+              "required" : [ "key", "value" ],
+              "properties" : {
+                "key" : {
+                  "type" : "string"
+                },
+                "value" : {
+                  "type" : "string"
+                }
+              }
+            }
+          },
+          "notYetValid" : {
+            "type" : "boolean"
+          },
+          "expired" : {
+            "type" : "boolean"
+          },
+          "keyOnly" : {
+            "type" : "boolean"
+          },
+          "id" : {
+            "type" : "string",
+            "description" : "Certificate id"
+          },
+          "alias" : {
+            "type" : "string",
+            "description" : "Certificate alias (optional)"
+          },
+          "aliasLabel" : {
+            "type" : "string",
+            "description" : "Certificate alias label (alias or certificate's common name)"
+          },
+          "inUse" : {
+            "type" : "boolean",
+            "description" : "Certificate is in use in the configuration"
+          }
+        },
+        "required" : [ "keyType", "fingerprint", "keyOnly", "id", "aliasLabel", "inUse" ]
+      },
+      "CertificateDetailedInfoDto" : {
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "string"
+          },
+          "alias" : {
+            "type" : "string"
+          },
+          "content" : {
+            "type" : "string"
+          },
+          "keyContent" : {
+            "type" : "string"
+          }
+        }
+      },
+      "CertificateDownloadFormat" : {
+        "description" : "Certificate download formats",
+        "type" : "string",
+        "enum" : [ "PEM", "DER", "PKCS12", "JKS" ]
+      },
+      "CertificateInfoDto" : {
+        "description" : "Certificate info",
+        "type" : "object",
+        "properties" : {
+          "subject" : {
+            "type" : "string"
+          },
+          "issuer" : {
+            "type" : "string"
+          },
+          "subjectElements" : {
+            "type" : "array",
+            "items" : {
+              "type" : "object",
+              "required" : [ "key", "value" ],
+              "properties" : {
+                "key" : {
+                  "type" : "string"
+                },
+                "value" : {
+                  "type" : "string"
+                }
+              }
+            }
+          },
+          "issuerElements" : {
+            "type" : "array",
+            "items" : {
+              "type" : "object",
+              "required" : [ "key", "value" ],
+              "properties" : {
+                "key" : {
+                  "type" : "string"
+                },
+                "value" : {
+                  "type" : "string"
+                }
+              }
+            }
+          },
+          "validFrom" : {
+            "type" : "string",
+            "format" : "date",
+            "examples" : [ "2022-03-10" ]
+          },
+          "validUntil" : {
+            "type" : "string",
+            "format" : "date",
+            "examples" : [ "2022-03-10" ]
+          },
+          "commonNames" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          },
+          "keyUsage" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/KeyUsageName"
+            }
+          },
+          "signatureAlgorithm" : {
+            "type" : "string"
+          },
+          "keySize" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "keyType" : {
+            "$ref" : "#/components/schemas/SupportedKeyType"
+          },
+          "fingerprint" : {
+            "type" : "string"
+          },
+          "serialNumber" : {
+            "type" : "string"
+          },
+          "isCaCertificate" : {
+            "type" : "boolean"
+          },
+          "isSelfSigned" : {
+            "type" : "boolean"
+          },
+          "subjectAlternativeNames" : {
+            "type" : "array",
+            "items" : {
+              "type" : "object",
+              "required" : [ "key", "value" ],
+              "properties" : {
+                "key" : {
+                  "type" : "string"
+                },
+                "value" : {
+                  "type" : "string"
+                }
+              }
+            }
+          },
+          "notYetValid" : {
+            "type" : "boolean"
+          },
+          "expired" : {
+            "type" : "boolean"
+          },
+          "keyOnly" : {
+            "type" : "boolean"
+          },
+          "id" : {
+            "type" : "string",
+            "description" : "Certificate id"
+          },
+          "alias" : {
+            "type" : "string",
+            "description" : "Certificate alias (optional)"
+          },
+          "aliasLabel" : {
+            "type" : "string",
+            "description" : "Certificate alias label (alias or certificate's common name)"
+          },
+          "inUse" : {
+            "type" : "boolean",
+            "description" : "Certificate is in use in the configuration"
+          }
+        },
+        "required" : [ "keyType", "fingerprint", "keyOnly", "id", "aliasLabel", "inUse" ]
+      },
+      "CertificateSubjectForm" : {
+        "type" : "object",
+        "required" : [ "commonName" ],
+        "properties" : {
+          "commonName" : {
+            "type" : "string",
+            "pattern" : "\\S",
+            "maxLength" : 64
+          },
+          "alternativeDomainNames" : {
+            "type" : "string"
+          },
+          "country" : {
+            "type" : "string"
+          },
+          "stateOrProvince" : {
+            "type" : "string"
+          },
+          "locality" : {
+            "type" : "string"
+          },
+          "organization" : {
+            "type" : "string"
+          },
+          "organizationalUnit" : {
+            "type" : "string"
+          },
+          "emailAddress" : {
+            "type" : "string"
+          }
+        }
+      },
+      "CertificatesDataDto" : {
+        "description" : "Holds the information about certificates available for virtual host",
+        "type" : "object",
+        "properties" : {
+          "certificates" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/CertificateInfoDto"
+            },
+            "description" : "A list of certificate infos"
+          },
+          "caCertificates" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/CaCertificateInfoDto"
+            },
+            "description" : "A list of CA certificate infos"
+          },
+          "acmeProviders" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/AcmeProviderDto"
+            },
+            "description" : "A list of Automatic certificate renewal (ACME) providers"
+          }
+        }
+      },
+      "CertificatesDetailedDataDto" : {
+        "description" : "Holds the information about certificates available for virtual host",
+        "type" : "object",
+        "properties" : {
+          "certificates" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/CertificateDetailedInfoDto"
+            },
+            "description" : "A list of detailed certificate infos"
+          },
+          "caCertificates" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/CaCertificateDetailedInfoDto"
+            },
+            "description" : "A list of detailed CA certificate infos"
+          },
+          "acmeProviders" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/AcmeProviderDto"
+            },
+            "description" : "A list of Automatic certificate renewal (ACME) providers"
+          }
+        }
+      },
+      "ClientCertificateValidationDto" : {
+        "type" : "object",
+        "description" : "Client Certificate Validation settings",
+        "properties" : {
+          "optionalValidation" : {
+            "type" : "boolean",
+            "description" : "Accept connections even when a client doesn’t present a certificate"
+          },
+          "trustedCaCertificateId" : {
+            "type" : "string",
+            "description" : "TLS certificate of the Certificate Authorities that can be used as a trust anchor to validate the certificates presented by the client"
+          },
+          "sanMatches" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/SanMatchDto"
+            },
+            "description" : "A list of Subject Alternative Name matchers. If specified, it will be verified that the Subject Alternative Name of the presented certificate matches one of the specified matchers"
+          },
+          "forwardXfccHttpHeader" : {
+            "type" : "boolean",
+            "description" : "Forward Client Certificate information with XFCC HTTP Header"
+          }
+        }
+      },
+      "ConfigurationValidationError" : {
+        "type" : "object",
+        "required" : [ "type", "arguments" ],
+        "properties" : {
+          "type" : {
+            "$ref" : "#/components/schemas/ConfigurationValidationErrorType"
+          },
+          "arguments" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        }
+      },
+      "ConfigurationValidationErrorType" : {
+        "type" : "string",
+        "enum" : [ "INCOMPATIBLE_COMPONENT_VERSION", "HOST_NON_EXISTING_CONFIGURED_INTERFACE", "HOST_AT_LEAST_TWO_CONFIGURED_INTERFACES_REQUIRED", "HOST_HA_UNAVAILABLE_FOR_DHCP", "HOST_SYSTEM_HOSTNAME_NOT_IN_HA_CONFIG", "HOST_SYSTEM_IP_NOT_IN_HA_CONFIG", "WAAP_EXTERNAL_IFACE_NOT_CONFIGURED", "WAAP_MISSING_LISTENER_IP" ]
+      },
+      "CookieAttributeMutationAction" : {
+        "type" : "string",
+        "enum" : [ "REMOVE", "ADD_IF_ABSENT", "OVERWRITE_IF_EXISTS", "OVERWRITE_IF_EXISTS_OR_ADD" ]
+      },
+      "CookieManipulationDto" : {
+        "description" : "Cookie manipulation for request 'Cookie' and response 'Set-Cookie' headers",
+        "type" : "object",
+        "properties" : {
+          "request" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/RequestManipulationDto"
+            },
+            "description" : "Request-side cookie manipulations (applied to 'Cookie' headers)",
+            "maxItems" : 64
+          },
+          "response" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/ResponseManipulationDto"
+            },
+            "description" : "Response-side cookie manipulations (applied to 'Set-Cookie' headers)",
+            "maxItems" : 64
+          }
+        }
+      },
+      "CookieRequestMutationAction" : {
+        "type" : "string",
+        "enum" : [ "REMOVE", "ADD_IF_ABSENT", "OVERWRITE_IF_EXISTS", "OVERWRITE_IF_EXISTS_OR_ADD" ]
+      },
+      "CookieResponseMutationAction" : {
+        "type" : "string",
+        "enum" : [ "REMOVE", "ADD_IF_ABSENT", "OVERWRITE_IF_EXISTS", "OVERWRITE_IF_EXISTS_OR_ADD", "MODIFY_ATTRIBUTES_IF_COOKIE_PRESENT" ]
+      },
+      "CoreRuleSetMode" : {
+        "description" : "Core rule set operational mode",
+        "type" : "string",
+        "enum" : [ "Disabled", "Detect", "Block" ]
+      },
+      "CreateCertificateSigningRequestFormData" : {
+        "description" : "Holds the form data required to display Create self-signed certificate dialog",
+        "type" : "object",
+        "properties" : {
+          "existingKeys" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/CertificateInfoDto"
+            },
+            "description" : "A list of existing private keys"
+          },
+          "keyTypeList" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            },
+            "description" : "A list of supported Key types"
+          }
+        }
+      },
+      "CreateSelfSignedCertificateFormData" : {
+        "description" : "Holds the form data required to display Create self-signed certificate dialog",
+        "type" : "object",
+        "required" : [ "keyTypeList" ],
+        "properties" : {
+          "keyTypeList" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            },
+            "description" : "A list of supported Key types"
+          }
+        }
+      },
+      "CrossOriginEmbedderPolicy" : {
+        "type" : "string",
+        "enum" : [ "REQUIRE_CORP", "CREDENTIALLESS", "UNSAFE_NONE" ]
+      },
+      "CrossOriginOpenerPolicy" : {
+        "type" : "string",
+        "enum" : [ "SAME_ORIGIN", "SAME_ORIGIN_ALLOW_POPUPS", "UNSAFE_NONE" ]
+      },
+      "CrossOriginResourcePolicy" : {
+        "type" : "string",
+        "enum" : [ "SAME_ORIGIN", "SAME_SITE", "CROSS_ORIGIN" ]
+      },
+      "CrossOriginResourceSharingDto" : {
+        "type" : "object",
+        "required" : [ "allowOrigins" ],
+        "properties" : {
+          "allowOrigins" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string",
+              "pattern" : "\\S",
+              "maxLength" : 253
+            },
+            "description" : "Origins allowed to make cross-origin requests",
+            "maxItems" : 256,
+            "minItems" : 1
+          },
+          "allowMethods" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string",
+              "pattern" : "GET|HEAD|POST|PUT|PATCH|DELETE|CONNECT|OPTIONS|TRACE"
+            },
+            "description" : "HTTP methods allowed for cross-origin requests",
+            "maxItems" : 16
+          },
+          "allowHeaders" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string",
+              "pattern" : "\\S"
+            },
+            "description" : "Request headers the browser may send",
+            "maxItems" : 256
+          },
+          "exposeHeaders" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string",
+              "pattern" : "\\S"
+            },
+            "description" : "Response headers made readable to browser scripts",
+            "maxItems" : 256
+          },
+          "allowCredentials" : {
+            "type" : "boolean",
+            "description" : "Whether cookies, authorization headers or TLS client certificates are allowed"
+          },
+          "maxAgeSeconds" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "How long (in seconds) the browser may cache the preflight result",
+            "minimum" : 0
+          }
+        }
+      },
+      "CustomCiphersAndAlgorithmsDto" : {
+        "type" : "object",
+        "description" : "Customization of supported Ciphers and Algorithms",
+        "properties" : {
+          "cipherSuites" : {
+            "type" : "string",
+            "description" : "Cipher Suites for TLS 1.2 and older"
+          },
+          "ecdhCurves" : {
+            "type" : "string",
+            "description" : "ECDH curves"
+          },
+          "signatureAlgorithms" : {
+            "type" : "string",
+            "description" : "Signature Algorithms"
+          }
+        }
+      },
+      "CustomTlsVersions" : {
+        "type" : "object",
+        "description" : "Custom TLS Versions settings",
+        "properties" : {
+          "tlsVersion13" : {
+            "type" : "boolean",
+            "description" : "Support TLS version 1.3"
+          },
+          "tlsVersion12" : {
+            "type" : "boolean",
+            "description" : "Support TLS version 1.2"
+          },
+          "tlsVersion11" : {
+            "type" : "boolean",
+            "description" : "Support TLS version 1.1"
+          },
+          "tlsVersion10" : {
+            "type" : "boolean",
+            "description" : "Support TLS version 1.0"
+          }
+        }
+      },
+      "EditAcmeProviderFormData" : {
+        "description" : "Holds the form data required to display Edit ACME provider dialog",
+        "type" : "object",
+        "required" : [ "keyTypeList", "caCertificates" ],
+        "properties" : {
+          "keyTypeList" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            },
+            "description" : "A list of supported Key types"
+          },
+          "caCertificates" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/CaCertificateInfoDto"
+            },
+            "description" : "A list of available CA certificates"
+          }
+        }
+      },
+      "ErrorPageHeaderConditionDto" : {
+        "description" : "Additional header condition narrowing down when an error page is served",
+        "type" : "object",
+        "required" : [ "type", "name", "matchType", "value" ],
+        "properties" : {
+          "type" : {
+            "description" : "Source where to take the header from",
+            "type" : "string",
+            "$ref" : "#/components/schemas/ErrorPageHeaderConditionType"
+          },
+          "name" : {
+            "type" : "string",
+            "description" : "Name of the header to match, case-insensitive",
+            "pattern" : "\\S"
+          },
+          "matchType" : {
+            "description" : "How the header value is compared",
+            "type" : "string",
+            "$ref" : "#/components/schemas/ErrorPageHeaderConditionMatchType"
+          },
+          "value" : {
+            "type" : "string",
+            "description" : "Value the header is compared against",
+            "pattern" : "\\S",
+            "maxLength" : 4096
+          }
+        }
+      },
+      "ErrorPageHeaderConditionMatchType" : {
+        "type" : "string",
+        "enum" : [ "EXACT", "CONTAINS", "PREFIX", "SUFFIX", "REGEX" ]
+      },
+      "ErrorPageHeaderConditionType" : {
+        "type" : "string",
+        "enum" : [ "RESPONSE" ]
+      },
+      "ErrorPageResponseStatusCode" : {
+        "type" : "string",
+        "enum" : [ "STATUS_4xx", "STATUS_400", "STATUS_401", "STATUS_403", "STATUS_404", "STATUS_405", "STATUS_5xx", "STATUS_500", "STATUS_501", "STATUS_502", "STATUS_503", "STATUS_504", "STATUS_505" ]
+      },
+      "ErrorResponse" : {
+        "description" : "Provides the information about invalid request",
+        "type" : "object",
+        "required" : [ "reason" ],
+        "properties" : {
+          "reason" : {
+            "type" : "string",
+            "description" : "Reason for request to be considered invalid"
+          }
+        }
+      },
+      "FolderStaticContentEntryForm" : {
+        "type" : "object",
+        "required" : [ "name" ],
+        "properties" : {
+          "name" : {
+            "type" : "string",
+            "description" : "Name of the static content entry",
+            "pattern" : "\\S"
+          }
+        }
+      },
+      "HeaderFilterDenyPattern" : {
+        "type" : "object",
+        "required" : [ "name", "pattern" ],
+        "properties" : {
+          "name" : {
+            "type" : "string",
+            "pattern" : "\\S"
+          },
+          "pattern" : {
+            "type" : "string",
+            "pattern" : "\\S"
+          }
+        }
+      },
+      "HeaderFilterRequest" : {
+        "type" : "object",
+        "required" : [ "allowClass" ],
+        "properties" : {
+          "allowClass" : {
+            "description" : "Header class",
+            "type" : "string",
+            "$ref" : "#/components/schemas/AllowClass"
+          },
+          "allowedHeaders" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string",
+              "pattern" : "\\S"
+            },
+            "description" : "List of headers that are explicitly allowed"
+          },
+          "deniedHeaders" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string",
+              "pattern" : "\\S"
+            },
+            "description" : "List of headers that are explicitly denied"
+          },
+          "denyPatterns" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/HeaderFilterDenyPattern"
+            },
+            "description" : "List of headers that are denied by header value"
+          }
+        }
+      },
+      "HeaderFilterResponse" : {
+        "type" : "object",
+        "properties" : {
+          "allowedHeaders" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string",
+              "pattern" : "\\S"
+            },
+            "description" : "List of headers that are explicitly allowed"
+          },
+          "deniedHeaders" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string",
+              "pattern" : "\\S"
+            },
+            "description" : "List of headers that are explicitly denied"
+          },
+          "denyPatterns" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/HeaderFilterDenyPattern"
+            },
+            "description" : "List of headers that are denied by header value"
+          }
+        }
+      },
+      "HeaderFilteringDto" : {
+        "type" : "object",
+        "properties" : {
+          "enabled" : {
+            "type" : "boolean",
+            "description" : "Whether to enable header filtering or not"
+          },
+          "logOnly" : {
+            "type" : "boolean",
+            "description" : "Whether header filtering should remove header or only log what would be removed"
+          },
+          "request" : {
+            "description" : "Header filter request settings",
+            "type" : "object",
+            "$ref" : "#/components/schemas/HeaderFilterRequest"
+          },
+          "response" : {
+            "description" : "Header filter response settings",
+            "type" : "object",
+            "$ref" : "#/components/schemas/HeaderFilterResponse"
+          }
+        }
+      },
+      "HeaderManipulationAction" : {
+        "type" : "string",
+        "enum" : [ "ADD", "SET", "REMOVE", "ADD_IF_ABSENT", "OVERWRITE_IF_EXISTS" ]
+      },
+      "HeaderManipulationDto" : {
+        "type" : "object",
+        "required" : [ "action", "headerName" ],
+        "properties" : {
+          "action" : {
+            "$ref" : "#/components/schemas/HeaderManipulationAction"
+          },
+          "headerName" : {
+            "type" : "string",
+            "pattern" : "\\S"
+          },
+          "value" : {
+            "type" : "string"
+          }
+        }
+      },
+      "HeaderValidationMode" : {
+        "type" : "string",
+        "enum" : [ "Disabled", "Detect", "Block" ]
+      },
+      "HttpMethod" : {
+        "type" : "string",
+        "enum" : [ "ACL", "BASELINE_CONTROL", "BIND", "CHECKIN", "CHECKOUT", "CONNECT", "COPY", "DELETE", "GET", "HEAD", "LABEL", "LINK", "LOCK", "MERGE", "MKACTIVITY", "MKCALENDAR", "MKCOL", "MKREDIRECTREF", "MKWORKSPACE", "MOVE", "OPTIONS", "ORDERPATCH", "PATCH", "POST", "PRI", "PROPFIND", "PROPPATCH", "PUT", "QUERY", "REBIND", "REPORT", "SEARCH", "TRACE", "UNBIND", "UNCHECKOUT", "UNLINK", "UNLOCK", "UPDATE", "UPDATEREDIRECTREF", "VERSION_CONTROL" ]
+      },
+      "HttpScheme" : {
+        "type" : "string",
+        "enum" : [ "NOT_SET", "HTTP", "HTTPS" ]
+      },
+      "IPsDto" : {
+        "description" : "Holds the information about available IP addresses",
+        "type" : "object",
+        "properties" : {
+          "ipv4s" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            },
+            "description" : "Available IPv4 addresses"
+          },
+          "ipv6s" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            },
+            "description" : "Available IPv6 addresses"
+          }
+        }
+      },
+      "IpAccessControl" : {
+        "type" : "object",
+        "description" : "IP access control",
+        "required" : [ "accessMode", "rules" ],
+        "properties" : {
+          "accessMode" : {
+            "description" : "Behaviour when one of the rules is matched",
+            "type" : "string",
+            "$ref" : "#/components/schemas/AccessMode"
+          },
+          "rules" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/RouteAccessControlRuleDto"
+            },
+            "description" : "Route's access control rules",
+            "minItems" : 1
+          }
+        }
+      },
+      "KeyUsageName" : {
+        "type" : "string",
+        "enum" : [ "DIGITAL_SIGNATURE", "NON_REPUDIATION", "KEY_ENCIPHERMENT", "DATA_ENCIPHERMENT", "KEY_AGREEMENT", "KEY_CERT_SIGN", "CRL_SIGN", "ENCIPHER_ONLY", "DECIPHER_ONLY" ]
+      },
+      "ListenerDto" : {
+        "description" : "Holds the information about listeners",
+        "type" : "object",
+        "required" : [ "id", "timeoutsLimits" ],
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "description" : "Id of the listener",
+            "readOnly" : true
+          },
+          "settings" : {
+            "description" : "General listener settings",
+            "type" : "object",
+            "$ref" : "#/components/schemas/ListenerSettingsDto"
+          },
+          "tls" : {
+            "description" : "Listener's TLS settings",
+            "type" : "object",
+            "$ref" : "#/components/schemas/ListenerTlsDto"
+          },
+          "timeoutsLimits" : {
+            "description" : "Listener's timeouts and limits",
+            "type" : "object",
+            "$ref" : "#/components/schemas/ListenerTimeoutsLimitsDto"
+          }
+        }
+      },
+      "ListenerExtDto" : {
+        "description" : "Holds the extended information about a listener",
+        "type" : "object",
+        "required" : [ "id", "timeoutsLimits" ],
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "description" : "Id of the listener",
+            "readOnly" : true
+          },
+          "settings" : {
+            "description" : "General listener settings",
+            "type" : "object",
+            "$ref" : "#/components/schemas/ListenerSettingsDto"
+          },
+          "tls" : {
+            "description" : "Listener's TLS settings",
+            "type" : "object",
+            "$ref" : "#/components/schemas/ListenerTlsDto"
+          },
+          "timeoutsLimits" : {
+            "description" : "Listener's timeouts and limits",
+            "type" : "object",
+            "$ref" : "#/components/schemas/ListenerTimeoutsLimitsDto"
+          },
+          "vhosts" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/VhostDto"
+            },
+            "description" : "A list of assigned virtual hosts"
+          },
+          "validationErrors" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/ConfigurationValidationError"
+            },
+            "description" : "A list of configuration validation errors related to this listener"
+          }
+        }
+      },
+      "ListenerSettingsDto" : {
+        "type" : "object",
+        "description" : "Holds the information about general listener settings",
+        "required" : [ "name", "httpPort", "httpsPort" ],
+        "properties" : {
+          "name" : {
+            "type" : "string",
+            "description" : "Listener name",
+            "pattern" : "\\S"
+          },
+          "ipv4" : {
+            "type" : "string",
+            "description" : "Listener IPv4 address"
+          },
+          "ipv6" : {
+            "type" : "string",
+            "description" : "Listener IPv6 address"
+          },
+          "httpPort" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "Listener HTTP port",
+            "maximum" : 65535,
+            "minimum" : 1
+          },
+          "httpsPort" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "Listener HTTPS port",
+            "maximum" : 65535,
+            "minimum" : 1
+          },
+          "customServerHeader" : {
+            "type" : "string",
+            "description" : "Custom value for the 'Server' HTTP Response header, or empty to keep the header provided by the backend",
+            "maxLength" : 4096
+          },
+          "numberOfTrustedHops" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "A number of trusted hops used for X-Forwared-For header based Client IP detection",
+            "minimum" : 0
+          },
+          "customHeaderName" : {
+            "type" : "string",
+            "description" : "A header name used for header based Client IP detection",
+            "maxLength" : 4096
+          },
+          "comments" : {
+            "type" : "string",
+            "description" : "Comments about general listener settings"
+          }
+        }
+      },
+      "ListenerTimeoutsLimitsDto" : {
+        "type" : "object",
+        "description" : "Holds the information about general listener timeouts and limits",
+        "required" : [ "connectionAcceptanceTimeout", "tlsHandshakeTimeout", "maxConnectionDuration", "httpConnectionIdleTimeout", "streamIdleTimeout", "requestHeadersReceivedTimeout", "requestTotalReceivedTimeout", "maxConcurrentConnections", "maxConcurrentHttpTwoStreams", "connectionBufferLimit" ],
+        "properties" : {
+          "connectionAcceptanceTimeout" : {
+            "type" : "string",
+            "description" : "Listener's connection acceptance timeout limit",
+            "pattern" : "\\S"
+          },
+          "tlsHandshakeTimeout" : {
+            "type" : "string",
+            "description" : "Listener's TLS handshake timeout limit",
+            "pattern" : "\\S"
+          },
+          "maxConnectionDuration" : {
+            "type" : "string",
+            "description" : "Listener's connection maximum duration limit",
+            "pattern" : "\\S"
+          },
+          "httpConnectionIdleTimeout" : {
+            "type" : "string",
+            "description" : "Listener's HTTP connection idle timeout limit",
+            "pattern" : "\\S"
+          },
+          "streamIdleTimeout" : {
+            "type" : "string",
+            "description" : "Listener's stream idle timeout limit",
+            "pattern" : "\\S"
+          },
+          "requestHeadersReceivedTimeout" : {
+            "type" : "string",
+            "description" : "Listener's request headers received timeout limit",
+            "pattern" : "\\S"
+          },
+          "requestTotalReceivedTimeout" : {
+            "type" : "string",
+            "description" : "Listener's request total received timeout limit",
+            "pattern" : "\\S"
+          },
+          "maxConcurrentConnections" : {
+            "type" : "integer",
+            "format" : "int64",
+            "description" : "Listener's max concurrent connections",
+            "minimum" : 1
+          },
+          "maxConcurrentHttpTwoStreams" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "Listener's max concurrent HTTP 2 streams",
+            "minimum" : 1
+          },
+          "connectionBufferLimit" : {
+            "type" : "string",
+            "description" : "Listener's connection buffer limit",
+            "pattern" : "\\S"
+          },
+          "comments" : {
+            "type" : "string",
+            "description" : "Comments about general listener limits and timeouts"
+          }
+        }
+      },
+      "ListenerTlsDto" : {
+        "type" : "object",
+        "description" : "Holds the information about listener's TLS settings",
+        "properties" : {
+          "tlsVersion13" : {
+            "type" : "boolean",
+            "description" : "Support TLS version 1.3"
+          },
+          "tlsVersion12" : {
+            "type" : "boolean",
+            "description" : "Support TLS version 1.2"
+          },
+          "tlsVersion11" : {
+            "type" : "boolean",
+            "description" : "Support TLS version 1.1"
+          },
+          "tlsVersion10" : {
+            "type" : "boolean",
+            "description" : "Support TLS version 1.0"
+          },
+          "clientCertificateValidation" : {
+            "description" : "Client Certificate Validation settings",
+            "type" : "object",
+            "$ref" : "#/components/schemas/ClientCertificateValidationDto"
+          },
+          "customCiphersAndAlgorithms" : {
+            "description" : "Customization of supported Ciphers and Algorithms",
+            "type" : "object",
+            "$ref" : "#/components/schemas/CustomCiphersAndAlgorithmsDto"
+          },
+          "comments" : {
+            "type" : "string",
+            "description" : "Comments about TLS settings"
+          }
+        }
+      },
+      "ListenersDataDto" : {
+        "description" : "Holds the information about listeners",
+        "type" : "object",
+        "properties" : {
+          "listeners" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/ListenerExtDto"
+            },
+            "description" : "A list of listeners"
+          },
+          "validationErrors" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/ConfigurationValidationError"
+            },
+            "description" : "A list of configuration validation errors related to all listeners"
+          }
+        }
+      },
+      "LoadBalancer" : {
+        "type" : "string",
+        "enum" : [ "LEAST_REQUEST", "RANDOM", "ROUND_ROBIN", "CONSISTENT_HASH" ]
+      },
+      "ReferrerPolicy" : {
+        "type" : "string",
+        "enum" : [ "NO_REFERRER", "NO_REFERRER_WHEN_DOWNGRADE", "ORIGIN", "ORIGIN_WHEN_CROSS_ORIGIN", "SAME_ORIGIN", "STRICT_ORIGIN", "STRICT_ORIGIN_WHEN_CROSS_ORIGIN", "UNSAFE_URL" ]
+      },
+      "RepeatOffenderDto" : {
+        "type" : "object",
+        "description" : "Holds the information about repeat offender configuration",
+        "required" : [ "excludedClientIPs", "maximumViolationsLimitExceededStatusCode", "httpCodesToObserve", "maximumAllowedViolations", "violationsCounterResetDuration" ],
+        "properties" : {
+          "excludedClientIPs" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string",
+              "pattern" : "\\S"
+            },
+            "description" : "IPs to exclude from repeat offender policy"
+          },
+          "maximumViolationsLimitExceededStatusCode" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "Status code to return when a client reached limit of maximum allowed violations",
+            "maximum" : 599,
+            "minimum" : 100
+          },
+          "httpCodesToObserve" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string",
+              "pattern" : "\\S"
+            },
+            "description" : "List of HTTP status codes that are deemed violations",
+            "minItems" : 1
+          },
+          "maximumAllowedViolations" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "Amount of violations before client is blocked",
+            "maximum" : 65535,
+            "minimum" : 1
+          },
+          "violationsCounterResetDuration" : {
+            "type" : "string",
+            "description" : "Duration for blocking clients when they exceeded the violation limit",
+            "pattern" : "\\S"
+          }
+        }
+      },
+      "ReplaceType" : {
+        "type" : "string",
+        "enum" : [ "FULL_PATH", "PREFIX" ]
+      },
+      "RequestManipulationDto" : {
+        "type" : "object",
+        "required" : [ "name", "action" ],
+        "properties" : {
+          "name" : {
+            "type" : "string",
+            "pattern" : "\\S"
+          },
+          "value" : {
+            "type" : "string",
+            "maxLength" : 4096
+          },
+          "action" : {
+            "$ref" : "#/components/schemas/CookieRequestMutationAction"
+          }
+        }
+      },
+      "RequestPartType" : {
+        "type" : "string",
+        "enum" : [ "ARGS", "ARGS_COMBINED_SIZE", "ARGS_GET", "ARGS_GET_NAMES", "ARGS_NAMES", "ARGS_POST", "ARGS_POST_NAMES", "AUTH_TYPE", "DURATION", "ENV", "FILES", "FILES_COMBINED_SIZE", "FILES_NAMES", "FULL_REQUEST", "FULL_REQUEST_LENGTH", "FILES_SIZES", "FILES_TMPNAMES", "FILES_TMP_CONTENT", "GEO", "HIGHEST_SEVERITY", "INBOUND_DATA_ERROR", "MATCHED_VAR", "MATCHED_VARS", "MATCHED_VAR_NAME", "MATCHED_VARS_NAMES", "MODSEC_BUILD", "MULTIPART_CRLF_LF_LINES", "MULTIPART_FILENAME", "MULTIPART_NAME", "MULTIPART_STRICT_ERROR", "MULTIPART_UNMATCHED_BOUNDARY", "MULTIPART_PART_HEADERS", "OUTBOUND_DATA_ERROR", "PATH_INFO", "PERF_COMBINED", "PERF_GC", "PERF_LOGGING", "PERF_PHASE1", "PERF_PHASE2", "PERF_PHASE3", "PERF_PHASE4", "PERF_PHASE5", "PERF_RULES", "PERF_SREAD", "PERF_SWRITE", "QUERY_STRING", "REMOTE_ADDR", "REMOTE_HOST", "REMOTE_PORT", "REMOTE_USER", "REQBODY_ERROR", "REQBODY_ERROR_MSG", "REQBODY_PROCESSOR", "REQUEST_BASENAME", "REQUEST_BODY", "REQUEST_BODY_LENGTH", "REQUEST_COOKIES", "REQUEST_COOKIES_NAMES", "REQUEST_FILENAME", "REQUEST_HEADERS", "REQUEST_HEADERS_NAMES", "REQUEST_LINE", "REQUEST_METHOD", "REQUEST_PROTOCOL", "REQUEST_URI", "REQUEST_URI_RAW", "RESPONSE_BODY", "RESPONSE_CONTENT_LENGTH", "RESPONSE_CONTENT_TYPE", "RESPONSE_HEADERS", "RESPONSE_HEADERS_NAMES", "RESPONSE_PROTOCOL", "RESPONSE_STATUS", "RULE", "SCRIPT_BASENAME", "SCRIPT_FILENAME", "SCRIPT_GID", "SCRIPT_GROUPNAME", "SCRIPT_MODE", "SCRIPT_UID", "SCRIPT_USERNAME", "SDBM_DELETE_ERROR", "SERVER_ADDR", "SERVER_NAME", "SERVER_PORT", "SESSION", "SESSIONID", "STREAM_INPUT_BODY", "STREAM_OUTPUT_BODY", "TIME", "TIME_DAY", "TIME_EPOCH", "TIME_HOUR", "TIME_MIN", "TIME_MON", "TIME_SEC", "TIME_WDAY", "TIME_YEAR", "TX", "UNIQUE_ID", "URLENCODED_ERROR", "USERID", "USERAGENT_IP", "WEBAPPID", "WEBSERVER_ERROR_LOG", "XML" ]
+      },
+      "RequestPathTranslationDto" : {
+        "type" : "object",
+        "description" : "Request path translation",
+        "required" : [ "pattern", "substitution" ],
+        "properties" : {
+          "pattern" : {
+            "type" : "string",
+            "description" : "Path translation pattern",
+            "pattern" : "\\S",
+            "maxLength" : 1024
+          },
+          "substitution" : {
+            "type" : "string",
+            "description" : "Path translation substitution",
+            "pattern" : "\\S",
+            "maxLength" : 1024
+          }
+        }
+      },
+      "RequestRedirectDto" : {
+        "type" : "object",
+        "description" : "Request redirect",
+        "required" : [ "scheme", "replaceType" ],
+        "properties" : {
+          "scheme" : {
+            "description" : "HTTP scheme to use when redirecting",
+            "type" : "string",
+            "$ref" : "#/components/schemas/HttpScheme"
+          },
+          "hostname" : {
+            "type" : "string",
+            "description" : "Hostname to use when redirecting"
+          },
+          "port" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "Port to use when redirecting",
+            "maximum" : 65535,
+            "minimum" : 0
+          },
+          "replaceType" : {
+            "description" : "Replace type",
+            "type" : "string",
+            "$ref" : "#/components/schemas/ReplaceType"
+          },
+          "replacementPath" : {
+            "type" : "string",
+            "description" : "Replacement path to use when redirecting",
+            "maxLength" : 1024
+          }
+        }
+      },
+      "ResponseManipulationDto" : {
+        "type" : "object",
+        "required" : [ "name", "action" ],
+        "properties" : {
+          "name" : {
+            "type" : "string",
+            "pattern" : "\\S"
+          },
+          "value" : {
+            "type" : "string",
+            "maxLength" : 4096
+          },
+          "action" : {
+            "$ref" : "#/components/schemas/CookieResponseMutationAction"
+          },
+          "attributes" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/AttributeManipulationDto"
+            },
+            "maxItems" : 32
+          }
+        }
+      },
+      "RouteAccessControlDto" : {
+        "type" : "object",
+        "description" : "Route's access control",
+        "properties" : {
+          "ipAccessControl" : {
+            "description" : "IP access control settings",
+            "type" : "object",
+            "$ref" : "#/components/schemas/IpAccessControl"
+          },
+          "comments" : {
+            "type" : "string",
+            "description" : "Comments of the route's access control"
+          }
+        }
+      },
+      "RouteAccessControlRuleDto" : {
+        "type" : "object",
+        "description" : "Route's access control rule",
+        "required" : [ "type", "value" ],
+        "properties" : {
+          "type" : {
+            "description" : "Type of the rule's value",
+            "type" : "string",
+            "$ref" : "#/components/schemas/RouteAccessControlType"
+          },
+          "value" : {
+            "type" : "string",
+            "description" : "Rule's value",
+            "pattern" : "\\S"
+          },
+          "label" : {
+            "type" : "string",
+            "description" : "Rule's label",
+            "maxLength" : 256
+          }
+        }
+      },
+      "RouteAccessControlType" : {
+        "type" : "string",
+        "enum" : [ "cidr", "ip" ]
+      },
+      "RouteDto" : {
+        "type" : "object",
+        "description" : "Holds the information about virtual host route",
+        "required" : [ "id", "http", "timeouts" ],
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "description" : "Id of the route",
+            "readOnly" : true
+          },
+          "settings" : {
+            "description" : "General route settings",
+            "type" : "object",
+            "$ref" : "#/components/schemas/RouteSettingsDto"
+          },
+          "accessControl" : {
+            "description" : "Route's access control",
+            "type" : "object",
+            "$ref" : "#/components/schemas/RouteAccessControlDto"
+          },
+          "http" : {
+            "description" : "HTTP route settings",
+            "type" : "object",
+            "$ref" : "#/components/schemas/RouteHttpDto"
+          },
+          "translationRedirect" : {
+            "description" : "Route's translation & redirect settings",
+            "type" : "object",
+            "$ref" : "#/components/schemas/RouteTranslationRedirectDto"
+          },
+          "headerSettings" : {
+            "description" : "Route's header settings",
+            "type" : "object",
+            "$ref" : "#/components/schemas/RouteHeaderSettingsDto"
+          },
+          "timeouts" : {
+            "description" : "Route's timeouts settings",
+            "type" : "object",
+            "$ref" : "#/components/schemas/RouteTimeoutsDto"
+          }
+        }
+      },
+      "RouteHeaderSettingsDto" : {
+        "type" : "object",
+        "description" : "Holds the information about virtual host route",
+        "properties" : {
+          "requestHeaderManipulation" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/HeaderManipulationDto"
+            },
+            "description" : "Route's request header manipulation",
+            "maxItems" : 64
+          },
+          "responseHeaderManipulation" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/HeaderManipulationDto"
+            },
+            "description" : "Route's response header manipulation",
+            "maxItems" : 64
+          },
+          "headerFiltering" : {
+            "description" : "Route's header filter settings",
+            "type" : "object",
+            "$ref" : "#/components/schemas/HeaderFilteringDto"
+          },
+          "cookieManipulation" : {
+            "description" : "Route's cookie manipulation settings",
+            "type" : "object",
+            "$ref" : "#/components/schemas/CookieManipulationDto"
+          },
+          "securityResponseHeader" : {
+            "description" : "Route's security response headers",
+            "type" : "object",
+            "$ref" : "#/components/schemas/SecurityResponseHeaderDto"
+          },
+          "comments" : {
+            "type" : "string",
+            "description" : "Comments of the header settings"
+          }
+        }
+      },
+      "RouteHttpDto" : {
+        "type" : "object",
+        "description" : "Holds the information about HTTP route settings",
+        "required" : [ "allowedMethods", "requestSizeSettings" ],
+        "properties" : {
+          "allowedMethods" : {
+            "type" : "array",
+            "uniqueItems" : true,
+            "items" : {
+              "$ref" : "#/components/schemas/HttpMethod"
+            },
+            "description" : "A set of allowed HTTP methods",
+            "minItems" : 1
+          },
+          "requestSizeSettings" : {
+            "description" : "Max request size settings",
+            "type" : "object",
+            "$ref" : "#/components/schemas/RouteRequestSizeSettingsDto"
+          },
+          "comments" : {
+            "type" : "string",
+            "description" : "Comments about HTTP settings"
+          }
+        }
+      },
+      "RouteMatchDto" : {
+        "type" : "object",
+        "description" : "Route matcher",
+        "required" : [ "type", "matcher", "value" ],
+        "properties" : {
+          "type" : {
+            "description" : "Type of the matcher",
+            "type" : "string",
+            "$ref" : "#/components/schemas/RouteMatchType"
+          },
+          "matcher" : {
+            "description" : "Specifies how to match against a string",
+            "type" : "string",
+            "$ref" : "#/components/schemas/RouteMatchMatcher"
+          },
+          "headerName" : {
+            "type" : "string",
+            "description" : "HEADER matcher only: Specifies the header name which value will be matched"
+          },
+          "value" : {
+            "type" : "string",
+            "description" : "Specifies the string value that the match must have",
+            "pattern" : "\\S"
+          }
+        }
+      },
+      "RouteMatchMatcher" : {
+        "type" : "string",
+        "enum" : [ "PATH_PREFIX", "EXACT", "REGEX" ]
+      },
+      "RouteMatchType" : {
+        "type" : "string",
+        "enum" : [ "PATH", "HEADER" ]
+      },
+      "RouteMatchingRuleDto" : {
+        "type" : "object",
+        "description" : "Route matching rule",
+        "properties" : {
+          "matches" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/RouteMatchDto"
+            },
+            "description" : "A list of route matchers"
+          }
+        }
+      },
+      "RouteRequestSizeSettingsDto" : {
+        "type" : "object",
+        "description" : "Holds the information about request size settings",
+        "required" : [ "bodyAccess", "bodySizeLimit" ],
+        "properties" : {
+          "bodyAccess" : {
+            "type" : "boolean",
+            "description" : "Defines whether body access for this route is enabled or not."
+          },
+          "bodySizeLimit" : {
+            "type" : "string",
+            "description" : "Maximum size limit for request body (e.g., '10Mi', '1Gi')",
+            "pattern" : "\\S"
+          }
+        }
+      },
+      "RouteSettingsDto" : {
+        "type" : "object",
+        "description" : "Holds the information about general route settings",
+        "required" : [ "name" ],
+        "properties" : {
+          "name" : {
+            "type" : "string",
+            "description" : "Name of the route",
+            "pattern" : "\\S"
+          },
+          "routeMatchingRules" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/RouteMatchingRuleDto"
+            },
+            "description" : "A list of route matching rules"
+          },
+          "backendId" : {
+            "type" : "string",
+            "description" : "Id of the assigned backend"
+          },
+          "comments" : {
+            "type" : "string",
+            "description" : "Comments about general route settings"
+          }
+        }
+      },
+      "RouteTimeoutsDto" : {
+        "type" : "object",
+        "description" : "Holds the information about HTTP route timeout settings",
+        "required" : [ "totalUpstreamTimeout" ],
+        "properties" : {
+          "totalUpstreamTimeout" : {
+            "type" : "string",
+            "description" : "Route's maximum duration to respond to an HTTP request",
+            "pattern" : "\\S"
+          },
+          "comments" : {
+            "type" : "string",
+            "description" : "Comments about HTTP timeouts settings"
+          }
+        }
+      },
+      "RouteTranslationRedirectDto" : {
+        "type" : "object",
+        "description" : "Holds the information about route's translation & redirect settings",
+        "properties" : {
+          "requestPathTranslation" : {
+            "description" : "Request path translation",
+            "type" : "object",
+            "$ref" : "#/components/schemas/RequestPathTranslationDto"
+          },
+          "requestRedirect" : {
+            "description" : "Request redirect settings",
+            "type" : "object",
+            "$ref" : "#/components/schemas/RequestRedirectDto"
+          },
+          "comments" : {
+            "type" : "string",
+            "description" : "Comments about translation & redirect settings"
+          }
+        }
+      },
+      "RuleEngineCustomRuleDto" : {
+        "type" : "object",
+        "description" : "Holds the information about a custom rule for the rule engine",
+        "required" : [ "name", "rule", "lastEdited" ],
+        "properties" : {
+          "name" : {
+            "type" : "string",
+            "description" : "Custom rule name",
+            "pattern" : "\\S"
+          },
+          "rule" : {
+            "type" : "string",
+            "description" : "Custom rule definition",
+            "pattern" : "\\S"
+          },
+          "placeBeforeCoreRuleSet" : {
+            "type" : "boolean",
+            "description" : "Place rule before core rule set"
+          },
+          "lastEdited" : {
+            "type" : "string",
+            "description" : "Last time custom rule has been edited"
+          },
+          "comments" : {
+            "type" : "string",
+            "description" : "Comments about the custom rule"
+          }
+        }
+      },
+      "RuleEngineHeaderValidationDto" : {
+        "type" : "object",
+        "description" : "Holds the header validation configuration of a virtual host",
+        "required" : [ "mode" ],
+        "properties" : {
+          "mode" : {
+            "description" : "Header validation mode",
+            "type" : "string",
+            "$ref" : "#/components/schemas/HeaderValidationMode"
+          },
+          "exceptions" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/RuleEngineHeaderValidationExceptionDto"
+            },
+            "description" : "Header validations to exclude (header names are case-insensitive, so the same header must not be excepted twice in a different case)"
+          }
+        }
+      },
+      "RuleEngineHeaderValidationExceptionDto" : {
+        "type" : "object",
+        "description" : "Holds the information about a single header validation exception",
+        "required" : [ "exception", "lastEdited" ],
+        "properties" : {
+          "exception" : {
+            "type" : "string",
+            "description" : "The header name to exclude from both the length and the syntax validation, or '{header}/length' resp. '{header}/syntax' to exclude only one of them",
+            "pattern" : "^[A-Za-z0-9!#$%&'*+.^_`|~-]+(/length|/syntax)?$",
+            "maxLength" : 263
+          },
+          "lastEdited" : {
+            "type" : "string",
+            "description" : "Last time the header validation exception has been edited"
+          },
+          "comments" : {
+            "type" : "string",
+            "description" : "Comments about the header validation exception"
+          }
+        }
+      },
+      "RuleEngineRequestDto" : {
+        "type" : "object",
+        "description" : "Holds the information about rule engine request configuration",
+        "properties" : {
+          "parseJson" : {
+            "type" : "boolean",
+            "description" : "Enable JSON parsing"
+          },
+          "parseXml" : {
+            "type" : "boolean",
+            "description" : "Enable XML parsing"
+          },
+          "validateBody" : {
+            "type" : "boolean",
+            "description" : "When enabled, bodies that failed during the parsing stage will be blocked"
+          },
+          "ruleEngineRequestOptions" : {
+            "description" : "Rule engine request options and security settings",
+            "type" : "object",
+            "$ref" : "#/components/schemas/RuleEngineRequestOptionsDto"
+          }
+        }
+      },
+      "RuleEngineRequestOptionsDto" : {
+        "type" : "object",
+        "description" : "Holds the information about rule engine request options and security settings",
+        "properties" : {
+          "scannerDetection" : {
+            "type" : "boolean",
+            "description" : "Enable scanner detection"
+          },
+          "protocolEnforcement" : {
+            "type" : "boolean",
+            "description" : "Enable protocol enforcement"
+          },
+          "protocolAttack" : {
+            "type" : "boolean",
+            "description" : "Enable protocol attack detection"
+          },
+          "multipartAttack" : {
+            "type" : "boolean",
+            "description" : "Enable multipart attack detection"
+          },
+          "localFileInclusionAttack" : {
+            "type" : "boolean",
+            "description" : "Enable local file inclusion attack detection"
+          },
+          "remoteFileInclusionAttack" : {
+            "type" : "boolean",
+            "description" : "Enable remote file inclusion attack detection"
+          },
+          "remoteCodeExecutionAttack" : {
+            "type" : "boolean",
+            "description" : "Enable remote code execution attack detection"
+          },
+          "phpApplicationAttack" : {
+            "type" : "boolean",
+            "description" : "Enable PHP application attack detection"
+          },
+          "genericApplicationAttack" : {
+            "type" : "boolean",
+            "description" : "Enable generic application attack detection"
+          },
+          "crossSiteScriptingAttack" : {
+            "type" : "boolean",
+            "description" : "Enable cross-site scripting (XSS) attack detection"
+          },
+          "sqlInjectionAttack" : {
+            "type" : "boolean",
+            "description" : "Enable SQL injection attack detection"
+          },
+          "sessionFixationAttack" : {
+            "type" : "boolean",
+            "description" : "Enable session fixation attack detection"
+          },
+          "javaApplicationAttack" : {
+            "type" : "boolean",
+            "description" : "Enable Java application attack detection"
+          },
+          "ruleExceptions" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/RuleEngineRequestOptionsRuleExceptionDto"
+            },
+            "description" : "List of rule exceptions"
+          }
+        }
+      },
+      "RuleEngineRequestOptionsRuleExceptionDto" : {
+        "type" : "object",
+        "description" : "Holds the information about rule engine request options rule exceptions",
+        "required" : [ "ruleId", "ruleName", "lastEdited" ],
+        "properties" : {
+          "ruleId" : {
+            "type" : "string",
+            "description" : "Rule id associated with this exception",
+            "pattern" : "\\S"
+          },
+          "ruleName" : {
+            "type" : "string",
+            "description" : "Rule name associated with this exception",
+            "pattern" : "\\S"
+          },
+          "requestPart" : {
+            "description" : "The part of the HTTP request that the rule should examine",
+            "type" : "string",
+            "$ref" : "#/components/schemas/RequestPartType"
+          },
+          "requestPartName" : {
+            "type" : "string",
+            "description" : "Specific name of the request part (e.g., 'User-Agent' for REQUEST_HEADERS)"
+          },
+          "path" : {
+            "type" : "string",
+            "description" : "Path where the exception applies"
+          },
+          "regExMatcherForPath" : {
+            "type" : "boolean",
+            "description" : "Use regular expression matching for the path"
+          },
+          "lastEdited" : {
+            "type" : "string",
+            "description" : "Last time exception has been edited"
+          },
+          "comments" : {
+            "type" : "string",
+            "description" : "Comments about the rule exception"
+          }
+        }
+      },
+      "RuleEngineResponseDto" : {
+        "type" : "object",
+        "description" : "Holds the information about rule engine response configuration",
+        "properties" : {
+          "bodyAccess" : {
+            "type" : "boolean",
+            "description" : "Enable body access for response inspection"
+          },
+          "bodySizeLimit" : {
+            "type" : "string",
+            "description" : "Maximum size limit for response body (e.g., '10Mi', '1Gi')"
+          },
+          "ruleEngineResponseOptions" : {
+            "description" : "Rule engine response options and security settings",
+            "type" : "object",
+            "$ref" : "#/components/schemas/RuleEngineResponseOptionsDto"
+          }
+        }
+      },
+      "RuleEngineResponseOptionsDto" : {
+        "type" : "object",
+        "description" : "Holds the information about rule engine response options and data leakage detection settings",
+        "properties" : {
+          "generalDataLeakage" : {
+            "type" : "boolean",
+            "description" : "Enable general data leakage detection"
+          },
+          "sqlDataLeakage" : {
+            "type" : "boolean",
+            "description" : "Enable SQL data leakage detection"
+          },
+          "javaDataLeakage" : {
+            "type" : "boolean",
+            "description" : "Enable Java data leakage detection"
+          },
+          "phpDataLeakage" : {
+            "type" : "boolean",
+            "description" : "Enable PHP data leakage detection"
+          },
+          "iisDataLeakage" : {
+            "type" : "boolean",
+            "description" : "Enable IIS data leakage detection"
+          },
+          "webShellsDetection" : {
+            "type" : "boolean",
+            "description" : "Enable web shells detection"
+          },
+          "rubyDataLeakage" : {
+            "type" : "boolean",
+            "description" : "Enable Ruby data leakage detection"
+          },
+          "ruleExceptions" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/RuleEngineResponseOptionsRuleExceptionDto"
+            },
+            "description" : "List of rule exceptions"
+          }
+        }
+      },
+      "RuleEngineResponseOptionsRuleExceptionDto" : {
+        "type" : "object",
+        "description" : "Holds the information about rule engine response options rule exceptions",
+        "required" : [ "ruleId", "ruleName", "lastEdited" ],
+        "properties" : {
+          "ruleId" : {
+            "type" : "string",
+            "description" : "Rule id associated with this exception",
+            "pattern" : "\\S"
+          },
+          "ruleName" : {
+            "type" : "string",
+            "description" : "Rule name associated with this exception",
+            "pattern" : "\\S"
+          },
+          "path" : {
+            "type" : "string",
+            "description" : "Path where the exception applies"
+          },
+          "regExMatcherForPath" : {
+            "type" : "boolean",
+            "description" : "Use regular expression matching for the path"
+          },
+          "lastEdited" : {
+            "type" : "string",
+            "description" : "Last time exception has been edited"
+          },
+          "comments" : {
+            "type" : "string",
+            "description" : "Comments about the rule exception"
+          }
+        }
+      },
+      "SanMatchDto" : {
+        "type" : "object",
+        "description" : "Subject Alternative Name matcher",
+        "required" : [ "type", "matcher", "value" ],
+        "properties" : {
+          "type" : {
+            "description" : "Type of the matcher",
+            "type" : "string",
+            "$ref" : "#/components/schemas/SanMatchType"
+          },
+          "matcher" : {
+            "description" : "Specifies how to match against a string",
+            "type" : "string",
+            "$ref" : "#/components/schemas/SanMatchMatcher"
+          },
+          "value" : {
+            "type" : "string",
+            "description" : "Specifies the string value that the match must have",
+            "pattern" : "\\S",
+            "maxLength" : 1024
+          },
+          "oid" : {
+            "type" : "string",
+            "description" : "OID Value"
+          }
+        }
+      },
+      "SanMatchMatcher" : {
+        "type" : "string",
+        "enum" : [ "EXACT", "PREFIX", "SUFFIX", "REGEX" ]
+      },
+      "SanMatchType" : {
+        "type" : "string",
+        "enum" : [ "EMAIL", "OTHER_NAMES" ]
+      },
+      "SecRuleCategoryDto" : {
+        "description" : "Groups security rules by category",
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "description" : "Category identifier"
+          },
+          "name" : {
+            "type" : "string",
+            "description" : "Human readable category name"
+          },
+          "secRuleExecutionPhase" : {
+            "description" : "Execution phase of the category",
+            "type" : "string",
+            "$ref" : "#/components/schemas/SecRuleExecutionPhaseDto"
+          },
+          "rules" : {
+            "type" : "array",
+            "uniqueItems" : true,
+            "items" : {
+              "$ref" : "#/components/schemas/SecRuleDto"
+            },
+            "description" : "Rules belonging to this category"
+          }
+        }
+      },
+      "SecRuleDto" : {
+        "type" : "object",
+        "description" : "Represents a security rule",
+        "properties" : {
+          "ruleCategory" : {
+            "description" : "Category this rule belongs to",
+            "type" : "object",
+            "$ref" : "#/components/schemas/SecRuleCategoryDto"
+          },
+          "id" : {
+            "type" : "string",
+            "description" : "Rule identifier"
+          },
+          "name" : {
+            "type" : "string",
+            "description" : "Human readable rule name"
+          },
+          "paranoiaLevel" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "Paranoia level of the rule"
+          },
+          "phase" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "Execution phase of the rule"
+          },
+          "severity" : {
+            "description" : "Severity of the rule",
+            "type" : "string",
+            "$ref" : "#/components/schemas/SecRuleSeverityDto"
+          },
+          "targets" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/SecRuleTargetDto"
+            },
+            "description" : "Targets affected by this rule"
+          },
+          "direction" : {
+            "type" : "string",
+            "description" : "Rule direction (Request or Response)"
+          },
+          "ruleCategoryId" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "Rule category identifier from ruleset"
+          },
+          "ruleCategoryName" : {
+            "type" : "string",
+            "description" : "Rule category name from ruleset"
+          },
+          "type" : {
+            "type" : "string",
+            "description" : "Rule type"
+          }
+        }
+      },
+      "SecRuleExecutionPhaseDto" : {
+        "type" : "string",
+        "enum" : [ "REQUEST", "RESPONSE" ]
+      },
+      "SecRuleSeverityDto" : {
+        "type" : "string",
+        "enum" : [ "NOTICE", "WARNING", "ERROR", "CRITICAL" ]
+      },
+      "SecRuleTargetDto" : {
+        "type" : "object",
+        "description" : "Defines a target for a security rule",
+        "properties" : {
+          "requestPartType" : {
+            "description" : "Request part type the rule applies to",
+            "type" : "string",
+            "$ref" : "#/components/schemas/RequestPartType"
+          },
+          "requestPartNames" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            },
+            "description" : "Names of the request parts"
+          }
+        }
+      },
+      "SecurityResponseHeaderDto" : {
+        "type" : "object",
+        "description" : "HTTP security response headers sent to the client",
+        "properties" : {
+          "contentTypeOptions" : {
+            "type" : "boolean",
+            "description" : "Whether to send X-Content-Type-Options: nosniff"
+          },
+          "frameOptions" : {
+            "description" : "X-Frame-Options header value",
+            "type" : "string",
+            "$ref" : "#/components/schemas/XFrameOptions"
+          },
+          "referrerPolicy" : {
+            "description" : "Referrer-Policy header value",
+            "type" : "string",
+            "$ref" : "#/components/schemas/ReferrerPolicy"
+          },
+          "contentSecurityPolicy" : {
+            "type" : "string",
+            "description" : "Content-Security-Policy header value",
+            "maxLength" : 8192
+          },
+          "contentSecurityPolicyReportOnly" : {
+            "type" : "string",
+            "description" : "Content-Security-Policy-Report-Only header value",
+            "maxLength" : 8192
+          },
+          "crossOriginOpenerPolicy" : {
+            "description" : "Cross-Origin-Opener-Policy header value",
+            "type" : "string",
+            "$ref" : "#/components/schemas/CrossOriginOpenerPolicy"
+          },
+          "crossOriginEmbedderPolicy" : {
+            "description" : "Cross-Origin-Embedder-Policy header value",
+            "type" : "string",
+            "$ref" : "#/components/schemas/CrossOriginEmbedderPolicy"
+          },
+          "crossOriginResourcePolicy" : {
+            "description" : "Cross-Origin-Resource-Policy header value",
+            "type" : "string",
+            "$ref" : "#/components/schemas/CrossOriginResourcePolicy"
+          },
+          "crossOriginResourceSharing" : {
+            "description" : "Cross-Origin Resource Sharing (CORS) settings",
+            "type" : "object",
+            "$ref" : "#/components/schemas/CrossOriginResourceSharingDto"
+          }
+        }
+      },
+      "StaticContentEntryContentType" : {
+        "type" : "string",
+        "enum" : [ "BINARY", "TEXT_PLAIN", "TEXT_HTML", "TEXT_CSS", "TEXT_JAVASCRIPT", "APPLICATION_JSON" ]
+      },
+      "StaticContentEntryDto" : {
+        "description" : "Holds the information about static content entry",
+        "type" : "object",
+        "required" : [ "id", "name" ],
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "description" : "Id of the static content entry",
+            "readOnly" : true
+          },
+          "name" : {
+            "type" : "string",
+            "description" : "Name of the static content entry",
+            "pattern" : "\\S"
+          },
+          "updatedAt" : {
+            "type" : "string",
+            "format" : "date-time",
+            "examples" : [ "2022-03-10T12:15:50" ],
+            "description" : "Timestamp the static content entry was last updated at"
+          },
+          "size" : {
+            "type" : "integer",
+            "format" : "int64",
+            "description" : "Size of the static content entry"
+          }
+        }
+      },
+      "StrictTransportSecurityDto" : {
+        "type" : "object",
+        "description" : "Holds the information about the Strict-Transport-Security (HSTS) response header",
+        "required" : [ "maxAge" ],
+        "properties" : {
+          "maxAge" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "How long (in seconds) the browser should remember that this site is only to be accessed using HTTPS",
+            "maximum" : 15768000,
+            "minimum" : 0
+          },
+          "includeSubDomains" : {
+            "type" : "boolean",
+            "description" : "Whether the HSTS rule also applies to all of the site's subdomains"
+          },
+          "preload" : {
+            "type" : "boolean",
+            "description" : "Whether the site should be included in browser HSTS preload lists"
+          }
+        }
+      },
+      "SupportedKeyAndSignatureForCertificates" : {
+        "type" : "string",
+        "enum" : [ "EcdsaP256", "EcdsaP384", "Rsa2048_Sha256", "Rsa3072_Sha256", "Rsa3072_Sha384", "Rsa4096_Sha256", "Rsa4096_Sha384", "Rsa4096_Sha512" ]
+      },
+      "SupportedKeyType" : {
+        "type" : "string",
+        "enum" : [ "EcdsaP521", "EcdsaP384", "EcdsaP256", "Rsa4096", "Rsa3072", "Rsa2048" ]
+      },
+      "TextStaticContentEntryDto" : {
+        "description" : "Data object for manipulating text-based static content entries",
+        "type" : "object",
+        "required" : [ "id", "name", "contentType" ],
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "description" : "Id of the static content entry",
+            "readOnly" : true
+          },
+          "name" : {
+            "type" : "string",
+            "description" : "Name of the static content entry",
+            "pattern" : "\\S"
+          },
+          "updatedAt" : {
+            "type" : "string",
+            "format" : "date-time",
+            "examples" : [ "2022-03-10T12:15:50" ],
+            "description" : "Timestamp the static content entry was last updated at"
+          },
+          "size" : {
+            "type" : "integer",
+            "format" : "int64",
+            "description" : "Size of the static content entry"
+          },
+          "contentType" : {
+            "description" : "Static content entry content type",
+            "type" : "string",
+            "$ref" : "#/components/schemas/StaticContentEntryContentType"
+          },
+          "content" : {
+            "type" : "string",
+            "description" : "Text content of the static content file entry"
+          }
+        }
+      },
+      "ValidateIpPortUniquenessForm" : {
+        "description" : "Provides the information for IP/Port uniqueness validation",
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "description" : "Id of the listener"
+          },
+          "ipv4" : {
+            "type" : "string",
+            "description" : "Listener IPv4 address"
+          },
+          "ipv6" : {
+            "type" : "string",
+            "description" : "Listener IPv6 address"
+          },
+          "httpPort" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "Listener HTTP port",
+            "maximum" : 65535,
+            "minimum" : 1
+          },
+          "httpsPort" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "Listener HTTPS port",
+            "maximum" : 65535,
+            "minimum" : 1
+          }
+        }
+      },
+      "ValidationErrorResponse" : {
+        "description" : "Provides information about request validation failure(s)",
+        "type" : "object",
+        "required" : [ "violations" ],
+        "properties" : {
+          "violations" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Violation"
+            },
+            "description" : "A list of validation violations"
+          }
+        }
+      },
+      "VhostDto" : {
+        "type" : "object",
+        "description" : "Holds the information about virtual host",
+        "required" : [ "id", "settings", "ruleEngine" ],
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "description" : "Id of the virtual host",
+            "readOnly" : true
+          },
+          "settings" : {
+            "description" : "General virtual host settings",
+            "type" : "object",
+            "$ref" : "#/components/schemas/VhostSettingsDto"
+          },
+          "ruleEngine" : {
+            "description" : "Rule engine settings",
+            "type" : "object",
+            "$ref" : "#/components/schemas/VhostRuleEngineDto"
+          },
+          "errorPages" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/VhostErrorPageDto"
+            },
+            "description" : "Error pages settings"
+          },
+          "maintenancePages" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/VhostMaintenancePageDto"
+            },
+            "description" : "Maintenance pages settings"
+          },
+          "rateLimit" : {
+            "description" : "Rate limiting settings",
+            "type" : "object",
+            "$ref" : "#/components/schemas/VhostRateLimitDto"
+          }
+        }
+      },
+      "VhostErrorPageDto" : {
+        "type" : "object",
+        "description" : "Holds the information about virtual host's error page assignment",
+        "required" : [ "responseStatusCode", "localErrorPageId" ],
+        "properties" : {
+          "responseStatusCode" : {
+            "description" : "Response status code the error page is assigned to",
+            "type" : "string",
+            "$ref" : "#/components/schemas/ErrorPageResponseStatusCode"
+          },
+          "localErrorPageId" : {
+            "type" : "string",
+            "description" : "Reference to a local error page"
+          },
+          "overwriteStatusCode" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "A new status code that will be sent to client",
+            "maximum" : 599,
+            "minimum" : 400
+          },
+          "headerConditions" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/ErrorPageHeaderConditionDto"
+            },
+            "description" : "Additional header conditions, all of which must match for the error page to be served",
+            "maxItems" : 16
+          }
+        }
+      },
+      "VhostExtDto" : {
+        "description" : "Holds the extended information about virtual host",
+        "type" : "object",
+        "required" : [ "id", "settings", "ruleEngine" ],
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "description" : "Id of the virtual host",
+            "readOnly" : true
+          },
+          "settings" : {
+            "description" : "General virtual host settings",
+            "type" : "object",
+            "$ref" : "#/components/schemas/VhostSettingsDto"
+          },
+          "ruleEngine" : {
+            "description" : "Rule engine settings",
+            "type" : "object",
+            "$ref" : "#/components/schemas/VhostRuleEngineDto"
+          },
+          "errorPages" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/VhostErrorPageDto"
+            },
+            "description" : "Error pages settings"
+          },
+          "maintenancePages" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/VhostMaintenancePageDto"
+            },
+            "description" : "Maintenance pages settings"
+          },
+          "rateLimit" : {
+            "description" : "Rate limiting settings",
+            "type" : "object",
+            "$ref" : "#/components/schemas/VhostRateLimitDto"
+          },
+          "listener" : {
+            "$ref" : "#/components/schemas/ListenerDto"
+          }
+        }
+      },
+      "VhostMaintenancePageDto" : {
+        "type" : "object",
+        "description" : "Holds the information about virtual host's maintenance page assignment",
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "description" : "Unique id of the maintenance page assignment"
+          },
+          "enabled" : {
+            "type" : "boolean",
+            "description" : "Whether the maintenance page is served for the assigned routes"
+          },
+          "localMaintenancePageId" : {
+            "type" : "string",
+            "description" : "Reference to a maintenance page",
+            "pattern" : "\\S"
+          },
+          "routeIds" : {
+            "type" : "array",
+            "uniqueItems" : true,
+            "items" : {
+              "type" : "string"
+            },
+            "description" : "Ids of the routes the maintenance page is assigned to"
+          },
+          "allRoutes" : {
+            "type" : "boolean",
+            "description" : "When true, the maintenance page is served on all routes of the vhost (present and future)"
+          },
+          "statusCode" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "HTTP status code returned with the maintenance page",
+            "maximum" : 599,
+            "minimum" : 100
+          }
+        },
+        "required" : [ "localMaintenancePageId", "statusCode" ]
+      },
+      "VhostRateLimitDto" : {
+        "type" : "object",
+        "description" : "Holds the information about virtual host rate limiting configuration",
+        "properties" : {
+          "repeatOffender" : {
+            "description" : "Repeat offender configuration",
+            "type" : "object",
+            "$ref" : "#/components/schemas/RepeatOffenderDto"
+          },
+          "comments" : {
+            "type" : "string",
+            "description" : "Comments about the rate limiting configuration"
+          }
+        }
+      },
+      "VhostRuleEngineDto" : {
+        "type" : "object",
+        "description" : "Holds the information about virtual host rule engine configuration",
+        "properties" : {
+          "request" : {
+            "description" : "Rule engine request configuration",
+            "type" : "object",
+            "$ref" : "#/components/schemas/RuleEngineRequestDto"
+          },
+          "response" : {
+            "description" : "Rule engine response configuration",
+            "type" : "object",
+            "$ref" : "#/components/schemas/RuleEngineResponseDto"
+          },
+          "debugLogLevel" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "Debug log level for the rule engine",
+            "maximum" : 9,
+            "minimum" : 0
+          },
+          "customRules" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/RuleEngineCustomRuleDto"
+            },
+            "description" : "List of custom rules"
+          },
+          "comments" : {
+            "type" : "string",
+            "description" : "Comments about the rule engine request configuration"
+          },
+          "coreRuleSetMode" : {
+            "description" : "Core rule set mode",
+            "type" : "string",
+            "$ref" : "#/components/schemas/CoreRuleSetMode"
+          },
+          "paranoiaLevelEnforcing" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "Paranoia level for enforcing rules (1-4)",
+            "maximum" : 4,
+            "minimum" : 1
+          },
+          "paranoiaLevelDetecting" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "Paranoia level for detecting rules (1-4)",
+            "maximum" : 4,
+            "minimum" : 1
+          },
+          "securityLevel" : {
+            "type" : "integer",
+            "format" : "int32",
+            "description" : "Security level (1-5)",
+            "maximum" : 5,
+            "minimum" : 1
+          },
+          "headerValidation" : {
+            "description" : "Header validation configuration (absent means the defaults apply)",
+            "type" : "object",
+            "$ref" : "#/components/schemas/RuleEngineHeaderValidationDto"
+          }
+        },
+        "required" : [ "coreRuleSetMode", "paranoiaLevelEnforcing", "paranoiaLevelDetecting", "securityLevel" ]
+      },
+      "VhostSettingsDto" : {
+        "type" : "object",
+        "description" : "Holds the information about general virtual host settings",
+        "required" : [ "name", "listenerId", "hostnames" ],
+        "properties" : {
+          "name" : {
+            "type" : "string",
+            "description" : "Virtual host name",
+            "pattern" : "\\S"
+          },
+          "listenerId" : {
+            "type" : "string",
+            "description" : "Id of the corresponding listener"
+          },
+          "hostnames" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string",
+              "pattern" : "\\S"
+            },
+            "description" : "Virtual host hostnames"
+          },
+          "certificateId" : {
+            "type" : "string",
+            "description" : "Virtual host's certificate Id"
+          },
+          "acmeProviderId" : {
+            "type" : "string",
+            "description" : "Virtual host's ACME provider"
+          },
+          "generateHttpToHttpsRedirect" : {
+            "type" : "boolean",
+            "description" : "Generate HTTP to HTTPS redirect"
+          },
+          "strictTransportSecurity" : {
+            "description" : "Strict-Transport-Security (HSTS) response header settings",
+            "type" : "object",
+            "$ref" : "#/components/schemas/StrictTransportSecurityDto"
+          },
+          "routes" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/RouteDto"
+            },
+            "description" : "A list of routes belonging to virtual host"
+          },
+          "comments" : {
+            "type" : "string",
+            "description" : "Comments about general virtual host settings"
+          }
+        }
+      },
+      "Violation" : {
+        "type" : "object",
+        "description" : "Provides the information about a specific violation found during request validation",
+        "properties" : {
+          "fieldName" : {
+            "type" : "string",
+            "description" : "Field name"
+          },
+          "message" : {
+            "type" : "string",
+            "description" : "Violation message"
+          }
+        },
+        "required" : [ "message" ]
+      },
+      "WaapCreateCertificateSigningRequestForm" : {
+        "type" : "object",
+        "properties" : {
+          "keyTypeAndSignature" : {
+            "$ref" : "#/components/schemas/SupportedKeyAndSignatureForCertificates"
+          },
+          "subjectForm" : {
+            "$ref" : "#/components/schemas/CertificateSubjectForm"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "privateKeyId" : {
+            "type" : "string"
+          }
+        },
+        "required" : [ "subjectForm" ]
+      },
+      "WaapCreateSelfSignedCertificateForm" : {
+        "type" : "object",
+        "required" : [ "keyTypeAndSignature", "validityDays", "subjectForm" ],
+        "properties" : {
+          "keyTypeAndSignature" : {
+            "$ref" : "#/components/schemas/SupportedKeyAndSignatureForCertificates"
+          },
+          "validityDays" : {
+            "type" : "integer",
+            "format" : "int32",
+            "exclusiveMinimum" : 0
+          },
+          "subjectForm" : {
+            "$ref" : "#/components/schemas/CertificateSubjectForm"
+          },
+          "alias" : {
+            "type" : "string"
+          }
+        }
+      },
+      "WaapPolicyFileDto" : {
+        "description" : "Holds the information about a policy file",
+        "type" : "object",
+        "required" : [ "name", "content", "id" ],
+        "properties" : {
+          "name" : {
+            "type" : "string",
+            "description" : "Policy file name",
+            "pattern" : "\\S"
+          },
+          "contentType" : {
+            "description" : "Media type the policy file is served with; mandatory for types that serve it as a response",
+            "type" : "string",
+            "$ref" : "#/components/schemas/WaapPolicyFileMediaType"
+          },
+          "content" : {
+            "type" : "string",
+            "description" : "Policy file content",
+            "pattern" : "\\S"
+          },
+          "id" : {
+            "type" : "string",
+            "description" : "Id of the policy file",
+            "readOnly" : true
+          },
+          "updatedAt" : {
+            "type" : "string",
+            "format" : "date-time",
+            "examples" : [ "2022-03-10T12:15:50" ],
+            "description" : "Timestamp the policy file was last updated at"
+          },
+          "references" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/WaapPolicyFileReferenceVhostDto"
+            },
+            "description" : "Policy file's references in Virtual Hosts"
+          }
+        }
+      },
+      "WaapPolicyFileForm" : {
+        "description" : "User-editable section of a policy file",
+        "type" : "object",
+        "required" : [ "name", "content" ],
+        "properties" : {
+          "name" : {
+            "type" : "string",
+            "description" : "Policy file name",
+            "pattern" : "\\S"
+          },
+          "contentType" : {
+            "description" : "Media type the policy file is served with; mandatory for types that serve it as a response",
+            "type" : "string",
+            "$ref" : "#/components/schemas/WaapPolicyFileMediaType"
+          },
+          "content" : {
+            "type" : "string",
+            "description" : "Policy file content",
+            "pattern" : "\\S"
+          }
+        }
+      },
+      "WaapPolicyFileMediaType" : {
+        "type" : "string",
+        "enum" : [ "TEXT_PLAIN", "TEXT_HTML", "APPLICATION_JSON" ]
+      },
+      "WaapPolicyFileReferenceVhostDto" : {
+        "type" : "object",
+        "description" : "Holds the information about a policy file reference's vhost",
+        "properties" : {
+          "vhostId" : {
+            "type" : "string",
+            "description" : "Virtual host id"
+          },
+          "description" : {
+            "type" : "string",
+            "description" : "Virtual host description"
+          }
+        }
+      },
+      "WaapPolicyFileType" : {
+        "type" : "string",
+        "enum" : [ "error-page", "maintenance-page" ]
+      },
+      "XFrameOptions" : {
+        "type" : "string",
+        "enum" : [ "DENY", "SAMEORIGIN" ]
+      }
+    },
+    "securitySchemes" : {
+      "apiClientToken" : {
+        "type" : "http",
+        "scheme" : "bearer",
+        "bearerFormat" : "JWT",
+        "description" : "Access token of an API client, requested from `<baseUri>/dex/token` with the OAuth 2.0 client credentials grant and the scopes `openid profile groups`."
+      }
+    }
+  },
+  "tags" : [ {
+    "name" : "BackendApi",
+    "description" : "Operations related to Aero WAAP backends management"
+  }, {
+    "name" : "CertificatesAcmeApi",
+    "description" : "Operations related to Aero WAAP ACME Certificates settings management"
+  }, {
+    "name" : "CertificatesApi",
+    "description" : "Operations related to Aero WAAP Certificates settings management"
+  }, {
+    "name" : "ListenerApi",
+    "description" : "Operations related to Aero WAAP listener management"
+  }, {
+    "name" : "SecRulesApi",
+    "description" : "Operations related to Aero WAAP security rules management"
+  }, {
+    "name" : "StaticContentApi",
+    "description" : "Operations related to Aero Static Content management"
+  }, {
+    "name" : "VhostsApi",
+    "description" : "Operations related to Aero WAAP virtual hosts management"
+  }, {
+    "name" : "WaapPolicyFilesApi",
+    "description" : "Operations related to Aero WAAP policy files (error pages and maintenance pages) management"
+  } ],
+  "paths" : {
+    "/api/acme" : {
+      "get" : {
+        "summary" : "Get all ACME providers",
+        "operationId" : "getAcmeProviders",
+        "tags" : [ "CertificatesAcmeApi" ],
+        "responses" : {
+          "200" : {
+            "description" : "Providers retrieved successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/AcmeProviderDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Create ACME provider",
+        "operationId" : "createAcmeProvider",
+        "tags" : [ "CertificatesAcmeApi" ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/AcmeProviderDto"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "description" : "ACME provider created successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AcmeProviderDto"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Update failed due to non-existing trusted CA certificate id.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "422" : {
+            "description" : "Create failed due to invalid or unprocessable request.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ValidationErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/acme/data" : {
+      "get" : {
+        "summary" : "Get form data for Edit ACME provider dialog",
+        "operationId" : "getEditAcmeProviderFormData",
+        "tags" : [ "CertificatesAcmeApi" ],
+        "responses" : {
+          "200" : {
+            "description" : "Form data retrieved successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/EditAcmeProviderFormData"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/acme/{id}" : {
+      "put" : {
+        "summary" : "Update ACME provider",
+        "operationId" : "updateAcmeProvider",
+        "tags" : [ "CertificatesAcmeApi" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/AcmeProviderDto"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "ACME provider updated successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AcmeProviderDto"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Update failed. Possible reasons:\n\n- invalid id- non-existing trusted CA certificate id",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "422" : {
+            "description" : "Update failed due to invalid or unprocessable request.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ValidationErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get" : {
+        "summary" : "Get ACME provider",
+        "operationId" : "getAcmeProvider",
+        "tags" : [ "CertificatesAcmeApi" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "ACME provider retrieved successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AcmeProviderDto"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Retrieval failed due to invalid id.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Delete ACME provider",
+        "operationId" : "deleteAcmeProvider",
+        "tags" : [ "CertificatesAcmeApi" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "ACME provider deleted successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/AcmeProviderDto"
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Delete failed due to invalid id.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/backend" : {
+      "get" : {
+        "summary" : "Get all backends",
+        "operationId" : "getBackends",
+        "tags" : [ "BackendApi" ],
+        "responses" : {
+          "200" : {
+            "description" : "List retrieved successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/BackendDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Create backend",
+        "operationId" : "createBackend",
+        "tags" : [ "BackendApi" ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/BackendDto"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "description" : "Backend created successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/BackendDto"
+                }
+              }
+            }
+          },
+          "422" : {
+            "description" : "Create failed due to invalid or unprocessable request.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ValidationErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/backend/certs" : {
+      "get" : {
+        "summary" : "Get all certificates available for backend",
+        "operationId" : "getAvailableBackendCertificates",
+        "tags" : [ "BackendApi" ],
+        "responses" : {
+          "200" : {
+            "description" : "Information retrieved successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CertificatesDataDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/backend/{id}" : {
+      "put" : {
+        "summary" : "Update backend",
+        "operationId" : "updateBackend",
+        "tags" : [ "BackendApi" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/BackendDto"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Backend updated successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/BackendDto"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Update failed due to invalid id.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "422" : {
+            "description" : "Update failed due to invalid or unprocessable request.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ValidationErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get" : {
+        "summary" : "Get backend",
+        "operationId" : "getBackend",
+        "tags" : [ "BackendApi" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Backend retrieved successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/BackendDto"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Retrieval failed due to invalid id.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Delete backend",
+        "operationId" : "deleteBackend",
+        "tags" : [ "BackendApi" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Backend deleted successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/BackendDto"
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Delete failed due to invalid id.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "417" : {
+            "description" : "Delete failed due to backend being referenced by route(s).",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/certificates" : {
+      "get" : {
+        "summary" : "Get Certificates settings",
+        "operationId" : "getCertificatesData",
+        "tags" : [ "CertificatesApi" ],
+        "responses" : {
+          "200" : {
+            "description" : "Certificates settings retrieved successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CertificatesDataDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/certificates/ca-certs" : {
+      "post" : {
+        "summary" : "Upload a CA certificate",
+        "operationId" : "uploadCaCertificate",
+        "tags" : [ "CertificatesApi" ],
+        "requestBody" : {
+          "content" : {
+            "multipart/form-data" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "file" : {
+                    "type" : "string",
+                    "format" : "binary"
+                  },
+                  "alias" : {
+                    "type" : "string"
+                  }
+                }
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Certificate uploaded successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/CaCertificateInfoDto"
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Upload failed due to invalid or unprocessable file.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "422" : {
+            "description" : "Upload failed due to invalid alias.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ValidationErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get" : {
+        "summary" : "Get all CA certificates",
+        "operationId" : "getCaCertificates",
+        "tags" : [ "CertificatesApi" ],
+        "responses" : {
+          "200" : {
+            "description" : "CA certificates retrieved successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/CaCertificateInfoDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/certificates/ca-certs/{id}" : {
+      "get" : {
+        "summary" : "Download CA certificate",
+        "operationId" : "downloadCaCertificate",
+        "tags" : [ "CertificatesApi" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "format",
+          "in" : "query",
+          "schema" : {
+            "$ref" : "#/components/schemas/CaCertificateDownloadFormat"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Certificate downloaded successfully.",
+            "content" : {
+              "application/octet-stream" : {
+                "schema" : {
+                  "format" : "binary",
+                  "type" : "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Delete CA certificate",
+        "operationId" : "deleteCaCertificate",
+        "tags" : [ "CertificatesApi" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Certificate deleted successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/CaCertificateInfoDto"
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Delete failed due to invalid certificate id or certificate being used in the configuration.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/certificates/ca-certs/{id}/alias" : {
+      "put" : {
+        "summary" : "Update CA certificate alias",
+        "operationId" : "updateCaCertificateAlias",
+        "tags" : [ "CertificatesApi" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/x-www-form-urlencoded" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "alias" : {
+                    "type" : "string"
+                  }
+                }
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Certificate alias updated successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/CaCertificateInfoDto"
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Update failed due to invalid certificate id.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "422" : {
+            "description" : "Update failed due to invalid alias.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ValidationErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/certificates/certs" : {
+      "post" : {
+        "summary" : "Upload a certificate or key",
+        "operationId" : "uploadCertificate",
+        "tags" : [ "CertificatesApi" ],
+        "requestBody" : {
+          "content" : {
+            "multipart/form-data" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "file" : {
+                    "type" : "string",
+                    "format" : "binary"
+                  },
+                  "name" : {
+                    "type" : "string"
+                  },
+                  "password" : {
+                    "type" : "string"
+                  }
+                }
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Uploaded finished successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/CertificateInfoDto"
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Upload failed due to invalid or unprocessable file.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "422" : {
+            "description" : "Upload failed due to invalid alias.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ValidationErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get" : {
+        "summary" : "Get all certificates",
+        "operationId" : "getCertificates",
+        "tags" : [ "CertificatesApi" ],
+        "responses" : {
+          "200" : {
+            "description" : "Certificates retrieved successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/CertificateInfoDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/certificates/certs/csr" : {
+      "get" : {
+        "summary" : "Get form data for Create certificate request dialog",
+        "operationId" : "getCreateCertificateSigningRequestFormData",
+        "tags" : [ "CertificatesApi" ],
+        "responses" : {
+          "200" : {
+            "description" : "Form data retrieved successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CreateCertificateSigningRequestFormData"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Create certificate signing request",
+        "operationId" : "createCertificateSigningRequest",
+        "tags" : [ "CertificatesApi" ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/WaapCreateCertificateSigningRequestForm"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Certificate signing request created successfully.",
+            "content" : {
+              "application/octet-stream" : {
+                "schema" : {
+                  "format" : "binary",
+                  "type" : "string"
+                }
+              }
+            }
+          },
+          "422" : {
+            "description" : "Creation failed due to invalid or unprocessable request.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ValidationErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/certificates/certs/ssc" : {
+      "get" : {
+        "summary" : "Get form data for Create self-signed certificate dialog",
+        "operationId" : "getCreateSelfSignedCertificateFormData",
+        "tags" : [ "CertificatesApi" ],
+        "responses" : {
+          "200" : {
+            "description" : "Form data retrieved successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CreateSelfSignedCertificateFormData"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Create a self-signed certificate",
+        "operationId" : "createSelfSignedCertificate",
+        "tags" : [ "CertificatesApi" ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/WaapCreateSelfSignedCertificateForm"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Certificate created successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/CertificateInfoDto"
+                  }
+                }
+              }
+            }
+          },
+          "422" : {
+            "description" : "Creation failed due to invalid or unprocessable request.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ValidationErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/certificates/certs/{id}" : {
+      "get" : {
+        "summary" : "Download certificate",
+        "operationId" : "downloadCertificate",
+        "tags" : [ "CertificatesApi" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "format",
+          "in" : "query",
+          "schema" : {
+            "$ref" : "#/components/schemas/CertificateDownloadFormat"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Certificate downloaded successfully.",
+            "content" : {
+              "application/octet-stream" : {
+                "schema" : {
+                  "format" : "binary",
+                  "type" : "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Delete certificate",
+        "operationId" : "deleteCertificate",
+        "tags" : [ "CertificatesApi" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Certificate deleted successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/CertificateInfoDto"
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Delete failed due to invalid certificate id or certificate being used in the configuration.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/certificates/certs/{id}/name" : {
+      "put" : {
+        "summary" : "Update certificate name",
+        "operationId" : "updateCertificateName",
+        "tags" : [ "CertificatesApi" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/x-www-form-urlencoded" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "name" : {
+                    "type" : "string"
+                  }
+                }
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Certificate name updated successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/CertificateInfoDto"
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Update failed due to invalid certificate id.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "422" : {
+            "description" : "Update failed due to invalid name.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ValidationErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/certificates/details" : {
+      "get" : {
+        "summary" : "Get detailed Certificates settings",
+        "operationId" : "getCertificatesDetailedData",
+        "tags" : [ "CertificatesApi" ],
+        "responses" : {
+          "200" : {
+            "description" : "Certificates settings retrieved successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CertificatesDetailedDataDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/files/policy-file/{type}" : {
+      "get" : {
+        "summary" : "Get all policy files",
+        "operationId" : "getWaapPolicyFiles",
+        "tags" : [ "WaapPolicyFilesApi" ],
+        "parameters" : [ {
+          "name" : "type",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/WaapPolicyFileType"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "List retrieved successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/WaapPolicyFileDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Create policy file",
+        "operationId" : "createWaapPolicyFile",
+        "tags" : [ "WaapPolicyFilesApi" ],
+        "parameters" : [ {
+          "name" : "type",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/WaapPolicyFileType"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/WaapPolicyFileForm"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "description" : "Policy file created successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/WaapPolicyFileDto"
+                }
+              }
+            }
+          },
+          "422" : {
+            "description" : "Create failed due to invalid or unprocessable request.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ValidationErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/files/policy-file/{type}/download-all" : {
+      "post" : {
+        "summary" : "Download all policy files",
+        "operationId" : "downloadAllWaapPolicyFiles",
+        "tags" : [ "WaapPolicyFilesApi" ],
+        "parameters" : [ {
+          "name" : "type",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/WaapPolicyFileType"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Archive retrieved successfully.",
+            "content" : {
+              "application/octet-stream" : {
+                "schema" : {
+                  "format" : "binary",
+                  "type" : "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/files/policy-file/{type}/upload" : {
+      "post" : {
+        "summary" : "Upload a policy file",
+        "operationId" : "uploadWaapPolicyFile",
+        "tags" : [ "WaapPolicyFilesApi" ],
+        "parameters" : [ {
+          "name" : "type",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/WaapPolicyFileType"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "multipart/form-data" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "fileUpload" : {
+                    "type" : "string",
+                    "format" : "binary"
+                  },
+                  "name" : {
+                    "type" : "string"
+                  }
+                }
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Policy file uploaded successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/WaapPolicyFileDto"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Upload failed due to invalid or unprocessable file.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "422" : {
+            "description" : "Upload failed due to invalid name.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ValidationErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/files/policy-file/{type}/upload-all" : {
+      "post" : {
+        "summary" : "Upload policyFiles .tar.gz archive",
+        "operationId" : "uploadWaapPolicyFilesArchive",
+        "tags" : [ "WaapPolicyFilesApi" ],
+        "parameters" : [ {
+          "name" : "type",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/WaapPolicyFileType"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "multipart/form-data" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "fileUpload" : {
+                    "type" : "string",
+                    "format" : "binary"
+                  }
+                }
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Policy files archive uploaded successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/WaapPolicyFileDto"
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Upload failed due to invalid or unprocessable file.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "422" : {
+            "description" : "Upload failed due to invalid name(s).",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ValidationErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/files/policy-file/{type}/{id}" : {
+      "put" : {
+        "summary" : "Update policy file",
+        "operationId" : "updateWaapPolicyFile",
+        "tags" : [ "WaapPolicyFilesApi" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "type",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/WaapPolicyFileType"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/WaapPolicyFileForm"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Policy file updated successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/WaapPolicyFileDto"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Update failed due to invalid id.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "422" : {
+            "description" : "Update failed due to invalid or unprocessable request.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ValidationErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get" : {
+        "summary" : "Get policy file",
+        "operationId" : "getWaapPolicyFile",
+        "tags" : [ "WaapPolicyFilesApi" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "type",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/WaapPolicyFileType"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Policy file retrieved successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/WaapPolicyFileDto"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Retrieval failed due to invalid id.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Delete policy file",
+        "operationId" : "deleteWaapPolicyFile",
+        "tags" : [ "WaapPolicyFilesApi" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "type",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/WaapPolicyFileType"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Policy file deleted successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/WaapPolicyFileDto"
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Delete failed due to invalid id.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "417" : {
+            "description" : "Delete failed due to policy file being referenced by vhost(s).",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/files/policy-file/{type}/{id}/download" : {
+      "get" : {
+        "summary" : "Download policy file",
+        "operationId" : "downloadWaapPolicyFile",
+        "tags" : [ "WaapPolicyFilesApi" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "type",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/WaapPolicyFileType"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Policy file downloaded successfully.",
+            "content" : {
+              "application/octet-stream" : {
+                "schema" : {
+                  "format" : "binary",
+                  "type" : "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/files/static-content" : {
+      "get" : {
+        "summary" : "Get all static content entries",
+        "operationId" : "getEntries",
+        "tags" : [ "StaticContentApi" ],
+        "responses" : {
+          "200" : {
+            "description" : "List retrieved successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/StaticContentEntryDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/files/static-content/download-all" : {
+      "post" : {
+        "summary" : "Download all static content entries",
+        "operationId" : "downloadAllEntries",
+        "tags" : [ "StaticContentApi" ],
+        "responses" : {
+          "200" : {
+            "description" : "Archive retrieved successfully.",
+            "content" : {
+              "application/octet-stream" : {
+                "schema" : {
+                  "format" : "binary",
+                  "type" : "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/files/static-content/file" : {
+      "post" : {
+        "summary" : "Create text static content file",
+        "operationId" : "createTextFileEntry",
+        "tags" : [ "StaticContentApi" ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/TextStaticContentEntryDto"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "description" : "Text static content file created successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/TextStaticContentEntryDto"
+                }
+              }
+            }
+          },
+          "422" : {
+            "description" : "Create failed due to invalid or unprocessable request.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ValidationErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/files/static-content/file/{id}" : {
+      "put" : {
+        "summary" : "Update text static content file",
+        "operationId" : "updateTextFileEntry",
+        "tags" : [ "StaticContentApi" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/TextStaticContentEntryDto"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Text static content file updated successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/TextStaticContentEntryDto"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Update failed due to invalid id.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "422" : {
+            "description" : "Update failed due to invalid or unprocessable request.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ValidationErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get" : {
+        "summary" : "Get text static content file",
+        "operationId" : "getTextFileEntry",
+        "tags" : [ "StaticContentApi" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Text static content file retrieved successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/TextStaticContentEntryDto"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Retrieval failed due to invalid id.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/files/static-content/folder" : {
+      "post" : {
+        "summary" : "Create static content folder",
+        "operationId" : "createFolderEntry",
+        "tags" : [ "StaticContentApi" ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/FolderStaticContentEntryForm"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "description" : "Static content folder created successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/StaticContentEntryDto"
+                  }
+                }
+              }
+            }
+          },
+          "422" : {
+            "description" : "Create failed due to invalid or unprocessable request.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ValidationErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/files/static-content/folder/{folderId}/download-all" : {
+      "post" : {
+        "summary" : "Download all static content entries in the specified folder",
+        "operationId" : "downloadAllFolderEntries",
+        "tags" : [ "StaticContentApi" ],
+        "parameters" : [ {
+          "name" : "folderId",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Archive retrieved successfully.",
+            "content" : {
+              "application/octet-stream" : {
+                "schema" : {
+                  "format" : "binary",
+                  "type" : "string"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Download failed due to invalid id.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/files/static-content/folder/{folderId}/file" : {
+      "post" : {
+        "summary" : "Create text static content file in the specified folder",
+        "operationId" : "createTextFileEntryInFolder",
+        "tags" : [ "StaticContentApi" ],
+        "parameters" : [ {
+          "name" : "folderId",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/TextStaticContentEntryDto"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "description" : "Text static content file created successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/TextStaticContentEntryDto"
+                }
+              }
+            }
+          },
+          "422" : {
+            "description" : "Create failed due to invalid or unprocessable request.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ValidationErrorResponse"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Create failed due to invalid id.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/files/static-content/folder/{folderId}/folder" : {
+      "post" : {
+        "summary" : "Create static content folder in the specified folder",
+        "operationId" : "createSubFolderEntry",
+        "tags" : [ "StaticContentApi" ],
+        "parameters" : [ {
+          "name" : "folderId",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/FolderStaticContentEntryForm"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "description" : "Static content folder created successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/StaticContentEntryDto"
+                  }
+                }
+              }
+            }
+          },
+          "422" : {
+            "description" : "Create failed due to invalid or unprocessable request.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ValidationErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/files/static-content/folder/{folderId}/upload" : {
+      "post" : {
+        "summary" : "Upload a static content file into the specified folder",
+        "operationId" : "uploadEntryIntoFolder",
+        "tags" : [ "StaticContentApi" ],
+        "parameters" : [ {
+          "name" : "folderId",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "multipart/form-data" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "fileUpload" : {
+                    "type" : "string",
+                    "format" : "binary"
+                  },
+                  "name" : {
+                    "type" : "string"
+                  }
+                }
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Static content file uploaded successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/StaticContentEntryDto"
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Upload failed due to invalid/unprocessable file or invalid id.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "422" : {
+            "description" : "Upload failed due to invalid name.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ValidationErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/files/static-content/folder/{folderId}/upload-all" : {
+      "post" : {
+        "summary" : "Upload static content files .tar.gz archive into the specified folder",
+        "operationId" : "uploadFolderEntriesArchive",
+        "tags" : [ "StaticContentApi" ],
+        "parameters" : [ {
+          "name" : "folderId",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "multipart/form-data" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "fileUpload" : {
+                    "type" : "string",
+                    "format" : "binary"
+                  }
+                }
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Static content files archive uploaded successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/StaticContentEntryDto"
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Upload failed due to invalid/unprocessable file or invalid id.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "422" : {
+            "description" : "Upload failed due to invalid name(s).",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ValidationErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/files/static-content/folder/{id}" : {
+      "put" : {
+        "summary" : "Rename static content folder",
+        "operationId" : "renameFolderEntry",
+        "tags" : [ "StaticContentApi" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/FolderStaticContentEntryForm"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "description" : "Static content folder renamed successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/StaticContentEntryDto"
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Rename failed due to invalid id.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "422" : {
+            "description" : "Rename failed due to invalid or unprocessable request.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ValidationErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/files/static-content/upload" : {
+      "post" : {
+        "summary" : "Upload a static content file",
+        "operationId" : "uploadEntry",
+        "tags" : [ "StaticContentApi" ],
+        "requestBody" : {
+          "content" : {
+            "multipart/form-data" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "fileUpload" : {
+                    "type" : "string",
+                    "format" : "binary"
+                  },
+                  "name" : {
+                    "type" : "string"
+                  }
+                }
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Static content file uploaded successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/StaticContentEntryDto"
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Upload failed due to invalid or unprocessable file.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "422" : {
+            "description" : "Upload failed due to invalid name.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ValidationErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/files/static-content/upload-all" : {
+      "post" : {
+        "summary" : "Upload static content files .tar.gz archive",
+        "operationId" : "uploadEntriesArchive",
+        "tags" : [ "StaticContentApi" ],
+        "requestBody" : {
+          "content" : {
+            "multipart/form-data" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "fileUpload" : {
+                    "type" : "string",
+                    "format" : "binary"
+                  }
+                }
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Static content files archive uploaded successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/StaticContentEntryDto"
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Upload failed due to invalid or unprocessable file.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "422" : {
+            "description" : "Upload failed due to invalid name(s).",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ValidationErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/files/static-content/{id}" : {
+      "delete" : {
+        "summary" : "Delete static content entry",
+        "operationId" : "deleteEntry",
+        "tags" : [ "StaticContentApi" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Static content entry deleted successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/StaticContentEntryDto"
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Delete failed due to invalid id.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/files/static-content/{id}/download" : {
+      "get" : {
+        "summary" : "Download static content entry",
+        "operationId" : "downloadEntry",
+        "tags" : [ "StaticContentApi" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Static content entry downloaded successfully.",
+            "content" : {
+              "application/octet-stream" : {
+                "schema" : {
+                  "format" : "binary",
+                  "type" : "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/listener" : {
+      "get" : {
+        "summary" : "Get all listeners with validation errors and related vhosts",
+        "operationId" : "getListenersData",
+        "tags" : [ "ListenerApi" ],
+        "responses" : {
+          "200" : {
+            "description" : "List retrieved successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ListenersDataDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Create listener",
+        "operationId" : "createListener",
+        "tags" : [ "ListenerApi" ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ListenerDto"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "description" : "Listener created successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ListenerExtDto"
+                }
+              }
+            }
+          },
+          "422" : {
+            "description" : "Create failed due to invalid or unprocessable request.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ValidationErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/listener/certs" : {
+      "get" : {
+        "summary" : "Get all certificates available for listener",
+        "operationId" : "getAvailableListenerCertificates",
+        "tags" : [ "ListenerApi" ],
+        "responses" : {
+          "200" : {
+            "description" : "Information retrieved successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CertificatesDataDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/listener/ips" : {
+      "get" : {
+        "summary" : "Get all IP addresses available for listener",
+        "operationId" : "getAvailableIPs",
+        "tags" : [ "ListenerApi" ],
+        "responses" : {
+          "200" : {
+            "description" : "Information retrieved successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/IPsDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/listener/lightweight" : {
+      "get" : {
+        "summary" : "Get all listeners",
+        "operationId" : "getListeners",
+        "tags" : [ "ListenerApi" ],
+        "responses" : {
+          "200" : {
+            "description" : "List retrieved successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/ListenerDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/listener/unique-ip-port" : {
+      "post" : {
+        "summary" : "Validates listener's IP/port combination for uniqueness",
+        "operationId" : "validateListenerUniqueIpPort",
+        "tags" : [ "ListenerApi" ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ValidateIpPortUniquenessForm"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Listener's IP/port combination is unique.",
+            "content" : {
+              "*/*" : { }
+            }
+          },
+          "400" : {
+            "description" : "Listener's IP/port combination is not unique."
+          }
+        }
+      }
+    },
+    "/api/listener/{id}" : {
+      "put" : {
+        "summary" : "Update listener",
+        "operationId" : "updateListener",
+        "tags" : [ "ListenerApi" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ListenerDto"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Listener updated successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ListenerExtDto"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Update failed due to invalid id.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "422" : {
+            "description" : "Update failed due to invalid or unprocessable request.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ValidationErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get" : {
+        "summary" : "Get listener",
+        "operationId" : "getListener",
+        "tags" : [ "ListenerApi" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Listener retrieved successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ListenerExtDto"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Retrieval failed due to invalid id.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Delete listener",
+        "operationId" : "deleteListener",
+        "tags" : [ "ListenerApi" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Listener deleted successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ListenersDataDto"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Delete failed due to invalid id.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/sec-rules" : {
+      "get" : {
+        "summary" : "Get all security rules",
+        "operationId" : "getSecRules",
+        "tags" : [ "SecRulesApi" ],
+        "responses" : {
+          "200" : {
+            "description" : "List retrieved successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/SecRuleDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/sec-rules/categories" : {
+      "get" : {
+        "summary" : "Get all security rule categories",
+        "operationId" : "getSecRuleCategories",
+        "tags" : [ "SecRulesApi" ],
+        "responses" : {
+          "200" : {
+            "description" : "List retrieved successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/SecRuleCategoryDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/sec-rules/request" : {
+      "get" : {
+        "summary" : "Get all request security rules",
+        "operationId" : "getRequestSecRules",
+        "tags" : [ "SecRulesApi" ],
+        "responses" : {
+          "200" : {
+            "description" : "List retrieved successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/SecRuleDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/sec-rules/response" : {
+      "get" : {
+        "summary" : "Get all response security rules",
+        "operationId" : "getResponseSecRules",
+        "tags" : [ "SecRulesApi" ],
+        "responses" : {
+          "200" : {
+            "description" : "List retrieved successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/SecRuleDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/vhost" : {
+      "get" : {
+        "summary" : "Get all virtual hosts",
+        "operationId" : "getVhosts",
+        "tags" : [ "VhostsApi" ],
+        "responses" : {
+          "200" : {
+            "description" : "List retrieved successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/VhostExtDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Create virtual host",
+        "operationId" : "createVhost",
+        "tags" : [ "VhostsApi" ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/VhostDto"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "description" : "Virtual host created successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/VhostDto"
+                }
+              }
+            }
+          },
+          "422" : {
+            "description" : "Create failed due to invalid or unprocessable request.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ValidationErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/vhost/certs" : {
+      "get" : {
+        "summary" : "Get all certificates available for virtual host",
+        "operationId" : "getAvailableVhostCertificates",
+        "tags" : [ "VhostsApi" ],
+        "responses" : {
+          "200" : {
+            "description" : "Information retrieved successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CertificatesDataDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/vhost/{id}" : {
+      "put" : {
+        "summary" : "Update virtual host",
+        "operationId" : "updateVhost",
+        "tags" : [ "VhostsApi" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/VhostDto"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Virtual host updated successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/VhostDto"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Update failed due to invalid id.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "422" : {
+            "description" : "Update failed due to invalid or unprocessable request.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ValidationErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get" : {
+        "summary" : "Get virtual host",
+        "operationId" : "getVhost",
+        "tags" : [ "VhostsApi" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Virtual host retrieved successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/VhostDto"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Retrieval failed due to invalid id.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Delete virtual host",
+        "operationId" : "deleteVhost",
+        "tags" : [ "VhostsApi" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Virtual host deleted successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/VhostExtDto"
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Delete failed due to invalid id.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/vhost/{vhostId}/route" : {
+      "get" : {
+        "summary" : "Get all routes of the virtual host",
+        "operationId" : "getVhostRoutes",
+        "tags" : [ "VhostsApi" ],
+        "parameters" : [ {
+          "name" : "vhostId",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "List retrieved successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/RouteDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Create a route of the virtual host",
+        "operationId" : "createRoute",
+        "tags" : [ "VhostsApi" ],
+        "parameters" : [ {
+          "name" : "vhostId",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/RouteDto"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "description" : "Route created successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/RouteDto"
+                }
+              }
+            }
+          },
+          "422" : {
+            "description" : "Create failed due to invalid or unprocessable request.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ValidationErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/vhost/{vhostId}/route/{routeId}" : {
+      "put" : {
+        "summary" : "Update a route of the virtual host",
+        "operationId" : "updateRoute",
+        "tags" : [ "VhostsApi" ],
+        "parameters" : [ {
+          "name" : "routeId",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "vhostId",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/RouteDto"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Route updated successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/RouteDto"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Update failed due to invalid id.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "422" : {
+            "description" : "Update failed due to invalid or unprocessable request.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ValidationErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get" : {
+        "summary" : "Get a route of the virtual host",
+        "operationId" : "getRoute",
+        "tags" : [ "VhostsApi" ],
+        "parameters" : [ {
+          "name" : "routeId",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "vhostId",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Route retrieved successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/RouteDto"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Retrieval failed due to invalid id.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Delete a route of the virtual host",
+        "operationId" : "deleteRoute",
+        "tags" : [ "VhostsApi" ],
+        "parameters" : [ {
+          "name" : "routeId",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "vhostId",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Route deleted successfully.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/RouteDto"
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Delete failed due to invalid id.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "security" : [ {
+    "apiClientToken" : [ ]
+  } ],
+  "servers" : [ {
+    "url" : "{baseUri}/component/waap",
+    "variables" : {
+      "baseUri" : {
+        "default" : "https://aero.example.com",
+        "description" : "Scheme and address of your appliance, as you open the management GUI, e.g. `https://aero.example.com`. In an HA cluster, the cluster's address."
+      }
+    }
+  } ],
+  "info" : {
+    "title" : "Aero WAAP Management API",
+    "version" : "0.0.0-main-SNAPSHOT",
+    "description" : "Authenticate every request with the access token of an API client. See \"Access the management API\" in the user documentation."
+  }
+}

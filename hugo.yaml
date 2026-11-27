@@ -1,5 +1,10 @@
 title: 'USP Aero Suite documentation'
 theme: github.com/united-security-providers/usp-docs-hugo-theme
+
+module:
+  imports:
+    # Swagger UI for the API reference (reference/api/), vendored as Hugo module, see README "API reference"
+    - path: github.com/hugomods/swagger-ui
 copyright: '&copy; 2026 United Security Providers AG. All Rights Reserved.'
 
 baseURL: 'https://docs.united-security-providers.ch/usp-aero/'
