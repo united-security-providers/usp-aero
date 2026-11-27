@@ -25,6 +25,10 @@ screen involved, in order. For what an individual setting means, see the
 * [Live Log](logging/live-log)
 * [Forward logs to a remote system](logging/remote-log)
 
+## API access
+
+* [Access the management API](api/access-the-management-api)
+
 ## High Availability
 
 * [Set up an HA Cluster](ha/set-up-an-ha-cluster)

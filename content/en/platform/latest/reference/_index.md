@@ -13,6 +13,7 @@ Use this section while looking at a screen. For how a change becomes active, rea
 task, see the [Operations guides](../operations/).
 
 * [GUI](gui/): one page per screen of the management GUI, in the order of its navigation
+* [API](api/): the management API, for scripts and automation
 * [Console menu](console): the menu on the appliance's local console
 * [Value types](value-types): the value formats that recur across settings
 * [Configuration validation errors](validation-errors): every validation message and what to do about it

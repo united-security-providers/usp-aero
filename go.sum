@@ -1,2 +1,6 @@
+github.com/hugomods/swagger-ui v0.2.0 h1:1X2g+g5y+KN2HJQCMggxIFLJA11vrKIAozkSe2xM5cc=
+github.com/hugomods/swagger-ui v0.2.0/go.mod h1:Q6Y/tRLuBUKlaUMG0clksot1kh0/g2auVidw45AUvQQ=
+github.com/swagger-api/swagger-ui v5.36.0+incompatible h1:CnKs86xBK+/j43Tt19xYHxXomrQ111FB/SDOtzQAIHU=
+github.com/swagger-api/swagger-ui v5.36.0+incompatible/go.mod h1:2BrmZAt3ELMzcg/T43oDWQI2wmltgIo6fQoIcmncb9o=
 github.com/united-security-providers/usp-docs-hugo-theme v0.6.0 h1:pEHqzI48huHCDlVR9qQepeI8TStFM8rxeckLJ4xoKbw=
 github.com/united-security-providers/usp-docs-hugo-theme v0.6.0/go.mod h1:rwZtLjkPqosYMbjPqx3W2vNSHWS/oFqBnqJo0MM9IUQ=

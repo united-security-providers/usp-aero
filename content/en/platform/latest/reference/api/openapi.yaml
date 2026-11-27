@@ -1,0 +1,4171 @@
+---
+openapi: 3.1.0
+components:
+  schemas:
+    AcmeSettingsDto:
+      type: object
+      description: Automatic certificate renewal (ACME) settings
+      properties:
+        subjectAltNames:
+          type: string
+          description: Subject alternative name(s)
+        certificateAuthorityUrl:
+          type: string
+          description: Certificate authority URL
+          pattern: \S
+        trustedCaCertificateId:
+          type: string
+          description: Trusted CA Certificate
+        skipCertificateValidation:
+          type: boolean
+          description: Certificate validation will be skipped
+        contactEmailAddress:
+          type: string
+          description: Contact email address
+          pattern: \S
+        keyType:
+          description: Key type
+          type: string
+          $ref: "#/components/schemas/SupportedKeyType"
+        eabKeyId:
+          type: string
+          description: "External Account Binding (EAB): Key ID"
+        eabHmacKey:
+          type: string
+          description: "External Account Binding (EAB): HMAC Key"
+      required:
+      - certificateAuthorityUrl
+      - contactEmailAddress
+      - keyType
+    ApiClientDto:
+      description: Holds the information about an API client. Never contains the secret.
+      type: object
+      properties:
+        description:
+          type: string
+          description: Free text describing what the API client is used for
+          maxLength: 255
+        role:
+          description: Role of the API client
+          type: string
+          $ref: "#/components/schemas/ApiClientRole"
+        enabled:
+          type: boolean
+          description: Whether the API client may obtain tokens (after the next activation)
+        id:
+          type: string
+          description: "API client ID, used as OAuth2 client ID and as principal name"
+          pattern: "[a-z0-9-]{3,40}"
+        createdAt:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T16:15:50Z
+          description: When the API client was created
+        secretRotatedAt:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T16:15:50Z
+          description: When the secret was last generated
+        secretOverdue:
+          type: boolean
+          description: Whether the secret is older than the configured maximum age
+            and should be rotated
+      required:
+      - role
+      - id
+    ApiClientRole:
+      type: string
+      enum:
+      - ADMINISTRATOR
+      - VIEWER
+    ApiClientWithSecretDto:
+      description: "API client including its secret. Only returned once, when the\
+        \ client is created or its secret is regenerated."
+      type: object
+      properties:
+        description:
+          type: string
+          description: Free text describing what the API client is used for
+          maxLength: 255
+        role:
+          description: Role of the API client
+          type: string
+          $ref: "#/components/schemas/ApiClientRole"
+        enabled:
+          type: boolean
+          description: Whether the API client may obtain tokens (after the next activation)
+        id:
+          type: string
+          description: "API client ID, used as OAuth2 client ID and as principal name"
+          pattern: "[a-z0-9-]{3,40}"
+        createdAt:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T16:15:50Z
+          description: When the API client was created
+        secretRotatedAt:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T16:15:50Z
+          description: When the secret was last generated
+        secretOverdue:
+          type: boolean
+          description: Whether the secret is older than the configured maximum age
+            and should be rotated
+        secret:
+          type: string
+          description: Client secret. Shown only once; it takes effect with the next
+            activation.
+      required:
+      - role
+      - id
+      - secret
+    AvailableComponentDto:
+      description: Holds the information about available comonent.
+      type: object
+      required:
+      - componentName
+      - componentVersion
+      properties:
+        componentName:
+          type: string
+          description: Name of the component
+        componentVersion:
+          type: string
+          description: Version of the component
+          format: semver
+    BackupJobDto:
+      description: Holds the information about automated backup job
+      type: object
+      properties:
+        id:
+          type: string
+          description: Id of the backup
+        name:
+          type: string
+          description: Name of the backup
+          pattern: \S
+        targetId:
+          type: string
+          description: Id of the associated backup target; null means local target
+        scheduleCron:
+          type: string
+          description: Backup schedule in CRON format
+          pattern: \S
+        type:
+          description: Backup type
+          type: string
+          $ref: "#/components/schemas/BackupType"
+      required:
+      - name
+      - scheduleCron
+      - type
+    BackupTargetDto:
+      description: Holds the information about a target of the automated backup job
+      type: object
+      properties:
+        id:
+          type: string
+          description: Backup target id
+        name:
+          type: string
+          description: Backup target name
+        host:
+          type: string
+          description: Backup target host
+          pattern: \S
+        port:
+          type: integer
+          format: int32
+          description: Backup target port
+          maximum: 65535
+          minimum: 1
+        username:
+          type: string
+          description: Username to be used when accessing backup target
+          pattern: \S
+        targetDirectoryPath:
+          type: string
+          description: Directory path on a target system
+          pattern: \S
+        type:
+          description: Backup target type
+          type: string
+          $ref: "#/components/schemas/BackupTargetType"
+        sshPublicKey:
+          type: string
+          description: SSH public key that will be used when accessing backup target
+      required:
+      - host
+      - port
+      - username
+      - targetDirectoryPath
+      - type
+    BackupTargetType:
+      type: string
+      enum:
+      - SCP
+      - SFTP
+    BackupType:
+      type: string
+      enum:
+      - FULL
+    CaCertificateDownloadFormat:
+      description: CA certificate download formats
+      type: string
+      enum:
+      - PEM
+      - DER
+      - PKCS7
+    CaCertificateInfoDto:
+      description: CA certificate info
+      type: object
+      properties:
+        subject:
+          type: string
+        issuer:
+          type: string
+        subjectElements:
+          type: array
+          items:
+            type: object
+            required:
+            - key
+            - value
+            properties:
+              key:
+                type: string
+              value:
+                type: string
+        issuerElements:
+          type: array
+          items:
+            type: object
+            required:
+            - key
+            - value
+            properties:
+              key:
+                type: string
+              value:
+                type: string
+        validFrom:
+          type: string
+          format: date
+          examples:
+          - 2022-03-10
+        validUntil:
+          type: string
+          format: date
+          examples:
+          - 2022-03-10
+        commonNames:
+          type: array
+          items:
+            type: string
+        keyUsage:
+          type: array
+          items:
+            $ref: "#/components/schemas/KeyUsageName"
+        signatureAlgorithm:
+          type: string
+        keySize:
+          type: integer
+          format: int32
+        keyType:
+          $ref: "#/components/schemas/SupportedKeyType"
+        fingerprint:
+          type: string
+        serialNumber:
+          type: string
+        isCaCertificate:
+          type: boolean
+        isSelfSigned:
+          type: boolean
+        subjectAlternativeNames:
+          type: array
+          items:
+            type: object
+            required:
+            - key
+            - value
+            properties:
+              key:
+                type: string
+              value:
+                type: string
+        notYetValid:
+          type: boolean
+        expired:
+          type: boolean
+        keyOnly:
+          type: boolean
+        id:
+          type: string
+          description: Certificate id
+        alias:
+          type: string
+          description: Certificate alias (optional)
+        aliasLabel:
+          type: string
+          description: Certificate alias label (alias or certificate's common name)
+        inUse:
+          type: boolean
+          description: Certificate is in use in the configuration
+      required:
+      - keyType
+      - fingerprint
+      - keyOnly
+      - id
+      - aliasLabel
+      - inUse
+    CaCertificatesDto:
+      type: object
+      description: CA certificates settings
+      properties:
+        caCertificates:
+          type: array
+          items:
+            $ref: "#/components/schemas/CaCertificateInfoDto"
+          description: A list of CA certificate infos
+    CertificateDownloadFormat:
+      description: Certificate download formats
+      type: string
+      enum:
+      - PKCS12
+      - JKS
+    CertificateInfoDto:
+      description: Certificate info
+      type: object
+      properties:
+        subject:
+          type: string
+        issuer:
+          type: string
+        subjectElements:
+          type: array
+          items:
+            type: object
+            required:
+            - key
+            - value
+            properties:
+              key:
+                type: string
+              value:
+                type: string
+        issuerElements:
+          type: array
+          items:
+            type: object
+            required:
+            - key
+            - value
+            properties:
+              key:
+                type: string
+              value:
+                type: string
+        validFrom:
+          type: string
+          format: date
+          examples:
+          - 2022-03-10
+        validUntil:
+          type: string
+          format: date
+          examples:
+          - 2022-03-10
+        commonNames:
+          type: array
+          items:
+            type: string
+        keyUsage:
+          type: array
+          items:
+            $ref: "#/components/schemas/KeyUsageName"
+        signatureAlgorithm:
+          type: string
+        keySize:
+          type: integer
+          format: int32
+        keyType:
+          $ref: "#/components/schemas/SupportedKeyType"
+        fingerprint:
+          type: string
+        serialNumber:
+          type: string
+        isCaCertificate:
+          type: boolean
+        isSelfSigned:
+          type: boolean
+        subjectAlternativeNames:
+          type: array
+          items:
+            type: object
+            required:
+            - key
+            - value
+            properties:
+              key:
+                type: string
+              value:
+                type: string
+        notYetValid:
+          type: boolean
+        expired:
+          type: boolean
+        keyOnly:
+          type: boolean
+        id:
+          type: string
+          description: Certificate id
+        alias:
+          type: string
+          description: Certificate alias (optional)
+        aliasLabel:
+          type: string
+          description: Certificate alias label (alias or certificate's common name)
+        inUse:
+          type: boolean
+          description: Certificate is in use in the configuration
+      required:
+      - keyType
+      - fingerprint
+      - keyOnly
+      - id
+      - aliasLabel
+      - inUse
+    CertificateSubjectForm:
+      type: object
+      required:
+      - commonName
+      properties:
+        commonName:
+          type: string
+          pattern: \S
+          maxLength: 64
+        alternativeDomainNames:
+          type: string
+        country:
+          type: string
+        stateOrProvince:
+          type: string
+        locality:
+          type: string
+        organization:
+          type: string
+        organizationalUnit:
+          type: string
+        emailAddress:
+          type: string
+    CertificatesDto:
+      type: object
+      description: Certificates settings
+      properties:
+        certificates:
+          type: array
+          items:
+            $ref: "#/components/schemas/CertificateInfoDto"
+          description: A list of certificate infos
+    CertificatesSettingsDto:
+      description: Holds the information about Certificates settings.
+      type: object
+      properties:
+        managementAccess:
+          description: Management access settings
+          type: object
+          $ref: "#/components/schemas/ManagementAccessSettingsDto"
+        certificates:
+          description: Certificates settings
+          type: object
+          $ref: "#/components/schemas/CertificatesDto"
+        caCertificates:
+          description: CA certificates settings
+          type: object
+          $ref: "#/components/schemas/CaCertificatesDto"
+    CertificatesSettingsFormData:
+      description: Holds the form data required to display Certificates settings
+      type: object
+      required:
+      - keyTypeList
+      - certificatesSettings
+      properties:
+        keyTypeList:
+          type: array
+          items:
+            type: string
+          description: A list of supported Key types
+        certificatesSettings:
+          description: Certificates settings
+          type: object
+          $ref: "#/components/schemas/CertificatesSettingsDto"
+    ChangePasswordForm:
+      description: Holds the information required to change user's password.
+      type: object
+      required:
+      - newPassword
+      - repeatPassword
+      properties:
+        newPassword:
+          type: string
+          description: New password
+        repeatPassword:
+          type: string
+          description: Repeat password
+    ClusterNodeDto:
+      description: Represents a cluster node configuration.
+      type: object
+      required:
+      - hostname
+      - ipAddress
+      - sshPublicKey
+      properties:
+        hostname:
+          type: string
+          description: Hostname of the cluster node
+          pattern: \S
+        ipAddress:
+          type: string
+          description: IP address of the cluster node
+          pattern: \S
+        sshPublicKey:
+          type: string
+          description: SSH public key of the cluster node
+          pattern: \S
+    ComponentDeploymentDto:
+      description: Component Deployment holds the information about a component that
+        is available for the installation on the AERO platform
+      type: object
+      required:
+      - componentName
+      - componentVersion
+      - componentImage
+      properties:
+        componentName:
+          type: string
+          description: Name of the component
+        componentVersion:
+          type: string
+          description: Version of the component
+          format: semver
+        componentImage:
+          type: string
+          description: Docker image of the component
+    ComponentRevisionsInfoDto:
+      description: Holds the information about component's revisions
+      type: object
+      required:
+      - componentName
+      properties:
+        componentName:
+          type: string
+          description: Name of the component
+        draftId:
+          type: string
+          description: Id of the current draft version (if any)
+        parentRevisionForReviewableChanges:
+          description: "If component configuration has changes, will contain the revision\
+            \ these changes are based on"
+          type: object
+          $ref: "#/components/schemas/ConfigurationRevisionDto"
+        activationStatus:
+          description: Status of the in-progress or last activation (if any)
+          type: string
+          $ref: "#/components/schemas/InfrastructureOperationStatusCode"
+        activationRevision:
+          description: Configuration revision that's currently being activated or
+            just finished activation (if any)
+          type: object
+          $ref: "#/components/schemas/ConfigurationRevisionDto"
+        revisions:
+          type: array
+          items:
+            $ref: "#/components/schemas/ConfigurationRevisionDto"
+          description: Component's configuration revisions
+        validationErrors:
+          type: array
+          items:
+            $ref: "#/components/schemas/ConfigurationValidationError"
+          description: A list of configuration validation errors for the latest activatable
+            revision
+    ComponentVersionMismatchDto:
+      description: Holds the information about version mismatch between installed
+        component & backup content
+      type: object
+      required:
+      - componentName
+      properties:
+        componentName:
+          type: string
+          description: Name of the component
+        backupVersion:
+          type: string
+          description: Version in backup
+        installedVersion:
+          type: string
+          description: Installed version
+    ConfigurableComponentDto:
+      description: Configurable Component holds the information about a component
+        that have configuration
+      type: object
+      required:
+      - componentName
+      properties:
+        componentName:
+          type: string
+          description: Name of the component
+    ConfigurationActivationComponentInfoDto:
+      description: Holds the information about component's configuration activation
+      type: object
+      required:
+      - componentName
+      properties:
+        componentName:
+          type: string
+          description: Name of the component
+        revision:
+          description: "Revision available for activation, or null if none"
+          type: object
+          $ref: "#/components/schemas/ConfigurationRevisionDto"
+        status:
+          description: "Configuration activation status, or null if none"
+          type: object
+          $ref: "#/components/schemas/ConfigurationActivationComponentStatusDto"
+        validationErrors:
+          type: array
+          items:
+            $ref: "#/components/schemas/ConfigurationValidationError"
+          description: A list of configuration validation errors for the activatable
+            revision
+    ConfigurationActivationComponentStatusDto:
+      type: object
+      description: Holds the information about component's configuration activation
+        status
+      required:
+      - code
+      - revision
+      properties:
+        code:
+          description: Activation status code
+          type: string
+          $ref: "#/components/schemas/InfrastructureOperationStatusCode"
+        revision:
+          description: Revision that was used for configuration activation
+          type: object
+          $ref: "#/components/schemas/ConfigurationRevisionDto"
+        message:
+          type: string
+          description: Activation status message (optional)
+    ConfigurationActivationInfosDto:
+      description: Holds the information about all component's configuration activations
+      type: object
+      required:
+      - infos
+      properties:
+        infos:
+          type: array
+          items:
+            $ref: "#/components/schemas/ConfigurationActivationComponentInfoDto"
+          description: List of all component's configuration activations
+        status:
+          description: "Overall configuration activation status, or null if none"
+          type: object
+          $ref: "#/components/schemas/ConfigurationActivationStatusDto"
+    ConfigurationActivationStatusDto:
+      type: object
+      description: Holds the information about overall configuration activation status
+      required:
+      - code
+      properties:
+        code:
+          description: Activation status code
+          type: string
+          $ref: "#/components/schemas/InfrastructureOperationStatusCode"
+        start:
+          type: string
+          format: date
+          examples:
+          - 2022-03-10
+          description: "Activation start time, or null if none"
+        end:
+          type: string
+          format: date
+          examples:
+          - 2022-03-10
+          description: "Activation end time, or null if none"
+    ConfigurationRevisionDetailsDto:
+      description: Holds information about configuration revision
+      type: object
+      required:
+      - id
+      - revision
+      - diffVersion
+      properties:
+        id:
+          type: string
+          description: Revision id
+        revision:
+          type: integer
+          format: int64
+          description: Revision number
+        comment:
+          type: string
+          description: Revision comment
+        createdAt:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50
+          description: Timestamp the revision was created at
+        updatedAt:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50
+          description: Timestamp the revision was last updated at
+        activatedAt:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50
+          description: Timestamp the revision was activated (deployed) at
+        previousVersionId:
+          type: string
+          description: Id of the revision preceding this one
+        schemaVersion:
+          type: integer
+          format: int32
+          description: Configuration schema version
+        author:
+          type: string
+          description: Revision author
+        diffVersion:
+          description: Configuration revision that was used as an 'old' version for
+            diff
+          type: object
+          $ref: "#/components/schemas/DiffVersionDto"
+        diffContent:
+          type: array
+          items:
+            $ref: "#/components/schemas/DiffContentDto"
+          description: A list of diff content entries
+        isLatest:
+          type: boolean
+          description: If this configuration revision is the latest one
+        validationErrors:
+          type: array
+          items:
+            $ref: "#/components/schemas/ConfigurationValidationError"
+          description: A list of configuration validation errors
+        latest:
+          type: boolean
+    ConfigurationRevisionDto:
+      type: object
+      description: Holds the information about configuration revision
+      required:
+      - id
+      - revision
+      properties:
+        id:
+          type: string
+          description: Revision id
+        revision:
+          type: integer
+          format: int64
+          description: Revision number
+        comment:
+          type: string
+          description: Revision comment
+        createdAt:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50
+          description: Timestamp the revision was created at
+        updatedAt:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50
+          description: Timestamp the revision was last updated at
+        activatedAt:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50
+          description: Timestamp the revision was activated (deployed) at
+        previousVersionId:
+          type: string
+          description: Id of the revision preceding this one
+        schemaVersion:
+          type: integer
+          format: int32
+          description: Configuration schema version
+        author:
+          type: string
+          description: Revision author
+    ConfigurationValidationError:
+      type: object
+      required:
+      - type
+      - arguments
+      properties:
+        type:
+          $ref: "#/components/schemas/ConfigurationValidationErrorType"
+        arguments:
+          type: array
+          items:
+            type: string
+    ConfigurationValidationErrorType:
+      type: string
+      enum:
+      - INCOMPATIBLE_COMPONENT_VERSION
+      - HOST_NON_EXISTING_CONFIGURED_INTERFACE
+      - HOST_AT_LEAST_TWO_CONFIGURED_INTERFACES_REQUIRED
+      - HOST_HA_UNAVAILABLE_FOR_DHCP
+      - HOST_SYSTEM_HOSTNAME_NOT_IN_HA_CONFIG
+      - HOST_SYSTEM_IP_NOT_IN_HA_CONFIG
+      - WAAP_EXTERNAL_IFACE_NOT_CONFIGURED
+      - WAAP_MISSING_LISTENER_IP
+    ContainerSettingsDto:
+      description: Holds the information about Container settings.
+      type: object
+      required:
+      - hostname
+      properties:
+        hostname:
+          type: string
+          description: Container registry hostname
+        port:
+          type: integer
+          format: int32
+          description: Container registry port
+          maximum: 65535
+          minimum: 1
+        tlsEnabled:
+          type: boolean
+          description: TLS will be enabled when accessing the container registry
+        disableServerCertificateValidation:
+          type: boolean
+          description: Server certificate validation will be disabled when accessing
+            the container registry
+        trustedCaCertificateId:
+          type: string
+          description: Trusted CA Certificate
+        username:
+          type: string
+          description: Username to use when accessing the container registry
+          maxLength: 255
+        password:
+          type: string
+          description: Password to use when accessing the container registry
+          maxLength: 255
+        imageNamespacePrefix:
+          type: string
+          description: Namespace prefix of the image
+          maxLength: 255
+    CoreHostCreateSelfSignedCertificateForm:
+      type: object
+      required:
+      - keyTypeAndSignature
+      - validityDays
+      - subjectForm
+      properties:
+        keyTypeAndSignature:
+          $ref: "#/components/schemas/SupportedKeyAndSignatureForCertificates"
+        validityDays:
+          type: integer
+          format: int32
+          exclusiveMinimum: 0
+        subjectForm:
+          $ref: "#/components/schemas/CertificateSubjectForm"
+        alias:
+          type: string
+    CreateApiClientForm:
+      description: Holds the information about an API client to be created.
+      type: object
+      properties:
+        description:
+          type: string
+          description: Free text describing what the API client is used for
+          maxLength: 255
+        role:
+          description: Role of the API client
+          type: string
+          $ref: "#/components/schemas/ApiClientRole"
+        enabled:
+          type: boolean
+          description: Whether the API client may obtain tokens (after the next activation)
+        id:
+          type: string
+          description: "API client ID, used as OAuth2 client ID and as principal name"
+          pattern: "[a-z0-9-]{3,40}"
+      required:
+      - role
+      - id
+    CreateIdentityProviderForm:
+      description: Holds the information about identity provider to be created.
+      type: object
+      required:
+      - name
+      - type
+      properties:
+        name:
+          type: string
+          description: Provider name
+          pattern: \S
+        ldap:
+          $ref: "#/components/schemas/LdapIdentityProviderSettingsDto"
+        type:
+          description: Provider type
+          type: string
+          $ref: "#/components/schemas/IdentityProviderType"
+    CreateSelfSignedCertificateFormData:
+      description: Holds the form data required to display Create self-signed certificate
+        dialog
+      type: object
+      required:
+      - keyTypeList
+      properties:
+        keyTypeList:
+          type: array
+          items:
+            type: string
+          description: A list of supported Key types
+    CreateUserForm:
+      description: Holds the information about a user to be created.
+      type: object
+      required:
+      - displayname
+      - email
+      - role
+      - username
+      properties:
+        displayname:
+          type: string
+          description: Displayname
+          pattern: \S
+          maxLength: 32
+        email:
+          type: string
+          description: Email
+          pattern: \S
+        role:
+          description: Role of the user
+          type: string
+          $ref: "#/components/schemas/Role"
+        password:
+          type: string
+          description: Password
+        username:
+          type: string
+          description: Username
+          pattern: "^[A-Za-z0-9]+$"
+          maxLength: 32
+    DiffContentDto:
+      type: object
+      description: Holds information about diff content
+      properties:
+        description:
+          type: string
+          description: Entry description
+        oldContent:
+          type: string
+          description: Entry old content
+        newContent:
+          type: string
+          description: Entry new content
+    DiffVersionDto:
+      type: object
+      description: Holds information about configuration revision that was used as
+        an 'old' version for diff
+      properties:
+        id:
+          type: string
+          description: Revision id
+        revision:
+          type: integer
+          format: int64
+          description: Revision number
+    DynamicIpAddressInfoDto:
+      type: object
+      description: Dynamic IP address info
+      properties:
+        ipv4Enabled:
+          type: boolean
+          description: IPv4 address will be used
+        ipv6Enabled:
+          type: boolean
+          description: IPv6 address will be used
+        dhcpClientId:
+          type: string
+          description: DHCP client id
+        dnsServers:
+          type: array
+          items:
+            type: string
+            pattern: \S
+          description: A list of DNS servers (IPv4/v6 or FQDN)
+          maxItems: 3
+        dnsSearchQueries:
+          type: array
+          items:
+            type: string
+            pattern: \S
+          description: A list of DNS search queries
+        routes:
+          type: array
+          items:
+            $ref: "#/components/schemas/DynamicRouteInfoDto"
+          description: A list of route infos
+    DynamicRouteInfoDto:
+      type: object
+      description: Dynamic IP route info
+      required:
+      - networkCidr
+      - nextHopIpAddress
+      properties:
+        networkCidr:
+          type: string
+          description: IPv4/v6 route Network address in CIDR format
+          pattern: \S
+        nextHopIpAddress:
+          type: string
+          description: IPv4/v6 route Next Hop address
+          pattern: \S
+    EffectiveInterfaceInfoDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Interface name
+        ipAddresses:
+          type: array
+          items:
+            type: string
+          description: A list of assigned IP addresses
+        macAddress:
+          type: string
+          description: Interface MAC address
+        state:
+          description: Interface connection state
+          type: string
+          $ref: "#/components/schemas/NetworkInterfaceState"
+    ErrorResponse:
+      description: Provides the information about invalid request
+      type: object
+      required:
+      - reason
+      properties:
+        reason:
+          type: string
+          description: Reason for request to be considered invalid
+    GroupAttributeMappingDto:
+      type: object
+      description: Holds the information about mapping of user attributes.
+      properties:
+        name:
+          type: string
+          description: Name mapping
+        matcherUserAttribute:
+          type: string
+          description: "Group memeber matcher: user attribute"
+        matcherGroupAttribute:
+          type: string
+          description: "Group memeber matcher: group attribute"
+    HaConfigIdDto:
+      description: A single component's active-configuration id.
+      type: object
+      properties:
+        key:
+          type: string
+          description: Component name (active_configuration_<component> node attribute
+            name with the prefix stripped)
+        value:
+          type: string
+          description: The component's active configuration id
+    HaLeaderStatusDto:
+      description: High Availability config-leader status.
+      type: object
+      properties:
+        status:
+          description: Whether the config-leader resource is currently active on a
+            cluster member
+          type: string
+          $ref: "#/components/schemas/LeaderStatusDto"
+        member:
+          type: string
+          description: "Cluster member the config-leader resource is currently active\
+            \ on, if any"
+    HaMemberStatusDto:
+      description: High Availability runtime status of a single cluster member.
+      type: object
+      properties:
+        member:
+          type: string
+          description: Cluster member hostname
+        local:
+          type: boolean
+          description: Whether this member is the local node (remote-node actions
+            are not yet supported)
+        nodeStatus:
+          description: Node status as reported by the cluster
+          type: string
+          $ref: "#/components/schemas/NodeStatusDto"
+        syncConfigId:
+          type: array
+          items:
+            $ref: "#/components/schemas/HaConfigIdDto"
+          description: "The active configuration ids this member last synchronized,\
+            \ one entry per component (active_configuration_<component> node attribute\
+            \ name with the prefix stripped)"
+        deploymentStatus:
+          type: string
+          description: "Raw deployment/sync status of this member (sync_status node\
+            \ attribute), if any"
+    HaStatusDto:
+      description: Aggregate High Availability runtime status.
+      type: object
+      properties:
+        localHostname:
+          type: string
+          description: Hostname of the local node this status was evaluated on
+        leader:
+          description: Config-leader status
+          type: object
+          $ref: "#/components/schemas/HaLeaderStatusDto"
+        leaderConfigId:
+          type: array
+          items:
+            $ref: "#/components/schemas/HaConfigIdDto"
+          description: "The active configuration ids of the current leader, one entry\
+            \ per component (active_configuration_<component> node attribute name\
+            \ with the prefix stripped), used to compare follower sync state"
+        members:
+          type: array
+          items:
+            $ref: "#/components/schemas/HaMemberStatusDto"
+          description: Per-member runtime status
+    HighAvailabilityMode:
+      type: string
+      enum:
+      - ACTIVE_ACTIVE
+      - ACTIVE_PASSIVE
+    HighAvailabilitySettingsDataDto:
+      description: Holds the information necessary to display high availability configuration
+        page.
+      type: object
+      properties:
+        settings:
+          description: Holds the information about high availability configuration.
+            null if not enabled.
+          type: object
+          $ref: "#/components/schemas/HighAvailabilitySettingsDto"
+        systemHostname:
+          type: string
+          description: System hostname
+        systemIPs:
+          type: array
+          items:
+            $ref: "#/components/schemas/SystemIpHaInfoDto"
+          description: A list of system IPs available for HA
+        localPublicSshKey:
+          type: string
+          description: Public SSH key of the local system
+        validationErrors:
+          type: array
+          items:
+            $ref: "#/components/schemas/ConfigurationValidationError"
+          description: A list of configuration validation errors related to HA settings
+    HighAvailabilitySettingsDto:
+      type: object
+      description: Holds the information about high availability configuration.
+      required:
+      - sharedSecret
+      - clusterNodes
+      - mode
+      properties:
+        sharedSecret:
+          type: string
+          description: Shared secret used between cluster nodes
+          pattern: \S
+          maxLength: 32
+        clusterNodes:
+          type: array
+          items:
+            $ref: "#/components/schemas/ClusterNodeDto"
+          description: List of cluster node IDs participating in HA
+          maxItems: 10
+          minItems: 1
+        mode:
+          description: High availability mode
+          type: string
+          $ref: "#/components/schemas/HighAvailabilityMode"
+    IdentityProviderDto:
+      description: Holds the information about identity provider.
+      type: object
+      required:
+      - name
+      - type
+      properties:
+        name:
+          type: string
+          description: Provider name
+          pattern: \S
+        ldap:
+          $ref: "#/components/schemas/LdapIdentityProviderSettingsDto"
+        type:
+          description: Provider type
+          type: string
+          $ref: "#/components/schemas/IdentityProviderType"
+        id:
+          type: string
+          description: Provider ID
+    IdentityProviderType:
+      type: string
+      enum:
+      - LDAP
+      - OIDC
+      - ENTRA
+    InfrastructureOperationStatusCode:
+      type: string
+      enum:
+      - IN_PROGRESS
+      - FAILURE
+      - DONE
+      - UNKNOWN
+    InstalledComponentDto:
+      description: Holds the information about installed comonent.
+      type: object
+      required:
+      - componentName
+      - componentVersion
+      properties:
+        componentName:
+          type: string
+          description: Name of the component
+        componentVersion:
+          type: string
+          description: Version of the component
+          format: semver
+        availableVersion:
+          type: string
+          description: New version of the component (if available)
+          format: semver
+        undeployable:
+          type: boolean
+          description: The component can be undeployed
+        rollbackVersion:
+          type: string
+          description: Version this component would roll back to (if rollback is available)
+          format: semver
+        rollbackAvailable:
+          type: boolean
+    IpAddressType:
+      type: string
+      enum:
+      - STATIC
+      - DHCP
+    Ipv4InfoDto:
+      type: object
+      description: IPv4 address info
+      required:
+      - ipAddress
+      properties:
+        ipAddress:
+          type: string
+          description: IPv4 address in CIDR format
+          pattern: \S
+        primary:
+          type: boolean
+          description: This IP address will be marked as primary
+    Ipv4RouteInfoDto:
+      type: object
+      description: IPv4 route info
+      required:
+      - networkCidr
+      - nextHopIpAddress
+      properties:
+        networkCidr:
+          type: string
+          description: IPv4 route Network address in CIDR format
+          pattern: \S
+        nextHopIpAddress:
+          type: string
+          description: IPv4 route Next Hop address
+          pattern: \S
+    Ipv6InfoDto:
+      type: object
+      description: IPv6 address info
+      required:
+      - ipAddress
+      properties:
+        ipAddress:
+          type: string
+          description: IPv6 address in CIDR format
+          pattern: \S
+        primary:
+          type: boolean
+          description: This IP address will be marked as primary
+    Ipv6RouteInfoDto:
+      type: object
+      description: IPv6 route info
+      required:
+      - networkCidr
+      - nextHopIpAddress
+      properties:
+        networkCidr:
+          type: string
+          description: IPv6 route Network address in CIDR format
+          pattern: \S
+        nextHopIpAddress:
+          type: string
+          description: IPv6 route Next Hop address
+          pattern: \S
+    KeyUsageName:
+      type: string
+      enum:
+      - DIGITAL_SIGNATURE
+      - NON_REPUDIATION
+      - KEY_ENCIPHERMENT
+      - DATA_ENCIPHERMENT
+      - KEY_AGREEMENT
+      - KEY_CERT_SIGN
+      - CRL_SIGN
+      - ENCIPHER_ONLY
+      - DECIPHER_ONLY
+    LdapIdentityProviderSettingsDto:
+      type: object
+      description: Holds the information about LDAP identity provider.
+      required:
+      - host
+      - port
+      - serviceUserLdapDn
+      - searchUsersDn
+      - searchUsersFilter
+      - searchGroupsDn
+      - searchGroupsFilter
+      properties:
+        host:
+          type: string
+          description: Provider host
+          pattern: \S
+        port:
+          type: integer
+          format: int32
+          description: Provider port
+          maximum: 65535
+          minimum: 1
+        ldaps:
+          type: boolean
+          description: LDAPS protocol will be used when accessing provider
+        skipCertificateValidation:
+          type: boolean
+          description: Certificate validation will be skipped when accessing provider
+        useStartTls:
+          type: boolean
+          description: StartTls will be used when accessing provider
+        serviceUserLdapDn:
+          type: string
+          description: LDAP DN of the service user for the initial bind
+          pattern: \S
+        serviceUserLdapPassword:
+          type: string
+          description: LDAP password of the service user
+        searchUsersDn:
+          type: string
+          description: LDAP DN where to search for the users
+          pattern: \S
+        searchUsersFilter:
+          type: string
+          description: LDAP filter to search for users
+          pattern: \S
+        searchGroupsDn:
+          type: string
+          description: LDAP DN where to search for groups
+          pattern: \S
+        searchGroupsFilter:
+          type: string
+          description: LDAP filter to search for groups
+          pattern: \S
+        userAttributeMapping:
+          description: Provides mapping of user attributes
+          type: object
+          $ref: "#/components/schemas/UserAttributeMappingDto"
+        groupAttributeMapping:
+          description: Provides mapping of group attributes
+          type: object
+          $ref: "#/components/schemas/GroupAttributeMappingDto"
+        roleMapping:
+          description: Provides mapping of the local roles to the corresponding LDAP
+            groups
+          type: object
+          $ref: "#/components/schemas/RoleMappingDto"
+    LeaderStatusDto:
+      description: Config-leader resource status
+      type: string
+      enum:
+      - online
+      - offline
+    LiveLogEntryDto:
+      type: object
+      properties:
+        displayName:
+          type: string
+        urlPath:
+          type: string
+        subEntries:
+          type: array
+          items:
+            $ref: "#/components/schemas/LiveLogEntryDto"
+    LiveLogMenuDto:
+      type: object
+      properties:
+        entries:
+          type: object
+          additionalProperties:
+            $ref: "#/components/schemas/LiveLogEntryDto"
+    LocalBackupDto:
+      description: Holds the information about a local backup
+      type: object
+      properties:
+        id:
+          type: string
+          description: Id of the backup
+        name:
+          type: string
+          description: Name of the backup
+        type:
+          description: Backup type
+          type: string
+          $ref: "#/components/schemas/BackupType"
+        fileSize:
+          type: integer
+          format: int64
+          description: Backup file size (bytes)
+    LogProtocol:
+      type: string
+      enum:
+      - SYSLOG
+      - OPEN_TELEMETRY
+    LogSettingsDto:
+      description: Holds the information about log settings.
+      type: object
+      properties:
+        remoteLogSettings:
+          description: "Remote log settings, required when log mode is REMOTELOG"
+          type: object
+          $ref: "#/components/schemas/RemoteLogSettingsDto"
+    ManagementAccessSettingsDto:
+      type: object
+      description: Management access settings
+      properties:
+        activeCertificateId:
+          type: string
+          description: Active certificate id
+        acme:
+          description: Automatic certificate renewal (ACME) settings
+          type: object
+          $ref: "#/components/schemas/AcmeSettingsDto"
+    ManualHostEntryDto:
+      type: object
+      description: Manual host entry info
+      required:
+      - ipAddress
+      - hostnames
+      properties:
+        ipAddress:
+          type: string
+          description: IPv4/v6 address
+          pattern: \S
+        hostnames:
+          type: string
+          description: Comma-separated hostnames
+          pattern: \S
+    MonitoringSettingsDto:
+      description: Holds the information about Monitoring settings.
+      type: object
+      properties:
+        snmp:
+          description: SNMP settings
+          type: object
+          $ref: "#/components/schemas/SnmpSettingsDto"
+    NetworkInterfaceDto:
+      type: object
+      description: Network interface info
+      properties:
+        ipType:
+          description: Interface IP address type
+          type: string
+          $ref: "#/components/schemas/IpAddressType"
+        staticIPv4:
+          description: Static IPv4 address info
+          type: object
+          $ref: "#/components/schemas/StaticIpv4AddressInfoDto"
+        staticIPv6:
+          description: Static IPv6 address info
+          type: object
+          $ref: "#/components/schemas/StaticIpv6AddressInfoDto"
+        dynamicIP:
+          description: Dynamic IP address info
+          type: object
+          $ref: "#/components/schemas/DynamicIpAddressInfoDto"
+        name:
+          type: string
+          description: Interface name
+        role:
+          description: Interface role
+          type: string
+          $ref: "#/components/schemas/NetworkInterfaceRole"
+      required:
+      - role
+    NetworkInterfaceRole:
+      type: string
+      enum:
+      - INTERNAL
+      - EXTERNAL
+      - MANAGEMENT
+    NetworkInterfaceState:
+      type: string
+      enum:
+      - CONNECTED
+      - DISCONNECTED
+    NetworkSettingsDataDto:
+      description: Holds the information required to display Network settings page.
+      type: object
+      properties:
+        settings:
+          description: Holds the information about Network settings.
+          type: object
+          $ref: "#/components/schemas/NetworkSettingsDto"
+        validationErrors:
+          type: array
+          items:
+            $ref: "#/components/schemas/ConfigurationValidationError"
+          description: A list of configuration validation errors
+        effectiveInterfaceInfos:
+          type: array
+          items:
+            $ref: "#/components/schemas/EffectiveInterfaceInfoDto"
+    NetworkSettingsDto:
+      type: object
+      description: Holds the information about Network settings.
+      properties:
+        networkInterfaces:
+          type: array
+          items:
+            $ref: "#/components/schemas/NetworkInterfaceDto"
+          description: A list of network interfaces
+        manualHostEntries:
+          type: array
+          items:
+            $ref: "#/components/schemas/ManualHostEntryDto"
+          description: A list of manual host entries
+    NodeStatusDto:
+      description: Cluster node status
+      type: string
+      enum:
+      - online
+      - offline
+      - standby
+      - maintenance
+      - pending
+      - unclean
+      - unknown
+    OperatingSystemInfoDto:
+      description: Holds the information about the Aero Operating System.
+      type: object
+      properties:
+        currentVersion:
+          type: string
+          description: OS current version
+        availableVersion:
+          type: string
+          description: "OS latest version, only set if it is newer than the current\
+            \ one"
+        updatePending:
+          type: boolean
+          description: set to true if there is a pending OS version update which require
+            a system restart
+        pendingVersion:
+          type: string
+          description: "OS version after pending update, or null if no update pending"
+    RemoteLogSettingsDto:
+      type: object
+      description: Holds the information about remote log settings.
+      required:
+      - targets
+      properties:
+        targets:
+          type: array
+          items:
+            $ref: "#/components/schemas/RemoteLogTargetSettingsDto"
+          minItems: 1
+    RemoteLogTargetSettingsDto:
+      type: object
+      required:
+      - logProtocol
+      - hostname
+      - port
+      properties:
+        logProtocol:
+          description: Log protocol
+          type: string
+          $ref: "#/components/schemas/LogProtocol"
+        hostname:
+          type: string
+          description: Hostname of the remote log server
+          pattern: \S
+        port:
+          type: integer
+          format: int32
+          description: Port of the remote log server
+          maximum: 65535
+          minimum: 1
+        tlsEnabled:
+          type: boolean
+          description: Whether TLS is enabled for the remote log connection
+        disableServerCertificateValidation:
+          type: boolean
+          description: Whether server certificate validation is disabled
+        trustedCaCertificateId:
+          type: string
+          description: ID of the trusted CA certificate used for TLS validation
+        clientCertificateId:
+          type: string
+          description: ID of the client certificate used for mutual TLS
+    RevisionMessageForm:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          pattern: \S
+          maxLength: 255
+    Role:
+      type: string
+      enum:
+      - ADMINISTRATOR
+      - VIEWER
+    RoleMappingDto:
+      type: object
+      description: Holds the information about mapping of the local roles to the corresponding
+        LDAP groups.
+      properties:
+        admin:
+          type: string
+          description: Administrator role mapping
+        viewer:
+          type: string
+          description: Viewer role mapping
+    SnmpSettingsDto:
+      type: object
+      properties:
+        communityStrings:
+          type: array
+          items:
+            type: string
+            pattern: \S
+          description: A list of SNMP community strings
+    StaticIpv4AddressInfoDto:
+      type: object
+      description: Static IPv4 address info
+      properties:
+        ipAddresses:
+          type: array
+          items:
+            $ref: "#/components/schemas/Ipv4InfoDto"
+          description: A list of IP addresses
+        gateway:
+          type: string
+          description: Gateway (IPv4)
+        dontUseGatewayAsDefaultRoute:
+          type: boolean
+          description: Gateway will not be used as a default route
+        dnsServers:
+          type: array
+          items:
+            type: string
+            pattern: \S
+          description: A list of DNS servers (IPv4 or FQDN)
+          maxItems: 3
+        dnsSearchQueries:
+          type: array
+          items:
+            type: string
+            pattern: \S
+          description: A list of DNS search queries
+        routes:
+          type: array
+          items:
+            $ref: "#/components/schemas/Ipv4RouteInfoDto"
+          description: A list of route infos
+    StaticIpv6AddressInfoDto:
+      type: object
+      description: Static IPv6 address info
+      properties:
+        ipAddresses:
+          type: array
+          items:
+            $ref: "#/components/schemas/Ipv6InfoDto"
+          description: A list of IP addresses
+        gateway:
+          type: string
+          description: Gateway (IPv6)
+        dontUseGatewayAsDefaultRoute:
+          type: boolean
+          description: Gateway will not be used as a default route
+        dnsServers:
+          type: array
+          items:
+            type: string
+            pattern: \S
+          description: A list of DNS servers (IPv6 or FQDN)
+          maxItems: 3
+        dnsSearchQueries:
+          type: array
+          items:
+            type: string
+            pattern: \S
+          description: A list of DNS search queries
+        routes:
+          type: array
+          items:
+            $ref: "#/components/schemas/Ipv6RouteInfoDto"
+          description: A list of route infos
+    SupportedKeyAndSignatureForCertificates:
+      type: string
+      enum:
+      - EcdsaP256
+      - EcdsaP384
+      - Rsa2048_Sha256
+      - Rsa3072_Sha256
+      - Rsa3072_Sha384
+      - Rsa4096_Sha256
+      - Rsa4096_Sha384
+      - Rsa4096_Sha512
+    SupportedKeyType:
+      type: string
+      enum:
+      - EcdsaP521
+      - EcdsaP384
+      - EcdsaP256
+      - Rsa4096
+      - Rsa3072
+      - Rsa2048
+    SystemColorSchema:
+      type: string
+      enum:
+      - DEFAULT
+      - ORANGE
+      - RED
+    SystemIpHaInfoDto:
+      type: object
+      description: Holds the information about a system IP available for HA.
+      properties:
+        networkInterfaceName:
+          type: string
+        ipAddress:
+          type: string
+    SystemSettingsDto:
+      description: Holds the information about System settings.
+      type: object
+      required:
+      - hostname
+      - colorSchema
+      - timezone
+      properties:
+        hostname:
+          type: string
+          description: System hostname
+          pattern: \S
+        label:
+          type: string
+          description: System label
+          maxLength: 30
+        colorSchema:
+          description: System color schema
+          type: string
+          $ref: "#/components/schemas/SystemColorSchema"
+        location:
+          type: string
+          description: System location
+          maxLength: 50
+        contact:
+          type: string
+          description: System contact
+          maxLength: 50
+        timezone:
+          type: string
+          description: System timezone
+          pattern: \S
+        timezones:
+          type: array
+          items:
+            type: string
+        ntpServers:
+          type: array
+          items:
+            type: string
+            pattern: \S
+          description: A list of NTP servers (IP or FQDN)
+          maxItems: 3
+    UpdateApiClientForm:
+      description: Holds the information about an API client to be updated.
+      type: object
+      properties:
+        description:
+          type: string
+          description: Free text describing what the API client is used for
+          maxLength: 255
+        role:
+          description: Role of the API client
+          type: string
+          $ref: "#/components/schemas/ApiClientRole"
+        enabled:
+          type: boolean
+          description: Whether the API client may obtain tokens (after the next activation)
+      required:
+      - role
+    UpdateIdentityProviderForm:
+      description: Holds the information about identity provider to be updated.
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Provider name
+          pattern: \S
+        ldap:
+          $ref: "#/components/schemas/LdapIdentityProviderSettingsDto"
+    UpdateUserForm:
+      description: Holds the information about a local user to be updated.
+      type: object
+      required:
+      - displayname
+      - email
+      - role
+      properties:
+        displayname:
+          type: string
+          description: Displayname
+          pattern: \S
+          maxLength: 32
+        email:
+          type: string
+          description: Email
+          pattern: \S
+        role:
+          description: Role of the user
+          type: string
+          $ref: "#/components/schemas/Role"
+        password:
+          type: string
+          description: Password
+    UpdateUserProfileForm:
+      description: Holds the information about a user's profile to be updated.
+      type: object
+      required:
+      - displayname
+      - email
+      properties:
+        displayname:
+          type: string
+          description: Displayname
+          pattern: \S
+          maxLength: 32
+        email:
+          type: string
+          description: Email
+          pattern: \S
+    UserAttributeMappingDto:
+      type: object
+      description: Holds the information about mapping of user attributes.
+      properties:
+        username:
+          type: string
+          description: Username mapping
+        id:
+          type: string
+          description: Id mapping
+        email:
+          type: string
+          description: Email mapping
+        name:
+          type: string
+          description: Name mapping
+        preferredUsername:
+          type: string
+          description: Preferred username mapping
+    UserDto:
+      description: Holds the information about local user.
+      type: object
+      required:
+      - userId
+      - username
+      - displayname
+      - email
+      - role
+      properties:
+        userId:
+          type: string
+          description: User ID
+        username:
+          type: string
+          description: Username
+        displayname:
+          type: string
+          description: Displayname
+        email:
+          type: string
+          description: Email
+        role:
+          description: Role of the user
+          type: string
+          enum:
+          - ADMINISTRATOR
+          - VIEWER
+          $ref: "#/components/schemas/Role"
+    ValidationErrorResponse:
+      description: Provides information about request validation failure(s)
+      type: object
+      required:
+      - violations
+      properties:
+        violations:
+          type: array
+          items:
+            $ref: "#/components/schemas/Violation"
+          description: A list of validation violations
+    Violation:
+      type: object
+      description: Provides the information about a specific violation found during
+        request validation
+      properties:
+        fieldName:
+          type: string
+          description: Field name
+        message:
+          type: string
+          description: Violation message
+      required:
+      - message
+  securitySchemes:
+    apiClientToken:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: "Access token of an API client, requested from `<baseUri>/dex/token`\
+        \ with the OAuth 2.0 client credentials grant and the scopes `openid profile\
+        \ groups`."
+tags:
+- name: ApiClientsApi
+  description: Operations related to API clients (OAuth2 Client Credentials)
+- name: BackupApi
+  description: Operations related to Aero backup management
+- name: CertificatesSettingsApi
+  description: Operations related to Aero's Certificates settings management
+- name: ComponentManagementApi
+  description: Operations related to Aero component management
+- name: ConfigurationLifecycleManagerApi
+  description: Operations related to Aero configuration revisions and activation
+- name: ContainerSettingsApi
+  description: Operations related to Aero's Container settings management
+- name: HighAvailabilityConfigurationApi
+  description: Operations related to Aero's High Availability configuration management
+- name: HighAvailabilityRuntimeApi
+  description: Operations related to Aero's High Availability runtime management
+- name: Live-Log API
+  description: Operations related to Aero's Live-Log management
+- name: LogSettingsApi
+  description: Operations related to Aero's Log Settings configuration management
+- name: MonitoringSettingsApi
+  description: Operations related to Aero's Monitoring settings management
+- name: NetworkSettingsApi
+  description: Operations related to Aero's Network settings management
+- name: OperatingSystemApi
+  description: Operations related to Aero operating system management
+- name: SystemSettingsApi
+  description: Operations related to Aero's System settings management
+- name: UserManagementApi
+  description: Operations related to Aero's user management
+paths:
+  /api/api-clients:
+    get:
+      summary: Get all API clients
+      operationId: getClients
+      tags:
+      - ApiClientsApi
+      responses:
+        "200":
+          description: List retrieved successfully.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ApiClientDto"
+    post:
+      summary: Create API client
+      description: Generates the client secret and returns it once. The client takes
+        effect with the next activation.
+      operationId: createClient
+      tags:
+      - ApiClientsApi
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateApiClientForm"
+        required: true
+      responses:
+        "201":
+          description: API client created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiClientWithSecretDto"
+        "422":
+          description: "Create failed due to invalid or unprocessable request, e.g.\
+            \ an ID that is reserved or already used by an API client or a local user."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorResponse"
+        "403":
+          description: Not allowed for API clients.
+  /api/api-clients/{id}:
+    put:
+      summary: Update API client
+      description: "Updates description, role and enabled. The secret is kept."
+      operationId: updateClient
+      tags:
+      - ApiClientsApi
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateApiClientForm"
+        required: true
+      responses:
+        "200":
+          description: API client updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiClientDto"
+        "400":
+          description: Update failed due to invalid API client id.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "422":
+          description: Update failed due to invalid or unprocessable request.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorResponse"
+        "403":
+          description: Not allowed for API clients.
+    get:
+      summary: Get API client
+      operationId: getClient
+      tags:
+      - ApiClientsApi
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: API client retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiClientDto"
+        "400":
+          description: Retrieval failed due to invalid API client id.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+    delete:
+      summary: Delete API client
+      operationId: deleteClient
+      tags:
+      - ApiClientsApi
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "204":
+          description: API client deleted successfully.
+        "400":
+          description: Delete failed due to invalid API client id.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "403":
+          description: Not allowed for API clients.
+  /api/api-clients/{id}/secret:
+    post:
+      summary: Regenerate API client secret
+      description: Generates a new secret and returns it once. The old secret stops
+        working with the next activation.
+      operationId: regenerateSecret
+      tags:
+      - ApiClientsApi
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Secret regenerated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiClientWithSecretDto"
+        "400":
+          description: Regeneration failed due to invalid API client id.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "403":
+          description: Not allowed for API clients.
+  /api/backup/job:
+    get:
+      summary: Get all automated backup jobs
+      operationId: getAutomatedBackupJobs
+      tags:
+      - BackupApi
+      responses:
+        "200":
+          description: List retrieved successfully.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/BackupJobDto"
+    post:
+      summary: Create automated backup job
+      operationId: createAutomatedBackupJob
+      tags:
+      - BackupApi
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BackupJobDto"
+        required: true
+      responses:
+        "201":
+          description: Automated backup job created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BackupJobDto"
+        "422":
+          description: Create failed due to invalid or unprocessable request.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorResponse"
+  /api/backup/job/{id}:
+    put:
+      summary: Update automated backup job
+      operationId: updateAutomatedBackupJob
+      tags:
+      - BackupApi
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BackupJobDto"
+        required: true
+      responses:
+        "200":
+          description: Automated backup job updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BackupJobDto"
+        "400":
+          description: Update failed due to invalid job id.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "422":
+          description: Update failed due to invalid or unprocessable request.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorResponse"
+    get:
+      summary: Get automated backup job
+      operationId: getAutomatedBackupJob
+      tags:
+      - BackupApi
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Automated backup job retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BackupJobDto"
+        "400":
+          description: Retrieval failed due to invalid job id.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+    delete:
+      summary: Delete automated backup job
+      operationId: deleteAutomatedBackupJob
+      tags:
+      - BackupApi
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Automated backup job deleted successfully.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/BackupJobDto"
+        "400":
+          description: Delete failed due to invalid job id.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /api/backup/job/{id}/run:
+    post:
+      summary: "Trigger automated backup job execution\t"
+      operationId: runAutomatedBackupJob
+      tags:
+      - BackupApi
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "204":
+          description: Automated backup job successfully executed.
+        "503":
+          description: Automated backup job execution failed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "400":
+          description: Execution failed due to invalid id.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /api/backup/local:
+    get:
+      summary: Get all local backups
+      operationId: getLocalBackups
+      tags:
+      - BackupApi
+      responses:
+        "200":
+          description: List retrieved successfully.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/LocalBackupDto"
+  /api/backup/local/{id}:
+    get:
+      summary: Get local backup
+      operationId: getLocalBackup
+      tags:
+      - BackupApi
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Local backup retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LocalBackupDto"
+        "400":
+          description: Get failed due to invalid backup id.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+    delete:
+      summary: Delete local backup
+      operationId: deleteLocalBackup
+      tags:
+      - BackupApi
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Local backup deleted successfully.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/LocalBackupDto"
+        "400":
+          description: Delete failed due to invalid backup id.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /api/backup/local/{id}/download:
+    get:
+      summary: Download local backup
+      operationId: downloadLocalBackup
+      tags:
+      - BackupApi
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Local backup downloaded successfully.
+          content:
+            application/octet-stream:
+              schema:
+                format: binary
+                type: string
+        "400":
+          description: Download failed due to invalid backup id.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /api/backup/local/{id}/restore:
+    post:
+      summary: Restore local backup
+      operationId: restoreLocalBackup
+      tags:
+      - BackupApi
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: noVersionCheck
+        in: query
+        schema:
+          type: boolean
+      responses:
+        "200":
+          description: Local backup restored successfully.
+          content:
+            application/json: {}
+        "400":
+          description: Local backup restore failed due to invalid backup id.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "409":
+          description: Local backup restore failed due mismatching backup/installed
+            component versions.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ComponentVersionMismatchDto"
+        "503":
+          description: Local backup restore failed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /api/backup/manual/create:
+    post:
+      summary: Create backup
+      operationId: createBackup
+      tags:
+      - BackupApi
+      parameters:
+      - name: type
+        in: query
+        schema:
+          $ref: "#/components/schemas/BackupType"
+      responses:
+        "201":
+          description: Backup created successfully.
+          content:
+            application/octet-stream:
+              schema:
+                format: binary
+                type: string
+        "404":
+          description: "Backup creation failed, possibly due to invalid backup type."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "503":
+          description: Backup creation failed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /api/backup/manual/restore:
+    post:
+      summary: Restore backup
+      operationId: restoreBackup
+      tags:
+      - BackupApi
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                noVersionCheck:
+                  type: boolean
+        required: true
+      responses:
+        "200":
+          description: Backup restore process initiated successfully.
+          content:
+            '*/*': {}
+        "409":
+          description: Backup restore failed due mismatching backup/installed component
+            versions.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ComponentVersionMismatchDto"
+        "503":
+          description: Backup restore failed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /api/backup/target:
+    get:
+      summary: Get all backup jobs targets
+      operationId: getBackupJobTargets
+      tags:
+      - BackupApi
+      responses:
+        "200":
+          description: List retrieved successfully.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/BackupTargetDto"
+    post:
+      summary: Create backup job target
+      operationId: createBackupJobTarget
+      tags:
+      - BackupApi
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BackupTargetDto"
+        required: true
+      responses:
+        "201":
+          description: Backup job target created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BackupTargetDto"
+        "422":
+          description: Create failed due to invalid or unprocessable request.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorResponse"
+  /api/backup/target/{id}:
+    put:
+      summary: Update backup job target
+      operationId: updateBackupJobTarget
+      tags:
+      - BackupApi
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BackupTargetDto"
+        required: true
+      responses:
+        "200":
+          description: Backup job target updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BackupTargetDto"
+        "400":
+          description: Update failed due to invalid id.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "422":
+          description: Update failed due to invalid or unprocessable request.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorResponse"
+    get:
+      summary: Get backup job target
+      operationId: getBackupJobTarget
+      tags:
+      - BackupApi
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Backup job target retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BackupTargetDto"
+        "400":
+          description: Retrieval failed due to invalid id.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /api/backup/target/{id}/check:
+    post:
+      summary: Check backup job target connection
+      operationId: checkBackupJobTargetConnection
+      tags:
+      - BackupApi
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "204":
+          description: Backup job target connection checked successfully.
+        "503":
+          description: Backup job target is unavailable.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "400":
+          description: Check failed due to invalid id.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /api/backup/target/{id}/usages:
+    get:
+      summary: Get usages of the backup job target
+      operationId: getBackupJobTargetUsages
+      tags:
+      - BackupApi
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Backup job target usages retrieved successfully.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/BackupJobDto"
+        "400":
+          description: Retrieval failed due to invalid id.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /api/backup/target/{targetId}:
+    delete:
+      summary: Delete backup job target
+      operationId: deleteBackupJobTarget
+      tags:
+      - BackupApi
+      parameters:
+      - name: targetId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: parentJobId
+        in: query
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Backup job target deleted successfully.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/BackupTargetDto"
+        "400":
+          description: Delete failed due to invalid id.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /api/clm/components:
+    get:
+      summary: Get all components that have configuration
+      operationId: getConfigurableComponents
+      tags:
+      - ConfigurationLifecycleManagerApi
+      responses:
+        "200":
+          description: List retrieved successfully.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ConfigurableComponentDto"
+  /api/clm/components/activation:
+    get:
+      summary: Get the information about available component's configuration activations
+      operationId: getConfigurationActivationInfos
+      tags:
+      - ConfigurationLifecycleManagerApi
+      responses:
+        "200":
+          description: Information retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ConfigurationActivationInfosDto"
+    post:
+      summary: Activate the specified configuration revision(s)
+      operationId: activateRevisions
+      tags:
+      - ConfigurationLifecycleManagerApi
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+        required: true
+      responses:
+        "200":
+          description: Deployment started successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ConfigurationActivationInfosDto"
+        "400":
+          description: Activation failed due to configuration validation errors.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ConfigurationValidationError"
+        "503":
+          description: Activation failed.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /api/clm/components/{componentName}:
+    get:
+      summary: Get revisions information for the specified component
+      operationId: getComponentRevisionsInfo
+      tags:
+      - ConfigurationLifecycleManagerApi
+      parameters:
+      - name: componentName
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Information retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ComponentRevisionsInfoDto"
+        "400":
+          description: Information retrieval failed due to invalid id.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /api/clm/components/{componentName}/configurations/{revId}:
+    get:
+      summary: Get detailed information for the specified configuration revision
+      operationId: getConfigurationRevisionDetails
+      tags:
+      - ConfigurationLifecycleManagerApi
+      parameters:
+      - name: componentName
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: revId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Information retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ConfigurationRevisionDetailsDto"
+        "400":
+          description: Information retrieval failed due to invalid id.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /api/clm/components/{componentName}/configurations/{revId}/rollback:
+    post:
+      summary: Rollback configuration revision
+      operationId: rollbackConfigurationRevision
+      tags:
+      - ConfigurationLifecycleManagerApi
+      parameters:
+      - name: componentName
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: revId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RevisionMessageForm"
+        required: true
+      responses:
+        "201":
+          description: Revision rolled back successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ConfigurationRevisionDto"
+        "503":
+          description: Revision rollback failed.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "400":
+          description: Revision rollback failed due to invalid id.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /api/clm/components/{componentName}/drafts/{draftId}:
+    delete:
+      summary: Reset configuration changes
+      operationId: discardDraft
+      tags:
+      - ConfigurationLifecycleManagerApi
+      parameters:
+      - name: componentName
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: draftId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Configuration changes reset successfully.
+          content:
+            '*/*': {}
+        "503":
+          description: Configuration changes reset failed.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "400":
+          description: Configuration changes reset failed due to invalid id.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /api/clm/components/{componentName}/drafts/{draftId}/commit:
+    post:
+      summary: Create a new configuration revision
+      operationId: commitDraft
+      tags:
+      - ConfigurationLifecycleManagerApi
+      parameters:
+      - name: componentName
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: draftId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RevisionMessageForm"
+        required: true
+      responses:
+        "201":
+          description: Revision created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ConfigurationRevisionDto"
+        "503":
+          description: Revision creation failed.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "400":
+          description: Revision creation failed due to invalid id.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /api/cm:
+    get:
+      summary: Get all component deployment configurations
+      operationId: getAllComponentDeployments
+      tags:
+      - ComponentManagementApi
+      responses:
+        "200":
+          description: List retrieved successfully.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ComponentDeploymentDto"
+  /api/cm/available:
+    get:
+      summary: Get a list of components available for deployment
+      operationId: getAvailableComponents
+      tags:
+      - ComponentManagementApi
+      responses:
+        "200":
+          description: List retrieved successfully.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/AvailableComponentDto"
+  /api/cm/fetch-inventory:
+    post:
+      summary: Fetch component deployment inventory information
+      operationId: fetchInventory
+      tags:
+      - ComponentManagementApi
+      responses:
+        "200":
+          description: Component deployment inventory information fetched successfully.
+          content:
+            '*/*': {}
+        "500":
+          description: Fetch failed.
+  /api/cm/installed:
+    get:
+      summary: Get a list of installed components
+      operationId: getInstalledComponents
+      tags:
+      - ComponentManagementApi
+      responses:
+        "200":
+          description: Installed components list retrieved successfully.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/InstalledComponentDto"
+  /api/cm/{componentName}:
+    delete:
+      summary: Initiate undeployment of Aero component
+      operationId: undeployComponent
+      tags:
+      - ComponentManagementApi
+      parameters:
+      - name: componentName
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Component undeployment initiated successfully.
+          content:
+            '*/*': {}
+        "400":
+          description: "Component undeployment failed, possibly due to component not\
+            \ found."
+  /api/cm/{componentName}/rollback:
+    post:
+      summary: Initiate rollback of Aero component to the previous version
+      operationId: rollbackComponent
+      tags:
+      - ComponentManagementApi
+      parameters:
+      - name: componentName
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "202":
+          description: Component rollback initiated successfully.
+        "400":
+          description: "Component rollback failed, possibly due to no rollback version\
+            \ available."
+  /api/cm/{componentName}/{componentVersion}:
+    put:
+      summary: Initiate update of Aero component to a new version
+      operationId: updateComponent
+      tags:
+      - ComponentManagementApi
+      parameters:
+      - name: componentName
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: componentVersion
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "202":
+          description: Component update initiated successfully.
+        "400":
+          description: "Component update failed, possibly due to invalid parameters\
+            \ or component not found."
+    post:
+      summary: Initiate deployment of Aero component
+      operationId: deployComponent
+      tags:
+      - ComponentManagementApi
+      parameters:
+      - name: componentName
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: componentVersion
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "202":
+          description: Component deployment initiated successfully.
+        "400":
+          description: "Component deployment failed, possibly due to invalid parameters\
+            \ or component not found."
+  /api/config/certificates:
+    put:
+      summary: Update Management access settings
+      operationId: updateManagementAccessSettings
+      tags:
+      - CertificatesSettingsApi
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ManagementAccessSettingsDto"
+        required: true
+      responses:
+        "200":
+          description: Management access settings updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CertificatesSettingsDto"
+        "422":
+          description: Update failed due to invalid or unprocessable request.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorResponse"
+    get:
+      summary: Get Certificates settings
+      operationId: getCertificatesSettings
+      tags:
+      - CertificatesSettingsApi
+      responses:
+        "200":
+          description: Certificates settings retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CertificatesSettingsDto"
+  /api/config/certificates/ca-certs:
+    post:
+      summary: Upload a CA certificate
+      operationId: uploadCaCertificate
+      tags:
+      - CertificatesSettingsApi
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                alias:
+                  type: string
+        required: true
+      responses:
+        "200":
+          description: Certificate uploaded successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CaCertificatesDto"
+        "400":
+          description: Upload failed due to invalid or unprocessable file.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "422":
+          description: Upload failed due to invalid alias.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorResponse"
+  /api/config/certificates/ca-certs/{id}:
+    get:
+      summary: Download CA certificate
+      operationId: downloadCaCertificate
+      tags:
+      - CertificatesSettingsApi
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: format
+        in: query
+        schema:
+          $ref: "#/components/schemas/CaCertificateDownloadFormat"
+      responses:
+        "200":
+          description: Certificate downloaded successfully.
+          content:
+            application/octet-stream:
+              schema:
+                format: binary
+                type: string
+    delete:
+      summary: Delete CA certificate
+      operationId: deleteCaCertificate
+      tags:
+      - CertificatesSettingsApi
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Certificate deleted successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CaCertificatesDto"
+        "400":
+          description: Delete failed due to invalid certificate id or certificate
+            being used in the configuration.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /api/config/certificates/ca-certs/{id}/alias:
+    put:
+      summary: Update CA certificate alias
+      operationId: updateCaCertificateAlias
+      tags:
+      - CertificatesSettingsApi
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                alias:
+                  type: string
+        required: true
+      responses:
+        "200":
+          description: Certificate alias updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CaCertificatesDto"
+        "400":
+          description: Update failed due to invalid certificate id.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "422":
+          description: Update failed due to invalid alias.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorResponse"
+  /api/config/certificates/certs:
+    post:
+      summary: Upload a certificate
+      operationId: uploadCertificate
+      tags:
+      - CertificatesSettingsApi
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                alias:
+                  type: string
+                password:
+                  type: string
+        required: true
+      responses:
+        "200":
+          description: Certificate uploaded successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CertificatesDto"
+        "400":
+          description: Upload failed due to invalid or unprocessable file.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "422":
+          description: Upload failed due to invalid alias.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorResponse"
+  /api/config/certificates/certs/ssc:
+    get:
+      summary: Get form data for Create self-signed certificate dialog
+      operationId: getCreateSelfSignedCertificateFormData
+      tags:
+      - CertificatesSettingsApi
+      responses:
+        "200":
+          description: Form data retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CreateSelfSignedCertificateFormData"
+    post:
+      summary: Create a self-signed certificate
+      operationId: createSelfSignedCertificate
+      tags:
+      - CertificatesSettingsApi
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CoreHostCreateSelfSignedCertificateForm"
+        required: true
+      responses:
+        "200":
+          description: Certificate created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CertificatesDto"
+        "422":
+          description: Creation failed due to invalid or unprocessable request.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorResponse"
+  /api/config/certificates/certs/{id}:
+    get:
+      summary: Download certificate
+      operationId: downloadCertificate
+      tags:
+      - CertificatesSettingsApi
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: format
+        in: query
+        schema:
+          $ref: "#/components/schemas/CertificateDownloadFormat"
+      responses:
+        "200":
+          description: Certificate downloaded successfully.
+          content:
+            application/octet-stream:
+              schema:
+                format: binary
+                type: string
+    delete:
+      summary: Delete certificate
+      operationId: deleteCertificate
+      tags:
+      - CertificatesSettingsApi
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Certificate deleted successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CertificatesDto"
+        "400":
+          description: Delete failed due to invalid certificate id or certificate
+            being used in the configuration.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /api/config/certificates/certs/{id}/alias:
+    put:
+      summary: Update certificate alias
+      operationId: updateCertificateAlias
+      tags:
+      - CertificatesSettingsApi
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                alias:
+                  type: string
+        required: true
+      responses:
+        "200":
+          description: Certificate alias updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CertificatesDto"
+        "400":
+          description: Update failed due to invalid certificate id.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "422":
+          description: Update failed due to invalid alias.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorResponse"
+  /api/config/certificates/data:
+    get:
+      summary: Get form data for Certificates settings
+      operationId: getCertificatesSettingsFormData
+      tags:
+      - CertificatesSettingsApi
+      responses:
+        "200":
+          description: Form data retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CertificatesSettingsFormData"
+  /api/config/container:
+    put:
+      summary: Update Container settings
+      operationId: updateContainerSettings
+      tags:
+      - ContainerSettingsApi
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ContainerSettingsDto"
+        required: true
+      responses:
+        "200":
+          description: Container settings updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ContainerSettingsDto"
+        "422":
+          description: Update failed due to invalid or unprocessable request.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorResponse"
+    get:
+      summary: Get Container settings
+      operationId: getContainerSettings
+      tags:
+      - ContainerSettingsApi
+      responses:
+        "200":
+          description: Container settings retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ContainerSettingsDto"
+  /api/config/ha:
+    put:
+      summary: Update High Availability settings
+      operationId: updateHighAvailabilitySettings
+      tags:
+      - HighAvailabilityConfigurationApi
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/HighAvailabilitySettingsDto"
+        required: true
+      responses:
+        "200":
+          description: High Availability settings updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HighAvailabilitySettingsDataDto"
+        "422":
+          description: Update failed due to invalid or unprocessable request.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorResponse"
+    get:
+      summary: Get High Availability settings
+      operationId: getHighAvailabilitySettings
+      tags:
+      - HighAvailabilityConfigurationApi
+      responses:
+        "200":
+          description: High Availability retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HighAvailabilitySettingsDataDto"
+  /api/config/ha/disable:
+    post:
+      summary: Disable High Availability and flush configuration
+      operationId: disableHighAvailability
+      tags:
+      - HighAvailabilityConfigurationApi
+      responses:
+        "200":
+          description: High Availability disabled successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HighAvailabilitySettingsDto"
+  /api/config/log:
+    put:
+      summary: Update Log Settings
+      operationId: updateLogSettings
+      tags:
+      - LogSettingsApi
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LogSettingsDto"
+        required: true
+      responses:
+        "200":
+          description: Log Settings updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LogSettingsDto"
+        "422":
+          description: Update failed due to invalid or unprocessable request.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorResponse"
+    get:
+      summary: Get Log Settings
+      operationId: getLogSettings
+      tags:
+      - LogSettingsApi
+      responses:
+        "200":
+          description: Log Settings retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LogSettingsDto"
+  /api/config/log/certs:
+    get:
+      summary: Get certificates and CA certificates available for log settings
+      operationId: getCertificates
+      tags:
+      - LogSettingsApi
+      responses:
+        "200":
+          description: Certificates retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CertificatesSettingsDto"
+  /api/config/monitoring:
+    put:
+      summary: Update Monitoring settings
+      operationId: updateMonitoringSettings
+      tags:
+      - MonitoringSettingsApi
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MonitoringSettingsDto"
+        required: true
+      responses:
+        "200":
+          description: Monitoring settings updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MonitoringSettingsDto"
+        "422":
+          description: Update failed due to invalid or unprocessable request.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorResponse"
+    get:
+      summary: Get Monitoring settings
+      operationId: getMonitoringSettings
+      tags:
+      - MonitoringSettingsApi
+      responses:
+        "200":
+          description: Monitoring settings retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MonitoringSettingsDto"
+  /api/config/monitoring/download-snmp-mib:
+    get:
+      summary: Download SNMP MIB file
+      operationId: downloadSnmpMib
+      tags:
+      - MonitoringSettingsApi
+      responses:
+        "200":
+          description: Monitoring settings retrieved successfully.
+          content:
+            application/octet-stream:
+              schema:
+                format: binary
+                type: string
+  /api/config/network:
+    put:
+      summary: Update Network settings
+      operationId: updateNetworkSettings
+      tags:
+      - NetworkSettingsApi
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NetworkSettingsDto"
+        required: true
+      responses:
+        "200":
+          description: Network settings updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NetworkSettingsDataDto"
+        "422":
+          description: Update failed due to invalid or unprocessable request.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorResponse"
+    get:
+      summary: Get Network settings
+      operationId: getNetworkSettings
+      tags:
+      - NetworkSettingsApi
+      responses:
+        "200":
+          description: Network settings retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NetworkSettingsDataDto"
+  /api/config/system:
+    put:
+      summary: Update System settings
+      operationId: updateSystemSettings
+      tags:
+      - SystemSettingsApi
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SystemSettingsDto"
+        required: true
+      responses:
+        "200":
+          description: System settings updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SystemSettingsDto"
+        "422":
+          description: Update failed due to invalid or unprocessable request.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorResponse"
+    get:
+      summary: Get System settings
+      operationId: getSystemSettings
+      tags:
+      - SystemSettingsApi
+      responses:
+        "200":
+          description: System settings retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SystemSettingsDto"
+  /api/ha/config-leader/restart:
+    post:
+      summary: Restart the config-leader cluster resource
+      operationId: restartConfigLeaderResource
+      tags:
+      - HighAvailabilityRuntimeApi
+      responses:
+        "200":
+          description: Config-leader resource restart triggered successfully.
+          content:
+            application/json:
+              schema:
+                type: boolean
+  /api/ha/enabled:
+    get:
+      summary: Whether HA is configured for this appliance
+      operationId: isHighAvailabilityEnabled
+      tags:
+      - HighAvailabilityRuntimeApi
+      responses:
+        "200":
+          description: HA configured state retrieved successfully.
+          content:
+            application/json:
+              schema:
+                type: boolean
+  /api/ha/leader:
+    get:
+      summary: Whether the local node is currently the cluster leader
+      operationId: isLocalNodeLeader
+      tags:
+      - HighAvailabilityRuntimeApi
+      responses:
+        "200":
+          description: Leader state retrieved successfully.
+          content:
+            application/json:
+              schema:
+                type: boolean
+  /api/ha/nodes/{hostname}/activate:
+    post:
+      summary: Activate a specific cluster node
+      operationId: activateClusterNode
+      tags:
+      - HighAvailabilityRuntimeApi
+      parameters:
+      - name: hostname
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Cluster node activated successfully.
+          content:
+            application/json:
+              schema:
+                type: boolean
+  /api/ha/nodes/{hostname}/standby:
+    post:
+      summary: Put a cluster node into Pacemaker standby
+      operationId: standbyClusterNode
+      tags:
+      - HighAvailabilityRuntimeApi
+      parameters:
+      - name: hostname
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Cluster node put into standby successfully.
+          content:
+            application/json:
+              schema:
+                type: boolean
+  /api/ha/nodes/{hostname}/unstandby:
+    post:
+      summary: Bring a cluster node out of Pacemaker standby
+      operationId: unstandbyClusterNode
+      tags:
+      - HighAvailabilityRuntimeApi
+      parameters:
+      - name: hostname
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Cluster node brought out of standby successfully.
+          content:
+            application/json:
+              schema:
+                type: boolean
+  /api/ha/status:
+    get:
+      summary: Get aggregate High Availability runtime status
+      operationId: getStatus
+      tags:
+      - HighAvailabilityRuntimeApi
+      responses:
+        "200":
+          description: Cluster status retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HaStatusDto"
+  /api/ha/synchronize:
+    post:
+      summary: Trigger HA configuration synchronization
+      operationId: synchronize
+      tags:
+      - HighAvailabilityRuntimeApi
+      responses:
+        "204":
+          description: Synchronization initiated successfully.
+  /api/live-log:
+    get:
+      summary: Get Live-Log menu tree
+      operationId: getLiveLogMenuTree
+      tags:
+      - Live-Log API
+      responses:
+        "200":
+          description: Live-Log menu tree retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LiveLogMenuDto"
+  /api/os/info:
+    get:
+      summary: Get operating system information
+      operationId: getOperatingSystemInfo
+      tags:
+      - OperatingSystemApi
+      responses:
+        "200":
+          description: Operating system information retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/OperatingSystemInfoDto"
+  /api/os/os-update:
+    post:
+      summary: Initiate installation of OS update
+      operationId: initiateOsUpdate
+      tags:
+      - OperatingSystemApi
+      responses:
+        "202":
+          description: OS update installation initiated successfully.
+        "400":
+          description: OS update installation failed.
+  /api/os/system-reboot:
+    post:
+      summary: Initiate System reboot
+      operationId: initiateSystemReboot
+      tags:
+      - OperatingSystemApi
+      responses:
+        "202":
+          description: System reboot initiated successfully.
+        "400":
+          description: System reboot failed.
+  /api/os/system-shutdown:
+    post:
+      summary: Initiate System shutdown
+      operationId: initiateSystemShutdown
+      tags:
+      - OperatingSystemApi
+      responses:
+        "202":
+          description: System shutdown initiated successfully.
+        "400":
+          description: System shutdown failed.
+  /api/user-management/providers:
+    get:
+      summary: Get all identity providers
+      operationId: getProviders
+      tags:
+      - UserManagementApi
+      responses:
+        "200":
+          description: List retrieved successfully.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/IdentityProviderDto"
+    post:
+      summary: Create identity provider
+      operationId: createProvider
+      tags:
+      - UserManagementApi
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateIdentityProviderForm"
+        required: true
+      responses:
+        "201":
+          description: Identity provider created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/IdentityProviderDto"
+        "422":
+          description: Create failed due to invalid or unprocessable request.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorResponse"
+  /api/user-management/providers/{id}:
+    put:
+      summary: Update identity provider
+      operationId: updateProvider
+      tags:
+      - UserManagementApi
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateIdentityProviderForm"
+        required: true
+      responses:
+        "200":
+          description: Identity provider updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/IdentityProviderDto"
+        "400":
+          description: Update failed due to invalid provider id.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "422":
+          description: Update failed due to invalid or unprocessable request.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorResponse"
+    get:
+      summary: Get identity provider
+      operationId: getProvider
+      tags:
+      - UserManagementApi
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Identity provider retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/IdentityProviderDto"
+        "400":
+          description: Retrieval failed due to invalid provider id.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+    delete:
+      summary: Delete identity provider
+      operationId: deleteProvider
+      tags:
+      - UserManagementApi
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "204":
+          description: Identity provider deleted successfully.
+        "400":
+          description: Delete failed due to invalid provider id.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /api/user-management/user/change-password:
+    put:
+      summary: Change current user's password
+      operationId: changeUserPassword
+      tags:
+      - UserManagementApi
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ChangePasswordForm"
+        required: true
+      responses:
+        "204":
+          description: Current user's password changed successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserDto"
+        "417":
+          description: Password change failed due to absence of current user info.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "422":
+          description: Password change failed due to invalid or unprocessable request.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorResponse"
+        "403":
+          description: Not allowed for API clients.
+  /api/user-management/user/profile:
+    put:
+      summary: Update current user's profile
+      operationId: updateUserProfile
+      tags:
+      - UserManagementApi
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateUserProfileForm"
+        required: true
+      responses:
+        "200":
+          description: Current user's profile updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserDto"
+        "417":
+          description: Update failed due to absence of current user info.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "422":
+          description: Update failed due to invalid or unprocessable request.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorResponse"
+        "403":
+          description: Not allowed for API clients.
+    get:
+      summary: Get current user's profile
+      operationId: getUserProfile
+      tags:
+      - UserManagementApi
+      responses:
+        "200":
+          description: Current user's profile retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserDto"
+        "417":
+          description: Retrieval failed due to absence of current user info.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "403":
+          description: Not allowed for API clients.
+  /api/user-management/users:
+    get:
+      summary: Get all local users
+      operationId: getUsers
+      tags:
+      - UserManagementApi
+      responses:
+        "200":
+          description: List retrieved successfully.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/UserDto"
+    post:
+      summary: Create local user
+      operationId: createUser
+      tags:
+      - UserManagementApi
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateUserForm"
+        required: true
+      responses:
+        "201":
+          description: Local user created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserDto"
+        "422":
+          description: Create failed due to invalid or unprocessable request.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorResponse"
+  /api/user-management/users/{username}:
+    put:
+      summary: Update local user
+      operationId: updateUser
+      tags:
+      - UserManagementApi
+      parameters:
+      - name: username
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateUserForm"
+        required: true
+      responses:
+        "200":
+          description: Local user updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserDto"
+        "400":
+          description: Update failed due to invalid user id.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "422":
+          description: Update failed due to invalid or unprocessable request.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorResponse"
+    delete:
+      summary: Delete local user
+      operationId: deleteUser
+      tags:
+      - UserManagementApi
+      parameters:
+      - name: username
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "204":
+          description: Local user deleted successfully.
+        "400":
+          description: Delete failed due to invalid user id.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+security:
+- apiClientToken: []
+servers:
+- url: "{baseUri}"
+  variables:
+    baseUri:
+      default: https://aero.example.com
+      description: "Scheme and address of your appliance, as you open the management\
+        \ GUI, e.g. `https://aero.example.com`. In an HA cluster, the cluster's address."
+info:
+  title: Aero Platform Management API
+  version: 0.0.0-main-SNAPSHOT
+  description: Authenticate every request with the access token of an API client.
+    See "Access the management API" in the user documentation.
